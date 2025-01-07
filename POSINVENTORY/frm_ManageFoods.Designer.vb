@@ -40,6 +40,9 @@ Partial Class frm_ManageFoods
         Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
         Me.GunaDragControl1 = New Guna.UI.WinForms.GunaDragControl(Me.components)
         Me.GunaElipse11 = New Guna.UI.WinForms.GunaElipse(Me.components)
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txt_category = New System.Windows.Forms.TextBox()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GunaCirclePictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -93,7 +96,7 @@ Partial Class frm_ManageFoods
         'PictureBox2
         '
         Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-        Me.PictureBox2.Location = New System.Drawing.Point(254, 51)
+        Me.PictureBox2.Location = New System.Drawing.Point(12, 24)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(28, 22)
         Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -109,7 +112,7 @@ Partial Class frm_ManageFoods
         Me.btn_find.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.btn_find.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_find.ForeColor = System.Drawing.Color.White
-        Me.btn_find.Location = New System.Drawing.Point(421, 51)
+        Me.btn_find.Location = New System.Drawing.Point(179, 24)
         Me.btn_find.Name = "btn_find"
         Me.btn_find.Size = New System.Drawing.Size(67, 23)
         Me.btn_find.TabIndex = 27
@@ -123,7 +126,7 @@ Partial Class frm_ManageFoods
         Me.txt_found.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txt_found.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txt_found.ForeColor = System.Drawing.Color.DarkOrange
-        Me.txt_found.Location = New System.Drawing.Point(286, 51)
+        Me.txt_found.Location = New System.Drawing.Point(44, 24)
         Me.txt_found.Multiline = True
         Me.txt_found.Name = "txt_found"
         Me.txt_found.Size = New System.Drawing.Size(137, 24)
@@ -138,7 +141,7 @@ Partial Class frm_ManageFoods
         Me.btn_delete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btn_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_delete.ForeColor = System.Drawing.Color.Black
-        Me.btn_delete.Location = New System.Drawing.Point(491, 141)
+        Me.btn_delete.Location = New System.Drawing.Point(507, 131)
         Me.btn_delete.Name = "btn_delete"
         Me.btn_delete.Size = New System.Drawing.Size(66, 32)
         Me.btn_delete.TabIndex = 31
@@ -154,7 +157,7 @@ Partial Class frm_ManageFoods
         Me.btn_edit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_edit.ForeColor = System.Drawing.Color.Black
-        Me.btn_edit.Location = New System.Drawing.Point(491, 190)
+        Me.btn_edit.Location = New System.Drawing.Point(513, 182)
         Me.btn_edit.Name = "btn_edit"
         Me.btn_edit.Size = New System.Drawing.Size(60, 32)
         Me.btn_edit.TabIndex = 30
@@ -170,7 +173,7 @@ Partial Class frm_ManageFoods
         Me.btn_save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_save.ForeColor = System.Drawing.Color.Black
-        Me.btn_save.Location = New System.Drawing.Point(317, 209)
+        Me.btn_save.Location = New System.Drawing.Point(316, 244)
         Me.btn_save.Name = "btn_save"
         Me.btn_save.Size = New System.Drawing.Size(97, 32)
         Me.btn_save.TabIndex = 29
@@ -214,6 +217,7 @@ Partial Class frm_ManageFoods
         Me.GunaControlBox2.OnPressedColor = System.Drawing.Color.Black
         Me.GunaControlBox2.Size = New System.Drawing.Size(38, 24)
         Me.GunaControlBox2.TabIndex = 49
+        Me.GunaControlBox2.Visible = False
         '
         'GunaControlBox1
         '
@@ -240,12 +244,49 @@ Partial Class frm_ManageFoods
         Me.GunaElipse11.Radius = 15
         Me.GunaElipse11.TargetControl = Me
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(233, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(97, 22)
+        Me.Label3.TabIndex = 50
+        Me.Label3.Text = "ADD PRODUCT"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.White
+        Me.Label4.Location = New System.Drawing.Point(247, 188)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(54, 13)
+        Me.Label4.TabIndex = 52
+        Me.Label4.Text = "Category"
+        '
+        'txt_category
+        '
+        Me.txt_category.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.txt_category.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txt_category.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_category.ForeColor = System.Drawing.Color.White
+        Me.txt_category.Location = New System.Drawing.Point(247, 204)
+        Me.txt_category.Multiline = True
+        Me.txt_category.Name = "txt_category"
+        Me.txt_category.Size = New System.Drawing.Size(233, 24)
+        Me.txt_category.TabIndex = 51
+        '
         'frm_ManageFoods
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(574, 288)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.txt_category)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.GunaControlBox2)
         Me.Controls.Add(Me.GunaControlBox1)
         Me.Controls.Add(Me.TextBox3)
@@ -286,4 +327,7 @@ Partial Class frm_ManageFoods
     Friend WithEvents GunaControlBox1 As Guna.UI.WinForms.GunaControlBox
     Friend WithEvents GunaDragControl1 As Guna.UI.WinForms.GunaDragControl
     Friend WithEvents GunaElipse11 As Guna.UI.WinForms.GunaElipse
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents txt_category As TextBox
 End Class

@@ -11,8 +11,8 @@ Public Class EditForm
     Private Sub GunaCirclePictureBox1_Click(sender As Object, e As EventArgs) Handles GunaCirclePictureBox1.Click
         Dim ofd As New OpenFileDialog
         If ofd.ShowDialog = Windows.Forms.DialogResult.OK Then
-            TextBox3.Text = ofd.FileName
-            GunaCirclePictureBox1.Image = Image.FromFile(TextBox3.Text)
+            GunaLabel1.Text = ofd.FileName
+            GunaCirclePictureBox1.Image = Image.FromFile(GunaLabel1.Text)
         End If
     End Sub
 

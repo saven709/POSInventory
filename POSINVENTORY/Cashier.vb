@@ -421,7 +421,11 @@ Public Class Cashier
                         cmd.Parameters.AddWithValue("@transdate", CDate(lbl_date.Text))
                         cmd.Parameters.AddWithValue("@transmonth", Date.Now.ToString("MM"))
                         cmd.Parameters.AddWithValue("@foodcode", DataGridView1.Rows(j).Cells(1).Value)
-                        cmd.Parameters.AddWithValue("@foodname", DataGridView1.Rows(j).Cells(2).Value)
+
+                        ' Concatenate foodname with size to save it in foodname field
+                        Dim foodname As String = DataGridView1.Rows(j).Cells(2).Value.ToString() & " - " & DataGridView1.Rows(j).Cells(3).Value.ToString()
+                        cmd.Parameters.AddWithValue("@foodname", foodname)
+
                         cmd.Parameters.AddWithValue("@price", DataGridView1.Rows(j).Cells(4).Value)
                         cmd.Parameters.AddWithValue("@qty", DataGridView1.Rows(j).Cells(5).Value)
                         cmd.Parameters.AddWithValue("@totalprice", DataGridView1.Rows(j).Cells(6).Value)
@@ -448,6 +452,7 @@ Public Class Cashier
         new_order()
         UpdateButtonVisibility()
     End Sub
+
 
     Sub new_order()
         Load_Foods()

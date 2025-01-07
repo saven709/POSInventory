@@ -40,37 +40,51 @@ Public Class frm_ManageFoods
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Try
             conn.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO `tbl_food`(`foodcode`, `foodname`, `img`) VALUES (@foodcode,@foodname,@img)", conn)
+            Dim cmd As New MySqlCommand("INSERT INTO `tbl_food`(`foodcode`, `foodname`, `img`, `category`) VALUES (@foodcode, @foodname, @img, @category)", conn)
             cmd.Parameters.Clear()
             cmd.Parameters.AddWithValue("@foodcode", txt_foodcode.Text)
             cmd.Parameters.AddWithValue("@foodname", txt_foodname.Text)
-            'cmd.Parameters.AddWithValue("@price", CDec(txt_size.Text))
-            Dim FileSize As New UInt32
-            Dim mstream As New System.IO.MemoryStream
-            GunaCirclePictureBox1.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
-            Dim picture() As Byte = mstream.GetBuffer
-            FileSize = mstream.Length
-            mstream.Close()
-            cmd.Parameters.AddWithValue("@img", picture)
+            cmd.Parameters.AddWithValue("@category", txt_category.Text) ' Add category parameter
 
-            Dim i As Integer
-            i = cmd.ExecuteNonQuery
-            If i > 0 Then
-                MsgBox("New Food Save Successfully !", vbInformation, "FAST FOOD")
+            ' Check if an image is selected in GunaCirclePictureBox1
+            If GunaCirclePictureBox1.Image IsNot Nothing Then
+                ' Use the selected image
+                Dim mstream As New System.IO.MemoryStream
+                GunaCirclePictureBox1.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+                Dim picture() As Byte = mstream.GetBuffer
+                mstream.Close()
+                cmd.Parameters.AddWithValue("@img", picture)
             Else
-                MsgBox("Warning : Food Save Failed !", vbCritical, "FAST FOOD")
+                ' Use a default placeholder image if no image is provided
+                Dim defaultImagePath As String = Application.StartupPath & "\placeholder.jpg" ' Path to your default image
+                Dim defaultImage As Image = Image.FromFile(defaultImagePath)
+                Dim mstream As New System.IO.MemoryStream
+                defaultImage.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
+                Dim picture() As Byte = mstream.GetBuffer
+                mstream.Close()
+                cmd.Parameters.AddWithValue("@img", picture)
             End If
 
+            Dim i As Integer
+            i = cmd.ExecuteNonQuery()
+            If i > 0 Then
+                MsgBox("New Food Save Successfully!", vbInformation, "FAST FOOD")
+            Else
+                MsgBox("Warning: Food Save Failed!", vbCritical, "FAST FOOD")
+            End If
 
         Catch ex As Exception
             MsgBox(ex.Message)
+        Finally
+            conn.Close()
         End Try
-        conn.Close()
+
         clear()
         auto_foodcode()
         ' Auto click the btnList (assuming it's the button you want to trigger)
-        Form1.btnList.PerformClick()  ' Simulates a click on the btnList button
+        Form1.btnList.PerformClick() ' Simulates a click on the btnList button
     End Sub
+
     Private Sub btn_edit_Click(sender As Object, e As EventArgs) Handles btn_edit.Click
         Try
             conn.Open()

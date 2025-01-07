@@ -30,6 +30,7 @@ Partial Class formsizes
         '
         'FlowLayoutPanel1
         '
+        Me.FlowLayoutPanel1.AutoScroll = True
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 12)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
@@ -63,7 +64,7 @@ Partial Class formsizes
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(467, 363)
+        Me.ClientSize = New System.Drawing.Size(467, 277)
         Me.Controls.Add(Me.GunaControlBox1)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
