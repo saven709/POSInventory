@@ -54,6 +54,9 @@ Partial Class Form1
         Me.GunaElipse4 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.btnLogout = New Guna.UI.WinForms.GunaButton()
         Me.GunaElipse5 = New Guna.UI.WinForms.GunaElipse(Me.components)
+        Me.lbl_date1 = New System.Windows.Forms.Label()
+        Me.lbl_time = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.PanelSlide.SuspendLayout()
         Me.PanelSetting.SuspendLayout()
         Me.PanelRecord.SuspendLayout()
@@ -325,8 +328,7 @@ Partial Class Form1
         Me.btnStock.OnPressedColor = System.Drawing.Color.Black
         Me.btnStock.Size = New System.Drawing.Size(170, 50)
         Me.btnStock.TabIndex = 13
-        Me.btnStock.Text = "IN STOCK"
-        Me.btnStock.Visible = False
+        Me.btnStock.Text = "INVENTORY"
         '
         'PanelProduct
         '
@@ -415,7 +417,7 @@ Partial Class Form1
         Me.btnProduct.OnPressedColor = System.Drawing.Color.Black
         Me.btnProduct.Size = New System.Drawing.Size(170, 50)
         Me.btnProduct.TabIndex = 11
-        Me.btnProduct.Text = "INVENTORY"
+        Me.btnProduct.Text = "MANAGE PRODUCT"
         '
         'btnDashboard
         '
@@ -570,12 +572,42 @@ Partial Class Form1
         Me.GunaElipse5.Radius = 10
         Me.GunaElipse5.TargetControl = Me.PanelMain
         '
+        'lbl_date1
+        '
+        Me.lbl_date1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl_date1.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_date1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.lbl_date1.Location = New System.Drawing.Point(461, 2)
+        Me.lbl_date1.Name = "lbl_date1"
+        Me.lbl_date1.Size = New System.Drawing.Size(251, 31)
+        Me.lbl_date1.TabIndex = 27
+        Me.lbl_date1.Text = "00.00"
+        Me.lbl_date1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lbl_time
+        '
+        Me.lbl_time.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl_time.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_time.ForeColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.lbl_time.Location = New System.Drawing.Point(689, 2)
+        Me.lbl_time.Name = "lbl_time"
+        Me.lbl_time.Size = New System.Drawing.Size(107, 31)
+        Me.lbl_time.TabIndex = 26
+        Me.lbl_time.Text = "00.00"
+        Me.lbl_time.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(918, 700)
+        Me.Controls.Add(Me.lbl_date1)
+        Me.Controls.Add(Me.lbl_time)
         Me.Controls.Add(Me.PanelSlide)
         Me.Controls.Add(Me.PanelLogo)
         Me.Controls.Add(Me.GunaControlBox2)
@@ -628,4 +660,7 @@ Partial Class Form1
     Friend WithEvents GunaElipse3 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents GunaElipse4 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents GunaElipse5 As Guna.UI.WinForms.GunaElipse
+    Friend WithEvents lbl_date1 As Label
+    Friend WithEvents lbl_time As Label
+    Friend WithEvents Timer1 As Timer
 End Class

@@ -81,7 +81,7 @@ Public Class frm_report
                     Next
                 Next
             Next
-            Dim fName As String = "Noob Coder FAST FOOD REPORT"
+            Dim fName As String = "BREWTOPIA SALES REPORT"
             Using sfd As New SaveFileDialog
                 sfd.Title = "Save As"
                 sfd.OverwritePrompt = True
@@ -96,7 +96,7 @@ Public Class frm_report
                     releaseObject(xlApp)
                     releaseObject(xlWorkBook)
                     releaseObject(xlWorkSheet)
-                    MsgBox("Data Export Success !", MsgBoxStyle.Information, "FAST FOOD")
+                    MsgBox("Data Export Success !", MsgBoxStyle.Information, "BREWTOPIA")
                 End If
             End Using
         Catch ex As Exception

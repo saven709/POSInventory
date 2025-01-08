@@ -21,7 +21,8 @@
     End Sub
 
     Private Sub btnProduct_Click(sender As Object, e As EventArgs) Handles btnProduct.Click
-        PanelProduct.Visible = Not PanelProduct.Visible
+        'PanelProduct.Visible = Not PanelProduct.Visible
+        OpeninPanel(New List)
     End Sub
 
     Private Sub btnStock_Click(sender As Object, e As EventArgs) Handles btnStock.Click
@@ -68,5 +69,10 @@
     Private Sub GunaButton9_Click(sender As Object, e As EventArgs) Handles GunaButton9.Click
         OpeninPanel(New frm_report)
         'frm_report.Show()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        lbl_date1.Text = Date.Now.ToString("ddd, dd-MM-yyyy")
+        lbl_time.Text = Date.Now.ToString("hh:mm:ss tt")
     End Sub
 End Class

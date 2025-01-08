@@ -20,21 +20,32 @@ Public Class EditForm
     Private Sub LoadFoodDetails()
         Try
             conn.Open()
-            ' Fetch the food name and image data from the tbl_food
-            Dim cmd As New MySqlCommand("SELECT foodcode, foodname, img FROM tbl_food WHERE foodcode = @foodcode", conn)
+            ' Fetch the food details (foodname, img, and category) from tbl_food
+            Dim cmd As New MySqlCommand("SELECT foodcode, foodname, img, category FROM tbl_food WHERE foodcode = @foodcode", conn)
             cmd.Parameters.AddWithValue("@foodcode", FoodCode)
             Dim dr As MySqlDataReader = cmd.ExecuteReader()
 
             If dr.Read() Then
-                ' Load foodname
+                ' Load foodcode
                 TextBox3.Text = dr("foodcode").ToString()
+
+                ' Load foodname
                 txtFoodName.Text = dr("foodname").ToString()
+
+                ' Load category
+                If dr("category") IsNot DBNull.Value Then
+                    txt_category.Text = dr("category").ToString()
+                Else
+                    txt_category.Text = String.Empty
+                End If
 
                 ' Load image
                 If dr("img") IsNot DBNull.Value Then
                     Dim imgData As Byte() = CType(dr("img"), Byte())
                     Dim ms As New System.IO.MemoryStream(imgData)
                     GunaCirclePictureBox1.Image = Image.FromStream(ms)
+                Else
+                    GunaCirclePictureBox1.Image = Nothing
                 End If
             End If
         Catch ex As Exception
@@ -43,6 +54,7 @@ Public Class EditForm
             conn.Close()
         End Try
     End Sub
+
 
 
     ' Load sizes and prices into DataGridView
@@ -70,12 +82,14 @@ Public Class EditForm
     ' Save changes to food details
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Try
-            ' Update the food details (foodname and img) in tbl_food
+            ' Update the food details (foodname, img, and category) in tbl_food
             conn.Open()
-            Dim cmd As New MySqlCommand("UPDATE `tbl_food` SET `foodname`=@foodname, `img`=@img WHERE `foodcode`=@foodcode", conn)
+            Dim cmd As New MySqlCommand("UPDATE `tbl_food` SET `foodname`=@foodname, `img`=@img, `category`=@category WHERE `foodcode`=@foodcode", conn)
             cmd.Parameters.Clear()
 
             cmd.Parameters.AddWithValue("@foodname", txtFoodName.Text)
+            cmd.Parameters.AddWithValue("@category", txt_category.Text) ' Add the category to the query
+
             Dim FileSize As New UInt32
             Dim mstream As New System.IO.MemoryStream
             GunaCirclePictureBox1.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
@@ -83,6 +97,7 @@ Public Class EditForm
             FileSize = mstream.Length
             mstream.Close()
             cmd.Parameters.AddWithValue("@img", picture)
+
             cmd.Parameters.AddWithValue("@foodcode", FoodCode)  ' Ensure foodcode is passed for the update
 
             Dim i As Integer = cmd.ExecuteNonQuery()
@@ -111,7 +126,7 @@ Public Class EditForm
             End If
 
         Catch ex As Exception
-            'MsgBox(ex.Message, vbCritical, "Error")
+            MsgBox("Error: " & ex.Message, vbCritical, "Error")
         Finally
             conn.Close()
         End Try
@@ -119,6 +134,7 @@ Public Class EditForm
         ' Auto click the btnList (assuming it's the button you want to trigger)
         Form1.btnList.PerformClick()  ' Simulates a click on the btnList button
     End Sub
+
     ' Add new size to the food item
     Private Sub btnAddSize_Click(sender As Object, e As EventArgs) Handles btn_addsize.Click
         If String.IsNullOrEmpty(txtnamesize.Text) OrElse String.IsNullOrEmpty(txtPrice.Text) Then

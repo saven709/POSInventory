@@ -232,6 +232,12 @@
     <Compile Include="formsizes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmitem.Designer.vb">
+      <DependentUpon>frmitem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmitem.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frm_BillPrint.designer.vb">
       <DependentUpon>frm_BillPrint.vb</DependentUpon>
     </Compile>
@@ -324,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formsizes.resx">
       <DependentUpon>formsizes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmitem.resx">
+      <DependentUpon>frmitem.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_BillPrint.resx">
       <DependentUpon>frm_BillPrint.vb</DependentUpon>

@@ -28,351 +28,196 @@ Partial Class Entry
         Dim StateProperties2 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
         Dim StateProperties3 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
         Dim StateProperties4 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
-        Dim StateProperties5 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
-        Dim StateProperties6 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
-        Dim StateProperties7 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
-        Dim StateProperties8 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.BunifuTextBox1 = New Bunifu.UI.WinForms.BunifuTextBox()
-        Me.BunifuTextBox2 = New Bunifu.UI.WinForms.BunifuTextBox()
-        Me.lblTitle = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.GunaLabel9 = New Guna.UI.WinForms.GunaLabel()
-        Me.GunaLabel8 = New Guna.UI.WinForms.GunaLabel()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.GunaLabel2 = New Guna.UI.WinForms.GunaLabel()
-        Me.GunaLabel5 = New Guna.UI.WinForms.GunaLabel()
-        Me.GunaLabel4 = New Guna.UI.WinForms.GunaLabel()
-        Me.GunaLabel3 = New Guna.UI.WinForms.GunaLabel()
-        Me.GunaLabel1 = New Guna.UI.WinForms.GunaLabel()
+        Me.txt_search = New Bunifu.UI.WinForms.BunifuTextBox()
+        Me.btn_ManageFoods = New Bunifu.Framework.UI.BunifuFlatButton()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.GunaElipse1 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.GunaElipse2 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.Label3 = New System.Windows.Forms.Label()
         Me.GunaElipse3 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.Panel1.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel2.SuspendLayout()
         Me.Panel4.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.Panel1.Controls.Add(Me.Label2)
-        Me.Panel1.Controls.Add(Me.BunifuTextBox1)
-        Me.Panel1.Controls.Add(Me.BunifuTextBox2)
-        Me.Panel1.Controls.Add(Me.lblTitle)
-        Me.Panel1.Controls.Add(Me.PictureBox2)
-        Me.Panel1.Controls.Add(Me.GunaLabel9)
-        Me.Panel1.Controls.Add(Me.GunaLabel8)
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(108, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.txt_search)
+        Me.Panel1.Controls.Add(Me.btn_ManageFoods)
         Me.Panel1.Location = New System.Drawing.Point(10, 18)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(636, 125)
+        Me.Panel1.Size = New System.Drawing.Size(286, 115)
         Me.Panel1.TabIndex = 0
         '
-        'Label2
+        'txt_search
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Poppins", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(78, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(455, 60)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(92, 34)
-        Me.Label2.TabIndex = 30
-        Me.Label2.Text = "Product"
-        '
-        'BunifuTextBox1
-        '
-        Me.BunifuTextBox1.AcceptsReturn = False
-        Me.BunifuTextBox1.AcceptsTab = False
-        Me.BunifuTextBox1.AnimationSpeed = 200
-        Me.BunifuTextBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None
-        Me.BunifuTextBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None
-        Me.BunifuTextBox1.AutoSize = True
-        Me.BunifuTextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(181, Byte), Integer))
-        Me.BunifuTextBox1.BackgroundImage = CType(resources.GetObject("BunifuTextBox1.BackgroundImage"), System.Drawing.Image)
-        Me.BunifuTextBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.BunifuTextBox1.BorderColorActive = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.BunifuTextBox1.BorderColorDisabled = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.BunifuTextBox1.BorderColorHover = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.BunifuTextBox1.BorderColorIdle = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.BunifuTextBox1.BorderRadius = 1
-        Me.BunifuTextBox1.BorderThickness = 1
-        Me.BunifuTextBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.BunifuTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.BunifuTextBox1.DefaultFont = New System.Drawing.Font("Poppins", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BunifuTextBox1.DefaultText = ""
-        Me.BunifuTextBox1.FillColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(181, Byte), Integer))
-        Me.BunifuTextBox1.ForeColor = System.Drawing.Color.White
-        Me.BunifuTextBox1.HideSelection = True
-        Me.BunifuTextBox1.IconLeft = Nothing
-        Me.BunifuTextBox1.IconLeftCursor = System.Windows.Forms.Cursors.IBeam
-        Me.BunifuTextBox1.IconPadding = 10
-        Me.BunifuTextBox1.IconRight = Nothing
-        Me.BunifuTextBox1.IconRightCursor = System.Windows.Forms.Cursors.IBeam
-        Me.BunifuTextBox1.Lines = New String(-1) {}
-        Me.BunifuTextBox1.Location = New System.Drawing.Point(137, 29)
-        Me.BunifuTextBox1.MaxLength = 32767
-        Me.BunifuTextBox1.MinimumSize = New System.Drawing.Size(1, 1)
-        Me.BunifuTextBox1.Modified = False
-        Me.BunifuTextBox1.Multiline = False
-        Me.BunifuTextBox1.Name = "BunifuTextBox1"
+        Me.txt_search.AcceptsReturn = False
+        Me.txt_search.AcceptsTab = False
+        Me.txt_search.AnimationSpeed = 200
+        Me.txt_search.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None
+        Me.txt_search.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None
+        Me.txt_search.AutoSize = True
+        Me.txt_search.BackColor = System.Drawing.Color.White
+        Me.txt_search.BackgroundImage = CType(resources.GetObject("txt_search.BackgroundImage"), System.Drawing.Image)
+        Me.txt_search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.txt_search.BorderColorActive = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
+        Me.txt_search.BorderColorDisabled = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
+        Me.txt_search.BorderColorHover = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
+        Me.txt_search.BorderColorIdle = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
+        Me.txt_search.BorderRadius = 1
+        Me.txt_search.BorderThickness = 1
+        Me.txt_search.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
+        Me.txt_search.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txt_search.DefaultFont = New System.Drawing.Font("Poppins", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_search.DefaultText = ""
+        Me.txt_search.FillColor = System.Drawing.Color.White
+        Me.txt_search.ForeColor = System.Drawing.Color.Black
+        Me.txt_search.HideSelection = True
+        Me.txt_search.IconLeft = Global.POSINVENTORY.My.Resources.Resources.Search1
+        Me.txt_search.IconLeftCursor = System.Windows.Forms.Cursors.IBeam
+        Me.txt_search.IconPadding = 10
+        Me.txt_search.IconRight = Nothing
+        Me.txt_search.IconRightCursor = System.Windows.Forms.Cursors.IBeam
+        Me.txt_search.Lines = New String(-1) {}
+        Me.txt_search.Location = New System.Drawing.Point(13, 22)
+        Me.txt_search.MaxLength = 32767
+        Me.txt_search.MinimumSize = New System.Drawing.Size(1, 1)
+        Me.txt_search.Modified = False
+        Me.txt_search.Multiline = False
+        Me.txt_search.Name = "txt_search"
         StateProperties1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
         StateProperties1.FillColor = System.Drawing.Color.Empty
         StateProperties1.ForeColor = System.Drawing.Color.Empty
         StateProperties1.PlaceholderForeColor = System.Drawing.Color.Empty
-        Me.BunifuTextBox1.OnActiveState = StateProperties1
+        Me.txt_search.OnActiveState = StateProperties1
         StateProperties2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
         StateProperties2.FillColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
         StateProperties2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
         StateProperties2.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.BunifuTextBox1.OnDisabledState = StateProperties2
+        Me.txt_search.OnDisabledState = StateProperties2
         StateProperties3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
         StateProperties3.FillColor = System.Drawing.Color.Empty
         StateProperties3.ForeColor = System.Drawing.Color.Empty
         StateProperties3.PlaceholderForeColor = System.Drawing.Color.Empty
-        Me.BunifuTextBox1.OnHoverState = StateProperties3
+        Me.txt_search.OnHoverState = StateProperties3
         StateProperties4.BorderColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        StateProperties4.FillColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(181, Byte), Integer))
-        StateProperties4.ForeColor = System.Drawing.Color.White
+        StateProperties4.FillColor = System.Drawing.Color.White
+        StateProperties4.ForeColor = System.Drawing.Color.Black
         StateProperties4.PlaceholderForeColor = System.Drawing.Color.Empty
-        Me.BunifuTextBox1.OnIdleState = StateProperties4
-        Me.BunifuTextBox1.Padding = New System.Windows.Forms.Padding(3)
-        Me.BunifuTextBox1.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.BunifuTextBox1.PlaceholderForeColor = System.Drawing.Color.White
-        Me.BunifuTextBox1.PlaceholderText = ""
-        Me.BunifuTextBox1.ReadOnly = False
-        Me.BunifuTextBox1.ScrollBars = System.Windows.Forms.ScrollBars.None
-        Me.BunifuTextBox1.SelectedText = ""
-        Me.BunifuTextBox1.SelectionLength = 0
-        Me.BunifuTextBox1.SelectionStart = 0
-        Me.BunifuTextBox1.ShortcutsEnabled = True
-        Me.BunifuTextBox1.Size = New System.Drawing.Size(254, 29)
-        Me.BunifuTextBox1.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Material
-        Me.BunifuTextBox1.TabIndex = 29
-        Me.BunifuTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.BunifuTextBox1.TextMarginBottom = 0
-        Me.BunifuTextBox1.TextMarginLeft = 3
-        Me.BunifuTextBox1.TextMarginTop = 0
-        Me.BunifuTextBox1.TextPlaceholder = ""
-        Me.BunifuTextBox1.UseSystemPasswordChar = False
-        Me.BunifuTextBox1.WordWrap = True
+        Me.txt_search.OnIdleState = StateProperties4
+        Me.txt_search.Padding = New System.Windows.Forms.Padding(3)
+        Me.txt_search.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.txt_search.PlaceholderForeColor = System.Drawing.Color.White
+        Me.txt_search.PlaceholderText = ""
+        Me.txt_search.ReadOnly = False
+        Me.txt_search.ScrollBars = System.Windows.Forms.ScrollBars.None
+        Me.txt_search.SelectedText = ""
+        Me.txt_search.SelectionLength = 0
+        Me.txt_search.SelectionStart = 0
+        Me.txt_search.ShortcutsEnabled = True
+        Me.txt_search.Size = New System.Drawing.Size(254, 37)
+        Me.txt_search.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Material
+        Me.txt_search.TabIndex = 31
+        Me.txt_search.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.txt_search.TextMarginBottom = 0
+        Me.txt_search.TextMarginLeft = 3
+        Me.txt_search.TextMarginTop = 0
+        Me.txt_search.TextPlaceholder = ""
+        Me.txt_search.UseSystemPasswordChar = False
+        Me.txt_search.WordWrap = True
         '
-        'BunifuTextBox2
+        'btn_ManageFoods
         '
-        Me.BunifuTextBox2.AcceptsReturn = False
-        Me.BunifuTextBox2.AcceptsTab = False
-        Me.BunifuTextBox2.AnimationSpeed = 200
-        Me.BunifuTextBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None
-        Me.BunifuTextBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None
-        Me.BunifuTextBox2.AutoSize = True
-        Me.BunifuTextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(181, Byte), Integer))
-        Me.BunifuTextBox2.BackgroundImage = CType(resources.GetObject("BunifuTextBox2.BackgroundImage"), System.Drawing.Image)
-        Me.BunifuTextBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.BunifuTextBox2.BorderColorActive = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.BunifuTextBox2.BorderColorDisabled = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.BunifuTextBox2.BorderColorHover = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.BunifuTextBox2.BorderColorIdle = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.BunifuTextBox2.BorderRadius = 1
-        Me.BunifuTextBox2.BorderThickness = 1
-        Me.BunifuTextBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal
-        Me.BunifuTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.BunifuTextBox2.DefaultFont = New System.Drawing.Font("Poppins", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BunifuTextBox2.DefaultText = ""
-        Me.BunifuTextBox2.FillColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(181, Byte), Integer))
-        Me.BunifuTextBox2.ForeColor = System.Drawing.Color.White
-        Me.BunifuTextBox2.HideSelection = True
-        Me.BunifuTextBox2.IconLeft = Nothing
-        Me.BunifuTextBox2.IconLeftCursor = System.Windows.Forms.Cursors.IBeam
-        Me.BunifuTextBox2.IconPadding = 10
-        Me.BunifuTextBox2.IconRight = Nothing
-        Me.BunifuTextBox2.IconRightCursor = System.Windows.Forms.Cursors.IBeam
-        Me.BunifuTextBox2.Lines = New String(-1) {}
-        Me.BunifuTextBox2.Location = New System.Drawing.Point(137, 74)
-        Me.BunifuTextBox2.MaxLength = 32767
-        Me.BunifuTextBox2.MinimumSize = New System.Drawing.Size(1, 1)
-        Me.BunifuTextBox2.Modified = False
-        Me.BunifuTextBox2.Multiline = False
-        Me.BunifuTextBox2.Name = "BunifuTextBox2"
-        StateProperties5.BorderColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        StateProperties5.FillColor = System.Drawing.Color.Empty
-        StateProperties5.ForeColor = System.Drawing.Color.Empty
-        StateProperties5.PlaceholderForeColor = System.Drawing.Color.Empty
-        Me.BunifuTextBox2.OnActiveState = StateProperties5
-        StateProperties6.BorderColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        StateProperties6.FillColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        StateProperties6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        StateProperties6.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.BunifuTextBox2.OnDisabledState = StateProperties6
-        StateProperties7.BorderColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        StateProperties7.FillColor = System.Drawing.Color.Empty
-        StateProperties7.ForeColor = System.Drawing.Color.Empty
-        StateProperties7.PlaceholderForeColor = System.Drawing.Color.Empty
-        Me.BunifuTextBox2.OnHoverState = StateProperties7
-        StateProperties8.BorderColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        StateProperties8.FillColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(181, Byte), Integer))
-        StateProperties8.ForeColor = System.Drawing.Color.White
-        StateProperties8.PlaceholderForeColor = System.Drawing.Color.Empty
-        Me.BunifuTextBox2.OnIdleState = StateProperties8
-        Me.BunifuTextBox2.Padding = New System.Windows.Forms.Padding(3)
-        Me.BunifuTextBox2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.BunifuTextBox2.PlaceholderForeColor = System.Drawing.Color.White
-        Me.BunifuTextBox2.PlaceholderText = ""
-        Me.BunifuTextBox2.ReadOnly = False
-        Me.BunifuTextBox2.ScrollBars = System.Windows.Forms.ScrollBars.None
-        Me.BunifuTextBox2.SelectedText = ""
-        Me.BunifuTextBox2.SelectionLength = 0
-        Me.BunifuTextBox2.SelectionStart = 0
-        Me.BunifuTextBox2.ShortcutsEnabled = True
-        Me.BunifuTextBox2.Size = New System.Drawing.Size(254, 29)
-        Me.BunifuTextBox2.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Material
-        Me.BunifuTextBox2.TabIndex = 28
-        Me.BunifuTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.BunifuTextBox2.TextMarginBottom = 0
-        Me.BunifuTextBox2.TextMarginLeft = 3
-        Me.BunifuTextBox2.TextMarginTop = 0
-        Me.BunifuTextBox2.TextPlaceholder = ""
-        Me.BunifuTextBox2.UseSystemPasswordChar = False
-        Me.BunifuTextBox2.WordWrap = True
-        '
-        'lblTitle
-        '
-        Me.lblTitle.AutoSize = True
-        Me.lblTitle.Font = New System.Drawing.Font("Poppins", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTitle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(78, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblTitle.Location = New System.Drawing.Point(457, 38)
-        Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(87, 34)
-        Me.lblTitle.TabIndex = 26
-        Me.lblTitle.Text = "Browse"
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.POSINVENTORY.My.Resources.Resources.Add_New
-        Me.PictureBox2.Location = New System.Drawing.Point(544, 48)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(34, 29)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 25
-        Me.PictureBox2.TabStop = False
-        '
-        'GunaLabel9
-        '
-        Me.GunaLabel9.AutoSize = True
-        Me.GunaLabel9.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GunaLabel9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(78, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.GunaLabel9.Location = New System.Drawing.Point(22, 83)
-        Me.GunaLabel9.Name = "GunaLabel9"
-        Me.GunaLabel9.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.GunaLabel9.Size = New System.Drawing.Size(115, 26)
-        Me.GunaLabel9.TabIndex = 15
-        Me.GunaLabel9.Text = "Stock in Date:"
-        '
-        'GunaLabel8
-        '
-        Me.GunaLabel8.AutoSize = True
-        Me.GunaLabel8.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GunaLabel8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(78, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.GunaLabel8.Location = New System.Drawing.Point(13, 38)
-        Me.GunaLabel8.Name = "GunaLabel8"
-        Me.GunaLabel8.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.GunaLabel8.Size = New System.Drawing.Size(125, 26)
-        Me.GunaLabel8.TabIndex = 13
-        Me.GunaLabel8.Text = "Product Name:"
-        '
-        'Panel2
-        '
-        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(246, Byte), Integer), CType(CType(246, Byte), Integer), CType(CType(246, Byte), Integer))
-        Me.Panel2.Controls.Add(Me.GunaLabel2)
-        Me.Panel2.Controls.Add(Me.GunaLabel5)
-        Me.Panel2.Controls.Add(Me.GunaLabel4)
-        Me.Panel2.Controls.Add(Me.GunaLabel3)
-        Me.Panel2.Controls.Add(Me.GunaLabel1)
-        Me.Panel2.Location = New System.Drawing.Point(13, 161)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(636, 32)
-        Me.Panel2.TabIndex = 7
-        '
-        'GunaLabel2
-        '
-        Me.GunaLabel2.AutoSize = True
-        Me.GunaLabel2.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GunaLabel2.ForeColor = System.Drawing.Color.Black
-        Me.GunaLabel2.Location = New System.Drawing.Point(354, 3)
-        Me.GunaLabel2.Name = "GunaLabel2"
-        Me.GunaLabel2.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.GunaLabel2.Size = New System.Drawing.Size(76, 26)
-        Me.GunaLabel2.TabIndex = 12
-        Me.GunaLabel2.Text = "Quantity"
-        '
-        'GunaLabel5
-        '
-        Me.GunaLabel5.AutoSize = True
-        Me.GunaLabel5.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GunaLabel5.ForeColor = System.Drawing.Color.Black
-        Me.GunaLabel5.Location = New System.Drawing.Point(547, 3)
-        Me.GunaLabel5.Name = "GunaLabel5"
-        Me.GunaLabel5.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.GunaLabel5.Size = New System.Drawing.Size(92, 26)
-        Me.GunaLabel5.TabIndex = 11
-        Me.GunaLabel5.Text = "Stock in By"
-        '
-        'GunaLabel4
-        '
-        Me.GunaLabel4.AutoSize = True
-        Me.GunaLabel4.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GunaLabel4.ForeColor = System.Drawing.Color.Black
-        Me.GunaLabel4.Location = New System.Drawing.Point(439, 3)
-        Me.GunaLabel4.Name = "GunaLabel4"
-        Me.GunaLabel4.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.GunaLabel4.Size = New System.Drawing.Size(110, 26)
-        Me.GunaLabel4.TabIndex = 10
-        Me.GunaLabel4.Text = "Stock in Date"
-        '
-        'GunaLabel3
-        '
-        Me.GunaLabel3.AutoSize = True
-        Me.GunaLabel3.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GunaLabel3.ForeColor = System.Drawing.Color.Black
-        Me.GunaLabel3.Location = New System.Drawing.Point(64, 3)
-        Me.GunaLabel3.Name = "GunaLabel3"
-        Me.GunaLabel3.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.GunaLabel3.Size = New System.Drawing.Size(120, 26)
-        Me.GunaLabel3.TabIndex = 9
-        Me.GunaLabel3.Text = "Product Name"
-        '
-        'GunaLabel1
-        '
-        Me.GunaLabel1.AutoSize = True
-        Me.GunaLabel1.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GunaLabel1.ForeColor = System.Drawing.Color.Black
-        Me.GunaLabel1.Location = New System.Drawing.Point(13, 3)
-        Me.GunaLabel1.Name = "GunaLabel1"
-        Me.GunaLabel1.Size = New System.Drawing.Size(33, 26)
-        Me.GunaLabel1.TabIndex = 7
-        Me.GunaLabel1.Text = "No"
+        Me.btn_ManageFoods.Activecolor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(87, Byte), Integer))
+        Me.btn_ManageFoods.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.btn_ManageFoods.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btn_ManageFoods.BorderRadius = 0
+        Me.btn_ManageFoods.ButtonText = "ADD ITEM"
+        Me.btn_ManageFoods.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_ManageFoods.DisabledColor = System.Drawing.Color.Gray
+        Me.btn_ManageFoods.Iconcolor = System.Drawing.Color.Transparent
+        Me.btn_ManageFoods.Iconimage = Global.POSINVENTORY.My.Resources.Resources.Add_New1
+        Me.btn_ManageFoods.Iconimage_right = Nothing
+        Me.btn_ManageFoods.Iconimage_right_Selected = Nothing
+        Me.btn_ManageFoods.Iconimage_Selected = Nothing
+        Me.btn_ManageFoods.IconMarginLeft = 0
+        Me.btn_ManageFoods.IconMarginRight = 0
+        Me.btn_ManageFoods.IconRightVisible = True
+        Me.btn_ManageFoods.IconRightZoom = 0R
+        Me.btn_ManageFoods.IconVisible = True
+        Me.btn_ManageFoods.IconZoom = 60.0R
+        Me.btn_ManageFoods.IsTab = False
+        Me.btn_ManageFoods.Location = New System.Drawing.Point(13, 65)
+        Me.btn_ManageFoods.Name = "btn_ManageFoods"
+        Me.btn_ManageFoods.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.btn_ManageFoods.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.btn_ManageFoods.OnHoverTextColor = System.Drawing.Color.White
+        Me.btn_ManageFoods.selected = False
+        Me.btn_ManageFoods.Size = New System.Drawing.Size(254, 35)
+        Me.btn_ManageFoods.TabIndex = 30
+        Me.btn_ManageFoods.Text = "ADD ITEM"
+        Me.btn_ManageFoods.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btn_ManageFoods.Textcolor = System.Drawing.SystemColors.ControlText
+        Me.btn_ManageFoods.TextFont = New System.Drawing.Font("Poppins", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(78, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.Panel4.Controls.Add(Me.DataGridView1)
         Me.Panel4.Controls.Add(Me.Panel1)
-        Me.Panel4.Controls.Add(Me.Panel2)
-        Me.Panel4.Controls.Add(Me.Panel5)
         Me.Panel4.Location = New System.Drawing.Point(11, 31)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(667, 600)
         Me.Panel4.TabIndex = 27
         '
-        'Panel5
+        'DataGridView1
         '
-        Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.Panel5.Location = New System.Drawing.Point(13, 190)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(636, 392)
-        Me.Panel5.TabIndex = 27
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridView1.ColumnHeadersHeight = 30
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DataGridView1.GridColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer))
+        Me.DataGridView1.Location = New System.Drawing.Point(10, 149)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        Me.DataGridView1.RowHeadersVisible = False
+        Me.DataGridView1.Size = New System.Drawing.Size(644, 448)
+        Me.DataGridView1.TabIndex = 11
         '
         'GunaElipse1
         '
@@ -391,9 +236,9 @@ Partial Class Entry
         Me.Label3.ForeColor = System.Drawing.Color.Black
         Me.Label3.Location = New System.Drawing.Point(21, 9)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(73, 19)
+        Me.Label3.Size = New System.Drawing.Size(80, 19)
         Me.Label3.TabIndex = 28
-        Me.Label3.Text = "IN STOCK "
+        Me.Label3.Text = "INVENTORY"
         '
         'GunaElipse3
         '
@@ -413,33 +258,20 @@ Partial Class Entry
         Me.Text = "Entry"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel2.ResumeLayout(False)
-        Me.Panel2.PerformLayout()
         Me.Panel4.ResumeLayout(False)
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents GunaLabel8 As Guna.UI.WinForms.GunaLabel
-    Friend WithEvents Panel2 As Panel
-    Friend WithEvents GunaLabel5 As Guna.UI.WinForms.GunaLabel
-    Friend WithEvents GunaLabel4 As Guna.UI.WinForms.GunaLabel
-    Friend WithEvents GunaLabel3 As Guna.UI.WinForms.GunaLabel
-    Friend WithEvents GunaLabel1 As Guna.UI.WinForms.GunaLabel
-    Friend WithEvents GunaLabel9 As Guna.UI.WinForms.GunaLabel
-    Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents lblTitle As Label
-    Friend WithEvents GunaLabel2 As Guna.UI.WinForms.GunaLabel
     Friend WithEvents Panel4 As Panel
-    Friend WithEvents Panel5 As Panel
-    Friend WithEvents Label2 As Label
-    Friend WithEvents BunifuTextBox1 As Bunifu.UI.WinForms.BunifuTextBox
-    Friend WithEvents BunifuTextBox2 As Bunifu.UI.WinForms.BunifuTextBox
     Friend WithEvents GunaElipse1 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents GunaElipse2 As Guna.UI.WinForms.GunaElipse
     Private WithEvents Label3 As Label
     Friend WithEvents GunaElipse3 As Guna.UI.WinForms.GunaElipse
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents btn_ManageFoods As Bunifu.Framework.UI.BunifuFlatButton
+    Friend WithEvents txt_search As Bunifu.UI.WinForms.BunifuTextBox
 End Class

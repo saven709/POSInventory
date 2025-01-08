@@ -74,6 +74,12 @@ Public Class Cashier
         txt_transno.TabStop = False
         'txt_transno.BackColor = SystemColors.Control ' Optional: Make it look like a label
         'txt_transno.BorderStyle = BorderStyle.None   ' Optional: Remove the border for cleaner appearance
+        LoadCategories()  ' Load categories when form starts
+        categorybtn.Text = categories(0)  ' Set initial text to "All"
+
+        ' Create tooltip for category button
+        Dim tooltip As New ToolTip()
+        tooltip.SetToolTip(categorybtn, "Click to switch category")
     End Sub
 
     Private Sub InitializeDataGridView()
@@ -269,12 +275,10 @@ Public Class Cashier
         End Try
     End Sub
 
-    ' Handle quantity updates through CellClick event
     Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         Try
             If e.RowIndex >= 0 Then  ' Make sure we didn't click a header
                 Dim row = DataGridView1.Rows(e.RowIndex)
-
                 ' Store the current row index for use with quantity buttons
                 DataGridView1.CurrentCell = DataGridView1.Rows(e.RowIndex).Cells(0)
                 UpdateNoOfProducts() ' Update the total number of items when quantity changes
@@ -283,6 +287,7 @@ Public Class Cashier
             MessageBox.Show("Error selecting item: " & ex.Message)
         End Try
     End Sub
+
     Private Sub txtquantity_TextChanged(sender As Object, e As EventArgs) Handles txtquantity.TextChanged
         Try
             ' Check if a row is selected
@@ -291,19 +296,27 @@ Public Class Cashier
                 Dim price As Decimal = CDec(row.Cells(4).Value) ' Get the price from the selected row
                 Dim newQty As Integer
 
+                ' Skip validation if the textbox is empty
+                If String.IsNullOrWhiteSpace(txtquantity.Text) Then
+                    Return
+                End If
+
                 ' Validate the input in txtquantity
-                If Integer.TryParse(txtquantity.Text, newQty) AndAlso newQty > 0 Then
-                    ' Update quantity
-                    row.Cells(5).Value = newQty
-
-                    ' Update subtotal
-                    row.Cells(6).Value = price * newQty
-
-                    ' Recalculate totals
-                    CalculateTotal()
-                    UpdateNoOfProducts() ' Update total items
-                ElseIf txtquantity.Text.Trim() <> "" Then
-                    MessageBox.Show("Please enter a valid quantity (greater than 0).", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                If Integer.TryParse(txtquantity.Text, newQty) Then
+                    If newQty > 0 Then
+                        ' Update quantity
+                        row.Cells(5).Value = newQty
+                        ' Update subtotal
+                        row.Cells(6).Value = price * newQty
+                        ' Recalculate totals
+                        CalculateTotal()
+                        UpdateNoOfProducts() ' Update total items
+                    Else
+                        ' Only show message if the value is actually invalid (not just empty)
+                        If txtquantity.Text.Trim() <> "" Then
+                            MessageBox.Show("Please enter a valid quantity (greater than 0).", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        End If
+                    End If
                 End If
             Else
                 MessageBox.Show("Please select a row in the DataGridView before updating the quantity.", "No Row Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -311,6 +324,17 @@ Public Class Cashier
         Catch ex As Exception
             MessageBox.Show("Error updating quantity: " & ex.Message)
         End Try
+    End Sub
+
+    ' Add this handler for the Enter key
+    Private Sub txtquantity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtquantity.KeyPress
+        ' If Enter key is pressed
+        If e.KeyChar = Convert.ToChar(Keys.Enter) Then
+            ' Prevent the Enter key from triggering another TextChanged event
+            e.Handled = True
+            ' Move focus to another control or process the entry
+            SendKeys.Send("{TAB}")
+        End If
     End Sub
 
 
@@ -529,8 +553,74 @@ Public Class Cashier
         conn.Close()
 
     End Sub
+    Private categories As List(Of String) = New List(Of String)
+    Private currentCategoryIndex As Integer = -1
+
+    Private Sub LoadCategories()
+        categories.Clear()
+        categories.Add("All")  ' Always add "All" as the first option
+
+        Try
+            conn.Open()
+            cmd = New MySqlCommand("SELECT DISTINCT category FROM tbl_food ORDER BY category", conn)
+            dr = cmd.ExecuteReader
+
+            While dr.Read
+                If Not dr.IsDBNull(0) Then  ' Check if category is not null
+                    categories.Add(dr("category").ToString())
+                End If
+            End While
+
+        Catch ex As Exception
+            MsgBox("Error loading categories: " & ex.Message)
+        Finally
+            dr.Close()
+            conn.Close()
+        End Try
+    End Sub
+    Private Sub categorybtn_Click(sender As Object, e As EventArgs) Handles categorybtn.Click
+        ' Move to next category
+        currentCategoryIndex = (currentCategoryIndex + 1) Mod categories.Count
+
+        ' Update button text to show current category
+        categorybtn.Text = categories(currentCategoryIndex)
+
+        ' Filter items based on selected category
+        If currentCategoryIndex = 0 Then  ' "All" category
+            Load_Foods()
+        Else
+            FilterByCategory(categories(currentCategoryIndex))
+        End If
+
+        UpdateCategoryButtonTooltip()
+    End Sub
+    Private Sub FilterByCategory(categoryName As String)
+        FlowLayoutPanel1.Controls.Clear()
+        FlowLayoutPanel1.AutoScroll = True
+        Try
+            conn.Open()
+            cmd = New MySqlCommand("SELECT `img`, `foodcode`, `foodname` FROM `tbl_food` WHERE category = @category", conn)
+            cmd.Parameters.AddWithValue("@category", categoryName)
+            dr = cmd.ExecuteReader
+            While dr.Read
+                Load_controls()
+            End While
+        Catch ex As Exception
+            MsgBox("Error: " & ex.Message)
+        Finally
+            dr.Close()
+            conn.Close()
+        End Try
+    End Sub
+
+    Private Sub UpdateCategoryButtonTooltip()
+        Dim nextIndex = (currentCategoryIndex + 1) Mod categories.Count
+        Dim tooltip As New ToolTip()
+        tooltip.SetToolTip(categorybtn, $"Next: {categories(nextIndex)}")
+    End Sub
     Private Sub UpdateButtonVisibility()
-        ' Enable or disable buttons based on DataGridView content
+
+
         btnRecord.Enabled = DataGridView1.Rows.Count > 0
         btnRemove.Enabled = DataGridView1.Rows.Count > 0
         btnPlus.Enabled = DataGridView1.Rows.Count > 0

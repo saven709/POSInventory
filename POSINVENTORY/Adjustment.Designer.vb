@@ -22,6 +22,7 @@ Partial Class Adjustment
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Adjustment))
         Me.GunaLabel2 = New Guna.UI.WinForms.GunaLabel()
         Me.GunaLabel5 = New Guna.UI.WinForms.GunaLabel()
@@ -45,6 +46,9 @@ Partial Class Adjustment
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.BunifuTextbox1 = New Bunifu.Framework.UI.BunifuTextbox()
         Me.SigninBtn = New Guna.UI.WinForms.GunaButton()
+        Me.GunaElipse1 = New Guna.UI.WinForms.GunaElipse(Me.components)
+        Me.GunaElipse2 = New Guna.UI.WinForms.GunaElipse(Me.components)
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,7 +60,7 @@ Partial Class Adjustment
         Me.GunaLabel2.AutoSize = True
         Me.GunaLabel2.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GunaLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(184, Byte), Integer), CType(CType(168, Byte), Integer))
-        Me.GunaLabel2.Location = New System.Drawing.Point(390, 3)
+        Me.GunaLabel2.Location = New System.Drawing.Point(373, 3)
         Me.GunaLabel2.Name = "GunaLabel2"
         Me.GunaLabel2.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.GunaLabel2.Size = New System.Drawing.Size(79, 20)
@@ -68,7 +72,7 @@ Partial Class Adjustment
         Me.GunaLabel5.AutoSize = True
         Me.GunaLabel5.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GunaLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(184, Byte), Integer), CType(CType(168, Byte), Integer))
-        Me.GunaLabel5.Location = New System.Drawing.Point(564, 3)
+        Me.GunaLabel5.Location = New System.Drawing.Point(547, 3)
         Me.GunaLabel5.Name = "GunaLabel5"
         Me.GunaLabel5.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.GunaLabel5.Size = New System.Drawing.Size(115, 20)
@@ -80,7 +84,7 @@ Partial Class Adjustment
         Me.GunaLabel4.AutoSize = True
         Me.GunaLabel4.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GunaLabel4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(184, Byte), Integer), CType(CType(168, Byte), Integer))
-        Me.GunaLabel4.Location = New System.Drawing.Point(495, 3)
+        Me.GunaLabel4.Location = New System.Drawing.Point(475, 3)
         Me.GunaLabel4.Name = "GunaLabel4"
         Me.GunaLabel4.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.GunaLabel4.Size = New System.Drawing.Size(46, 20)
@@ -118,14 +122,16 @@ Partial Class Adjustment
         Me.Panel2.Controls.Add(Me.GunaLabel4)
         Me.Panel2.Controls.Add(Me.GunaLabel3)
         Me.Panel2.Controls.Add(Me.GunaLabel1)
-        Me.Panel2.Location = New System.Drawing.Point(-1, 155)
+        Me.Panel2.Location = New System.Drawing.Point(0, 143)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(691, 32)
+        Me.Panel2.Size = New System.Drawing.Size(667, 32)
         Me.Panel2.TabIndex = 11
         '
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(183, Byte), Integer), CType(CType(156, Byte), Integer), CType(CType(123, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.Panel2)
+        Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.BunifuMetroTextbox1)
         Me.Panel1.Controls.Add(Me.GunaLabel12)
         Me.Panel1.Controls.Add(Me.BunifuMetroTextbox3)
@@ -138,9 +144,9 @@ Partial Class Adjustment
         Me.Panel1.Controls.Add(Me.GunaLabel8)
         Me.Panel1.Controls.Add(Me.lblUsername)
         Me.Panel1.Controls.Add(Me.PictureBox3)
-        Me.Panel1.Location = New System.Drawing.Point(-1, 0)
+        Me.Panel1.Location = New System.Drawing.Point(11, 31)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(692, 155)
+        Me.Panel1.Size = New System.Drawing.Size(667, 600)
         Me.Panel1.TabIndex = 10
         '
         'BunifuMetroTextbox1
@@ -154,10 +160,10 @@ Partial Class Adjustment
         Me.BunifuMetroTextbox1.Font = New System.Drawing.Font("Century Gothic", 9.75!)
         Me.BunifuMetroTextbox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.BunifuMetroTextbox1.isPassword = False
-        Me.BunifuMetroTextbox1.Location = New System.Drawing.Point(425, 25)
+        Me.BunifuMetroTextbox1.Location = New System.Drawing.Point(441, 26)
         Me.BunifuMetroTextbox1.Margin = New System.Windows.Forms.Padding(4)
         Me.BunifuMetroTextbox1.Name = "BunifuMetroTextbox1"
-        Me.BunifuMetroTextbox1.Size = New System.Drawing.Size(254, 29)
+        Me.BunifuMetroTextbox1.Size = New System.Drawing.Size(154, 29)
         Me.BunifuMetroTextbox1.TabIndex = 39
         Me.BunifuMetroTextbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         '
@@ -166,7 +172,7 @@ Partial Class Adjustment
         Me.GunaLabel12.AutoSize = True
         Me.GunaLabel12.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GunaLabel12.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.GunaLabel12.Location = New System.Drawing.Point(357, 34)
+        Me.GunaLabel12.Location = New System.Drawing.Point(373, 35)
         Me.GunaLabel12.Name = "GunaLabel12"
         Me.GunaLabel12.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.GunaLabel12.Size = New System.Drawing.Size(61, 20)
@@ -184,10 +190,10 @@ Partial Class Adjustment
         Me.BunifuMetroTextbox3.Font = New System.Drawing.Font("Century Gothic", 9.75!)
         Me.BunifuMetroTextbox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.BunifuMetroTextbox3.isPassword = False
-        Me.BunifuMetroTextbox3.Location = New System.Drawing.Point(425, 66)
+        Me.BunifuMetroTextbox3.Location = New System.Drawing.Point(441, 67)
         Me.BunifuMetroTextbox3.Margin = New System.Windows.Forms.Padding(4)
         Me.BunifuMetroTextbox3.Name = "BunifuMetroTextbox3"
-        Me.BunifuMetroTextbox3.Size = New System.Drawing.Size(255, 29)
+        Me.BunifuMetroTextbox3.Size = New System.Drawing.Size(154, 29)
         Me.BunifuMetroTextbox3.TabIndex = 37
         Me.BunifuMetroTextbox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         '
@@ -202,10 +208,10 @@ Partial Class Adjustment
         Me.BunifuMetroTextbox2.Font = New System.Drawing.Font("Century Gothic", 9.75!)
         Me.BunifuMetroTextbox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.BunifuMetroTextbox2.isPassword = False
-        Me.BunifuMetroTextbox2.Location = New System.Drawing.Point(425, 106)
+        Me.BunifuMetroTextbox2.Location = New System.Drawing.Point(441, 107)
         Me.BunifuMetroTextbox2.Margin = New System.Windows.Forms.Padding(4)
         Me.BunifuMetroTextbox2.Name = "BunifuMetroTextbox2"
-        Me.BunifuMetroTextbox2.Size = New System.Drawing.Size(255, 29)
+        Me.BunifuMetroTextbox2.Size = New System.Drawing.Size(154, 29)
         Me.BunifuMetroTextbox2.TabIndex = 36
         Me.BunifuMetroTextbox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         '
@@ -214,7 +220,7 @@ Partial Class Adjustment
         Me.GunaLabel10.AutoSize = True
         Me.GunaLabel10.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GunaLabel10.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.GunaLabel10.Location = New System.Drawing.Point(343, 115)
+        Me.GunaLabel10.Location = New System.Drawing.Point(359, 116)
         Me.GunaLabel10.Name = "GunaLabel10"
         Me.GunaLabel10.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.GunaLabel10.Size = New System.Drawing.Size(74, 20)
@@ -226,7 +232,7 @@ Partial Class Adjustment
         Me.GunaLabel11.AutoSize = True
         Me.GunaLabel11.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GunaLabel11.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.GunaLabel11.Location = New System.Drawing.Point(343, 75)
+        Me.GunaLabel11.Location = New System.Drawing.Point(359, 76)
         Me.GunaLabel11.Name = "GunaLabel11"
         Me.GunaLabel11.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.GunaLabel11.Size = New System.Drawing.Size(75, 20)
@@ -308,9 +314,9 @@ Partial Class Adjustment
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(53, Byte), Integer), CType(CType(44, Byte), Integer))
         Me.Panel3.Controls.Add(Me.BunifuTextbox1)
         Me.Panel3.Controls.Add(Me.SigninBtn)
-        Me.Panel3.Location = New System.Drawing.Point(-1, 609)
+        Me.Panel3.Location = New System.Drawing.Point(0, 541)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(698, 56)
+        Me.Panel3.Size = New System.Drawing.Size(667, 59)
         Me.Panel3.TabIndex = 12
         '
         'BunifuTextbox1
@@ -320,7 +326,7 @@ Partial Class Adjustment
         Me.BunifuTextbox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.BunifuTextbox1.ForeColor = System.Drawing.Color.Black
         Me.BunifuTextbox1.Icon = CType(resources.GetObject("BunifuTextbox1.Icon"), System.Drawing.Image)
-        Me.BunifuTextbox1.Location = New System.Drawing.Point(177, 14)
+        Me.BunifuTextbox1.Location = New System.Drawing.Point(126, 14)
         Me.BunifuTextbox1.Name = "BunifuTextbox1"
         Me.BunifuTextbox1.Size = New System.Drawing.Size(344, 29)
         Me.BunifuTextbox1.TabIndex = 24
@@ -341,7 +347,7 @@ Partial Class Adjustment
         Me.SigninBtn.ForeColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(219, Byte), Integer))
         Me.SigninBtn.Image = Nothing
         Me.SigninBtn.ImageSize = New System.Drawing.Size(20, 20)
-        Me.SigninBtn.Location = New System.Drawing.Point(577, 14)
+        Me.SigninBtn.Location = New System.Drawing.Point(528, 14)
         Me.SigninBtn.Name = "SigninBtn"
         Me.SigninBtn.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(222, Byte), Integer), CType(CType(236, Byte), Integer), CType(CType(237, Byte), Integer))
         Me.SigninBtn.OnHoverBorderColor = System.Drawing.Color.Black
@@ -355,13 +361,33 @@ Partial Class Adjustment
         Me.SigninBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.SigninBtn.TextRenderingHint = Guna.UI.WinForms.DrawingTextRenderingHint.AntiAlias
         '
+        'GunaElipse1
+        '
+        Me.GunaElipse1.Radius = 15
+        Me.GunaElipse1.TargetControl = Me
+        '
+        'GunaElipse2
+        '
+        Me.GunaElipse2.Radius = 15
+        Me.GunaElipse2.TargetControl = Me.Panel1
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Poppins Medium", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(21, 9)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(92, 19)
+        Me.Label3.TabIndex = 29
+        Me.Label3.Text = "ADJUSTMENT"
+        '
         'Adjustment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(691, 664)
-        Me.Controls.Add(Me.Panel3)
-        Me.Controls.Add(Me.Panel2)
+        Me.ClientSize = New System.Drawing.Size(689, 643)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Adjustment"
@@ -373,6 +399,7 @@ Partial Class Adjustment
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -398,4 +425,7 @@ Partial Class Adjustment
     Friend WithEvents Panel3 As Panel
     Friend WithEvents SigninBtn As Guna.UI.WinForms.GunaButton
     Friend WithEvents BunifuTextbox1 As Bunifu.Framework.UI.BunifuTextbox
+    Friend WithEvents GunaElipse1 As Guna.UI.WinForms.GunaElipse
+    Friend WithEvents GunaElipse2 As Guna.UI.WinForms.GunaElipse
+    Private WithEvents Label3 As Label
 End Class
