@@ -1,12 +1,31 @@
 ﻿Imports System.IO
 Imports MySql.Data.MySqlClient
 Imports System.Drawing
-Public Class frm_report
 
+Public Class frm_report
     Private Sub frm_report_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dbconn()
         DataGridView1.RowTemplate.Height = 30
+
+        ' Configure DataGridView properties for better text display
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        DataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True
+
+        ' Configure specific column properties
+        For Each col As DataGridViewColumn In DataGridView1.Columns
+            Select Case col.Name.ToLower()
+                Case "foodname"
+                    col.MinimumWidth = 200  ' Adjust this value based on your needs
+                Case "transno", "foodcode"
+                    col.MinimumWidth = 100
+                Case "price", "qty", "totalprice", "grandtotal"
+                    col.MinimumWidth = 80
+            End Select
+        Next
+
         Load_report()
+        Get_Dashboard()  ' Load initial dashboard data
+        Timer1.Start()   ' Start the dashboard update timer
     End Sub
 
     Private Sub btn_close_Click(sender As Object, e As EventArgs)
@@ -22,25 +41,39 @@ Public Class frm_report
             While dr.Read
                 DataGridView1.Rows.Add(DataGridView1.Rows.Count + 1, dr.Item("transdate"), dr.Item("transno"), dr.Item("transmonth"), dr.Item("foodcode"), dr.Item("foodname"), dr.Item("price"), dr.Item("qty"), dr.Item("totalprice"), dr.Item("grandtotal"))
             End While
+
+            ' Auto-size columns after loading data
+            DataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells)
+
+            ' Ensure minimum widths are maintained
+            For Each col As DataGridViewColumn In DataGridView1.Columns
+                If col.Width < col.MinimumWidth Then
+                    col.Width = col.MinimumWidth
+                End If
+            Next
+
         Catch ex As Exception
             MsgBox(ex.Message)
+        Finally
+            conn.Close()
         End Try
-        conn.Close()
     End Sub
 
     Private Sub txt_search_TextChanged(sender As Object, e As EventArgs) Handles txt_search.TextChanged
         DataGridView1.Rows.Clear()
         Try
             conn.Open()
-            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` FROM `tbl_pos` WHERE transno like '%" & txt_search.Text & "%' or foodcode like '%" & txt_search.Text & "%' or foodname like '%" & txt_search.Text & "%'", conn)
+            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` FROM `tbl_pos` WHERE transno like @search OR foodcode like @search OR foodname like @search", conn)
+            cmd.Parameters.AddWithValue("@search", "%" & txt_search.Text & "%")
             dr = cmd.ExecuteReader
             While dr.Read
                 DataGridView1.Rows.Add(DataGridView1.Rows.Count + 1, dr.Item("transdate"), dr.Item("transno"), dr.Item("transmonth"), dr.Item("foodcode"), dr.Item("foodname"), dr.Item("price"), dr.Item("qty"), dr.Item("totalprice"), dr.Item("grandtotal"))
             End While
         Catch ex As Exception
             MsgBox(ex.Message)
+        Finally
+            conn.Close()
         End Try
-        conn.Close()
     End Sub
 
     Private Sub btn_Filter_Click(sender As Object, e As EventArgs) Handles btn_Filter.Click
@@ -50,15 +83,18 @@ Public Class frm_report
         DataGridView1.Rows.Clear()
         Try
             conn.Open()
-            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` FROM `tbl_pos` WHERE transdate between '" & date1 & "' and '" & date2 & "'", conn)
+            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` FROM `tbl_pos` WHERE transdate BETWEEN @date1 AND @date2", conn)
+            cmd.Parameters.AddWithValue("@date1", date1)
+            cmd.Parameters.AddWithValue("@date2", date2)
             dr = cmd.ExecuteReader
             While dr.Read
                 DataGridView1.Rows.Add(DataGridView1.Rows.Count + 1, dr.Item("transdate"), dr.Item("transno"), dr.Item("transmonth"), dr.Item("foodcode"), dr.Item("foodname"), dr.Item("price"), dr.Item("qty"), dr.Item("totalprice"), dr.Item("grandtotal"))
             End While
         Catch ex As Exception
             MsgBox(ex.Message)
+        Finally
+            conn.Close()
         End Try
-        conn.Close()
     End Sub
 
     Private Sub btn_Excel_Click(sender As Object, e As EventArgs) Handles btn_Excel.Click
@@ -69,10 +105,13 @@ Public Class frm_report
             Dim misValue As Object = System.Reflection.Missing.Value
             Dim i As Integer
             Dim j As Integer
+
             xlApp = New Microsoft.Office.Interop.Excel.Application
             xlWorkBook = xlApp.Workbooks.Add(misValue)
             xlWorkSheet = xlWorkBook.Sheets("sheet1")
             xlWorkSheet.Columns.AutoFit()
+
+            ' Export headers and data
             For i = 0 To DataGridView1.RowCount - 1
                 For j = 0 To DataGridView1.ColumnCount - 1
                     For k As Integer = 1 To DataGridView1.Columns.Count
@@ -81,6 +120,8 @@ Public Class frm_report
                     Next
                 Next
             Next
+
+            ' Save the Excel file
             Dim fName As String = "BREWTOPIA SALES REPORT"
             Using sfd As New SaveFileDialog
                 sfd.Title = "Save As"
@@ -93,17 +134,17 @@ Public Class frm_report
                     xlWorkSheet.SaveAs(sfd.FileName)
                     xlWorkBook.Close()
                     xlApp.Quit()
-                    releaseObject(xlApp)
-                    releaseObject(xlWorkBook)
-                    releaseObject(xlWorkSheet)
-                    MsgBox("Data Export Success !", MsgBoxStyle.Information, "BREWTOPIA")
+                    ReleaseObject(xlApp)
+                    ReleaseObject(xlWorkBook)
+                    ReleaseObject(xlWorkSheet)
+                    MsgBox("Data Export Success!", MsgBoxStyle.Information, "BREWTOPIA")
                 End If
             End Using
         Catch ex As Exception
-            conn.Close()
             MsgBox(ex.Message)
         End Try
     End Sub
+
     Private Sub ReleaseObject(ByVal obj As Object)
         Try
             System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
@@ -114,23 +155,30 @@ Public Class frm_report
             GC.Collect()
         End Try
     End Sub
-    Sub Get_Dashboard()
 
+    Sub Get_Dashboard()
         Try
             conn.Open()
 
-            cmd = New MySqlCommand("SELECT SUM(`totalprice`),`transdate` FROM `tbl_pos` WHERE `transdate`='" & Date.Now.ToString("yyyy-MM-dd") & "'", conn)
-            lbl_todaySale.Text = cmd.ExecuteScalar
+            ' Get today's sales
+            cmd = New MySqlCommand("SELECT SUM(`totalprice`) FROM `tbl_pos` WHERE `transdate` = @today", conn)
+            cmd.Parameters.AddWithValue("@today", Date.Now.ToString("yyyy-MM-dd"))
+            Dim todaySale = cmd.ExecuteScalar()
+            lbl_todaySale.Text = If(IsDBNull(todaySale) OrElse todaySale Is Nothing, "0", todaySale.ToString())
 
-            cmd = New MySqlCommand("SELECT SUM(`totalprice`),`transmonth` FROM `tbl_pos` WHERE `transmonth`='" & Date.Now.ToString("MM") & "'", conn)
-            lbl_lastmonth.Text = cmd.ExecuteScalar
+            ' Get last month's sales
+            cmd = New MySqlCommand("SELECT SUM(`totalprice`) FROM `tbl_pos` WHERE `transmonth` = @currentMonth", conn)
+            cmd.Parameters.AddWithValue("@currentMonth", Date.Now.ToString("MM"))
+            Dim lastMonthSale = cmd.ExecuteScalar()
+            lbl_lastmonth.Text = If(IsDBNull(lastMonthSale) OrElse lastMonthSale Is Nothing, "0", lastMonthSale.ToString())
 
-            conn.Close()
         Catch ex As Exception
-
+            MsgBox("Error fetching dashboard data: " & ex.Message, vbCritical, "Error")
+        Finally
+            conn.Close()
         End Try
-        conn.Close()
     End Sub
+
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Get_Dashboard()
     End Sub

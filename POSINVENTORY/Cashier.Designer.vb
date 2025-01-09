@@ -44,6 +44,7 @@ Partial Class Cashier
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.lblUsername = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.categorybtn = New System.Windows.Forms.Button()
         Me.txtquantity = New System.Windows.Forms.TextBox()
         Me.btnRemove = New System.Windows.Forms.Button()
         Me.btnminus = New System.Windows.Forms.Button()
@@ -83,7 +84,6 @@ Partial Class Cashier
         Me.GunaElipse9 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.GunaElipse10 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.GunaElipse11 = New Guna.UI.WinForms.GunaElipse(Me.components)
-        Me.categorybtn = New System.Windows.Forms.Button()
         Me.PanelMain.SuspendLayout()
         Me.PanelSlide.SuspendLayout()
         Me.PanelLogo.SuspendLayout()
@@ -246,6 +246,7 @@ Partial Class Cashier
         Me.btnSetting.Size = New System.Drawing.Size(170, 50)
         Me.btnSetting.TabIndex = 17
         Me.btnSetting.Text = "Clear Cart"
+        Me.btnSetting.Visible = False
         '
         'btnRecord
         '
@@ -399,6 +400,22 @@ Partial Class Cashier
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(899, 652)
         Me.Panel2.TabIndex = 9
+        '
+        'categorybtn
+        '
+        Me.categorybtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.categorybtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.categorybtn.FlatAppearance.BorderSize = 0
+        Me.categorybtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
+        Me.categorybtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.categorybtn.Font = New System.Drawing.Font("Poppins SemiBold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.categorybtn.ForeColor = System.Drawing.Color.Black
+        Me.categorybtn.Location = New System.Drawing.Point(421, 35)
+        Me.categorybtn.Name = "categorybtn"
+        Me.categorybtn.Size = New System.Drawing.Size(75, 24)
+        Me.categorybtn.TabIndex = 40
+        Me.categorybtn.Text = "category"
+        Me.categorybtn.UseVisualStyleBackColor = False
         '
         'txtquantity
         '
@@ -820,22 +837,6 @@ Partial Class Cashier
         '
         Me.GunaElipse11.Radius = 5
         Me.GunaElipse11.TargetControl = Me.btnRemove
-        '
-        'categorybtn
-        '
-        Me.categorybtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
-        Me.categorybtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.categorybtn.FlatAppearance.BorderSize = 0
-        Me.categorybtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
-        Me.categorybtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.categorybtn.Font = New System.Drawing.Font("Poppins SemiBold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.categorybtn.ForeColor = System.Drawing.Color.Black
-        Me.categorybtn.Location = New System.Drawing.Point(421, 35)
-        Me.categorybtn.Name = "categorybtn"
-        Me.categorybtn.Size = New System.Drawing.Size(75, 24)
-        Me.categorybtn.TabIndex = 40
-        Me.categorybtn.Text = "category"
-        Me.categorybtn.UseVisualStyleBackColor = False
         '
         'Cashier
         '

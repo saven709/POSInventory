@@ -133,6 +133,8 @@ Public Class EditForm
 
         ' Auto click the btnList (assuming it's the button you want to trigger)
         Form1.btnList.PerformClick()  ' Simulates a click on the btnList button
+        txtnamesize.Clear()
+        txtPrice.Clear()
     End Sub
 
     ' Add new size to the food item

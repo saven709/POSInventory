@@ -68,9 +68,9 @@ Public Class frm_ManageFoods
             Dim i As Integer
             i = cmd.ExecuteNonQuery()
             If i > 0 Then
-                MsgBox("New Food Save Successfully!", vbInformation, "FAST FOOD")
+                MsgBox("New Food Save Successfully!", vbInformation, "BREWTOPIA")
             Else
-                MsgBox("Warning: Food Save Failed!", vbCritical, "FAST FOOD")
+                MsgBox("Warning: Food Save Failed!", vbCritical, "BREWTOPIA")
             End If
 
         Catch ex As Exception

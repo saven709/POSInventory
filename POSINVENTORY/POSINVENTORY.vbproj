@@ -201,6 +201,12 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="dbconnection.vb" />
+    <Compile Include="editadjustment.Designer.vb">
+      <DependentUpon>editadjustment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="editadjustment.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Editform.Designer.vb">
       <DependentUpon>Editform.vb</DependentUpon>
     </Compile>
@@ -315,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="editadjustment.resx">
+      <DependentUpon>editadjustment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editform.resx">
       <DependentUpon>Editform.vb</DependentUpon>

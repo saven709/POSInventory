@@ -1,22 +1,6 @@
 ﻿Imports System.IO
 Imports MySql.Data.MySqlClient
 Public Class Entry
-    Private Sub Label1_Click(sender As Object, e As EventArgs)
-        OpeninPanel(New StockinRecord)
-    End Sub
-    Private Sub OpeninPanel(ByVal formOpen As Object)
-        If Form1.PanelMain.Controls.Count > 0 Then
-            Form1.PanelMain.Controls.RemoveAt(0)
-        End If
-
-        Dim dh As Form = TryCast(formOpen, Form)
-        dh.TopLevel = False
-        dh.FormBorderStyle = Windows.Forms.FormBorderStyle.None
-        dh.Dock = DockStyle.Fill
-        Form1.PanelMain.Controls.Add(dh)
-        Form1.PanelMain.Tag = dh
-        dh.Show()
-    End Sub
 
     Private Sub btn_ManageFoods_Click(sender As Object, e As EventArgs) Handles btn_ManageFoods.Click
         frmitem.ShowDialog()
@@ -28,7 +12,7 @@ Public Class Entry
         DataGridView1.Columns.Add("No", "No")
         DataGridView1.Columns.Add("Name", "Item Name")
         DataGridView1.Columns.Add("ItemCode", "Item Code")  ' New column for item code
-        DataGridView1.Columns.Add("MeasurementName", "Measurement Name")  ' Added column for measurementname
+        DataGridView1.Columns.Add("MeasurementName", "Measurement")  ' Added column for measurementname
         DataGridView1.Columns.Add("Category", "Category")
         DataGridView1.Columns.Add("Quantity", "Quantity")
         DataGridView1.Columns.Add("Date", "Date")
@@ -48,6 +32,7 @@ Public Class Entry
 
         ' Hide the ItemCode column if necessary
         DataGridView1.Columns("ItemCode").Visible = False
+        DataGridView1.Columns("No").Visible = False
 
         ' Set DataGridView properties
         DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
