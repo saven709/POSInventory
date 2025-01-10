@@ -61,6 +61,7 @@ Public Class Cashier
 
     Private Sub Cashier_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dbconn()
+        lbl_time1.Text = Date.Now.ToString("HH:mm:ss")
         lbl_date.Text = Date.Now.ToString("yyyy-MM-dd")
         InitializeDataGridView()
         UpdateButtonVisibility()
@@ -91,18 +92,18 @@ Public Class Cashier
         DataGridView1.Columns.Add("Size", "Size")
         DataGridView1.Columns.Add("Price", "Price")
         DataGridView1.Columns.Add("Quantity", "Quantity")
-        DataGridView1.Columns.Add("Subtotal", "Subtotal")
+        DataGridView1.Columns.Add("totalprice", "Subtotal")
 
         ' Set column properties
         DataGridView1.Columns("Price").DefaultCellStyle.Format = "N2"
-        DataGridView1.Columns("Subtotal").DefaultCellStyle.Format = "N2"
+        DataGridView1.Columns("totalprice").DefaultCellStyle.Format = "N2"
         DataGridView1.Columns("No").Width = 50
         DataGridView1.Columns("FoodCode").Width = 100
         DataGridView1.Columns("FoodName").Width = 150
         DataGridView1.Columns("Size").Width = 100
         DataGridView1.Columns("Price").Width = 100
         DataGridView1.Columns("Quantity").Width = 80
-        DataGridView1.Columns("Subtotal").Width = 120
+        DataGridView1.Columns("totalprice").Width = 120
 
         ' Hide the FoodCode column
         DataGridView1.Columns("FoodCode").Visible = False
@@ -118,7 +119,8 @@ Public Class Cashier
 
     Private Sub auto_Transno()
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT * FROM `tbl_pos` ORDER BY id DESC", conn)
             dr = cmd.ExecuteReader
             dr.Read()
@@ -132,14 +134,16 @@ Public Class Cashier
             MsgBox("Error: " & ex.Message)
         Finally
             dr.Close()
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
     Private Sub Load_Foods()
         FlowLayoutPanel1.Controls.Clear()
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT `img`, `foodcode`, `foodname` FROM `tbl_food`", conn)
             dr = cmd.ExecuteReader
             While dr.Read
@@ -149,7 +153,8 @@ Public Class Cashier
             MsgBox("Error: " & ex.Message)
         Finally
             dr.Close()
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
@@ -428,22 +433,27 @@ Public Class Cashier
     End Sub
 
     Private Sub btnRecord_Click_1(sender As Object, e As EventArgs) Handles btnRecord.Click
-        If MsgBox("Are You Sure Order Confirm ?", vbQuestion + vbYesNo) = vbYes Then
+        If MsgBox("Are You Sure Order Confirm?", vbQuestion + vbYesNo) = vbYes Then
             If txt_receivedAmount.Text = String.Empty Then
-                MsgBox("Please Enter Receive Amount !", vbExclamation)
+                MsgBox("Please Enter Received Amount!", vbExclamation)
                 Return
             ElseIf txt_BalanceAmount.Text < 0 Then
-                MsgBox("Infinity Balance !" & vbNewLine & txt_receivedAmount.Text & " ₹", MsgBoxStyle.Exclamation)
+                MsgBox("Infinity Balance!" & vbNewLine & txt_receivedAmount.Text & " ₹", MsgBoxStyle.Exclamation)
                 Return
             Else
                 Try
-                    conn.Open()
+                    If conn.State = ConnectionState.Closed Then conn.Open()
+
                     cmd = New MySqlCommand("INSERT INTO `tbl_pos`(`transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal`, `nooffoods`) VALUES (@transno,@transdate,@transmonth,@foodcode,@foodname,@price,@qty,@totalprice,@grandtotal,@nooffoods)", conn)
+
+                    ' Combine lbl_date.Text and lbl_time.Text into a DateTime object
+                    Dim transDateTime As DateTime = DateTime.ParseExact(lbl_date.Text & " " & lbl_time1.Text, "yyyy-MM-dd HH:mm:ss", Globalization.CultureInfo.InvariantCulture)
+
                     For j As Integer = 0 To DataGridView1.Rows.Count - 1
                         cmd.Parameters.Clear()
                         cmd.Parameters.AddWithValue("@transno", txt_transno.Text)
-                        cmd.Parameters.AddWithValue("@transdate", CDate(lbl_date.Text))
-                        cmd.Parameters.AddWithValue("@transmonth", Date.Now.ToString("MM"))
+                        cmd.Parameters.AddWithValue("@transdate", transDateTime) ' Use concatenated date and time
+                        cmd.Parameters.AddWithValue("@transmonth", lblUsername.Text) ' Extract the month
                         cmd.Parameters.AddWithValue("@foodcode", DataGridView1.Rows(j).Cells(1).Value)
 
                         ' Concatenate foodname with size to save it in foodname field
@@ -457,26 +467,28 @@ Public Class Cashier
                         cmd.Parameters.AddWithValue("@nooffoods", lbl_noOfProducts.Text)
                         i = cmd.ExecuteNonQuery
                     Next
+
                     If i > 0 Then
-                        If MsgBox("Print Bill ?", vbQuestion + vbYesNo) = vbYes Then
+                        If MsgBox("Print Bill?", vbQuestion + vbYesNo) = vbYes Then
                             frm_BillPrint.ShowDialog()
                         End If
                     Else
-                        MsgBox("Warning : Some Failure !", vbExclamation)
+                        MsgBox("Warning: Some Failure!", vbExclamation)
                     End If
                 Catch ex As Exception
                     MsgBox("Error: " & ex.Message, vbExclamation)
                 Finally
-                    conn.Close()
+                    If conn.State = ConnectionState.Open Then conn.Close()
+
                 End Try
             End If
         Else
             Return
         End If
+
         new_order()
         UpdateButtonVisibility()
     End Sub
-
 
     Sub new_order()
         Load_Foods()
@@ -541,7 +553,8 @@ Public Class Cashier
         FlowLayoutPanel1.Controls.Clear()
         FlowLayoutPanel1.AutoScroll = True
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT `img`, `foodcode`, `foodname` FROM `tbl_food` WHERE foodcode like '%" & txt_search.Text & "%' or foodname like '%" & txt_search.Text & "%'", conn)
             dr = cmd.ExecuteReader
             While dr.Read
@@ -550,7 +563,8 @@ Public Class Cashier
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
-        conn.Close()
+        If conn.State = ConnectionState.Open Then conn.Close()
+
 
     End Sub
     Private categories As List(Of String) = New List(Of String)
@@ -561,7 +575,8 @@ Public Class Cashier
         categories.Add("All")  ' Always add "All" as the first option
 
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT DISTINCT category FROM tbl_food ORDER BY category", conn)
             dr = cmd.ExecuteReader
 
@@ -575,7 +590,8 @@ Public Class Cashier
             MsgBox("Error loading categories: " & ex.Message)
         Finally
             dr.Close()
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
     Private Sub categorybtn_Click(sender As Object, e As EventArgs) Handles categorybtn.Click
@@ -598,7 +614,8 @@ Public Class Cashier
         FlowLayoutPanel1.Controls.Clear()
         FlowLayoutPanel1.AutoScroll = True
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT `img`, `foodcode`, `foodname` FROM `tbl_food` WHERE category = @category", conn)
             cmd.Parameters.AddWithValue("@category", categoryName)
             dr = cmd.ExecuteReader
@@ -609,7 +626,8 @@ Public Class Cashier
             MsgBox("Error: " & ex.Message)
         Finally
             dr.Close()
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 

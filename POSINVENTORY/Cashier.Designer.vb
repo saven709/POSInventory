@@ -30,6 +30,7 @@ Partial Class Cashier
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GunaLabel11 = New Guna.UI.WinForms.GunaLabel()
         Me.PanelMain = New Guna.UI.WinForms.GunaPanel()
+        Me.lbl_time1 = New System.Windows.Forms.Label()
         Me.GunaControlBox2 = New Guna.UI.WinForms.GunaControlBox()
         Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
         Me.PanelSlide = New System.Windows.Forms.Panel()
@@ -112,6 +113,7 @@ Partial Class Cashier
         'PanelMain
         '
         Me.PanelMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.PanelMain.Controls.Add(Me.lbl_time1)
         Me.PanelMain.Controls.Add(Me.GunaControlBox2)
         Me.PanelMain.Controls.Add(Me.GunaControlBox1)
         Me.PanelMain.Controls.Add(Me.PanelSlide)
@@ -123,6 +125,19 @@ Partial Class Cashier
         Me.PanelMain.Name = "PanelMain"
         Me.PanelMain.Size = New System.Drawing.Size(1106, 700)
         Me.PanelMain.TabIndex = 8
+        '
+        'lbl_time1
+        '
+        Me.lbl_time1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl_time1.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_time1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.lbl_time1.Location = New System.Drawing.Point(634, 5)
+        Me.lbl_time1.Name = "lbl_time1"
+        Me.lbl_time1.Size = New System.Drawing.Size(107, 31)
+        Me.lbl_time1.TabIndex = 41
+        Me.lbl_time1.Text = "00.00"
+        Me.lbl_time1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lbl_time1.Visible = False
         '
         'GunaControlBox2
         '
@@ -922,4 +937,5 @@ Partial Class Cashier
     Friend WithEvents GunaElipse11 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents txtquantity As TextBox
     Friend WithEvents categorybtn As Button
+    Friend WithEvents lbl_time1 As Label
 End Class

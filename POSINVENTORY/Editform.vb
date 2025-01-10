@@ -19,7 +19,8 @@ Public Class EditForm
     ' Load Food details (foodname) based on the foodcode
     Private Sub LoadFoodDetails()
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             ' Fetch the food details (foodname, img, and category) from tbl_food
             Dim cmd As New MySqlCommand("SELECT foodcode, foodname, img, category FROM tbl_food WHERE foodcode = @foodcode", conn)
             cmd.Parameters.AddWithValue("@foodcode", FoodCode)
@@ -51,7 +52,8 @@ Public Class EditForm
         Catch ex As Exception
             MsgBox("Error loading food details: " & ex.Message, MsgBoxStyle.Critical)
         Finally
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
@@ -60,7 +62,8 @@ Public Class EditForm
     ' Load sizes and prices into DataGridView
     Private Sub LoadSizes()
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             Dim cmd As New MySqlCommand("SELECT size_name, price FROM tbl_food_sizes WHERE foodcode = @foodcode", conn)
             cmd.Parameters.AddWithValue("@foodcode", FoodCode)
             Dim dr As MySqlDataReader = cmd.ExecuteReader()
@@ -75,7 +78,8 @@ Public Class EditForm
         Catch ex As Exception
             'MsgBox("Error loading sizes: " & ex.Message, MsgBoxStyle.Critical)
         Finally
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
@@ -83,7 +87,8 @@ Public Class EditForm
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Try
             ' Update the food details (foodname, img, and category) in tbl_food
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             Dim cmd As New MySqlCommand("UPDATE `tbl_food` SET `foodname`=@foodname, `img`=@img, `category`=@category WHERE `foodcode`=@foodcode", conn)
             cmd.Parameters.Clear()
 
@@ -128,7 +133,8 @@ Public Class EditForm
         Catch ex As Exception
             MsgBox("Error: " & ex.Message, vbCritical, "Error")
         Finally
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
 
         ' Auto click the btnList (assuming it's the button you want to trigger)
@@ -136,37 +142,6 @@ Public Class EditForm
         txtnamesize.Clear()
         txtPrice.Clear()
     End Sub
-
-    ' Add new size to the food item
-    Private Sub btnAddSize_Click(sender As Object, e As EventArgs) Handles btn_addsize.Click
-        If String.IsNullOrEmpty(txtnamesize.Text) OrElse String.IsNullOrEmpty(txtPrice.Text) Then
-            MsgBox("Please enter both size name and price!", MsgBoxStyle.Exclamation)
-            Return
-        End If
-
-        Try
-            conn.Open()
-            Dim cmd As New MySqlCommand("INSERT INTO tbl_food_sizes (foodcode, size_name, price) VALUES (@foodcode, @size_name, @price)", conn)
-            cmd.Parameters.AddWithValue("@foodcode", FoodCode)
-            cmd.Parameters.AddWithValue("@size_name", txtnamesize.Text)
-            cmd.Parameters.AddWithValue("@price", Decimal.Parse(txtPrice.Text))
-            cmd.ExecuteNonQuery()
-
-            ' Clear input fields
-            txtnamesize.Clear()
-            txtPrice.Clear()
-
-            ' Reload sizes in DataGridView
-            LoadSizes()
-
-            MsgBox("Size added successfully!", MsgBoxStyle.Information)
-        Catch ex As Exception
-            MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical)
-        Finally
-            conn.Close()
-        End Try
-    End Sub
-
     ' Delete selected size from DataGridView
     Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
         ' Check if a row is selected in the DataGridView
@@ -184,7 +159,8 @@ Public Class EditForm
         ' Confirm with the user before deletion
         If MsgBox("Are you sure you want to delete this size?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
             Try
-                conn.Open()
+                If conn.State = ConnectionState.Closed Then conn.Open()
+
                 ' Prepare the SQL command to delete the size
                 Dim cmd As New MySqlCommand("DELETE FROM tbl_food_sizes WHERE foodcode = @foodcode AND size_name = @size_name", conn)
                 cmd.Parameters.AddWithValue("@foodcode", FoodCode)
@@ -203,7 +179,8 @@ Public Class EditForm
             Catch ex As Exception
                 'MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical)
             Finally
-                conn.Close()
+                If conn.State = ConnectionState.Open Then conn.Close()
+
             End Try
             ' Auto click the btnList (assuming it's the button you want to trigger)
             Form1.btnList.PerformClick()  ' Simulates a click on the btnList button
@@ -224,7 +201,8 @@ Public Class EditForm
         ' Confirm the deletion with the user
         If MsgBox("Are you sure you want to delete this food item and all associated sizes?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
             Try
-                conn.Open()
+                If conn.State = ConnectionState.Closed Then conn.Open()
+
 
                 ' Delete from tbl_food_sizes (sizes associated with the food item)
                 Dim cmdSizes As New MySqlCommand("DELETE FROM tbl_food_sizes WHERE foodcode = @foodcode", conn)
@@ -244,7 +222,8 @@ Public Class EditForm
             Catch ex As Exception
                 MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical, "BREWTOPIA")
             Finally
-                conn.Close()
+                If conn.State = ConnectionState.Open Then conn.Close()
+
             End Try
             ' Auto click the btnList (assuming it's the button you want to trigger)
             Form1.btnList.PerformClick()  ' Simulates a click on the btnList button

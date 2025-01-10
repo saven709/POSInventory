@@ -27,11 +27,9 @@ Partial Class EditForm
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btn_save = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtPrice = New System.Windows.Forms.TextBox()
         Me.txtFoodName = New System.Windows.Forms.TextBox()
-        Me.btn_addsize = New System.Windows.Forms.Button()
         Me.txtnamesize = New System.Windows.Forms.TextBox()
         Me.btn_delete = New System.Windows.Forms.Button()
         Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
@@ -69,18 +67,6 @@ Partial Class EditForm
         Me.btn_save.Text = "SAVE"
         Me.btn_save.UseVisualStyleBackColor = False
         '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(479, 61)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(52, 13)
-        Me.Label2.TabIndex = 33
-        Me.Label2.Text = "Add Size"
-        Me.Label2.Visible = False
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -115,22 +101,6 @@ Partial Class EditForm
         Me.txtFoodName.Name = "txtFoodName"
         Me.txtFoodName.Size = New System.Drawing.Size(233, 24)
         Me.txtFoodName.TabIndex = 30
-        '
-        'btn_addsize
-        '
-        Me.btn_addsize.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
-        Me.btn_addsize.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_addsize.FlatAppearance.BorderSize = 0
-        Me.btn_addsize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
-        Me.btn_addsize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_addsize.ForeColor = System.Drawing.Color.Black
-        Me.btn_addsize.Location = New System.Drawing.Point(537, 51)
-        Me.btn_addsize.Name = "btn_addsize"
-        Me.btn_addsize.Size = New System.Drawing.Size(60, 32)
-        Me.btn_addsize.TabIndex = 35
-        Me.btn_addsize.Text = "ADD"
-        Me.btn_addsize.UseVisualStyleBackColor = False
-        Me.btn_addsize.Visible = False
         '
         'txtnamesize
         '
@@ -402,9 +372,7 @@ Partial Class EditForm
         Me.Controls.Add(Me.GunaControlBox1)
         Me.Controls.Add(Me.btn_delete)
         Me.Controls.Add(Me.txtnamesize)
-        Me.Controls.Add(Me.btn_addsize)
         Me.Controls.Add(Me.btn_save)
-        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtPrice)
         Me.Controls.Add(Me.txtFoodName)
@@ -420,11 +388,9 @@ Partial Class EditForm
     End Sub
 
     Friend WithEvents btn_save As Button
-    Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents txtPrice As TextBox
     Friend WithEvents txtFoodName As TextBox
-    Friend WithEvents btn_addsize As Button
     Friend WithEvents txtnamesize As TextBox
     Friend WithEvents btn_delete As Button
     Friend WithEvents GunaControlBox1 As Guna.UI.WinForms.GunaControlBox

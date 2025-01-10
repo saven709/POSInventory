@@ -26,10 +26,20 @@
     End Sub
 
     Private Sub btnStock_Click(sender As Object, e As EventArgs) Handles btnStock.Click
+        ' Hide all panels first
+        PanelSetting.Visible = False
+        PanelRecord.Visible = False
+
+        ' Toggle visibility of PanelStock
         PanelStock.Visible = Not PanelStock.Visible
     End Sub
 
     Private Sub btnRecord_Click(sender As Object, e As EventArgs) Handles btnRecord.Click
+        ' Hide all panels first
+        PanelStock.Visible = False
+        PanelSetting.Visible = False
+
+        ' Toggle visibility of PanelRecord
         PanelRecord.Visible = Not PanelRecord.Visible
     End Sub
 
@@ -59,6 +69,11 @@
     End Sub
 
     Private Sub btnSetting_Click(sender As Object, e As EventArgs) Handles btnSetting.Click
+        ' Hide all panels first
+        PanelStock.Visible = False
+        PanelRecord.Visible = False
+
+        ' Toggle visibility of PanelSetting
         PanelSetting.Visible = Not PanelSetting.Visible
     End Sub
 

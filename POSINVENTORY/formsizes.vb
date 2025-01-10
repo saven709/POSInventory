@@ -23,7 +23,8 @@ Public Class formsizes
         FlowLayoutPanel1.Controls.Clear()
         Try
             dbconn()
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT `size_name`, `price` FROM `tbl_food_sizes` WHERE `foodcode` = @foodcode", conn)
             cmd.Parameters.AddWithValue("@foodcode", foodCode)
             dr = cmd.ExecuteReader()
@@ -59,7 +60,8 @@ Public Class formsizes
             MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical, "Error")
         Finally
             dr.Close()
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 

@@ -27,18 +27,13 @@ Partial Class editadjustment
         Me.txt_quantity = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txt_itemcode = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.txt_category = New System.Windows.Forms.TextBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.txt_measurementname = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txt_name = New System.Windows.Forms.TextBox()
         Me.btn_save = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txt_desc = New System.Windows.Forms.TextBox()
         Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
+        Me.lbl_lastquantity = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label3
@@ -46,11 +41,11 @@ Partial Class editadjustment
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(252, 9)
+        Me.Label3.Location = New System.Drawing.Point(251, 9)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(67, 22)
+        Me.Label3.Size = New System.Drawing.Size(90, 22)
         Me.Label3.TabIndex = 52
-        Me.Label3.Text = "EDIT ITEM"
+        Me.Label3.Text = "ADJUSTMENT"
         '
         'Label6
         '
@@ -98,52 +93,6 @@ Partial Class editadjustment
         Me.txt_itemcode.Size = New System.Drawing.Size(233, 24)
         Me.txt_itemcode.TabIndex = 70
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(45, 259)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(54, 13)
-        Me.Label1.TabIndex = 69
-        Me.Label1.Text = "Category"
-        '
-        'txt_category
-        '
-        Me.txt_category.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.txt_category.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txt_category.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_category.ForeColor = System.Drawing.Color.White
-        Me.txt_category.Location = New System.Drawing.Point(45, 275)
-        Me.txt_category.Multiline = True
-        Me.txt_category.Name = "txt_category"
-        Me.txt_category.Size = New System.Drawing.Size(233, 24)
-        Me.txt_category.TabIndex = 68
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(45, 213)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(116, 13)
-        Me.Label4.TabIndex = 67
-        Me.Label4.Text = "Measurement Name:"
-        '
-        'txt_measurementname
-        '
-        Me.txt_measurementname.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.txt_measurementname.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txt_measurementname.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_measurementname.ForeColor = System.Drawing.Color.White
-        Me.txt_measurementname.Location = New System.Drawing.Point(45, 229)
-        Me.txt_measurementname.Multiline = True
-        Me.txt_measurementname.Name = "txt_measurementname"
-        Me.txt_measurementname.Size = New System.Drawing.Size(233, 24)
-        Me.txt_measurementname.TabIndex = 66
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -175,7 +124,7 @@ Partial Class editadjustment
         Me.btn_save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_save.ForeColor = System.Drawing.Color.Black
-        Me.btn_save.Location = New System.Drawing.Point(255, 328)
+        Me.btn_save.Location = New System.Drawing.Point(267, 278)
         Me.btn_save.Name = "btn_save"
         Me.btn_save.Size = New System.Drawing.Size(64, 32)
         Me.btn_save.TabIndex = 74
@@ -193,40 +142,17 @@ Partial Class editadjustment
         Me.Label7.TabIndex = 76
         Me.Label7.Text = "Description"
         '
-        'TextBox1
+        'txt_desc
         '
-        Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox1.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(299, 133)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(233, 24)
-        Me.TextBox1.TabIndex = 75
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.Color.White
-        Me.Label8.Location = New System.Drawing.Point(299, 166)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(51, 13)
-        Me.Label8.TabIndex = 78
-        Me.Label8.Text = "Remarks"
-        '
-        'TextBox2
-        '
-        Me.TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.ForeColor = System.Drawing.Color.White
-        Me.TextBox2.Location = New System.Drawing.Point(299, 182)
-        Me.TextBox2.Multiline = True
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(233, 24)
-        Me.TextBox2.TabIndex = 77
+        Me.txt_desc.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.txt_desc.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txt_desc.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txt_desc.ForeColor = System.Drawing.Color.White
+        Me.txt_desc.Location = New System.Drawing.Point(299, 133)
+        Me.txt_desc.Multiline = True
+        Me.txt_desc.Name = "txt_desc"
+        Me.txt_desc.Size = New System.Drawing.Size(233, 24)
+        Me.txt_desc.TabIndex = 75
         '
         'GunaControlBox1
         '
@@ -244,26 +170,33 @@ Partial Class editadjustment
         Me.GunaControlBox1.Size = New System.Drawing.Size(38, 24)
         Me.GunaControlBox1.TabIndex = 79
         '
+        'lbl_lastquantity
+        '
+        Me.lbl_lastquantity.AutoSize = True
+        Me.lbl_lastquantity.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_lastquantity.ForeColor = System.Drawing.Color.White
+        Me.lbl_lastquantity.Location = New System.Drawing.Point(45, 252)
+        Me.lbl_lastquantity.Name = "lbl_lastquantity"
+        Me.lbl_lastquantity.Size = New System.Drawing.Size(52, 13)
+        Me.lbl_lastquantity.TabIndex = 80
+        Me.lbl_lastquantity.Text = "Quantity"
+        Me.lbl_lastquantity.Visible = False
+        '
         'editadjustment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(596, 399)
+        Me.ClientSize = New System.Drawing.Size(596, 339)
+        Me.Controls.Add(Me.lbl_lastquantity)
         Me.Controls.Add(Me.GunaControlBox1)
-        Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txt_desc)
         Me.Controls.Add(Me.btn_save)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.txt_quantity)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.txt_itemcode)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.txt_category)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.txt_measurementname)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txt_name)
         Me.Controls.Add(Me.Label3)
@@ -281,16 +214,11 @@ Partial Class editadjustment
     Friend WithEvents txt_quantity As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents txt_itemcode As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents txt_category As TextBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents txt_measurementname As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents txt_name As TextBox
     Friend WithEvents btn_save As Button
     Friend WithEvents Label7 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Label8 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txt_desc As TextBox
     Friend WithEvents GunaControlBox1 As Guna.UI.WinForms.GunaControlBox
+    Friend WithEvents lbl_lastquantity As Label
 End Class

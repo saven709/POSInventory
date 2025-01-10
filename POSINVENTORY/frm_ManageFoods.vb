@@ -16,7 +16,8 @@ Public Class frm_ManageFoods
     End Sub
     Sub auto_foodcode()
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT * FROM `tbl_food` order by id desc", conn)
             dr = cmd.ExecuteReader
             dr.Read()
@@ -29,7 +30,8 @@ Public Class frm_ManageFoods
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
-        conn.Close()
+        If conn.State = ConnectionState.Open Then conn.Close()
+
     End Sub
     Sub clear()
         txt_foodname.Clear()
@@ -39,7 +41,8 @@ Public Class frm_ManageFoods
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             Dim cmd As New MySqlCommand("INSERT INTO `tbl_food`(`foodcode`, `foodname`, `img`, `category`) VALUES (@foodcode, @foodname, @img, @category)", conn)
             cmd.Parameters.Clear()
             cmd.Parameters.AddWithValue("@foodcode", txt_foodcode.Text)
@@ -76,7 +79,8 @@ Public Class frm_ManageFoods
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
 
         clear()
@@ -87,7 +91,8 @@ Public Class frm_ManageFoods
 
     Private Sub btn_edit_Click(sender As Object, e As EventArgs) Handles btn_edit.Click
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             Dim cmd As New MySqlCommand("UPDATE `tbl_food` SET `foodname`=@foodname,`price`=@price,`img`=@img WHERE `foodcode`=@foodcode", conn)
             cmd.Parameters.Clear()
 
@@ -111,14 +116,16 @@ Public Class frm_ManageFoods
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
-        conn.Close()
+        If conn.State = ConnectionState.Open Then conn.Close()
+
         clear()
         auto_foodcode()
     End Sub
     Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
         If MsgBox("Are you Sure Delete this Food Product !", vbQuestion + vbYesNo, "Brewtopia") = vbYes Then
             Try
-                conn.Open()
+                If conn.State = ConnectionState.Closed Then conn.Open()
+
                 cmd = New MySqlCommand("DELETE FROM `tbl_food` WHERE `foodcode`=@foodcode", conn)
                 cmd.Parameters.Clear()
                 cmd.Parameters.AddWithValue("@foodcode", txt_foodcode.Text)
@@ -133,7 +140,8 @@ Public Class frm_ManageFoods
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
             clear()
             clear()
             auto_foodcode()
@@ -147,7 +155,8 @@ Public Class frm_ManageFoods
     Private Sub btn_find_Click(sender As Object, e As EventArgs) Handles btn_find.Click
         clear()
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT * FROM `tbl_food` WHERE `foodcode`=@foodcode", conn)
             cmd.Parameters.Clear()
             cmd.Parameters.AddWithValue("@foodcode", txt_found.Text)
@@ -168,7 +177,8 @@ Public Class frm_ManageFoods
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
-        conn.Close()
+        If conn.State = ConnectionState.Open Then conn.Close()
+
     End Sub
 
     Private Sub GunaControlBox1_Click(sender As Object, e As EventArgs) Handles GunaControlBox1.Click

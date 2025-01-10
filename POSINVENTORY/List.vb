@@ -33,7 +33,8 @@ Public Class List
         categories.Add("All")  ' Always add "All" as the first option
 
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT DISTINCT category FROM tbl_food ORDER BY category", conn)
             dr = cmd.ExecuteReader
 
@@ -47,7 +48,8 @@ Public Class List
             MsgBox("Error loading categories: " & ex.Message)
         Finally
             dr.Close()
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
@@ -72,7 +74,8 @@ Public Class List
         FlowLayoutPanel1.Controls.Clear()
         FlowLayoutPanel1.AutoScroll = True
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT `img`, `foodcode`, `foodname` FROM `tbl_food` WHERE category = @category", conn)
             cmd.Parameters.AddWithValue("@category", categoryName)
             dr = cmd.ExecuteReader
@@ -83,7 +86,8 @@ Public Class List
             MsgBox("Error: " & ex.Message)
         Finally
             dr.Close()
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
@@ -97,7 +101,8 @@ Public Class List
         FlowLayoutPanel1.Controls.Clear()
         FlowLayoutPanel1.AutoScroll = True
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT img, foodcode, foodname FROM tbl_food", conn)
             dr = cmd.ExecuteReader
             While dr.Read
@@ -106,7 +111,8 @@ Public Class List
         Catch ex As Exception
             'MsgBox(ex.Message)
         Finally
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
@@ -195,7 +201,8 @@ Public Class List
         FlowLayoutPanel1.Controls.Clear()
         FlowLayoutPanel1.AutoScroll = True
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT img, foodcode, foodname FROM tbl_food WHERE foodcode LIKE @search OR foodname LIKE @search", conn)
             cmd.Parameters.AddWithValue("@search", "%" & txt_search.Text & "%")
             dr = cmd.ExecuteReader
@@ -205,7 +212,8 @@ Public Class List
         Catch ex As Exception
             ' Handle exception silently
         Finally
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 End Class

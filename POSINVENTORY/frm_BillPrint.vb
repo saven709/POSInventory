@@ -27,7 +27,7 @@ Public Class frm_BillPrint
             ReportViewer1.LocalReport.DataSources.Add(rptDS)
             ReportViewer1.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout)
             ReportViewer1.ZoomMode = ZoomMode.Percent
-            ReportViewer1.ZoomPercent = 100
+            ReportViewer1.ZoomPercent = 80
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical)
             conn.Close()

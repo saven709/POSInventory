@@ -20,7 +20,8 @@ Public Class formingredients
 
     Private Sub LoadIngredients()
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             Dim cmd As New MySqlCommand("SELECT label, quantity FROM tbl_ingredients WHERE foodcode = @foodcode", conn)
             cmd.Parameters.AddWithValue("@foodcode", _foodCode)
             Dim dr As MySqlDataReader = cmd.ExecuteReader()
@@ -35,7 +36,8 @@ Public Class formingredients
         Catch ex As Exception
             'MsgBox("Error loading ingredients: " & ex.Message, MsgBoxStyle.Critical)
         Finally
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
@@ -46,7 +48,8 @@ Public Class formingredients
         End If
 
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             Dim cmd As New MySqlCommand("INSERT INTO tbl_ingredients (foodcode, label, quantity) VALUES (@foodcode, @label, @quantity)", conn)
             cmd.Parameters.AddWithValue("@foodcode", _foodCode)
             cmd.Parameters.AddWithValue("@label", txtlabel.Text)
@@ -66,7 +69,8 @@ Public Class formingredients
         Catch ex As Exception
             MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical)
         Finally
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
@@ -87,7 +91,8 @@ Public Class formingredients
         If MsgBox("Are you sure you want to delete this ingredient?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
             Try
                 ' Open the database connection
-                conn.Open()
+                If conn.State = ConnectionState.Closed Then conn.Open()
+
 
                 ' Prepare the SQL command to delete the ingredient
                 Dim cmd As New MySqlCommand("DELETE FROM tbl_ingredients WHERE foodcode = @foodcode AND label = @label", conn)
@@ -109,7 +114,8 @@ Public Class formingredients
                 MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical)
             Finally
                 ' Close the database connection
-                conn.Close()
+                If conn.State = ConnectionState.Open Then conn.Close()
+
             End Try
         End If
     End Sub

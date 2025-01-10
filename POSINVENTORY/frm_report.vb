@@ -35,7 +35,8 @@ Public Class frm_report
     Sub Load_report()
         DataGridView1.Rows.Clear()
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT `transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` FROM `tbl_pos`", conn)
             dr = cmd.ExecuteReader
             While dr.Read
@@ -55,14 +56,16 @@ Public Class frm_report
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
     Private Sub txt_search_TextChanged(sender As Object, e As EventArgs) Handles txt_search.TextChanged
         DataGridView1.Rows.Clear()
         Try
-            conn.Open()
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
             cmd = New MySqlCommand("SELECT `transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` FROM `tbl_pos` WHERE transno like @search OR foodcode like @search OR foodname like @search", conn)
             cmd.Parameters.AddWithValue("@search", "%" & txt_search.Text & "%")
             dr = cmd.ExecuteReader
@@ -72,28 +75,49 @@ Public Class frm_report
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
     Private Sub btn_Filter_Click(sender As Object, e As EventArgs) Handles btn_Filter.Click
-        Dim date1 As String = DateTimePicker1.Value.ToString("yyyy-MM-dd")
-        Dim date2 As String = DateTimePicker2.Value.ToString("yyyy-MM-dd")
+        ' Set the dates to include the full day range
+        Dim date1 As String = DateTimePicker1.Value.ToString("yyyy-MM-dd 00:00:00")
+        Dim date2 As String = DateTimePicker2.Value.ToString("yyyy-MM-dd 23:59:59")
 
         DataGridView1.Rows.Clear()
         Try
-            conn.Open()
-            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` FROM `tbl_pos` WHERE transdate BETWEEN @date1 AND @date2", conn)
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` " &
+                             "FROM `tbl_pos` " &
+                             "WHERE transdate BETWEEN @date1 AND @date2 " &
+                             "ORDER BY transdate", conn)
             cmd.Parameters.AddWithValue("@date1", date1)
             cmd.Parameters.AddWithValue("@date2", date2)
             dr = cmd.ExecuteReader
+
             While dr.Read
-                DataGridView1.Rows.Add(DataGridView1.Rows.Count + 1, dr.Item("transdate"), dr.Item("transno"), dr.Item("transmonth"), dr.Item("foodcode"), dr.Item("foodname"), dr.Item("price"), dr.Item("qty"), dr.Item("totalprice"), dr.Item("grandtotal"))
+                ' Display the full datetime value
+                Dim transDateTime As DateTime = Convert.ToDateTime(dr.Item("transdate"))
+                DataGridView1.Rows.Add(
+                DataGridView1.Rows.Count + 1,
+                transDateTime.ToString("yyyy-MM-dd HH:mm:ss"),  ' Show full datetime
+                dr.Item("transno"),
+                dr.Item("transmonth"),
+                dr.Item("foodcode"),
+                dr.Item("foodname"),
+                dr.Item("price"),
+                dr.Item("qty"),
+                dr.Item("totalprice"),
+                dr.Item("grandtotal")
+            )
             End While
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
-            conn.Close()
+            If conn.State = ConnectionState.Open Then conn.Close()
+
         End Try
     End Sub
 
@@ -158,24 +182,40 @@ Public Class frm_report
 
     Sub Get_Dashboard()
         Try
-            conn.Open()
+            ' Open connection if not already open
+            If conn.State = ConnectionState.Closed Then conn.Open()
 
-            ' Get today's sales
-            cmd = New MySqlCommand("SELECT SUM(`totalprice`) FROM `tbl_pos` WHERE `transdate` = @today", conn)
-            cmd.Parameters.AddWithValue("@today", Date.Now.ToString("yyyy-MM-dd"))
-            Dim todaySale = cmd.ExecuteScalar()
-            lbl_todaySale.Text = If(IsDBNull(todaySale) OrElse todaySale Is Nothing, "0", todaySale.ToString())
+            ' Fetch today's sales - using date range for the full day
+            Dim todayStart As String = Date.Now.ToString("yyyy-MM-dd 00:00:00")
+            Dim todayEnd As String = Date.Now.ToString("yyyy-MM-dd 23:59:59")
 
-            ' Get last month's sales
-            cmd = New MySqlCommand("SELECT SUM(`totalprice`) FROM `tbl_pos` WHERE `transmonth` = @currentMonth", conn)
-            cmd.Parameters.AddWithValue("@currentMonth", Date.Now.ToString("MM"))
-            Dim lastMonthSale = cmd.ExecuteScalar()
-            lbl_lastmonth.Text = If(IsDBNull(lastMonthSale) OrElse lastMonthSale Is Nothing, "0", lastMonthSale.ToString())
+            Dim cmd As New MySqlCommand("SELECT IFNULL(SUM(`totalprice`), 0) FROM `tbl_pos` WHERE `transdate` BETWEEN @todayStart AND @todayEnd", conn)
+            cmd.Parameters.AddWithValue("@todayStart", todayStart)
+            cmd.Parameters.AddWithValue("@todayEnd", todayEnd)
+            lbl_todaySale.Text = FormatNumber(cmd.ExecuteScalar(), 2)
+
+            ' Get current month's date range
+            Dim currentMonth As DateTime = Date.Now
+            Dim monthStart As String = New DateTime(currentMonth.Year, currentMonth.Month, 1).ToString("yyyy-MM-dd 00:00:00")
+            Dim monthEnd As String = New DateTime(currentMonth.Year, currentMonth.Month, DateTime.DaysInMonth(currentMonth.Year, currentMonth.Month)).ToString("yyyy-MM-dd 23:59:59")
+
+            ' Query for current month's total sales
+            cmd = New MySqlCommand("SELECT IFNULL(SUM(`totalprice`), 0) FROM `tbl_pos` WHERE `transdate` BETWEEN @monthStart AND @monthEnd", conn)
+            cmd.Parameters.AddWithValue("@monthStart", monthStart)
+            cmd.Parameters.AddWithValue("@monthEnd", monthEnd)
+
+            ' Add debug prints to verify the date ranges
+            Debug.Print($"Current Month Start: {monthStart}")
+            Debug.Print($"Current Month End: {monthEnd}")
+
+            Dim monthTotal As Decimal = Convert.ToDecimal(cmd.ExecuteScalar())
+            lbl_lastmonth.Text = FormatNumber(monthTotal, 2)  ' Note: You might want to rename this label to lbl_currentMonth
 
         Catch ex As Exception
             MsgBox("Error fetching dashboard data: " & ex.Message, vbCritical, "Error")
         Finally
-            conn.Close()
+            ' Close the connection only if it was opened here
+            If conn.State = ConnectionState.Open Then conn.Close()
         End Try
     End Sub
 
