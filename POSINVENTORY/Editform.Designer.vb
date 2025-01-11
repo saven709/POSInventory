@@ -28,20 +28,15 @@ Partial Class EditForm
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btn_save = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.txtPrice = New System.Windows.Forms.TextBox()
         Me.txtFoodName = New System.Windows.Forms.TextBox()
-        Me.txtnamesize = New System.Windows.Forms.TextBox()
-        Me.btn_delete = New System.Windows.Forms.Button()
         Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox3 = New Guna.UI.WinForms.GunaLabel()
         Me.DataGridView1 = New Guna.UI.WinForms.GunaDataGridView()
         Me.size_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PRICEs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btndeletion = New System.Windows.Forms.Button()
         Me.GunaCirclePictureBox1 = New Guna.UI.WinForms.GunaCirclePictureBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.btnSupplies = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.GunaElipse11 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.Label6 = New System.Windows.Forms.Label()
@@ -59,8 +54,9 @@ Partial Class EditForm
         Me.btn_save.FlatAppearance.BorderSize = 0
         Me.btn_save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_save.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_save.ForeColor = System.Drawing.Color.Black
-        Me.btn_save.Location = New System.Drawing.Point(358, 399)
+        Me.btn_save.Location = New System.Drawing.Point(360, 334)
         Me.btn_save.Name = "btn_save"
         Me.btn_save.Size = New System.Drawing.Size(70, 32)
         Me.btn_save.TabIndex = 34
@@ -70,25 +66,13 @@ Partial Class EditForm
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(296, 106)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(38, 13)
+        Me.Label1.Size = New System.Drawing.Size(43, 19)
         Me.Label1.TabIndex = 32
         Me.Label1.Text = "Name"
-        '
-        'txtPrice
-        '
-        Me.txtPrice.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtPrice.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPrice.ForeColor = System.Drawing.Color.White
-        Me.txtPrice.Location = New System.Drawing.Point(341, 288)
-        Me.txtPrice.Multiline = True
-        Me.txtPrice.Name = "txtPrice"
-        Me.txtPrice.Size = New System.Drawing.Size(196, 24)
-        Me.txtPrice.TabIndex = 31
         '
         'txtFoodName
         '
@@ -101,33 +85,6 @@ Partial Class EditForm
         Me.txtFoodName.Name = "txtFoodName"
         Me.txtFoodName.Size = New System.Drawing.Size(233, 24)
         Me.txtFoodName.TabIndex = 30
-        '
-        'txtnamesize
-        '
-        Me.txtnamesize.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.txtnamesize.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.txtnamesize.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtnamesize.ForeColor = System.Drawing.Color.White
-        Me.txtnamesize.Location = New System.Drawing.Point(341, 237)
-        Me.txtnamesize.Multiline = True
-        Me.txtnamesize.Name = "txtnamesize"
-        Me.txtnamesize.Size = New System.Drawing.Size(196, 24)
-        Me.txtnamesize.TabIndex = 37
-        '
-        'btn_delete
-        '
-        Me.btn_delete.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
-        Me.btn_delete.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_delete.FlatAppearance.BorderSize = 0
-        Me.btn_delete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
-        Me.btn_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_delete.ForeColor = System.Drawing.Color.Black
-        Me.btn_delete.Location = New System.Drawing.Point(135, 372)
-        Me.btn_delete.Name = "btn_delete"
-        Me.btn_delete.Size = New System.Drawing.Size(71, 32)
-        Me.btn_delete.TabIndex = 38
-        Me.btn_delete.Text = "REMOVE"
-        Me.btn_delete.UseVisualStyleBackColor = False
         '
         'GunaControlBox1
         '
@@ -144,28 +101,6 @@ Partial Class EditForm
         Me.GunaControlBox1.OnPressedColor = System.Drawing.Color.Black
         Me.GunaControlBox1.Size = New System.Drawing.Size(38, 24)
         Me.GunaControlBox1.TabIndex = 39
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(338, 221)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(59, 13)
-        Me.Label3.TabIndex = 41
-        Me.Label3.Text = "Size name"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(338, 272)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(32, 13)
-        Me.Label4.TabIndex = 42
-        Me.Label4.Text = "Price"
         '
         'TextBox3
         '
@@ -256,8 +191,9 @@ Partial Class EditForm
         Me.btndeletion.FlatAppearance.BorderSize = 0
         Me.btndeletion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.btndeletion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btndeletion.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btndeletion.ForeColor = System.Drawing.Color.Black
-        Me.btndeletion.Location = New System.Drawing.Point(458, 399)
+        Me.btndeletion.Location = New System.Drawing.Point(459, 334)
         Me.btndeletion.Name = "btndeletion"
         Me.btndeletion.Size = New System.Drawing.Size(70, 32)
         Me.btndeletion.TabIndex = 51
@@ -275,29 +211,30 @@ Partial Class EditForm
         Me.GunaCirclePictureBox1.TabStop = False
         Me.GunaCirclePictureBox1.UseTransfarantBackground = False
         '
-        'Button1
+        'btnSupplies
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
-        Me.Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ForeColor = System.Drawing.Color.Black
-        Me.Button1.Location = New System.Drawing.Point(388, 334)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(123, 32)
-        Me.Button1.TabIndex = 52
-        Me.Button1.Text = "ADD INGREDIENTS"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.btnSupplies.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.btnSupplies.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnSupplies.FlatAppearance.BorderSize = 0
+        Me.btnSupplies.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
+        Me.btnSupplies.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSupplies.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSupplies.ForeColor = System.Drawing.Color.Black
+        Me.btnSupplies.Location = New System.Drawing.Point(386, 270)
+        Me.btnSupplies.Name = "btnSupplies"
+        Me.btnSupplies.Size = New System.Drawing.Size(123, 32)
+        Me.btnSupplies.TabIndex = 52
+        Me.btnSupplies.Text = "ADD SUPPLIES"
+        Me.btnSupplies.UseVisualStyleBackColor = False
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
         Me.Label5.Location = New System.Drawing.Point(293, 40)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(64, 13)
+        Me.Label5.Size = New System.Drawing.Size(67, 19)
         Me.Label5.TabIndex = 53
         Me.Label5.Text = "Food Code"
         '
@@ -331,11 +268,11 @@ Partial Class EditForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.White
         Me.Label7.Location = New System.Drawing.Point(296, 161)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(54, 13)
+        Me.Label7.Size = New System.Drawing.Size(61, 19)
         Me.Label7.TabIndex = 57
         Me.Label7.Text = "Category"
         '
@@ -362,19 +299,14 @@ Partial Class EditForm
         Me.Controls.Add(Me.GunaLabel1)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.btnSupplies)
         Me.Controls.Add(Me.btndeletion)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.GunaCirclePictureBox1)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.GunaControlBox1)
-        Me.Controls.Add(Me.btn_delete)
-        Me.Controls.Add(Me.txtnamesize)
         Me.Controls.Add(Me.btn_save)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.txtPrice)
         Me.Controls.Add(Me.txtFoodName)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "EditForm"
@@ -389,20 +321,15 @@ Partial Class EditForm
 
     Friend WithEvents btn_save As Button
     Friend WithEvents Label1 As Label
-    Friend WithEvents txtPrice As TextBox
     Friend WithEvents txtFoodName As TextBox
-    Friend WithEvents txtnamesize As TextBox
-    Friend WithEvents btn_delete As Button
     Friend WithEvents GunaControlBox1 As Guna.UI.WinForms.GunaControlBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
     Friend WithEvents TextBox3 As Guna.UI.WinForms.GunaLabel
     Friend WithEvents GunaCirclePictureBox1 As Guna.UI.WinForms.GunaCirclePictureBox
     Friend WithEvents DataGridView1 As Guna.UI.WinForms.GunaDataGridView
     Friend WithEvents btndeletion As Button
     Friend WithEvents size_name As DataGridViewTextBoxColumn
     Friend WithEvents PRICEs As DataGridViewTextBoxColumn
-    Friend WithEvents Button1 As Button
+    Friend WithEvents btnSupplies As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents GunaElipse11 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents Label6 As Label

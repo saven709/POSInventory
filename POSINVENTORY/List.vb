@@ -28,7 +28,7 @@ Public Class List
         Load_Foods()
     End Sub
 
-    Private Sub LoadCategories()
+    Public Sub LoadCategories()
         categories.Clear()
         categories.Add("All")  ' Always add "All" as the first option
 
@@ -97,7 +97,7 @@ Public Class List
         tooltip.SetToolTip(categorybtn, $"Next: {categories(nextIndex)}")
     End Sub
 
-    Sub Load_Foods()
+    Public Sub Load_Foods()
         FlowLayoutPanel1.Controls.Clear()
         FlowLayoutPanel1.AutoScroll = True
         Try

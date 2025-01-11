@@ -35,6 +35,7 @@ Public Class frm_ManageFoods
     End Sub
     Sub clear()
         txt_foodname.Clear()
+        txt_category.Clear()
         'txt_size.Clear()
         GunaCirclePictureBox1.Image = Nothing
     End Sub
@@ -84,74 +85,14 @@ Public Class frm_ManageFoods
         End Try
 
         clear()
-        auto_foodcode()
-        ' Auto click the btnList (assuming it's the button you want to trigger)
-        Form1.btnList.PerformClick() ' Simulates a click on the btnList button
-    End Sub
 
-    Private Sub btn_edit_Click(sender As Object, e As EventArgs) Handles btn_edit.Click
-        Try
-            If conn.State = ConnectionState.Closed Then conn.Open()
 
-            Dim cmd As New MySqlCommand("UPDATE `tbl_food` SET `foodname`=@foodname,`price`=@price,`img`=@img WHERE `foodcode`=@foodcode", conn)
-            cmd.Parameters.Clear()
-
-            cmd.Parameters.AddWithValue("@foodname", txt_foodname.Text)
-            Dim FileSize As New UInt32
-            Dim mstream As New System.IO.MemoryStream
-            GunaCirclePictureBox1.Image.Save(mstream, System.Drawing.Imaging.ImageFormat.Jpeg)
-            Dim picture() As Byte = mstream.GetBuffer
-            FileSize = mstream.Length
-            mstream.Close()
-            cmd.Parameters.AddWithValue("@img", picture)
-            cmd.Parameters.AddWithValue("@foodcode", txt_foodcode.Text)
-            Dim i As Integer
-            i = cmd.ExecuteNonQuery
-            If i > 0 Then
-                MsgBox("Food Edit Successfully !", vbInformation, "FAST FOOD")
-            Else
-                MsgBox("Warning : Food Edit Failed !", vbCritical, "FAST FOOD")
-            End If
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-        If conn.State = ConnectionState.Open Then conn.Close()
-
-        clear()
-        auto_foodcode()
-    End Sub
-    Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
-        If MsgBox("Are you Sure Delete this Food Product !", vbQuestion + vbYesNo, "Brewtopia") = vbYes Then
-            Try
-                If conn.State = ConnectionState.Closed Then conn.Open()
-
-                cmd = New MySqlCommand("DELETE FROM `tbl_food` WHERE `foodcode`=@foodcode", conn)
-                cmd.Parameters.Clear()
-                cmd.Parameters.AddWithValue("@foodcode", txt_foodcode.Text)
-                Dim i As Integer
-                i = cmd.ExecuteNonQuery
-                If i > 0 Then
-                    MsgBox("Food Delete Successfully !", vbInformation, "FAST FOOD")
-                Else
-                    MsgBox("Warning : Food Delete Failed !", vbCritical, "FAST FOOD")
-                End If
-
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
-            If conn.State = ConnectionState.Open Then conn.Close()
-
-            clear()
-            clear()
-            auto_foodcode()
-        Else
-            Return
-
+        Dim list As List = Application.OpenForms.OfType(Of List)().FirstOrDefault()
+        If list IsNot Nothing Then
+            list.Load_Foods() ' Refresh the inventory list
+            'list.LoadCategories()
         End If
-
     End Sub
-
     Private Sub btn_find_Click(sender As Object, e As EventArgs) Handles btn_find.Click
         clear()
         Try

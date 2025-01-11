@@ -83,7 +83,6 @@ Public Class EditForm
         End Try
     End Sub
 
-    ' Save changes to food details
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Try
             ' Update the food details (foodname, img, and category) in tbl_food
@@ -112,85 +111,19 @@ Public Class EditForm
                 MsgBox("Warning: Food Edit Failed!", vbCritical, "BREWTOPIA")
             End If
 
-            ' Now, handle saving the sizes to tbl_food_sizes (size_name, price, ingredients)
-            If Not String.IsNullOrEmpty(txtnamesize.Text) AndAlso Not String.IsNullOrEmpty(txtPrice.Text) Then
-                Dim cmdSize As New MySqlCommand("INSERT INTO tbl_food_sizes (foodcode, size_name, price) VALUES (@foodcode, @size_name, @price)", conn)
-                cmdSize.Parameters.Clear()
-                cmdSize.Parameters.AddWithValue("@foodcode", FoodCode)
-                cmdSize.Parameters.AddWithValue("@size_name", txtnamesize.Text)
-                cmdSize.Parameters.AddWithValue("@price", Decimal.Parse(txtPrice.Text))
-
-                cmdSize.ExecuteNonQuery()
-
-                MsgBox("Size added successfully!", vbInformation, "BREWTOPIA")
-
-                ' Optionally, refresh the DataGridView or update sizes list after insertion
-                dbconn()
-                List.Load_Foods()
-                LoadSizes()
-            End If
-
         Catch ex As Exception
             MsgBox("Error: " & ex.Message, vbCritical, "Error")
         Finally
             If conn.State = ConnectionState.Open Then conn.Close()
-
         End Try
 
-        ' Auto click the btnList (assuming it's the button you want to trigger)
-        Form1.btnList.PerformClick()  ' Simulates a click on the btnList button
-        txtnamesize.Clear()
-        txtPrice.Clear()
-    End Sub
-    ' Delete selected size from DataGridView
-    Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
-        ' Check if a row is selected in the DataGridView
-        If DataGridView1.SelectedRows.Count = 0 Then
-            MsgBox("Please select a size to delete!", MsgBoxStyle.Exclamation)
-            Return
-        End If
-
-        ' Get the selected row
-        Dim selectedRow As DataGridViewRow = DataGridView1.SelectedRows(0)
-
-        ' Retrieve the size_name from the first column of the selected row
-        Dim sizeName As String = selectedRow.Cells("size_name").Value.ToString()
-
-        ' Confirm with the user before deletion
-        If MsgBox("Are you sure you want to delete this size?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
-            Try
-                If conn.State = ConnectionState.Closed Then conn.Open()
-
-                ' Prepare the SQL command to delete the size
-                Dim cmd As New MySqlCommand("DELETE FROM tbl_food_sizes WHERE foodcode = @foodcode AND size_name = @size_name", conn)
-                cmd.Parameters.AddWithValue("@foodcode", FoodCode)
-                cmd.Parameters.AddWithValue("@size_name", sizeName)
-
-                ' Execute the delete command
-                cmd.ExecuteNonQuery()
-
-                ' Reload the sizes into the DataGridView
-                dbconn()
-                List.Load_Foods()
-                LoadSizes()
-
-                ' Inform the user of the success
-                MsgBox("Size deleted successfully!", MsgBoxStyle.Information)
-            Catch ex As Exception
-                'MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical)
-            Finally
-                If conn.State = ConnectionState.Open Then conn.Close()
-
-            End Try
-            ' Auto click the btnList (assuming it's the button you want to trigger)
-            Form1.btnList.PerformClick()  ' Simulates a click on the btnList button
+        ' Call list from the list form
+        Dim list As List = Application.OpenForms.OfType(Of List)().FirstOrDefault()
+        If list IsNot Nothing Then
+            list.Load_Foods() ' Refresh the inventory list
+            'list.LoadCategories()
         End If
     End Sub
-    Private Sub DataGridView1_SelectionChanged(sender As Object, e As EventArgs)
-        ' Enable the delete button if a row is selected
-        btn_delete.Enabled = DataGridView1.SelectedRows.Count > 0
-    End Sub
-
     Private Sub btnDeletion_Click(sender As Object, e As EventArgs) Handles btndeletion.Click
         ' Ensure that the user has selected a food item to delete
         If String.IsNullOrEmpty(FoodCode) Then
@@ -199,10 +132,14 @@ Public Class EditForm
         End If
 
         ' Confirm the deletion with the user
-        If MsgBox("Are you sure you want to delete this food item and all associated sizes?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
+        If MsgBox("Are you sure you want to delete this food item and all associated sizes and ingredients?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
             Try
                 If conn.State = ConnectionState.Closed Then conn.Open()
 
+                ' Delete from tbl_ingredients (ingredients associated with the food item)
+                Dim cmdIngredients As New MySqlCommand("DELETE FROM tbl_ingredients WHERE foodcode = @foodcode", conn)
+                cmdIngredients.Parameters.AddWithValue("@foodcode", FoodCode)
+                cmdIngredients.ExecuteNonQuery()
 
                 ' Delete from tbl_food_sizes (sizes associated with the food item)
                 Dim cmdSizes As New MySqlCommand("DELETE FROM tbl_food_sizes WHERE foodcode = @foodcode", conn)
@@ -214,10 +151,15 @@ Public Class EditForm
                 cmdFood.Parameters.AddWithValue("@foodcode", FoodCode)
                 cmdFood.ExecuteNonQuery()
 
-                MsgBox("Food item and associated sizes deleted successfully!", vbInformation, "BREWTOPIA")
+                MsgBox("Food item, associated sizes, and ingredients deleted successfully!", vbInformation, "BREWTOPIA")
 
                 ' Refresh the UI or reload the list of foods
-                List.Load_Foods()
+                ' Call list from the list form
+                Dim list As List = Application.OpenForms.OfType(Of List)().FirstOrDefault()
+                If list IsNot Nothing Then
+                    list.Load_Foods() ' Refresh the inventory list
+                    list.LoadCategories()
+                End If
 
             Catch ex As Exception
                 MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical, "BREWTOPIA")
@@ -225,8 +167,6 @@ Public Class EditForm
                 If conn.State = ConnectionState.Open Then conn.Close()
 
             End Try
-            ' Auto click the btnList (assuming it's the button you want to trigger)
-            Form1.btnList.PerformClick()  ' Simulates a click on the btnList button
             Me.Close()
         End If
     End Sub
@@ -235,10 +175,15 @@ Public Class EditForm
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub btnSupplies_Click(sender As Object, e As EventArgs) Handles btnSupplies.Click
         Dim frmIngredients As New formingredients()
         frmIngredients.FoodCode = Me.FoodCode  ' Pass the FoodCode to the ingredients form
         frmIngredients.LoadFormData()  ' Initialize the form with data
         frmIngredients.Show()
+
+        ' Here we pass the FoodCode and set the supplycode as FoodCode initially
+        frmIngredients.txt_supplycode.Text = Me.FoodCode
     End Sub
+
+
 End Class

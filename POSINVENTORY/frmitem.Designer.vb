@@ -22,6 +22,7 @@ Partial Class frmitem
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -35,6 +36,9 @@ Partial Class frmitem
         Me.txt_itemcode = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txt_quantity = New System.Windows.Forms.TextBox()
+        Me.lbl_date1 = New System.Windows.Forms.Label()
+        Me.lbl_time = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'GunaControlBox1
@@ -58,7 +62,7 @@ Partial Class frmitem
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(128, 9)
+        Me.Label3.Location = New System.Drawing.Point(118, 9)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(68, 22)
         Me.Label3.TabIndex = 51
@@ -67,11 +71,11 @@ Partial Class frmitem
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
         Me.Label4.Location = New System.Drawing.Point(33, 195)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(116, 13)
+        Me.Label4.Size = New System.Drawing.Size(127, 19)
         Me.Label4.TabIndex = 56
         Me.Label4.Text = "Measurement Name:"
         '
@@ -90,11 +94,11 @@ Partial Class frmitem
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Location = New System.Drawing.Point(33, 99)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 13)
+        Me.Label2.Size = New System.Drawing.Size(43, 19)
         Me.Label2.TabIndex = 54
         Me.Label2.Text = "Name"
         '
@@ -113,11 +117,11 @@ Partial Class frmitem
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(33, 241)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(54, 13)
+        Me.Label1.Size = New System.Drawing.Size(61, 19)
         Me.Label1.TabIndex = 58
         Me.Label1.Text = "Category"
         '
@@ -140,8 +144,9 @@ Partial Class frmitem
         Me.btn_save.FlatAppearance.BorderSize = 0
         Me.btn_save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_save.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_save.ForeColor = System.Drawing.Color.Black
-        Me.btn_save.Location = New System.Drawing.Point(132, 330)
+        Me.btn_save.Location = New System.Drawing.Point(122, 330)
         Me.btn_save.Name = "btn_save"
         Me.btn_save.Size = New System.Drawing.Size(64, 32)
         Me.btn_save.TabIndex = 59
@@ -151,11 +156,11 @@ Partial Class frmitem
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
         Me.Label5.Location = New System.Drawing.Point(33, 53)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(34, 13)
+        Me.Label5.Size = New System.Drawing.Size(38, 19)
         Me.Label5.TabIndex = 61
         Me.Label5.Text = "Code"
         '
@@ -174,11 +179,11 @@ Partial Class frmitem
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.White
         Me.Label6.Location = New System.Drawing.Point(33, 148)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(52, 13)
+        Me.Label6.Size = New System.Drawing.Size(57, 19)
         Me.Label6.TabIndex = 63
         Me.Label6.Text = "Quantity"
         '
@@ -194,12 +199,44 @@ Partial Class frmitem
         Me.txt_quantity.Size = New System.Drawing.Size(233, 24)
         Me.txt_quantity.TabIndex = 62
         '
+        'lbl_date1
+        '
+        Me.lbl_date1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl_date1.BackColor = System.Drawing.Color.Transparent
+        Me.lbl_date1.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_date1.ForeColor = System.Drawing.Color.Black
+        Me.lbl_date1.Location = New System.Drawing.Point(-25, 41)
+        Me.lbl_date1.Name = "lbl_date1"
+        Me.lbl_date1.Size = New System.Drawing.Size(251, 25)
+        Me.lbl_date1.TabIndex = 65
+        Me.lbl_date1.Text = "00.00"
+        Me.lbl_date1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lbl_date1.Visible = False
+        '
+        'lbl_time
+        '
+        Me.lbl_time.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl_time.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_time.ForeColor = System.Drawing.Color.Black
+        Me.lbl_time.Location = New System.Drawing.Point(203, 41)
+        Me.lbl_time.Name = "lbl_time"
+        Me.lbl_time.Size = New System.Drawing.Size(107, 25)
+        Me.lbl_time.TabIndex = 64
+        Me.lbl_time.Text = "00.00"
+        Me.lbl_time.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lbl_time.Visible = False
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        '
         'frmitem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(322, 399)
+        Me.Controls.Add(Me.lbl_time)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.txt_quantity)
         Me.Controls.Add(Me.Label5)
@@ -213,6 +250,7 @@ Partial Class frmitem
         Me.Controls.Add(Me.txt_name)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.GunaControlBox1)
+        Me.Controls.Add(Me.lbl_date1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frmitem"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -235,4 +273,7 @@ Partial Class frmitem
     Friend WithEvents txt_itemcode As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents txt_quantity As TextBox
+    Friend WithEvents lbl_date1 As Label
+    Friend WithEvents lbl_time As Label
+    Friend WithEvents Timer1 As Timer
 End Class

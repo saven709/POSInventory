@@ -222,4 +222,9 @@ Public Class frm_report
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Get_Dashboard()
     End Sub
+
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        lbl_date1.Text = Date.Now.ToString("ddd, dd-MM-yyyy")
+        lbl_time.Text = Date.Now.ToString("hh:mm:ss tt")
+    End Sub
 End Class

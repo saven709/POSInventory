@@ -30,9 +30,12 @@ Partial Class Cashier
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GunaLabel11 = New Guna.UI.WinForms.GunaLabel()
         Me.PanelMain = New Guna.UI.WinForms.GunaPanel()
+        Me.GunaButton3 = New Guna.UI.WinForms.GunaButton()
         Me.lbl_time1 = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.lblRole = New System.Windows.Forms.Label()
+        Me.lblUsername = New System.Windows.Forms.Label()
         Me.GunaControlBox2 = New Guna.UI.WinForms.GunaControlBox()
-        Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
         Me.PanelSlide = New System.Windows.Forms.Panel()
         Me.GunaButton2 = New Guna.UI.WinForms.GunaButton()
         Me.GunaButton1 = New Guna.UI.WinForms.GunaButton()
@@ -43,7 +46,6 @@ Partial Class Cashier
         Me.btnLogout = New Guna.UI.WinForms.GunaButton()
         Me.PanelLogo = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.lblUsername = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.categorybtn = New System.Windows.Forms.Button()
         Me.txtquantity = New System.Windows.Forms.TextBox()
@@ -86,6 +88,7 @@ Partial Class Cashier
         Me.GunaElipse10 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.GunaElipse11 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.PanelMain.SuspendLayout()
+        Me.Panel3.SuspendLayout()
         Me.PanelSlide.SuspendLayout()
         Me.PanelLogo.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,9 +116,10 @@ Partial Class Cashier
         'PanelMain
         '
         Me.PanelMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.PanelMain.Controls.Add(Me.GunaButton3)
         Me.PanelMain.Controls.Add(Me.lbl_time1)
+        Me.PanelMain.Controls.Add(Me.Panel3)
         Me.PanelMain.Controls.Add(Me.GunaControlBox2)
-        Me.PanelMain.Controls.Add(Me.GunaControlBox1)
         Me.PanelMain.Controls.Add(Me.PanelSlide)
         Me.PanelMain.Controls.Add(Me.btnLogout)
         Me.PanelMain.Controls.Add(Me.PanelLogo)
@@ -125,6 +129,30 @@ Partial Class Cashier
         Me.PanelMain.Name = "PanelMain"
         Me.PanelMain.Size = New System.Drawing.Size(1106, 700)
         Me.PanelMain.TabIndex = 8
+        '
+        'GunaButton3
+        '
+        Me.GunaButton3.AnimationHoverSpeed = 0.07!
+        Me.GunaButton3.AnimationSpeed = 0.03!
+        Me.GunaButton3.BaseColor = System.Drawing.Color.Transparent
+        Me.GunaButton3.BorderColor = System.Drawing.Color.Black
+        Me.GunaButton3.DialogResult = System.Windows.Forms.DialogResult.None
+        Me.GunaButton3.FocusedColor = System.Drawing.Color.Empty
+        Me.GunaButton3.Font = New System.Drawing.Font("Poppins", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GunaButton3.ForeColor = System.Drawing.Color.White
+        Me.GunaButton3.Image = Nothing
+        Me.GunaButton3.ImageSize = New System.Drawing.Size(20, 20)
+        Me.GunaButton3.Location = New System.Drawing.Point(1056, 1)
+        Me.GunaButton3.Name = "GunaButton3"
+        Me.GunaButton3.OnHoverBaseColor = System.Drawing.Color.Maroon
+        Me.GunaButton3.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.GunaButton3.OnHoverForeColor = System.Drawing.Color.White
+        Me.GunaButton3.OnHoverImage = Nothing
+        Me.GunaButton3.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaButton3.Size = New System.Drawing.Size(47, 24)
+        Me.GunaButton3.TabIndex = 42
+        Me.GunaButton3.Text = "X"
+        Me.GunaButton3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'lbl_time1
         '
@@ -138,6 +166,40 @@ Partial Class Cashier
         Me.lbl_time1.Text = "00.00"
         Me.lbl_time1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.lbl_time1.Visible = False
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.Panel3.Controls.Add(Me.lblRole)
+        Me.Panel3.Controls.Add(Me.lblUsername)
+        Me.Panel3.Location = New System.Drawing.Point(12, 117)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(170, 49)
+        Me.Panel3.TabIndex = 3
+        '
+        'lblRole
+        '
+        Me.lblRole.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.lblRole.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRole.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.lblRole.Location = New System.Drawing.Point(0, 30)
+        Me.lblRole.Name = "lblRole"
+        Me.lblRole.Size = New System.Drawing.Size(170, 19)
+        Me.lblRole.TabIndex = 0
+        Me.lblRole.Text = "Cashier"
+        Me.lblRole.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        '
+        'lblUsername
+        '
+        Me.lblUsername.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lblUsername.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUsername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.lblUsername.Location = New System.Drawing.Point(0, 0)
+        Me.lblUsername.Name = "lblUsername"
+        Me.lblUsername.Size = New System.Drawing.Size(170, 49)
+        Me.lblUsername.TabIndex = 1
+        Me.lblUsername.Text = "cashier"
+        Me.lblUsername.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GunaControlBox2
         '
@@ -155,22 +217,6 @@ Partial Class Cashier
         Me.GunaControlBox2.OnPressedColor = System.Drawing.Color.Black
         Me.GunaControlBox2.Size = New System.Drawing.Size(38, 24)
         Me.GunaControlBox2.TabIndex = 23
-        '
-        'GunaControlBox1
-        '
-        Me.GunaControlBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GunaControlBox1.AnimationHoverSpeed = 0.07!
-        Me.GunaControlBox1.AnimationSpeed = 0.03!
-        Me.GunaControlBox1.ControlBoxTheme = Guna.UI.WinForms.FormControlBoxTheme.Custom
-        Me.GunaControlBox1.IconColor = System.Drawing.SystemColors.ButtonFace
-        Me.GunaControlBox1.IconSize = 15.0!
-        Me.GunaControlBox1.Location = New System.Drawing.Point(1065, 1)
-        Me.GunaControlBox1.Name = "GunaControlBox1"
-        Me.GunaControlBox1.OnHoverBackColor = System.Drawing.Color.Maroon
-        Me.GunaControlBox1.OnHoverIconColor = System.Drawing.Color.White
-        Me.GunaControlBox1.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaControlBox1.Size = New System.Drawing.Size(38, 24)
-        Me.GunaControlBox1.TabIndex = 22
         '
         'PanelSlide
         '
@@ -367,7 +413,6 @@ Partial Class Cashier
         '
         Me.PanelLogo.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.PanelLogo.Controls.Add(Me.PictureBox1)
-        Me.PanelLogo.Controls.Add(Me.lblUsername)
         Me.PanelLogo.Location = New System.Drawing.Point(12, 36)
         Me.PanelLogo.Name = "PanelLogo"
         Me.PanelLogo.Size = New System.Drawing.Size(170, 153)
@@ -383,17 +428,6 @@ Partial Class Cashier
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
-        '
-        'lblUsername
-        '
-        Me.lblUsername.AutoSize = True
-        Me.lblUsername.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblUsername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.lblUsername.Location = New System.Drawing.Point(49, 88)
-        Me.lblUsername.Name = "lblUsername"
-        Me.lblUsername.Size = New System.Drawing.Size(74, 22)
-        Me.lblUsername.TabIndex = 1
-        Me.lblUsername.Text = "UserName"
         '
         'Panel2
         '
@@ -753,7 +787,7 @@ Partial Class Cashier
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(29, 187)
+        Me.Label5.Location = New System.Drawing.Point(27, 187)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(172, 26)
         Me.Label5.TabIndex = 24
@@ -864,9 +898,9 @@ Partial Class Cashier
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Cashier"
         Me.PanelMain.ResumeLayout(False)
+        Me.Panel3.ResumeLayout(False)
         Me.PanelSlide.ResumeLayout(False)
         Me.PanelLogo.ResumeLayout(False)
-        Me.PanelLogo.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
@@ -903,7 +937,6 @@ Partial Class Cashier
     Friend WithEvents GunaElipse5 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents GunaElipse6 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents GunaControlBox2 As Guna.UI.WinForms.GunaControlBox
-    Friend WithEvents GunaControlBox1 As Guna.UI.WinForms.GunaControlBox
     Friend WithEvents Panel5 As Panel
     Friend WithEvents Panel4 As Panel
     Friend WithEvents GunaElipse7 As Guna.UI.WinForms.GunaElipse
@@ -938,4 +971,7 @@ Partial Class Cashier
     Friend WithEvents txtquantity As TextBox
     Friend WithEvents categorybtn As Button
     Friend WithEvents lbl_time1 As Label
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents lblRole As Label
+    Friend WithEvents GunaButton3 As Guna.UI.WinForms.GunaButton
 End Class

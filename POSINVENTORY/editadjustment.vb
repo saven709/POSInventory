@@ -3,7 +3,6 @@
 Public Class editadjustment
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Try
-            ' Open database connection
             If conn.State = ConnectionState.Closed Then conn.Open()
 
             ' Update `tbl_inventoryad` table
@@ -21,10 +20,8 @@ Public Class editadjustment
             cmd1.Parameters.AddWithValue("@quantity", txt_quantity.Text)
             cmd1.Parameters.AddWithValue("@desc", txt_desc.Text)
             cmd1.Parameters.AddWithValue("@adjustby", Form1.lblUsername.Text)
-            cmd1.Parameters.AddWithValue("@adjustdate", Form1.lbl_date1.Text)
-            cmd1.Parameters.AddWithValue("@adjusttime", Form1.lbl_time.Text)
-
-            ' Set the lastquantity from lbl_lastquantity
+            cmd1.Parameters.AddWithValue("@adjustdate", lbl_date1.Text)
+            cmd1.Parameters.AddWithValue("@adjusttime", lbl_time.Text)
             cmd1.Parameters.AddWithValue("@lastquantity", lbl_lastquantity.Text)
 
             ' Execute the first query
@@ -46,17 +43,25 @@ Public Class editadjustment
             If i > 0 And j > 0 Then
                 MsgBox("Adjustment updated successfully in both tables!", vbInformation, "ADJUSTMENT")
                 Me.DialogResult = DialogResult.OK ' Signal success to the calling form
+                Me.Close()
+
+                ' Call LoadAdjustments() from the adjustment form
+                Dim adjustment As Adjustment = Application.OpenForms.OfType(Of Adjustment)().FirstOrDefault()
+                If adjustment IsNot Nothing Then
+                    adjustment.LoadAdjustments() ' Refresh the inventory list
+                End If
             Else
                 MsgBox("Warning: Failed to update adjustments in one or both tables!", vbCritical, "ADJUSTMENT")
             End If
         Catch ex As Exception
-            ' MsgBox("Error: " & ex.Message, vbCritical, "Error")
+            MsgBox("Error: " & ex.Message, vbCritical, "Error")
         Finally
-            ' Close the connection
             If conn.State = ConnectionState.Open Then conn.Close()
         End Try
-        Form1.GunaButton6.PerformClick()  ' Refresh the dashboard or any related UI updates
     End Sub
 
-
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        lbl_date1.Text = Date.Now.ToString("ddd, dd-MM-yyyy")
+        lbl_time.Text = Date.Now.ToString("hh:mm:ss tt")
+    End Sub
 End Class

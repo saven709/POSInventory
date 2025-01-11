@@ -17,8 +17,16 @@
         dh.Show()
     End Sub
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
-        OpeninPanel(New Dashboard)
+        ' Open the Dashboard form first
+        Dim dashboardForm As New Dashboard()
+        OpeninPanel(dashboardForm)
+
+        ' Ensure the form is fully loaded before attempting to modify its label
+        If dashboardForm IsNot Nothing Then
+            dashboardForm.lblUsername2.Text = lblUsername.Text
+        End If
     End Sub
+
 
     Private Sub btnProduct_Click(sender As Object, e As EventArgs) Handles btnProduct.Click
         'PanelProduct.Visible = Not PanelProduct.Visible
@@ -44,14 +52,17 @@
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
-        Login.Show()
-        Me.Close()
-    End Sub
+        ' Show a confirmation dialog
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to log out?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-    Private Sub GunaControlBox1_Click(sender As Object, e As EventArgs) Handles GunaControlBox1.Click
-        Login.Close()
+        ' Check user's decision
+        If result = DialogResult.Yes Then
+            ' Show the login form
+            Login.Show()
+            ' Close the current form
+            Me.Close()
+        End If
     End Sub
-
     Private Sub btnList_Click(sender As Object, e As EventArgs) Handles btnList.Click
         OpeninPanel(New List)
     End Sub
@@ -86,8 +97,14 @@
         'frm_report.Show()
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        lbl_date1.Text = Date.Now.ToString("ddd, dd-MM-yyyy")
-        lbl_time.Text = Date.Now.ToString("hh:mm:ss tt")
+    Private Sub GunaButton1_Click(sender As Object, e As EventArgs) Handles GunaButton1.Click
+        ' Show a confirmation dialog
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to exit the application?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        ' Check user's decision
+        If result = DialogResult.Yes Then
+            ' Close the application
+            Application.Exit()
+        End If
     End Sub
 End Class

@@ -22,6 +22,7 @@ Partial Class editadjustment
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txt_quantity = New System.Windows.Forms.TextBox()
@@ -34,6 +35,9 @@ Partial Class editadjustment
         Me.txt_desc = New System.Windows.Forms.TextBox()
         Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
         Me.lbl_lastquantity = New System.Windows.Forms.Label()
+        Me.lbl_date1 = New System.Windows.Forms.Label()
+        Me.lbl_time = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'Label3
@@ -50,11 +54,11 @@ Partial Class editadjustment
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.White
         Me.Label6.Location = New System.Drawing.Point(45, 166)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(52, 13)
+        Me.Label6.Size = New System.Drawing.Size(57, 19)
         Me.Label6.TabIndex = 73
         Me.Label6.Text = "Quantity"
         '
@@ -73,11 +77,11 @@ Partial Class editadjustment
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
         Me.Label5.Location = New System.Drawing.Point(45, 71)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(34, 13)
+        Me.Label5.Size = New System.Drawing.Size(38, 19)
         Me.Label5.TabIndex = 71
         Me.Label5.Text = "Code"
         '
@@ -96,11 +100,11 @@ Partial Class editadjustment
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Location = New System.Drawing.Point(45, 117)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 13)
+        Me.Label2.Size = New System.Drawing.Size(43, 19)
         Me.Label2.TabIndex = 65
         Me.Label2.Text = "Name"
         '
@@ -134,11 +138,11 @@ Partial Class editadjustment
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.White
         Me.Label7.Location = New System.Drawing.Point(299, 117)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(66, 13)
+        Me.Label7.Size = New System.Drawing.Size(73, 19)
         Me.Label7.TabIndex = 76
         Me.Label7.Text = "Description"
         '
@@ -173,14 +177,45 @@ Partial Class editadjustment
         'lbl_lastquantity
         '
         Me.lbl_lastquantity.AutoSize = True
-        Me.lbl_lastquantity.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_lastquantity.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_lastquantity.ForeColor = System.Drawing.Color.White
         Me.lbl_lastquantity.Location = New System.Drawing.Point(45, 252)
         Me.lbl_lastquantity.Name = "lbl_lastquantity"
-        Me.lbl_lastquantity.Size = New System.Drawing.Size(52, 13)
+        Me.lbl_lastquantity.Size = New System.Drawing.Size(57, 19)
         Me.lbl_lastquantity.TabIndex = 80
         Me.lbl_lastquantity.Text = "Quantity"
         Me.lbl_lastquantity.Visible = False
+        '
+        'lbl_date1
+        '
+        Me.lbl_date1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl_date1.BackColor = System.Drawing.Color.Transparent
+        Me.lbl_date1.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_date1.ForeColor = System.Drawing.Color.Black
+        Me.lbl_date1.Location = New System.Drawing.Point(222, 48)
+        Me.lbl_date1.Name = "lbl_date1"
+        Me.lbl_date1.Size = New System.Drawing.Size(251, 25)
+        Me.lbl_date1.TabIndex = 82
+        Me.lbl_date1.Text = "00.00"
+        Me.lbl_date1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lbl_date1.Visible = False
+        '
+        'lbl_time
+        '
+        Me.lbl_time.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl_time.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_time.ForeColor = System.Drawing.Color.Black
+        Me.lbl_time.Location = New System.Drawing.Point(450, 48)
+        Me.lbl_time.Name = "lbl_time"
+        Me.lbl_time.Size = New System.Drawing.Size(107, 25)
+        Me.lbl_time.TabIndex = 81
+        Me.lbl_time.Text = "00.00"
+        Me.lbl_time.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lbl_time.Visible = False
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
         '
         'editadjustment
         '
@@ -188,6 +223,8 @@ Partial Class editadjustment
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(596, 339)
+        Me.Controls.Add(Me.lbl_date1)
+        Me.Controls.Add(Me.lbl_time)
         Me.Controls.Add(Me.lbl_lastquantity)
         Me.Controls.Add(Me.GunaControlBox1)
         Me.Controls.Add(Me.Label7)
@@ -221,4 +258,7 @@ Partial Class editadjustment
     Friend WithEvents txt_desc As TextBox
     Friend WithEvents GunaControlBox1 As Guna.UI.WinForms.GunaControlBox
     Friend WithEvents lbl_lastquantity As Label
+    Friend WithEvents lbl_date1 As Label
+    Friend WithEvents lbl_time As Label
+    Friend WithEvents Timer1 As Timer
 End Class

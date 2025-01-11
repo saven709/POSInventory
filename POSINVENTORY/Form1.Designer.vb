@@ -43,26 +43,26 @@ Partial Class Form1
         Me.btnProduct = New Guna.UI.WinForms.GunaButton()
         Me.btnDashboard = New Guna.UI.WinForms.GunaButton()
         Me.PanelLogo = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lblUsername = New System.Windows.Forms.Label()
         Me.lblRole = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.GunaElipse1 = New Guna.UI.WinForms.GunaElipse(Me.components)
-        Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
         Me.GunaControlBox2 = New Guna.UI.WinForms.GunaControlBox()
         Me.GunaElipse2 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.GunaElipse3 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.GunaElipse4 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.btnLogout = New Guna.UI.WinForms.GunaButton()
         Me.GunaElipse5 = New Guna.UI.WinForms.GunaElipse(Me.components)
-        Me.lbl_date1 = New System.Windows.Forms.Label()
-        Me.lbl_time = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.GunaButton1 = New Guna.UI.WinForms.GunaButton()
         Me.PanelSlide.SuspendLayout()
         Me.PanelSetting.SuspendLayout()
         Me.PanelRecord.SuspendLayout()
         Me.PanelStock.SuspendLayout()
         Me.PanelProduct.SuspendLayout()
         Me.PanelLogo.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -125,7 +125,7 @@ Partial Class Form1
         Me.GunaButton4.OnPressedColor = System.Drawing.Color.Black
         Me.GunaButton4.Size = New System.Drawing.Size(170, 34)
         Me.GunaButton4.TabIndex = 12
-        Me.GunaButton4.Text = "User"
+        Me.GunaButton4.Text = "User Management"
         Me.GunaButton4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'btnSetting
@@ -448,13 +448,47 @@ Partial Class Form1
         '
         Me.PanelLogo.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PanelLogo.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.PanelLogo.Controls.Add(Me.Panel1)
         Me.PanelLogo.Controls.Add(Me.PictureBox1)
-        Me.PanelLogo.Controls.Add(Me.lblUsername)
-        Me.PanelLogo.Controls.Add(Me.lblRole)
         Me.PanelLogo.Location = New System.Drawing.Point(12, 36)
         Me.PanelLogo.Name = "PanelLogo"
         Me.PanelLogo.Size = New System.Drawing.Size(170, 153)
         Me.PanelLogo.TabIndex = 0
+        '
+        'Panel1
+        '
+        Me.Panel1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.lblUsername)
+        Me.Panel1.Controls.Add(Me.lblRole)
+        Me.Panel1.Location = New System.Drawing.Point(0, 83)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(170, 49)
+        Me.Panel1.TabIndex = 1
+        '
+        'lblUsername
+        '
+        Me.lblUsername.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.lblUsername.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUsername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.lblUsername.Location = New System.Drawing.Point(0, 11)
+        Me.lblUsername.Name = "lblUsername"
+        Me.lblUsername.Size = New System.Drawing.Size(170, 19)
+        Me.lblUsername.TabIndex = 1
+        Me.lblUsername.Text = "admin"
+        Me.lblUsername.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        '
+        'lblRole
+        '
+        Me.lblRole.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.lblRole.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRole.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.lblRole.Location = New System.Drawing.Point(0, 30)
+        Me.lblRole.Name = "lblRole"
+        Me.lblRole.Size = New System.Drawing.Size(170, 19)
+        Me.lblRole.TabIndex = 0
+        Me.lblRole.Text = "Administrator"
+        Me.lblRole.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         '
         'PictureBox1
         '
@@ -467,48 +501,10 @@ Partial Class Form1
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
         '
-        'lblUsername
-        '
-        Me.lblUsername.AutoSize = True
-        Me.lblUsername.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblUsername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.lblUsername.Location = New System.Drawing.Point(50, 90)
-        Me.lblUsername.Name = "lblUsername"
-        Me.lblUsername.Size = New System.Drawing.Size(69, 19)
-        Me.lblUsername.TabIndex = 1
-        Me.lblUsername.Text = "UserName"
-        '
-        'lblRole
-        '
-        Me.lblRole.AutoSize = True
-        Me.lblRole.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRole.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.lblRole.Location = New System.Drawing.Point(43, 110)
-        Me.lblRole.Name = "lblRole"
-        Me.lblRole.Size = New System.Drawing.Size(87, 19)
-        Me.lblRole.TabIndex = 0
-        Me.lblRole.Text = "Administrator"
-        '
         'GunaElipse1
         '
         Me.GunaElipse1.Radius = 15
         Me.GunaElipse1.TargetControl = Me
-        '
-        'GunaControlBox1
-        '
-        Me.GunaControlBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GunaControlBox1.AnimationHoverSpeed = 0.07!
-        Me.GunaControlBox1.AnimationSpeed = 0.03!
-        Me.GunaControlBox1.ControlBoxTheme = Guna.UI.WinForms.FormControlBoxTheme.Custom
-        Me.GunaControlBox1.IconColor = System.Drawing.SystemColors.ButtonFace
-        Me.GunaControlBox1.IconSize = 15.0!
-        Me.GunaControlBox1.Location = New System.Drawing.Point(877, 1)
-        Me.GunaControlBox1.Name = "GunaControlBox1"
-        Me.GunaControlBox1.OnHoverBackColor = System.Drawing.Color.Maroon
-        Me.GunaControlBox1.OnHoverIconColor = System.Drawing.Color.White
-        Me.GunaControlBox1.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaControlBox1.Size = New System.Drawing.Size(38, 24)
-        Me.GunaControlBox1.TabIndex = 20
         '
         'GunaControlBox2
         '
@@ -572,33 +568,33 @@ Partial Class Form1
         Me.GunaElipse5.Radius = 10
         Me.GunaElipse5.TargetControl = Me.PanelMain
         '
-        'lbl_date1
-        '
-        Me.lbl_date1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lbl_date1.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_date1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(179, Byte), Integer))
-        Me.lbl_date1.Location = New System.Drawing.Point(461, 2)
-        Me.lbl_date1.Name = "lbl_date1"
-        Me.lbl_date1.Size = New System.Drawing.Size(251, 31)
-        Me.lbl_date1.TabIndex = 27
-        Me.lbl_date1.Text = "00.00"
-        Me.lbl_date1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'lbl_time
-        '
-        Me.lbl_time.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lbl_time.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_time.ForeColor = System.Drawing.Color.FromArgb(CType(CType(232, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(179, Byte), Integer))
-        Me.lbl_time.Location = New System.Drawing.Point(689, 2)
-        Me.lbl_time.Name = "lbl_time"
-        Me.lbl_time.Size = New System.Drawing.Size(107, 31)
-        Me.lbl_time.TabIndex = 26
-        Me.lbl_time.Text = "00.00"
-        Me.lbl_time.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'Timer1
         '
         Me.Timer1.Enabled = True
+        '
+        'GunaButton1
+        '
+        Me.GunaButton1.AnimationHoverSpeed = 0.07!
+        Me.GunaButton1.AnimationSpeed = 0.03!
+        Me.GunaButton1.BaseColor = System.Drawing.Color.Transparent
+        Me.GunaButton1.BorderColor = System.Drawing.Color.Black
+        Me.GunaButton1.DialogResult = System.Windows.Forms.DialogResult.None
+        Me.GunaButton1.FocusedColor = System.Drawing.Color.Empty
+        Me.GunaButton1.Font = New System.Drawing.Font("Poppins", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GunaButton1.ForeColor = System.Drawing.Color.White
+        Me.GunaButton1.Image = Nothing
+        Me.GunaButton1.ImageSize = New System.Drawing.Size(20, 20)
+        Me.GunaButton1.Location = New System.Drawing.Point(868, 1)
+        Me.GunaButton1.Name = "GunaButton1"
+        Me.GunaButton1.OnHoverBaseColor = System.Drawing.Color.Maroon
+        Me.GunaButton1.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.GunaButton1.OnHoverForeColor = System.Drawing.Color.White
+        Me.GunaButton1.OnHoverImage = Nothing
+        Me.GunaButton1.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaButton1.Size = New System.Drawing.Size(47, 24)
+        Me.GunaButton1.TabIndex = 43
+        Me.GunaButton1.Text = "X"
+        Me.GunaButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Form1
         '
@@ -606,12 +602,10 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(918, 700)
-        Me.Controls.Add(Me.lbl_date1)
-        Me.Controls.Add(Me.lbl_time)
+        Me.Controls.Add(Me.GunaButton1)
         Me.Controls.Add(Me.PanelSlide)
         Me.Controls.Add(Me.PanelLogo)
         Me.Controls.Add(Me.GunaControlBox2)
-        Me.Controls.Add(Me.GunaControlBox1)
         Me.Controls.Add(Me.PanelMain)
         Me.Controls.Add(Me.btnLogout)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -624,7 +618,7 @@ Partial Class Form1
         Me.PanelStock.ResumeLayout(False)
         Me.PanelProduct.ResumeLayout(False)
         Me.PanelLogo.ResumeLayout(False)
-        Me.PanelLogo.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -654,13 +648,12 @@ Partial Class Form1
     Friend WithEvents GunaButton3 As Guna.UI.WinForms.GunaButton
     Friend WithEvents btnList As Guna.UI.WinForms.GunaButton
     Friend WithEvents lblRole As Label
-    Friend WithEvents GunaControlBox1 As Guna.UI.WinForms.GunaControlBox
     Friend WithEvents GunaControlBox2 As Guna.UI.WinForms.GunaControlBox
     Friend WithEvents GunaElipse2 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents GunaElipse3 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents GunaElipse4 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents GunaElipse5 As Guna.UI.WinForms.GunaElipse
-    Friend WithEvents lbl_date1 As Label
-    Friend WithEvents lbl_time As Label
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents GunaButton1 As Guna.UI.WinForms.GunaButton
 End Class

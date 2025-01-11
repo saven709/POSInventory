@@ -69,6 +69,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0B35F1D7325E4C73B417ECD41611D0CF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0B527A09A0E6DA4CDB43C4845A896A7C"
         "OwnerKey" = "8:_38A9ACD5EDE619074A339E32EB19A37A"
         "MsmSig" = "8:_UNDEFINED"
@@ -135,7 +141,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_23075247D3F4499A86BC479B3C6FD7A6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_235DFF718D8341C2AFA49929776AAB05"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_29A4EB74F0A74612B00E17A9AB4FC629"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -195,6 +213,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_406669F998184EA4A8160ECBF3E8595A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_40A49F573DCB451495E9ABA3DCB529E4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4AEFB90CD29D0D1E16B367C4C4F5A4FD"
         "OwnerKey" = "8:_0B22969FBC75E3322E8E6E8D968A4C9F"
         "MsmSig" = "8:_UNDEFINED"
@@ -207,6 +237,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4BE5A9D2A6E343ADB3A8C07B5069AC67"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4DCCEA86F952452788F9E7F7F97234BB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_517393D9AE6A56A296CE152B0F5B1B33"
         "OwnerKey" = "8:_AABEA18C4608CA10745D17BBC0119F91"
         "MsmSig" = "8:_UNDEFINED"
@@ -215,6 +257,12 @@
         {
         "MsmKey" = "8:_517393D9AE6A56A296CE152B0F5B1B33"
         "OwnerKey" = "8:_3B971CAC7E2D4AB4B69B6301A20DD794"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5284710865C443A7845387811A1DB47A"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -279,6 +327,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5BC55BF819E247D4B53C5AC6087E0E75"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5D0D2D5904F14642B850E235273BE74B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_69F5B4A4F47B422EB5C6D15767497177"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6CCC524E146A097FB947C15DC2E72C4E"
         "OwnerKey" = "8:_3B971CAC7E2D4AB4B69B6301A20DD794"
         "MsmSig" = "8:_UNDEFINED"
@@ -291,8 +357,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_705143D2A75C4CECA54769289EF0DDDD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_727D09F082EABDF0620532B10B6DD93F"
         "OwnerKey" = "8:_3B971CAC7E2D4AB4B69B6301A20DD794"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_849D42744BDC41C6B4F427BD2B7CC572"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -321,6 +399,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8BBBCA7CE1DB498E9AE6101830195E9C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_906595BE47811D88184BD92F8D561FD6"
         "OwnerKey" = "8:_3B971CAC7E2D4AB4B69B6301A20DD794"
         "MsmSig" = "8:_UNDEFINED"
@@ -328,6 +412,18 @@
         "Entry"
         {
         "MsmKey" = "8:_936FDE1741DE43BAABCF005C3F3422A7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9F19815E930B4894B8E73953D53F905F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A0C8A5EE06B64E0DA562B05DCD68E54D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -447,6 +543,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C202B14774774EFCB8704D532FD64E2E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C47687EE8B4543A890C6506F8F56444A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C6611942296FBE396522CAC0ABAC0DA4"
         "OwnerKey" = "8:_0E7A0E713A4BCE174281C4931337AC68"
         "MsmSig" = "8:_UNDEFINED"
@@ -501,20 +609,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CBF73C42AF857C241EF71F68805F8D8D"
-        "OwnerKey" = "8:_906595BE47811D88184BD92F8D561FD6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CBF73C42AF857C241EF71F68805F8D8D"
-        "OwnerKey" = "8:_3B971CAC7E2D4AB4B69B6301A20DD794"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CBF73C42AF857C241EF71F68805F8D8D"
-        "OwnerKey" = "8:_727D09F082EABDF0620532B10B6DD93F"
+        "MsmKey" = "8:_D31A610D0F5F456781FEE2CCC0F907F9"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -539,6 +635,24 @@
         {
         "MsmKey" = "8:_D961A7711833DCA2F5F589A21D060721"
         "OwnerKey" = "8:_38A9ACD5EDE619074A339E32EB19A37A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EFAE8D957CA3A6AB34F271246616CCD9"
+        "OwnerKey" = "8:_906595BE47811D88184BD92F8D561FD6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EFAE8D957CA3A6AB34F271246616CCD9"
+        "OwnerKey" = "8:_3B971CAC7E2D4AB4B69B6301A20DD794"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EFAE8D957CA3A6AB34F271246616CCD9"
+        "OwnerKey" = "8:_727D09F082EABDF0620532B10B6DD93F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -790,7 +904,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CBF73C42AF857C241EF71F68805F8D8D"
+        "OwnerKey" = "8:_EFAE8D957CA3A6AB34F271246616CCD9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -901,6 +1015,20 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_BE7AB3A81EDA4439B88ABC3DBF5A8112"
+            {
+            "Name" = "8:xampp-installer.exe"
+            "Condition" = "8:"
+            "Object" = "8:_936FDE1741DE43BAABCF005C3F3422A7"
+            "FileType" = "3:2"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:--unattendedmodeui minimal --prefix \"C:\\xampp\""
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_CD3AF6D8_97D4_496F_BA53_8319EA2A3B38"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -1015,6 +1143,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0B35F1D7325E4C73B417ECD41611D0CF"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-Thin.ttf"
+            "TargetName" = "8:Poppins-Thin.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0B527A09A0E6DA4CDB43C4845A896A7C"
@@ -1161,6 +1309,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_23075247D3F4499A86BC479B3C6FD7A6"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-ExtraLight.ttf"
+            "TargetName" = "8:Poppins-ExtraLight.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_235DFF718D8341C2AFA49929776AAB05"
             {
             "SourcePath" = "8:..\\..\\..\\..\\Desktop\\Report\\Report1.rdlc"
@@ -1177,6 +1345,26 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_29A4EB74F0A74612B00E17A9AB4FC629"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-LightItalic.ttf"
+            "TargetName" = "8:Poppins-LightItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
@@ -1305,6 +1493,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_406669F998184EA4A8160ECBF3E8595A"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-MediumItalic.ttf"
+            "TargetName" = "8:Poppins-MediumItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_40A49F573DCB451495E9ABA3DCB529E4"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-SemiBoldItalic.ttf"
+            "TargetName" = "8:Poppins-SemiBoldItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4AEFB90CD29D0D1E16B367C4C4F5A4FD"
             {
             "AssemblyRegister" = "3:1"
@@ -1336,6 +1564,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4BE5A9D2A6E343ADB3A8C07B5069AC67"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-Medium.ttf"
+            "TargetName" = "8:Poppins-Medium.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4DCCEA86F952452788F9E7F7F97234BB"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-ExtraLightItalic.ttf"
+            "TargetName" = "8:Poppins-ExtraLightItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_517393D9AE6A56A296CE152B0F5B1B33"
             {
             "AssemblyRegister" = "3:1"
@@ -1365,6 +1633,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5284710865C443A7845387811A1DB47A"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-ExtraBoldItalic.ttf"
+            "TargetName" = "8:Poppins-ExtraBoldItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_59987DE8EA4AADEE595C57BE3DAEB872"
@@ -1429,6 +1717,66 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5BC55BF819E247D4B53C5AC6087E0E75"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-Bold.ttf"
+            "TargetName" = "8:Poppins-Bold.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5D0D2D5904F14642B850E235273BE74B"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\Desktop\\placeholder.jpg"
+            "TargetName" = "8:placeholder.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_C3A89792211941E797A7C2E173F3A588"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_69F5B4A4F47B422EB5C6D15767497177"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-Light.ttf"
+            "TargetName" = "8:Poppins-Light.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6CCC524E146A097FB947C15DC2E72C4E"
             {
             "AssemblyRegister" = "3:1"
@@ -1460,6 +1808,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_705143D2A75C4CECA54769289EF0DDDD"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-ExtraBold.ttf"
+            "TargetName" = "8:Poppins-ExtraBold.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_727D09F082EABDF0620532B10B6DD93F"
             {
             "AssemblyRegister" = "3:1"
@@ -1489,6 +1857,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_849D42744BDC41C6B4F427BD2B7CC572"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-BoldItalic.ttf"
+            "TargetName" = "8:Poppins-BoldItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_86DAD6644E6DD328EFDF0B411DE46ED4"
@@ -1553,6 +1941,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8BBBCA7CE1DB498E9AE6101830195E9C"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-SemiBold.ttf"
+            "TargetName" = "8:Poppins-SemiBold.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_906595BE47811D88184BD92F8D561FD6"
             {
             "AssemblyRegister" = "3:1"
@@ -1587,7 +1995,7 @@
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_936FDE1741DE43BAABCF005C3F3422A7"
             {
             "SourcePath" = "8:..\\..\\..\\..\\Desktop\\xampp-windows-x64-8.2.12-0-VS16-installer.exe"
-            "TargetName" = "8:xampp-windows-x64-8.2.12-0-VS16-installer.exe"
+            "TargetName" = "8:xampp-installer.exe"
             "Tag" = "8:"
             "Folder" = "8:_C3A89792211941E797A7C2E173F3A588"
             "Condition" = "8:"
@@ -1600,6 +2008,46 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9F19815E930B4894B8E73953D53F905F"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-Black.ttf"
+            "TargetName" = "8:Poppins-Black.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A0C8A5EE06B64E0DA562B05DCD68E54D"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-ThinItalic.ttf"
+            "TargetName" = "8:Poppins-ThinItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
@@ -1903,6 +2351,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C202B14774774EFCB8704D532FD64E2E"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-Regular.ttf"
+            "TargetName" = "8:Poppins-Regular.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C47687EE8B4543A890C6506F8F56444A"
+            {
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-BlackItalic.ttf"
+            "TargetName" = "8:Poppins-BlackItalic.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:5"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C6611942296FBE396522CAC0ABAC0DA4"
             {
             "AssemblyRegister" = "3:1"
@@ -1934,23 +2422,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CBF73C42AF857C241EF71F68805F8D8D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D31A610D0F5F456781FEE2CCC0F907F9"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Bunifu.Licensing, Version=3.2.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_CBF73C42AF857C241EF71F68805F8D8D"
-                    {
-                    "Name" = "8:Bunifu.Licensing.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Bunifu.Licensing.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\POSINVENTORY\\Poppins-Italic.ttf"
+            "TargetName" = "8:Poppins-Italic.ttf"
             "Tag" = "8:"
-            "Folder" = "8:_C3A89792211941E797A7C2E173F3A588"
+            "Folder" = "8:_79240B06DD274FF8986D4ADD8F1A4016"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1960,9 +2437,9 @@
             "Permanent" = "11:FALSE"
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
-            "Register" = "3:1"
+            "Register" = "3:5"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D7FBC34BA24F84E962C785C162C9E391"
@@ -2010,6 +2487,37 @@
                     }
                 }
             "SourcePath" = "8:K4os.Compression.LZ4.Streams.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C3A89792211941E797A7C2E173F3A588"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EFAE8D957CA3A6AB34F271246616CCD9"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Bunifu.Licensing, Version=3.2.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_EFAE8D957CA3A6AB34F271246616CCD9"
+                    {
+                    "Name" = "8:Bunifu.Licensing.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Bunifu.Licensing.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C3A89792211941E797A7C2E173F3A588"
@@ -2189,6 +2697,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_79240B06DD274FF8986D4ADD8F1A4016"
+                    {
+                    "Name" = "8:Fonts"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_682C56E342C249AD9699AA8BF7A8D078"
+                        "Folders"
+                        {
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_D664684A2FAD45D8BE1CB37E05B79122"
                     {
                     "Name" = "8:Report"
@@ -2219,7 +2738,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:POSINVENTORY SETUP"
         "ProductCode" = "8:{B74A3F7C-6C19-461D-870D-C25978D5BAC7}"
-        "PackageCode" = "8:{B846183F-E693-4E3E-B138-FC01D88A3865}"
+        "PackageCode" = "8:{4D7A41EB-05AE-4AEE-A0B5-26E7538A6F62}"
         "UpgradeCode" = "8:{635675C5-7DE6-4715-B2E5-ABDBD311E5D2}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

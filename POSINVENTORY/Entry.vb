@@ -9,26 +9,27 @@ Public Class Entry
         ' Configure DataGridView layout and columns
         DataGridView1.RowTemplate.Height = 30
         DataGridView1.Columns.Clear()
+
+        ' Define the columns in the DataGridView
         DataGridView1.Columns.Add("No", "No")
         DataGridView1.Columns.Add("Name", "Item Name")
-        DataGridView1.Columns.Add("ItemCode", "Item Code")  ' New column for item code
-        DataGridView1.Columns.Add("MeasurementName", "Measurement")  ' Added column for measurementname
+        DataGridView1.Columns.Add("ItemCode", "Item Code")
+        DataGridView1.Columns.Add("MeasurementName", "Measurement")
         DataGridView1.Columns.Add("Category", "Category")
         DataGridView1.Columns.Add("Quantity", "Quantity")
         DataGridView1.Columns.Add("Date", "Date")
         DataGridView1.Columns.Add("Time", "Time")
         DataGridView1.Columns.Add("Username", "Added By")
 
-        ' Set column properties
-        DataGridView1.Columns("No").Width = 50
-        DataGridView1.Columns("Name").Width = 200
-        DataGridView1.Columns("ItemCode").Width = 100  ' Adjust width for ItemCode
-        DataGridView1.Columns("MeasurementName").Width = 150  ' Adjust width for MeasurementName
-        DataGridView1.Columns("Category").Width = 150
-        DataGridView1.Columns("Quantity").Width = 100
-        DataGridView1.Columns("Date").Width = 100
-        DataGridView1.Columns("Time").Width = 100
-        DataGridView1.Columns("Username").Width = 150
+        DataGridView1.Columns("No").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridView1.Columns("ItemCode").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridView1.Columns("MeasurementName").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridView1.Columns("Category").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridView1.Columns("Name").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridView1.Columns("Quantity").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridView1.Columns("Date").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridView1.Columns("Time").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridView1.Columns("Username").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
 
         ' Hide the ItemCode column if necessary
         DataGridView1.Columns("ItemCode").Visible = False
@@ -43,7 +44,8 @@ Public Class Entry
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
     End Sub
 
-    Private Sub LoadInventory()
+
+    Public Sub LoadInventory()
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
 
@@ -79,15 +81,15 @@ Public Class Entry
         End Try
     End Sub
 
-
     Private Sub Entry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dbconn()
         ' Initialize DataGridView structure
         InitializeDataGridView()
 
-        ' Load data into DataGridView
+        ' Load data into DataGridView on form load
         LoadInventory()
     End Sub
+
 
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
         Try
@@ -146,6 +148,58 @@ Public Class Entry
         Catch ex As Exception
             MsgBox("Error deleting item: " & ex.Message, vbCritical, "Error")
         End Try
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        lbl_date1.Text = Date.Now.ToString("ddd, dd-MM-yyyy")
+        lbl_time.Text = Date.Now.ToString("hh:mm:ss tt")
+    End Sub
+
+    Private Sub txt_search_TextChanged(sender As Object, e As EventArgs) Handles txt_search.TextChanged
+        ' Clear existing rows in DataGridView1
+        DataGridView1.Rows.Clear()
+
+        ' Ensure the DataGridView columns are initialized
+        If DataGridView1.Columns.Count = 0 Then
+            InitializeDataGridView()  ' Initialize columns if not done already
+        End If
+
+        ' Define the connection string
+        Dim ConnectionString As String = "server=localhost;user=root;password=;database=brewtopia_db"
+
+        ' Use the connection string inside a Using statement
+        Using conn As New MySqlConnection(ConnectionString)
+            Try
+                ' Open the connection if it's not already open
+                If conn.State = ConnectionState.Closed Then conn.Open()
+
+                ' Query to search for items by name, itemcode, measurementname, or category
+                Dim cmd As New MySqlCommand("SELECT `name`, `itemcode`, `measurementname`, `category`, `quantity`, `stockdate`, `stocktime`, `stockby` FROM `tbl_inventory` WHERE name LIKE @search OR itemcode LIKE @search OR measurementname LIKE @search OR category LIKE @search", conn)
+                cmd.Parameters.AddWithValue("@search", "%" & txt_search.Text & "%")
+
+                ' Execute the command and fetch the data
+                Dim dr As MySqlDataReader = cmd.ExecuteReader()
+
+                ' Loop through the records and populate the DataGridView
+                While dr.Read()
+                    ' Add each record to the DataGridView
+                    DataGridView1.Rows.Add(
+                    DataGridView1.Rows.Count + 1,  ' Auto-increment No column
+                    dr("name").ToString(),
+                    dr("itemcode").ToString(),
+                    dr("measurementname").ToString(),
+                    dr("category").ToString(),
+                    dr("quantity").ToString(),
+                    dr("stockdate").ToString(),
+                    dr("stocktime").ToString(),
+                    dr("stockby").ToString()
+                )
+                End While
+            Catch ex As Exception
+                ' Handle exception if needed
+                MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            End Try
+        End Using
     End Sub
 
 End Class

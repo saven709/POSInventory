@@ -170,6 +170,7 @@ Partial Class List
         Me.btn_ManageFoods.ButtonText = "ADD PRODUCT"
         Me.btn_ManageFoods.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_ManageFoods.DisabledColor = System.Drawing.Color.Gray
+        Me.btn_ManageFoods.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_ManageFoods.Iconcolor = System.Drawing.Color.Transparent
         Me.btn_ManageFoods.Iconimage = Global.POSINVENTORY.My.Resources.Resources.Add_New1
         Me.btn_ManageFoods.Iconimage_right = Nothing

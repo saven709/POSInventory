@@ -62,7 +62,7 @@ Public Class Adjustment
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
     End Sub
 
-    Private Sub LoadAdjustments()
+    Public Sub LoadAdjustments()
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
 
@@ -107,5 +107,10 @@ Public Class Adjustment
 
         ' Load data into DataGridView
         LoadAdjustments()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        lbl_date1.Text = Date.Now.ToString("ddd, dd-MM-yyyy")
+        lbl_time.Text = Date.Now.ToString("hh:mm:ss tt")
     End Sub
 End Class

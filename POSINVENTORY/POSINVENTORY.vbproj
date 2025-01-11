@@ -267,6 +267,18 @@
     <Compile Include="formsizes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmChangepassword.Designer.vb">
+      <DependentUpon>frmChangepassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmChangepassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCreateAcc.Designer.vb">
+      <DependentUpon>frmCreateAcc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCreateAcc.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmitem.Designer.vb">
       <DependentUpon>frmitem.vb</DependentUpon>
     </Compile>
@@ -276,9 +288,7 @@
     <Compile Include="frm_BillPrint.designer.vb">
       <DependentUpon>frm_BillPrint.vb</DependentUpon>
     </Compile>
-    <Compile Include="frm_BillPrint.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="frm_BillPrint.vb" />
     <Compile Include="frm_ManageFoods.Designer.vb">
       <DependentUpon>frm_ManageFoods.vb</DependentUpon>
     </Compile>
@@ -369,6 +379,12 @@
     <EmbeddedResource Include="formsizes.resx">
       <DependentUpon>formsizes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmChangepassword.resx">
+      <DependentUpon>frmChangepassword.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCreateAcc.resx">
+      <DependentUpon>frmCreateAcc.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmitem.resx">
       <DependentUpon>frmitem.vb</DependentUpon>
     </EmbeddedResource>
@@ -429,6 +445,60 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Poppins-Black.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-BlackItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-BoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-ExtraBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-ExtraBoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-ExtraLight.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-Italic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-Light.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-LightItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-Medium.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-MediumItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-SemiBold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-Thin.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Poppins-ThinItalic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="POSINVENTORY_TemporaryKey.pfx" />
     <None Include="Resources\Lock.png" />
   </ItemGroup>

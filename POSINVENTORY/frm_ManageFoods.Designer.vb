@@ -31,8 +31,6 @@ Partial Class frm_ManageFoods
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.btn_find = New System.Windows.Forms.Button()
         Me.txt_found = New System.Windows.Forms.TextBox()
-        Me.btn_delete = New System.Windows.Forms.Button()
-        Me.btn_edit = New System.Windows.Forms.Button()
         Me.btn_save = New System.Windows.Forms.Button()
         Me.GunaCirclePictureBox1 = New Guna.UI.WinForms.GunaCirclePictureBox()
         Me.TextBox3 = New Guna.UI.WinForms.GunaLabel()
@@ -50,22 +48,22 @@ Partial Class frm_ManageFoods
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Location = New System.Drawing.Point(247, 141)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 13)
+        Me.Label2.Size = New System.Drawing.Size(43, 19)
         Me.Label2.TabIndex = 13
         Me.Label2.Text = "Name"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
         Me.Label1.Location = New System.Drawing.Point(247, 89)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(34, 13)
+        Me.Label1.Size = New System.Drawing.Size(38, 19)
         Me.Label1.TabIndex = 12
         Me.Label1.Text = "Code"
         '
@@ -133,38 +131,6 @@ Partial Class frm_ManageFoods
         Me.txt_found.TabIndex = 26
         Me.txt_found.Visible = False
         '
-        'btn_delete
-        '
-        Me.btn_delete.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
-        Me.btn_delete.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_delete.FlatAppearance.BorderSize = 0
-        Me.btn_delete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btn_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_delete.ForeColor = System.Drawing.Color.Black
-        Me.btn_delete.Location = New System.Drawing.Point(507, 131)
-        Me.btn_delete.Name = "btn_delete"
-        Me.btn_delete.Size = New System.Drawing.Size(66, 32)
-        Me.btn_delete.TabIndex = 31
-        Me.btn_delete.Text = "DELETE"
-        Me.btn_delete.UseVisualStyleBackColor = False
-        Me.btn_delete.Visible = False
-        '
-        'btn_edit
-        '
-        Me.btn_edit.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
-        Me.btn_edit.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btn_edit.FlatAppearance.BorderSize = 0
-        Me.btn_edit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_edit.ForeColor = System.Drawing.Color.Black
-        Me.btn_edit.Location = New System.Drawing.Point(513, 182)
-        Me.btn_edit.Name = "btn_edit"
-        Me.btn_edit.Size = New System.Drawing.Size(60, 32)
-        Me.btn_edit.TabIndex = 30
-        Me.btn_edit.Text = "EDIT"
-        Me.btn_edit.UseVisualStyleBackColor = False
-        Me.btn_edit.Visible = False
-        '
         'btn_save
         '
         Me.btn_save.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
@@ -172,6 +138,7 @@ Partial Class frm_ManageFoods
         Me.btn_save.FlatAppearance.BorderSize = 0
         Me.btn_save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_save.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_save.ForeColor = System.Drawing.Color.Black
         Me.btn_save.Location = New System.Drawing.Point(316, 244)
         Me.btn_save.Name = "btn_save"
@@ -258,11 +225,11 @@ Partial Class frm_ManageFoods
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
         Me.Label4.Location = New System.Drawing.Point(247, 188)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(54, 13)
+        Me.Label4.Size = New System.Drawing.Size(61, 19)
         Me.Label4.TabIndex = 52
         Me.Label4.Text = "Category"
         '
@@ -291,8 +258,6 @@ Partial Class frm_ManageFoods
         Me.Controls.Add(Me.GunaControlBox1)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.GunaCirclePictureBox1)
-        Me.Controls.Add(Me.btn_delete)
-        Me.Controls.Add(Me.btn_edit)
         Me.Controls.Add(Me.btn_save)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.btn_find)
@@ -318,8 +283,6 @@ Partial Class frm_ManageFoods
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents btn_find As Button
     Friend WithEvents txt_found As TextBox
-    Friend WithEvents btn_delete As Button
-    Friend WithEvents btn_edit As Button
     Friend WithEvents btn_save As Button
     Friend WithEvents GunaCirclePictureBox1 As Guna.UI.WinForms.GunaCirclePictureBox
     Friend WithEvents TextBox3 As Guna.UI.WinForms.GunaLabel

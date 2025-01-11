@@ -24,7 +24,6 @@ Public Class frmitem
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
 
-
             ' Insert data into tbl_inventory
             Dim cmd As New MySqlCommand("INSERT INTO `tbl_inventory`(`itemcode`, `name`, `measurementname`, `quantity`, `category`, `stockdate`, `stocktime`, `stockby`) VALUES (@itemcode, @name, @measurementname, @quantity, @category, @date, @time, @username)", conn)
             cmd.Parameters.Clear()
@@ -33,8 +32,8 @@ Public Class frmitem
             cmd.Parameters.AddWithValue("@measurementname", txt_measurementname.Text)
             cmd.Parameters.AddWithValue("@quantity", txt_quantity.Text)
             cmd.Parameters.AddWithValue("@category", txt_category.Text)
-            cmd.Parameters.AddWithValue("@date", Form1.lbl_date1.Text)
-            cmd.Parameters.AddWithValue("@time", Form1.lbl_time.Text)
+            cmd.Parameters.AddWithValue("@date", lbl_date1.Text)
+            cmd.Parameters.AddWithValue("@time", lbl_time.Text)
             cmd.Parameters.AddWithValue("@username", Form1.lblUsername.Text)
 
             Dim i As Integer = cmd.ExecuteNonQuery()
@@ -59,7 +58,6 @@ Public Class frmitem
             'MsgBox("Error: " & ex.Message, vbCritical, "Error")
         Finally
             If conn.State = ConnectionState.Open Then conn.Close()
-
         End Try
 
         ' Clear the textboxes after saving
@@ -68,12 +66,24 @@ Public Class frmitem
         txt_measurementname.Clear()
         txt_category.Clear()
         txt_quantity.Clear()
-        Form1.GunaButton7.PerformClick()  ' Trigger any post-save actions (like refreshing the grid)
+
+        ' Call LoadInventory() from the Entry form
+        Dim entryForm As Entry = Application.OpenForms.OfType(Of Entry)().FirstOrDefault()
+        If entryForm IsNot Nothing Then
+            entryForm.LoadInventory() ' Refresh the inventory list
+        End If
     End Sub
+
+
 
 
 
     Private Sub frmitem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         auto_itemcode()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        lbl_date1.Text = Date.Now.ToString("ddd, dd-MM-yyyy")
+        lbl_time.Text = Date.Now.ToString("hh:mm:ss tt")
     End Sub
 End Class
