@@ -10,6 +10,7 @@ Public Class frm_ManageAddons
         Auto_AddonCode()
         LoadInventoryItems() ' Load items into combobox
         GenerateSupplyCode() ' Generate initial supply code
+
     End Sub
 
     ' Existing methods remain the same...
@@ -48,10 +49,12 @@ Public Class frm_ManageAddons
             End Using
 
             DataGridView1.DataSource = dt
-            DataGridView1.Columns("addoncode").HeaderText = "Addon Code"
-            DataGridView1.Columns("name").HeaderText = "Addon Name"
-            DataGridView1.Columns("price").HeaderText = "Price"
+            DataGridView1.Columns("addoncode").HeaderText = "ADDON CODE"
+            DataGridView1.Columns("name").HeaderText = "ADDON NAME"
+            DataGridView1.Columns("price").HeaderText = "PRICE"
             DataGridView1.Columns("price").DefaultCellStyle.Format = "C2"
+
+            DataGridView1.Columns("addoncode").Visible = False
 
             ' When an addon is selected, load its supplies
             If DataGridView1.SelectedRows.Count > 0 Then

@@ -27,12 +27,13 @@ Public Class formsizes
     End Sub
 
     Private Sub formsizes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Assign the food name to the label
+        ' Existing code...
         foodnamelbl.Text = foodName
-
-        ' Load sizes and addons into their respective FlowLayoutPanels
         LoadSizes()
         LoadAddons()
+
+        ' Add this line to load sugar levels
+        LoadSugarLevels()
     End Sub
 
     Private Sub LoadSizes()
@@ -276,6 +277,188 @@ Public Class formsizes
             SelectedPrice += addon.Price
         Next
 
+        Dim selectedSugarQuantity As Integer = 0
+
+        ' Find the selected radio button in the nested panel structure
+        For Each mainPanel As Control In FlowLayoutPanel3.Controls
+            If TypeOf mainPanel Is Panel Then
+                For Each innerPanel As Control In mainPanel.Controls
+                    If TypeOf innerPanel Is GroupBox Then  ' Changed from Panel to GroupBox to match your implementation
+                        For Each radioBtn As Control In innerPanel.Controls
+                            If TypeOf radioBtn Is RadioButton AndAlso DirectCast(radioBtn, RadioButton).Checked Then
+                                selectedSugarQuantity = CInt(radioBtn.Tag)
+                                Exit For
+                            End If
+                        Next
+                    End If
+                Next
+            End If
+        Next
+
+        ' Set the selected sugar quantity property
+        Me.SelectedSugarQuantity = selectedSugarQuantity
+
+        ' Important: Don't add sugar as an addon - we handle it separately
+        ' Because we're using the row's Tag property to store the sugar quantity
+
         Me.Close()
     End Sub
+
+
+    ' Add this property to your form class
+    Public Property SelectedSugarQuantity As Integer = 0
+    Private Sub LoadSugarLevels()
+        FlowLayoutPanel3.Controls.Clear()
+
+        ' Set properties for FlowLayoutPanel3 to remove scrollbars
+        FlowLayoutPanel3.AutoScroll = False
+        FlowLayoutPanel3.HorizontalScroll.Visible = False
+        FlowLayoutPanel3.VerticalScroll.Visible = False
+
+        ' Define sugar levels and corresponding quantities
+        Dim sugarLevels As New Dictionary(Of String, Integer) From {
+        {"0%", 0},
+        {"50%", 13},
+        {"75%", 19},
+        {"100%", 26}
+    }
+
+        ' Create a panel to hold the 2x2 grid of radio buttons
+        Dim sugarPanel As New Panel With {
+        .Width = 251,
+        .Height = 112,
+        .BackColor = Color.Transparent
+    }
+
+        ' Set button size
+        Dim buttonWidth As Integer = 100
+        Dim buttonHeight As Integer = 35
+
+        ' Calculate positions for centered layout
+        Dim leftX As Integer = (251 - (buttonWidth * 2) - 10) \ 2  ' Horizontally center (10px gap)
+        Dim topY As Integer = (112 - (buttonHeight * 2) - 10) \ 2  ' Vertically center (10px gap)
+
+        Dim positions As New List(Of Point) From {
+        New Point(leftX, topY),                    ' Top-left (0%)
+        New Point(leftX + buttonWidth + 10, topY), ' Top-right (50%)
+        New Point(leftX, topY + buttonHeight + 10), ' Bottom-left (75%)
+        New Point(leftX + buttonWidth + 10, topY + buttonHeight + 10) ' Bottom-right (100%)
+    }
+
+        ' Create a single RadioButton group
+        Dim sugarGroup As New GroupBox With {
+        .Location = New Point(0, 0),
+        .Size = New Size(251, 112),
+        .Text = "",
+        .BackColor = Color.FromArgb(196, 186, 179),
+        .FlatStyle = FlatStyle.Flat
+    }
+
+        ' Remove the border of the GroupBox
+        sugarGroup.FlatStyle = FlatStyle.Flat
+
+        ' Create and add radio buttons in a 2x2 grid
+        Dim index As Integer = 0
+
+        For Each level In sugarLevels
+            ' Create the radio button
+            Dim sugarRB As New RadioButton With {
+            .Text = level.Key,
+            .Size = New Size(buttonWidth, buttonHeight),
+            .Location = positions(index),
+            .Font = New Font("Segoe UI", 9, FontStyle.Regular),
+            .ForeColor = Color.Black,
+            .BackColor = Color.White,
+            .Tag = level.Value, ' Store sugar quantity in tag
+            .Checked = (level.Key = "50%") ' Set 50% as default
+        }
+
+            ' Add event handler for radio button
+            AddHandler sugarRB.CheckedChanged, AddressOf SugarRadioButton_CheckedChanged
+
+            ' Add radio button directly to the group
+            sugarGroup.Controls.Add(sugarRB)
+
+            ' Update index for next position
+            index += 1
+        Next
+
+        ' Add the group to panel
+        sugarPanel.Controls.Add(sugarGroup)
+
+        ' Add panel to FlowLayoutPanel3
+        FlowLayoutPanel3.Controls.Add(sugarPanel)
+    End Sub
+
+    Private Sub SugarRadioButton_CheckedChanged(sender As Object, e As EventArgs)
+        Dim radioButton As RadioButton = DirectCast(sender, RadioButton)
+
+        ' Only process when a button is checked (not unchecked)
+        If radioButton.Checked Then
+            ' Store the selected sugar level quantity for later use when adding to cart
+            ' The quantity value is stored in the Tag property
+            Dim sugarQuantity As Integer = CInt(radioButton.Tag)
+
+            ' Here you can add code to check if there's enough sugar in inventory
+            If sugarQuantity > 0 Then
+                If Not HasSufficientSugarInventory(sugarQuantity) Then
+                    MessageBox.Show($"Not enough sugar for {radioButton.Text} level.", "Insufficient Inventory",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+                    ' Find and select the 0% option if current selection isn't available
+                    For Each panelCtrl As Control In FlowLayoutPanel3.Controls
+                        If TypeOf panelCtrl Is Panel Then
+                            For Each innerPanel As Control In panelCtrl.Controls
+                                If TypeOf innerPanel Is Panel Then
+                                    For Each ctrl As Control In innerPanel.Controls
+                                        If TypeOf ctrl Is RadioButton AndAlso CInt(DirectCast(ctrl, RadioButton).Tag) = 0 Then
+                                            DirectCast(ctrl, RadioButton).Checked = True
+                                            Exit For
+                                        End If
+                                    Next
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Function HasSufficientSugarInventory(requiredQuantity As Integer) As Boolean
+        Dim checkConnection As New MySqlConnection(connString)
+        Try
+            checkConnection.Open()
+
+            ' Get current cart sugar usage
+            Dim cartSugarUsage As Decimal = GetCartSugarUsage()
+
+            ' Get sugar inventory level - assuming sugar has a specific itemcode
+            Dim cmd As New MySqlCommand("SELECT quantity FROM tbl_inventory WHERE itemcode = 'SUG001'", checkConnection)
+            Dim availableSugar As Decimal = CDec(cmd.ExecuteScalar())
+
+            ' Check if there's enough sugar for this order
+            Return (requiredQuantity + cartSugarUsage) <= availableSugar
+
+        Catch ex As Exception
+            MessageBox.Show("Error checking sugar inventory: " & ex.Message)
+            Return False
+        Finally
+            If checkConnection IsNot Nothing Then
+                checkConnection.Close()
+                checkConnection.Dispose()
+            End If
+        End Try
+    End Function
+
+    Private Function GetCartSugarUsage() As Decimal
+        ' Calculate sugar usage in current cart
+        ' This is a simplified implementation - you'll need to adjust it based on your data structure
+        Dim totalSugarUsage As Decimal = 0
+
+        ' If you have an actual way to track sugar in the cart, implement it here
+        ' For now, returning 0 assumes no sugar is being used in the cart yet
+
+        Return totalSugarUsage
+    End Function
 End Class

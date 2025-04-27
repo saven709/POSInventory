@@ -9,6 +9,8 @@ Public Class List
     Private WithEvents foodname As Label
     Private WithEvents img As CirclePicturBox
     Private WithEvents btnEdit As Button
+    Private isHovering As Boolean = False
+
 
     ' Add categories list and current index
     Private categories As List(Of String) = New List(Of String)
@@ -32,6 +34,7 @@ Public Class List
     Public Class CirclePicturBox
         Inherits PictureBox
 
+        Private customImage As Image
         Private isHovering As Boolean = False
         Private originalSize As Size
         Private originalLocation As Point
@@ -42,87 +45,49 @@ Public Class List
             ' Set the image layout mode to zoom to help with centering
             Me.SizeMode = PictureBoxSizeMode.Zoom
         End Sub
+        Public Property CircleImage As Image
+            Get
+                Return customImage
+            End Get
+            Set(value As Image)
+                customImage = value
+                Me.Invalidate() ' Redraw the control
+            End Set
+        End Property
 
-        Protected Overrides Sub OnPaint(pe As PaintEventArgs)
-            Try
-                ' Create a new bitmap for drawing
-                Using outputImage As New Bitmap(Me.Width, Me.Height)
-                    Using g As Graphics = Graphics.FromImage(outputImage)
-                        ' Set up the graphics object for smooth drawing
-                        g.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
-                        g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
-                        g.PixelOffsetMode = Drawing2D.PixelOffsetMode.HighQuality
 
-                        ' Fill the background with transparent color
-                        g.Clear(Color.Transparent)
+        Protected Overrides Sub OnPaint(e As PaintEventArgs)
+            MyBase.OnPaint(e)
 
-                        ' Create the circular path - use slightly smaller dimensions to ensure it fits
-                        Using path As New GraphicsPath()
-                            Dim diameter As Integer = CInt(Math.Min(Me.Width, Me.Height) - 2)
-                            Dim x As Integer = CInt((Me.Width - diameter) / 2)
-                            Dim y As Integer = CInt((Me.Height - diameter) / 2)
-                            path.AddEllipse(x, y, diameter, diameter)
+            Dim g As Graphics = e.Graphics
+            g.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
 
-                            ' If we're hovering, draw a glow effect first
-                            If isHovering Then
-                                Using glowBrush As New SolidBrush(Color.FromArgb(100, 255, 255, 255))
-                                    Using outerPath As New GraphicsPath()
-                                        outerPath.AddEllipse(CInt(x - 3), CInt(y - 3), CInt(diameter + 6), CInt(diameter + 6))
-                                        g.FillPath(glowBrush, outerPath)
-                                    End Using
-                                End Using
-                            End If
+            Dim circleRect As New Rectangle(0, 0, Me.Width - 1, Me.Height - 1)
 
-                            ' Fill the circle with the background image if it exists
-                            If Me.BackgroundImage IsNot Nothing Then
-                                ' Calculate scaling to properly center and fit the image in the circle
-                                Dim imgWidth As Integer = Me.BackgroundImage.Width
-                                Dim imgHeight As Integer = Me.BackgroundImage.Height
+            ' Draw the product image if available
+            If customImage IsNot Nothing Then
+                Using gp As New Drawing2D.GraphicsPath()
+                    gp.AddEllipse(circleRect)
+                    g.SetClip(gp)
 
-                                ' Calculate the scale factor to fit the image inside the circle
-                                Dim scaleFactor As Double = Math.Max(diameter / imgWidth, diameter / imgHeight)
-                                Dim scaledWidth As Integer = CInt(imgWidth * scaleFactor)
-                                Dim scaledHeight As Integer = CInt(imgHeight * scaleFactor)
+                    g.DrawImage(customImage, circleRect)
 
-                                ' Calculate the position to center the image
-                                Dim imgX As Integer = x + (diameter - scaledWidth) / 2
-                                Dim imgY As Integer = y + (diameter - scaledHeight) / 2
-
-                                ' Create a temporary bitmap with the scaled image
-                                Using scaledImage As New Bitmap(Me.BackgroundImage, scaledWidth, scaledHeight)
-                                    ' Create a texture brush from the scaled image
-                                    Using textureBrush As New TextureBrush(scaledImage)
-                                        ' Set the texture brush origin to center the image
-                                        textureBrush.TranslateTransform(imgX, imgY)
-                                        g.FillPath(textureBrush, path)
-                                    End Using
-                                End Using
-                            Else
-                                ' If no image, just fill with a color
-                                g.FillPath(New SolidBrush(Color.DarkGray), path)
-                            End If
-
-                            ' Draw border
-                            Using pen As New Pen(Color.FromArgb(60, 255, 255, 255), 1.5F)
-                                g.DrawPath(pen, path)
-                            End Using
-                        End Using
-                    End Using
-
-                    ' Draw the final image to the screen
-                    pe.Graphics.DrawImage(outputImage, 0, 0)
+                    g.ResetClip()
                 End Using
-            Catch ex As Exception
-                ' If an error occurs, just draw a simple circle
-                Try
-                    pe.Graphics.SmoothingMode = Drawing2D.SmoothingMode.AntiAlias
-                    pe.Graphics.FillEllipse(Brushes.DarkGray, 1, 1, Width - 3, Height - 3)
-                    pe.Graphics.DrawEllipse(Pens.LightGray, 1, 1, Width - 3, Height - 3)
-                Catch
-                    ' If even the fallback fails, just ignore it
-                End Try
-            End Try
+            Else
+                Using brush As New SolidBrush(Color.Gray)
+                    g.FillEllipse(brush, circleRect)
+                End Using
+            End If
+
+            ' Draw border based on hover state
+            Dim borderColor As Color = If(isHovering, Color.White, Color.Black)
+            Using pen As New Pen(borderColor, 3)
+                g.DrawEllipse(pen, circleRect)
+            End Using
         End Sub
+
+
 
         Protected Overrides Sub OnMouseEnter(e As EventArgs)
             MyBase.OnMouseEnter(e)
@@ -317,7 +282,7 @@ Public Class List
         With pan
             FlowLayoutPanel1.Padding = New Padding(5)
             .Width = 156
-            .Height = 180
+            .Height = 150
             .BackColor = Color.FromArgb(40, 40, 40)
             .Tag = foodCode
             ' Add hover effects to the panel
@@ -347,30 +312,10 @@ Public Class List
             .Name = "foodname" ' Add name for reference
         End With
 
-        ' Edit Button
-        btnEdit = New Button
-        With btnEdit
-            .Text = "Edit"
-            .Width = 50
-            .Height = 30
-            .Dock = DockStyle.Bottom
-            .BackColor = Color.FromArgb(197, 187, 179)
-            .ForeColor = Color.Black
-            .FlatStyle = FlatStyle.Flat ' Set the button style to flat
-            .FlatAppearance.BorderSize = 1 ' Add a subtle border
-            .FlatAppearance.BorderColor = Color.DarkGray ' Set border color
-            .FlatAppearance.MouseOverBackColor = Color.FromArgb(36, 129, 77) ' Color on hover
-            .FlatAppearance.MouseDownBackColor = Color.FromArgb(177, 167, 159) ' Color on click
-            .Font = New Font("Poppins Medium", 9, FontStyle.Regular) ' Optional: Set a custom font
-            .Tag = foodCode
-            .Name = "btnEdit" ' Add name for reference
-            AddHandler .Click, AddressOf ButtonEdit_Click
-        End With
-
         ' Assigning food image
         Dim ms As New System.IO.MemoryStream(array)
         Dim bitmap As New System.Drawing.Bitmap(ms)
-        img.BackgroundImage = bitmap
+        img.CircleImage = bitmap
 
         ' Adding controls to panel in correct order
         pan.Controls.Add(btnEdit)
@@ -381,7 +326,7 @@ Public Class List
 
         ' Adding click events
         AddHandler foodname.Click, AddressOf Selectimg_Click
-        AddHandler img.Click, AddressOf Selectimg_Click
+        AddHandler img.Click, AddressOf ButtonEdit_Click
         AddHandler pan.Click, AddressOf Selectimg_Click
     End Sub
     Private Sub Panel_MouseEnter(sender As Object, e As EventArgs)

@@ -250,7 +250,7 @@ Partial Class frmitem
         'GunaElipse1
         '
         Me.GunaElipse1.Radius = 25
-        Me.GunaElipse1.TargetControl = Me
+        Me.GunaElipse1.TargetControl = Me.btn_save
         '
         'Panel1
         '

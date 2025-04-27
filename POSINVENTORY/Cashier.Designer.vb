@@ -23,20 +23,26 @@ Partial Class Cashier
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Cashier))
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GunaLabel11 = New Guna.UI.WinForms.GunaLabel()
         Me.PanelMain = New Guna.UI.WinForms.GunaPanel()
+        Me.Panelnotif = New Guna.UI.WinForms.GunaPanel()
         Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
         Me.lblUseraccname = New System.Windows.Forms.Label()
         Me.GunaButton3 = New Guna.UI.WinForms.GunaButton()
         Me.lbl_time1 = New System.Windows.Forms.Label()
         Me.GunaControlBox2 = New Guna.UI.WinForms.GunaControlBox()
         Me.PanelSlide = New System.Windows.Forms.Panel()
+        Me.btnRecord = New Guna.UI.WinForms.GunaButton()
+        Me.btnProduct = New Guna.UI.WinForms.GunaButton()
+        Me.btnDashboard = New Guna.UI.WinForms.GunaButton()
+        Me.btnLogout = New Guna.UI.WinForms.GunaButton()
         Me.PanelLogo = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.lblRole = New System.Windows.Forms.Label()
         Me.lblUsername = New System.Windows.Forms.Label()
@@ -47,6 +53,7 @@ Partial Class Cashier
         Me.btnminus = New System.Windows.Forms.Button()
         Me.btnPlus = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lbl_date1 = New System.Windows.Forms.Label()
         Me.txt_search = New System.Windows.Forms.TextBox()
         Me.lbl_time = New System.Windows.Forms.Label()
@@ -81,27 +88,18 @@ Partial Class Cashier
         Me.GunaElipse10 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.GunaElipse11 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.GunaElipse12 = New Guna.UI.WinForms.GunaElipse(Me.components)
-        Me.GunaButton2 = New Guna.UI.WinForms.GunaButton()
-        Me.GunaButton1 = New Guna.UI.WinForms.GunaButton()
-        Me.btnSetting = New Guna.UI.WinForms.GunaButton()
-        Me.btnRecord = New Guna.UI.WinForms.GunaButton()
-        Me.btnProduct = New Guna.UI.WinForms.GunaButton()
-        Me.btnDashboard = New Guna.UI.WinForms.GunaButton()
-        Me.btnLogout = New Guna.UI.WinForms.GunaButton()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PanelMain.SuspendLayout()
         Me.PanelSlide.SuspendLayout()
         Me.PanelLogo.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel5.SuspendLayout()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.a, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GunaLabel11
@@ -119,6 +117,7 @@ Partial Class Cashier
         'PanelMain
         '
         Me.PanelMain.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.PanelMain.Controls.Add(Me.Panelnotif)
         Me.PanelMain.Controls.Add(Me.GunaControlBox1)
         Me.PanelMain.Controls.Add(Me.lblUseraccname)
         Me.PanelMain.Controls.Add(Me.GunaButton3)
@@ -133,6 +132,14 @@ Partial Class Cashier
         Me.PanelMain.Name = "PanelMain"
         Me.PanelMain.Size = New System.Drawing.Size(1489, 850)
         Me.PanelMain.TabIndex = 8
+        '
+        'Panelnotif
+        '
+        Me.Panelnotif.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Panelnotif.Location = New System.Drawing.Point(21, 386)
+        Me.Panelnotif.Name = "Panelnotif"
+        Me.Panelnotif.Size = New System.Drawing.Size(217, 355)
+        Me.Panelnotif.TabIndex = 46
         '
         'GunaControlBox1
         '
@@ -223,16 +230,114 @@ Partial Class Cashier
         '
         Me.PanelSlide.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.PanelSlide.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.PanelSlide.Controls.Add(Me.GunaButton2)
-        Me.PanelSlide.Controls.Add(Me.GunaButton1)
-        Me.PanelSlide.Controls.Add(Me.btnSetting)
         Me.PanelSlide.Controls.Add(Me.btnRecord)
         Me.PanelSlide.Controls.Add(Me.btnProduct)
         Me.PanelSlide.Controls.Add(Me.btnDashboard)
         Me.PanelSlide.Location = New System.Drawing.Point(21, 280)
         Me.PanelSlide.Name = "PanelSlide"
-        Me.PanelSlide.Size = New System.Drawing.Size(217, 456)
+        Me.PanelSlide.Size = New System.Drawing.Size(217, 461)
         Me.PanelSlide.TabIndex = 6
+        '
+        'btnRecord
+        '
+        Me.btnRecord.AnimationHoverSpeed = 0.07!
+        Me.btnRecord.AnimationSpeed = 0.03!
+        Me.btnRecord.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.btnRecord.BaseColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.btnRecord.BorderColor = System.Drawing.Color.Black
+        Me.btnRecord.DialogResult = System.Windows.Forms.DialogResult.None
+        Me.btnRecord.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnRecord.FocusedColor = System.Drawing.Color.Empty
+        Me.btnRecord.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRecord.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.btnRecord.Image = Global.POSINVENTORY.My.Resources.Resources.Online_Paymentb
+        Me.btnRecord.ImageSize = New System.Drawing.Size(20, 20)
+        Me.btnRecord.Location = New System.Drawing.Point(0, 100)
+        Me.btnRecord.Name = "btnRecord"
+        Me.btnRecord.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
+        Me.btnRecord.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.btnRecord.OnHoverForeColor = System.Drawing.Color.White
+        Me.btnRecord.OnHoverImage = Nothing
+        Me.btnRecord.OnPressedColor = System.Drawing.Color.Black
+        Me.btnRecord.Size = New System.Drawing.Size(217, 50)
+        Me.btnRecord.TabIndex = 15
+        Me.btnRecord.Text = "Settle Payment"
+        '
+        'btnProduct
+        '
+        Me.btnProduct.AnimationHoverSpeed = 0.07!
+        Me.btnProduct.AnimationSpeed = 0.03!
+        Me.btnProduct.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.btnProduct.BaseColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.btnProduct.BorderColor = System.Drawing.Color.Black
+        Me.btnProduct.DialogResult = System.Windows.Forms.DialogResult.None
+        Me.btnProduct.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnProduct.FocusedColor = System.Drawing.Color.Empty
+        Me.btnProduct.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.btnProduct.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.btnProduct.Image = Global.POSINVENTORY.My.Resources.Resources.Searchb
+        Me.btnProduct.ImageSize = New System.Drawing.Size(20, 20)
+        Me.btnProduct.Location = New System.Drawing.Point(0, 50)
+        Me.btnProduct.Name = "btnProduct"
+        Me.btnProduct.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
+        Me.btnProduct.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.btnProduct.OnHoverForeColor = System.Drawing.Color.White
+        Me.btnProduct.OnHoverImage = Nothing
+        Me.btnProduct.OnPressedColor = System.Drawing.Color.Black
+        Me.btnProduct.Size = New System.Drawing.Size(217, 50)
+        Me.btnProduct.TabIndex = 11
+        Me.btnProduct.Text = "Search Product"
+        Me.btnProduct.Visible = False
+        '
+        'btnDashboard
+        '
+        Me.btnDashboard.AnimationHoverSpeed = 0.07!
+        Me.btnDashboard.AnimationSpeed = 0.03!
+        Me.btnDashboard.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.btnDashboard.BaseColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.btnDashboard.BorderColor = System.Drawing.Color.Black
+        Me.btnDashboard.DialogResult = System.Windows.Forms.DialogResult.None
+        Me.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnDashboard.FocusedColor = System.Drawing.Color.Empty
+        Me.btnDashboard.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.btnDashboard.Image = Global.POSINVENTORY.My.Resources.Resources.Transactionb
+        Me.btnDashboard.ImageSize = New System.Drawing.Size(20, 20)
+        Me.btnDashboard.Location = New System.Drawing.Point(0, 0)
+        Me.btnDashboard.Name = "btnDashboard"
+        Me.btnDashboard.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
+        Me.btnDashboard.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.btnDashboard.OnHoverForeColor = System.Drawing.Color.White
+        Me.btnDashboard.OnHoverImage = Nothing
+        Me.btnDashboard.OnPressedColor = System.Drawing.Color.Black
+        Me.btnDashboard.Size = New System.Drawing.Size(217, 50)
+        Me.btnDashboard.TabIndex = 0
+        Me.btnDashboard.Text = "New Transaction"
+        '
+        'btnLogout
+        '
+        Me.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.btnLogout.AnimationHoverSpeed = 0.07!
+        Me.btnLogout.AnimationSpeed = 0.03!
+        Me.btnLogout.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.btnLogout.BaseColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.btnLogout.BorderColor = System.Drawing.Color.Black
+        Me.btnLogout.DialogResult = System.Windows.Forms.DialogResult.None
+        Me.btnLogout.FocusedColor = System.Drawing.Color.Empty
+        Me.btnLogout.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.btnLogout.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.btnLogout.Image = Global.POSINVENTORY.My.Resources.Resources.Logout_Rounded_Leftb
+        Me.btnLogout.ImageSize = New System.Drawing.Size(20, 20)
+        Me.btnLogout.Location = New System.Drawing.Point(21, 772)
+        Me.btnLogout.Name = "btnLogout"
+        Me.btnLogout.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
+        Me.btnLogout.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.btnLogout.OnHoverForeColor = System.Drawing.Color.White
+        Me.btnLogout.OnHoverImage = Nothing
+        Me.btnLogout.OnPressedColor = System.Drawing.Color.Black
+        Me.btnLogout.Size = New System.Drawing.Size(217, 50)
+        Me.btnLogout.TabIndex = 8
+        Me.btnLogout.Text = "LOG OUT"
         '
         'PanelLogo
         '
@@ -244,6 +349,17 @@ Partial Class Cashier
         Me.PanelLogo.Name = "PanelLogo"
         Me.PanelLogo.Size = New System.Drawing.Size(217, 207)
         Me.PanelLogo.TabIndex = 0
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.POSINVENTORY.My.Resources.Resources.School_Cafeteriab
+        Me.PictureBox1.InitialImage = CType(resources.GetObject("PictureBox1.InitialImage"), System.Drawing.Image)
+        Me.PictureBox1.Location = New System.Drawing.Point(55, 26)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(100, 100)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 2
+        Me.PictureBox1.TabStop = False
         '
         'Panel3
         '
@@ -388,6 +504,16 @@ Partial Class Cashier
         Me.Label3.TabIndex = 27
         Me.Label3.Text = "POS"
         '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.POSINVENTORY.My.Resources.Resources.Search
+        Me.PictureBox2.Location = New System.Drawing.Point(17, 32)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(29, 25)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 26
+        Me.PictureBox2.TabStop = False
+        '
         'lbl_date1
         '
         Me.lbl_date1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -472,42 +598,42 @@ Partial Class Cashier
         Me.a.AllowUserToAddRows = False
         Me.a.AllowUserToDeleteRows = False
         Me.a.AllowUserToOrderColumns = True
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
-        Me.a.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black
+        Me.a.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.a.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells
         Me.a.BackgroundColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.a.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.a.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.a.ColumnHeadersHeight = 30
         Me.a.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.a.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.a.DefaultCellStyle = DataGridViewCellStyle7
         Me.a.Dock = System.Windows.Forms.DockStyle.Fill
         Me.a.GridColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer))
         Me.a.Location = New System.Drawing.Point(0, 0)
         Me.a.Name = "a"
         Me.a.ReadOnly = True
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.a.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.a.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.a.RowHeadersVisible = False
         Me.a.Size = New System.Drawing.Size(382, 374)
         Me.a.TabIndex = 4
@@ -736,206 +862,6 @@ Partial Class Cashier
         Me.GunaElipse12.Radius = 7
         Me.GunaElipse12.TargetControl = Me.txtquantity
         '
-        'GunaButton2
-        '
-        Me.GunaButton2.AnimationHoverSpeed = 0.07!
-        Me.GunaButton2.AnimationSpeed = 0.03!
-        Me.GunaButton2.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.GunaButton2.BaseColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.GunaButton2.BorderColor = System.Drawing.Color.Black
-        Me.GunaButton2.DialogResult = System.Windows.Forms.DialogResult.None
-        Me.GunaButton2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GunaButton2.FocusedColor = System.Drawing.Color.Empty
-        Me.GunaButton2.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GunaButton2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.GunaButton2.Image = Global.POSINVENTORY.My.Resources.Resources.Password_Resetb
-        Me.GunaButton2.ImageSize = New System.Drawing.Size(20, 20)
-        Me.GunaButton2.Location = New System.Drawing.Point(0, 250)
-        Me.GunaButton2.Name = "GunaButton2"
-        Me.GunaButton2.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.GunaButton2.OnHoverBorderColor = System.Drawing.Color.Black
-        Me.GunaButton2.OnHoverForeColor = System.Drawing.Color.White
-        Me.GunaButton2.OnHoverImage = Nothing
-        Me.GunaButton2.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaButton2.Size = New System.Drawing.Size(217, 50)
-        Me.GunaButton2.TabIndex = 19
-        Me.GunaButton2.Text = "Change Password"
-        Me.GunaButton2.Visible = False
-        '
-        'GunaButton1
-        '
-        Me.GunaButton1.AnimationHoverSpeed = 0.07!
-        Me.GunaButton1.AnimationSpeed = 0.03!
-        Me.GunaButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.GunaButton1.BaseColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.GunaButton1.BorderColor = System.Drawing.Color.Black
-        Me.GunaButton1.DialogResult = System.Windows.Forms.DialogResult.None
-        Me.GunaButton1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GunaButton1.FocusedColor = System.Drawing.Color.Empty
-        Me.GunaButton1.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.GunaButton1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.GunaButton1.Image = Global.POSINVENTORY.My.Resources.Resources.Total_Salesb
-        Me.GunaButton1.ImageSize = New System.Drawing.Size(20, 20)
-        Me.GunaButton1.Location = New System.Drawing.Point(0, 200)
-        Me.GunaButton1.Name = "GunaButton1"
-        Me.GunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.GunaButton1.OnHoverBorderColor = System.Drawing.Color.Black
-        Me.GunaButton1.OnHoverForeColor = System.Drawing.Color.White
-        Me.GunaButton1.OnHoverImage = Nothing
-        Me.GunaButton1.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaButton1.Size = New System.Drawing.Size(217, 50)
-        Me.GunaButton1.TabIndex = 18
-        Me.GunaButton1.Text = "Daily Sales"
-        Me.GunaButton1.Visible = False
-        '
-        'btnSetting
-        '
-        Me.btnSetting.AnimationHoverSpeed = 0.07!
-        Me.btnSetting.AnimationSpeed = 0.03!
-        Me.btnSetting.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.btnSetting.BaseColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.btnSetting.BorderColor = System.Drawing.Color.Black
-        Me.btnSetting.DialogResult = System.Windows.Forms.DialogResult.None
-        Me.btnSetting.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnSetting.FocusedColor = System.Drawing.Color.Empty
-        Me.btnSetting.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnSetting.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.btnSetting.Image = Global.POSINVENTORY.My.Resources.Resources.Clear_Shopping_Cartb
-        Me.btnSetting.ImageSize = New System.Drawing.Size(20, 20)
-        Me.btnSetting.Location = New System.Drawing.Point(0, 150)
-        Me.btnSetting.Name = "btnSetting"
-        Me.btnSetting.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.btnSetting.OnHoverBorderColor = System.Drawing.Color.Black
-        Me.btnSetting.OnHoverForeColor = System.Drawing.Color.White
-        Me.btnSetting.OnHoverImage = Nothing
-        Me.btnSetting.OnPressedColor = System.Drawing.Color.Black
-        Me.btnSetting.Size = New System.Drawing.Size(217, 50)
-        Me.btnSetting.TabIndex = 17
-        Me.btnSetting.Text = "Clear Cart"
-        Me.btnSetting.Visible = False
-        '
-        'btnRecord
-        '
-        Me.btnRecord.AnimationHoverSpeed = 0.07!
-        Me.btnRecord.AnimationSpeed = 0.03!
-        Me.btnRecord.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.btnRecord.BaseColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.btnRecord.BorderColor = System.Drawing.Color.Black
-        Me.btnRecord.DialogResult = System.Windows.Forms.DialogResult.None
-        Me.btnRecord.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnRecord.FocusedColor = System.Drawing.Color.Empty
-        Me.btnRecord.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnRecord.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.btnRecord.Image = Global.POSINVENTORY.My.Resources.Resources.Online_Paymentb
-        Me.btnRecord.ImageSize = New System.Drawing.Size(20, 20)
-        Me.btnRecord.Location = New System.Drawing.Point(0, 100)
-        Me.btnRecord.Name = "btnRecord"
-        Me.btnRecord.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.btnRecord.OnHoverBorderColor = System.Drawing.Color.Black
-        Me.btnRecord.OnHoverForeColor = System.Drawing.Color.White
-        Me.btnRecord.OnHoverImage = Nothing
-        Me.btnRecord.OnPressedColor = System.Drawing.Color.Black
-        Me.btnRecord.Size = New System.Drawing.Size(217, 50)
-        Me.btnRecord.TabIndex = 15
-        Me.btnRecord.Text = "Settle Payment"
-        '
-        'btnProduct
-        '
-        Me.btnProduct.AnimationHoverSpeed = 0.07!
-        Me.btnProduct.AnimationSpeed = 0.03!
-        Me.btnProduct.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.btnProduct.BaseColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.btnProduct.BorderColor = System.Drawing.Color.Black
-        Me.btnProduct.DialogResult = System.Windows.Forms.DialogResult.None
-        Me.btnProduct.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnProduct.FocusedColor = System.Drawing.Color.Empty
-        Me.btnProduct.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnProduct.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.btnProduct.Image = Global.POSINVENTORY.My.Resources.Resources.Searchb
-        Me.btnProduct.ImageSize = New System.Drawing.Size(20, 20)
-        Me.btnProduct.Location = New System.Drawing.Point(0, 50)
-        Me.btnProduct.Name = "btnProduct"
-        Me.btnProduct.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.btnProduct.OnHoverBorderColor = System.Drawing.Color.Black
-        Me.btnProduct.OnHoverForeColor = System.Drawing.Color.White
-        Me.btnProduct.OnHoverImage = Nothing
-        Me.btnProduct.OnPressedColor = System.Drawing.Color.Black
-        Me.btnProduct.Size = New System.Drawing.Size(217, 50)
-        Me.btnProduct.TabIndex = 11
-        Me.btnProduct.Text = "Search Product"
-        Me.btnProduct.Visible = False
-        '
-        'btnDashboard
-        '
-        Me.btnDashboard.AnimationHoverSpeed = 0.07!
-        Me.btnDashboard.AnimationSpeed = 0.03!
-        Me.btnDashboard.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.btnDashboard.BaseColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.btnDashboard.BorderColor = System.Drawing.Color.Black
-        Me.btnDashboard.DialogResult = System.Windows.Forms.DialogResult.None
-        Me.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnDashboard.FocusedColor = System.Drawing.Color.Empty
-        Me.btnDashboard.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.btnDashboard.Image = Global.POSINVENTORY.My.Resources.Resources.Transactionb
-        Me.btnDashboard.ImageSize = New System.Drawing.Size(20, 20)
-        Me.btnDashboard.Location = New System.Drawing.Point(0, 0)
-        Me.btnDashboard.Name = "btnDashboard"
-        Me.btnDashboard.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.btnDashboard.OnHoverBorderColor = System.Drawing.Color.Black
-        Me.btnDashboard.OnHoverForeColor = System.Drawing.Color.White
-        Me.btnDashboard.OnHoverImage = Nothing
-        Me.btnDashboard.OnPressedColor = System.Drawing.Color.Black
-        Me.btnDashboard.Size = New System.Drawing.Size(217, 50)
-        Me.btnDashboard.TabIndex = 0
-        Me.btnDashboard.Text = "New Transaction"
-        '
-        'btnLogout
-        '
-        Me.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.btnLogout.AnimationHoverSpeed = 0.07!
-        Me.btnLogout.AnimationSpeed = 0.03!
-        Me.btnLogout.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.btnLogout.BaseColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.btnLogout.BorderColor = System.Drawing.Color.Black
-        Me.btnLogout.DialogResult = System.Windows.Forms.DialogResult.None
-        Me.btnLogout.FocusedColor = System.Drawing.Color.Empty
-        Me.btnLogout.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnLogout.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.btnLogout.Image = Global.POSINVENTORY.My.Resources.Resources.Logout_Rounded_Leftb
-        Me.btnLogout.ImageSize = New System.Drawing.Size(20, 20)
-        Me.btnLogout.Location = New System.Drawing.Point(21, 772)
-        Me.btnLogout.Name = "btnLogout"
-        Me.btnLogout.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.btnLogout.OnHoverBorderColor = System.Drawing.Color.Black
-        Me.btnLogout.OnHoverForeColor = System.Drawing.Color.White
-        Me.btnLogout.OnHoverImage = Nothing
-        Me.btnLogout.OnPressedColor = System.Drawing.Color.Black
-        Me.btnLogout.Size = New System.Drawing.Size(217, 50)
-        Me.btnLogout.TabIndex = 8
-        Me.btnLogout.Text = "LOG OUT"
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.POSINVENTORY.My.Resources.Resources.School_Cafeteriab
-        Me.PictureBox1.InitialImage = CType(resources.GetObject("PictureBox1.InitialImage"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(55, 26)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(100, 100)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 2
-        Me.PictureBox1.TabStop = False
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.POSINVENTORY.My.Resources.Resources.Search
-        Me.PictureBox2.Location = New System.Drawing.Point(17, 32)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(29, 25)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 26
-        Me.PictureBox2.TabStop = False
-        '
         'Cashier
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -949,17 +875,17 @@ Partial Class Cashier
         Me.PanelMain.ResumeLayout(False)
         Me.PanelSlide.ResumeLayout(False)
         Me.PanelLogo.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel5.ResumeLayout(False)
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
         CType(Me.a, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -972,9 +898,6 @@ Partial Class Cashier
     Friend WithEvents lblUsername As Label
     Friend WithEvents GunaElipse1 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents PanelSlide As Panel
-    Friend WithEvents GunaButton2 As Guna.UI.WinForms.GunaButton
-    Friend WithEvents GunaButton1 As Guna.UI.WinForms.GunaButton
-    Friend WithEvents btnSetting As Guna.UI.WinForms.GunaButton
     Friend WithEvents btnRecord As Guna.UI.WinForms.GunaButton
     Friend WithEvents btnProduct As Guna.UI.WinForms.GunaButton
     Friend WithEvents btnDashboard As Guna.UI.WinForms.GunaButton
@@ -1026,4 +949,5 @@ Partial Class Cashier
     Friend WithEvents GunaElipse12 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents lblUseraccname As Label
     Friend WithEvents GunaControlBox1 As Guna.UI.WinForms.GunaControlBox
+    Friend WithEvents Panelnotif As Guna.UI.WinForms.GunaPanel
 End Class

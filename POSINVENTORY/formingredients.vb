@@ -9,6 +9,7 @@ Public Class formingredients
 
     Private Sub formingredients_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadFormData()
+
     End Sub
 
     Public Sub LoadFormData()
@@ -173,11 +174,6 @@ Public Class formingredients
                 Return
             End If
 
-            'If Not IsNumeric(txtPrice.Text) Then
-            'MsgBox("Please enter a valid price!", MsgBoxStyle.Exclamation)
-            'Return
-            'End If
-
             If conn.State = ConnectionState.Closed Then conn.Open()
 
             Dim checkCmd As New MySqlCommand("SELECT COUNT(*) FROM tbl_food_sizes WHERE foodcode = @foodcode AND size_name = @size_name", conn)
@@ -189,10 +185,12 @@ Public Class formingredients
                 Return
             End If
 
-            Dim cmd As New MySqlCommand("INSERT INTO tbl_food_sizes (foodcode, size_name, price) VALUES (@foodcode, @size_name, @price)", conn)
+            ' INSERT SUPPLYCODE ALSO
+            Dim cmd As New MySqlCommand("INSERT INTO tbl_food_sizes (foodcode, size_name, price, supplycode) VALUES (@foodcode, @size_name, @price, @supplycode)", conn)
             cmd.Parameters.AddWithValue("@foodcode", FoodCode)
             cmd.Parameters.AddWithValue("@size_name", txtnamesize.Text)
             cmd.Parameters.AddWithValue("@price", Decimal.Parse(txtPrice.Text))
+            cmd.Parameters.AddWithValue("@supplycode", txt_supplycode.Text)
 
             cmd.ExecuteNonQuery()
 
@@ -209,6 +207,7 @@ Public Class formingredients
             If conn.State = ConnectionState.Open Then conn.Close()
         End Try
     End Sub
+
     Private Sub txtquantity_KeyDown(sender As Object, e As KeyEventArgs) Handles txtquantity.KeyDown
         If e.KeyCode = Keys.Enter Then
             e.SuppressKeyPress = True ' Prevents beep sound
@@ -391,4 +390,7 @@ Public Class formingredients
         End If
     End Sub
 
+    Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+
+    End Sub
 End Class

@@ -44,12 +44,6 @@ Partial Class frm_ManageAddons
         Me.GunaElipse1 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.btn_deleteaddon = New System.Windows.Forms.Button()
         Me.DataGridView2 = New Guna.UI.WinForms.GunaDataGridView()
-        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.supplycode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.itemcode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.addon_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.measurementname = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txt_supplycode = New System.Windows.Forms.TextBox()
         Me.txtquantity = New System.Windows.Forms.TextBox()
         Me.btnAddSupply = New System.Windows.Forms.Button()
@@ -57,6 +51,12 @@ Partial Class frm_ManageAddons
         Me.btn_deletesupply = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.supplycode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.itemcode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.addon_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.quantity = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.measurementname = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -171,6 +171,8 @@ Partial Class frm_ManageAddons
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToResizeColumns = False
+        Me.DataGridView1.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
         Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
@@ -187,6 +189,7 @@ Partial Class frm_ManageAddons
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.ColumnHeadersHeight = 21
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI", 10.5!)
@@ -216,7 +219,7 @@ Partial Class frm_ManageAddons
         Me.DataGridView1.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.DataGridView1.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Segoe UI", 10.5!)
         Me.DataGridView1.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White
-        Me.DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Me.DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DataGridView1.ThemeStyle.HeaderStyle.Height = 21
         Me.DataGridView1.ThemeStyle.ReadOnly = True
         Me.DataGridView1.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
@@ -280,6 +283,8 @@ Partial Class frm_ManageAddons
         '
         Me.DataGridView2.AllowUserToAddRows = False
         Me.DataGridView2.AllowUserToDeleteRows = False
+        Me.DataGridView2.AllowUserToResizeColumns = False
+        Me.DataGridView2.AllowUserToResizeRows = False
         DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
         Me.DataGridView2.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
@@ -296,6 +301,7 @@ Partial Class frm_ManageAddons
         DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView2.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridView2.ColumnHeadersHeight = 21
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.supplycode, Me.itemcode, Me.addon_name, Me.quantity, Me.measurementname})
         DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
@@ -326,7 +332,7 @@ Partial Class frm_ManageAddons
         Me.DataGridView2.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         Me.DataGridView2.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Segoe UI", 10.5!)
         Me.DataGridView2.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White
-        Me.DataGridView2.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Me.DataGridView2.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DataGridView2.ThemeStyle.HeaderStyle.Height = 21
         Me.DataGridView2.ThemeStyle.ReadOnly = True
         Me.DataGridView2.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(35, Byte), Integer))
@@ -336,45 +342,6 @@ Partial Class frm_ManageAddons
         Me.DataGridView2.ThemeStyle.RowsStyle.Height = 22
         Me.DataGridView2.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(114, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(119, Byte), Integer))
         Me.DataGridView2.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.White
-        '
-        'id
-        '
-        Me.id.HeaderText = "id"
-        Me.id.Name = "id"
-        Me.id.ReadOnly = True
-        Me.id.Visible = False
-        '
-        'supplycode
-        '
-        Me.supplycode.HeaderText = "supplycode"
-        Me.supplycode.Name = "supplycode"
-        Me.supplycode.ReadOnly = True
-        Me.supplycode.Visible = False
-        '
-        'itemcode
-        '
-        Me.itemcode.HeaderText = "itemcode"
-        Me.itemcode.Name = "itemcode"
-        Me.itemcode.ReadOnly = True
-        Me.itemcode.Visible = False
-        '
-        'addon_name
-        '
-        Me.addon_name.HeaderText = "name"
-        Me.addon_name.Name = "addon_name"
-        Me.addon_name.ReadOnly = True
-        '
-        'quantity
-        '
-        Me.quantity.HeaderText = "quantity"
-        Me.quantity.Name = "quantity"
-        Me.quantity.ReadOnly = True
-        '
-        'measurementname
-        '
-        Me.measurementname.HeaderText = "label"
-        Me.measurementname.Name = "measurementname"
-        Me.measurementname.ReadOnly = True
         '
         'txt_supplycode
         '
@@ -472,6 +439,50 @@ Partial Class frm_ManageAddons
         Me.Label6.Size = New System.Drawing.Size(121, 26)
         Me.Label6.TabIndex = 80
         Me.Label6.Text = "Supply name :"
+        '
+        'id
+        '
+        Me.id.HeaderText = "id"
+        Me.id.Name = "id"
+        Me.id.ReadOnly = True
+        Me.id.Visible = False
+        '
+        'supplycode
+        '
+        Me.supplycode.HeaderText = "supplycode"
+        Me.supplycode.Name = "supplycode"
+        Me.supplycode.ReadOnly = True
+        Me.supplycode.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.supplycode.Visible = False
+        '
+        'itemcode
+        '
+        Me.itemcode.HeaderText = "itemcode"
+        Me.itemcode.Name = "itemcode"
+        Me.itemcode.ReadOnly = True
+        Me.itemcode.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.itemcode.Visible = False
+        '
+        'addon_name
+        '
+        Me.addon_name.HeaderText = "NAME"
+        Me.addon_name.Name = "addon_name"
+        Me.addon_name.ReadOnly = True
+        Me.addon_name.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'quantity
+        '
+        Me.quantity.HeaderText = "QUANTITY"
+        Me.quantity.Name = "quantity"
+        Me.quantity.ReadOnly = True
+        Me.quantity.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'measurementname
+        '
+        Me.measurementname.HeaderText = "LABEL"
+        Me.measurementname.Name = "measurementname"
+        Me.measurementname.ReadOnly = True
+        Me.measurementname.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         '
         'frm_ManageAddons
         '

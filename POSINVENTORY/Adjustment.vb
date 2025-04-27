@@ -71,6 +71,10 @@ Public Class Adjustment
 
     Public Sub LoadAdjustments()
         Try
+            ' First, update any descriptions that need to be changed
+            UpdateDescriptionsBasedOnStock()
+
+            ' Then proceed with loading data as before
             If conn.State = ConnectionState.Closed Then conn.Open()
 
             ' Query data from tbl_inventoryad
@@ -95,11 +99,18 @@ Public Class Adjustment
                 dr("adjusttime").ToString()
             ))
 
-                ' Check if quantity is less than 51 and color the row red
+                ' Check if quantity is less than 11 and color the row red
                 Dim quantity As Integer
-                If Integer.TryParse(dr("quantity").ToString(), quantity) AndAlso quantity < 51 Then
-                    newRow.DefaultCellStyle.BackColor = Color.Red
-                    newRow.DefaultCellStyle.ForeColor = Color.White  ' Make text white for better readability
+                If Integer.TryParse(dr("quantity").ToString(), quantity) Then
+                    If quantity = 0 Then
+                        ' No stock - bright red
+                        newRow.DefaultCellStyle.BackColor = Color.FromArgb(255, 80, 80)
+                        newRow.DefaultCellStyle.ForeColor = Color.White
+                    ElseIf quantity < 11 Then
+                        ' Low stock - lighter red or orange
+                        newRow.DefaultCellStyle.BackColor = Color.FromArgb(255, 150, 100)
+                        newRow.DefaultCellStyle.ForeColor = Color.Black
+                    End If
                 End If
 
                 rowIndex += 1
@@ -118,10 +129,13 @@ Public Class Adjustment
         ' Initialize DataGridView structure
         InitializeDataGridView()
 
+        ' Update descriptions based on current stock levels
+        UpdateDescriptionsBasedOnStock()
+
         ' Load data into DataGridView
         LoadAdjustments()
 
-
+        'SetupStockCheckTimer()
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -130,6 +144,10 @@ Public Class Adjustment
     End Sub
 
     Private Sub txt_search_TextChanged(sender As Object, e As EventArgs) Handles txt_search.TextChanged
+        ' First, update descriptions
+        UpdateDescriptionsBasedOnStock()
+
+        ' Now proceed with search
         DataGridView1.Rows.Clear()
 
         If DataGridView1.Columns.Count = 0 Then
@@ -162,11 +180,18 @@ Public Class Adjustment
                     dr("adjusttime").ToString()
                 ))
 
-                    ' Check if quantity is less than 11 and color the row red
+                    ' Check if quantity is zero or less than 11 and color the row appropriately
                     Dim quantity As Integer
-                    If Integer.TryParse(dr("quantity").ToString(), quantity) AndAlso quantity < 11 Then
-                        newRow.DefaultCellStyle.BackColor = Color.Red
-                        newRow.DefaultCellStyle.ForeColor = Color.White  ' Make text white for better readability
+                    If Integer.TryParse(dr("quantity").ToString(), quantity) Then
+                        If quantity = 0 Then
+                            ' No stock - bright red
+                            newRow.DefaultCellStyle.BackColor = Color.FromArgb(255, 80, 80)
+                            newRow.DefaultCellStyle.ForeColor = Color.White
+                        ElseIf quantity < 11 Then
+                            ' Low stock - lighter red or orange
+                            newRow.DefaultCellStyle.BackColor = Color.FromArgb(255, 150, 100)
+                            newRow.DefaultCellStyle.ForeColor = Color.Black
+                        End If
                     End If
 
                     rowIndex += 1
@@ -175,6 +200,82 @@ Public Class Adjustment
                 MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical, "Error")
             End Try
         End Using
+    End Sub
+    Private Sub UpdateDescriptionsBasedOnStock()
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            ' Get items that need description updates (quantity <= 10)
+            Dim cmd As New MySqlCommand("SELECT `itemcode`, `name`, `quantity`, `desc` FROM `tbl_inventoryad` WHERE `quantity` <= 10", conn)
+            Dim dr As MySqlDataReader = cmd.ExecuteReader()
+
+            ' Store items to update (need to close reader before executing update queries)
+            Dim itemsToUpdate As New List(Of Tuple(Of String, String, Integer, String))
+
+            While dr.Read()
+                ' Store itemcode, name, quantity, current desc
+                itemsToUpdate.Add(New Tuple(Of String, String, Integer, String)(
+                    dr("itemcode").ToString(),
+                    dr("name").ToString(),
+                    Convert.ToInt32(dr("quantity")),
+                    dr("desc").ToString()
+                ))
+            End While
+
+            dr.Close()
+
+            ' Process each item that needs updating
+            For Each item In itemsToUpdate
+                Dim itemcode As String = item.Item1
+                Dim name As String = item.Item2
+                Dim quantity As Integer = item.Item3
+                Dim currentDesc As String = item.Item4
+
+                ' Only update system descriptions or blank descriptions
+                Dim isSystemDesc As Boolean = String.IsNullOrWhiteSpace(currentDesc) OrElse
+                                              currentDesc.Contains("Low Stock") OrElse
+                                              currentDesc.Contains("No Stock") OrElse
+                                              currentDesc = "Inventory Updated"
+
+                If isSystemDesc Then
+                    Dim newDesc As String = ""
+
+                    ' Set appropriate description based on quantity
+                    If quantity = 0 Then
+                        newDesc = "No Stock Available"
+                    ElseIf quantity < 11 Then
+                        newDesc = "Low Stock - Action Required"
+                    End If
+
+                    If Not String.IsNullOrEmpty(newDesc) AndAlso newDesc <> currentDesc Then
+                        ' Update the description in the database
+                        Dim updateCmd As New MySqlCommand("UPDATE `tbl_inventoryad` SET `desc`=@desc WHERE `itemcode`=@itemcode", conn)
+                        updateCmd.Parameters.AddWithValue("@itemcode", itemcode)
+                        updateCmd.Parameters.AddWithValue("@desc", newDesc)
+                        updateCmd.ExecuteNonQuery()
+                    End If
+                End If
+            Next
+        Catch ex As Exception
+            MsgBox("Error updating descriptions: " & ex.Message, vbCritical, "Error")
+        Finally
+            If conn.State = ConnectionState.Open Then conn.Close()
+        End Try
+    End Sub
+    ' Add a timer to periodically check and update descriptions
+    Private WithEvents StockCheckTimer As New Timer()
+
+    ' Set up the timer in the form load
+    Private Sub SetupStockCheckTimer()
+        StockCheckTimer.Interval = 5 * 60 * 1000  ' Check every 5 minutes (adjust as needed)
+        StockCheckTimer.Enabled = True
+        AddHandler StockCheckTimer.Tick, AddressOf StockCheckTimer_Tick
+    End Sub
+
+    Private Sub StockCheckTimer_Tick(sender As Object, e As EventArgs)
+        ' Update descriptions based on current stock and reload the grid
+        UpdateDescriptionsBasedOnStock()
+        LoadAdjustments()
     End Sub
 
 End Class

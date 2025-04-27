@@ -110,6 +110,13 @@
         End If
     End Sub
     Private Sub OpeninPanel(ByVal newForm As Form)
+        ' First check if the new form is the same type as the current form
+        If currentForm IsNot Nothing AndAlso newForm.GetType() Is currentForm.GetType() Then
+            ' If it's the same form type, just return without doing anything
+            newForm.Dispose() ' Clean up the new instance we don't need
+            Return
+        End If
+
         ' Reduce memory usage before transition
         GC.Collect(0, GCCollectionMode.Optimized)
 
@@ -354,4 +361,5 @@
     Private Sub btnBackup_Click(sender As Object, e As EventArgs) Handles btnBackup.Click
         OpeninPanel(New frmBackUp)
     End Sub
+
 End Class

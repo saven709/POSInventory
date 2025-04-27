@@ -26,8 +26,6 @@ Public Class frm_report
         Load_report()
         Get_Dashboard()  ' Load initial dashboard data
         Timer1.Start()   ' Start the dashboard update timer
-
-
     End Sub
 
     Private Sub btn_close_Click(sender As Object, e As EventArgs)
@@ -125,49 +123,126 @@ Public Class frm_report
 
     Private Sub btn_Excel_Click(sender As Object, e As EventArgs) Handles btn_Excel.Click
         Try
-            Dim xlApp As Microsoft.Office.Interop.Excel.Application
-            Dim xlWorkBook As Microsoft.Office.Interop.Excel.Workbook
-            Dim xlWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
-            Dim misValue As Object = System.Reflection.Missing.Value
-            Dim i As Integer
-            Dim j As Integer
+            ' Show progress indicator
+            Cursor = Cursors.WaitCursor
+            Dim progressLabel As New Label()
+            progressLabel.Text = "Exporting data to Excel..."
+            progressLabel.AutoSize = True
+            progressLabel.Location = New Point(Me.Width / 2 - 75, Me.Height / 2)
+            progressLabel.BackColor = Color.LightYellow
+            progressLabel.Padding = New Padding(10)
+            progressLabel.BorderStyle = BorderStyle.FixedSingle
+            Me.Controls.Add(progressLabel)
+            progressLabel.BringToFront()
+            Application.DoEvents()
 
-            xlApp = New Microsoft.Office.Interop.Excel.Application
-            xlWorkBook = xlApp.Workbooks.Add(misValue)
-            xlWorkSheet = xlWorkBook.Sheets("sheet1")
-            xlWorkSheet.Columns.AutoFit()
+            ' Set up Excel objects
+            Dim xlApp As Microsoft.Office.Interop.Excel.Application = Nothing
+            Dim xlWorkBook As Microsoft.Office.Interop.Excel.Workbook = Nothing
+            Dim xlWorkSheet As Microsoft.Office.Interop.Excel.Worksheet = Nothing
 
-            ' Export headers and data
-            For i = 0 To DataGridView1.RowCount - 1
-                For j = 0 To DataGridView1.ColumnCount - 1
-                    For k As Integer = 1 To DataGridView1.Columns.Count
-                        xlWorkSheet.Cells(1, k) = DataGridView1.Columns(k - 1).HeaderText
-                        xlWorkSheet.Cells(i + 2, j + 1) = DataGridView1(j, i).Value.ToString()
-                    Next
+            Try
+                xlApp = New Microsoft.Office.Interop.Excel.Application()
+                xlWorkBook = xlApp.Workbooks.Add()
+                xlWorkSheet = CType(xlWorkBook.Sheets(1), Microsoft.Office.Interop.Excel.Worksheet)
+
+                ' Disable Excel features that slow down performance
+                xlApp.ScreenUpdating = False
+                xlApp.DisplayAlerts = False
+                xlApp.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationManual
+
+                ' Create a 2D array to hold all data (much faster than cell-by-cell)
+                Dim rowCount As Integer = DataGridView1.RowCount
+                Dim colCount As Integer = DataGridView1.ColumnCount
+                Dim excelData(rowCount, colCount - 1) As Object
+
+                ' Add headers to the array
+                For j As Integer = 0 To colCount - 1
+                    excelData(0, j) = DataGridView1.Columns(j).HeaderText
                 Next
-            Next
 
-            ' Save the Excel file
-            Dim fName As String = "BREWTOPIA SALES REPORT"
-            Using sfd As New SaveFileDialog
-                sfd.Title = "Save As"
-                sfd.OverwritePrompt = True
-                sfd.FileName = fName
-                sfd.DefaultExt = ".xlsx"
-                sfd.Filter = "Excel Workbook(*.xlsx)|"
-                sfd.AddExtension = True
-                If sfd.ShowDialog() = DialogResult.OK Then
-                    xlWorkSheet.SaveAs(sfd.FileName)
-                    xlWorkBook.Close()
+                ' Add data to the array in chunks (batch processing)
+                For i As Integer = 0 To rowCount - 1
+                    For j As Integer = 0 To colCount - 1
+                        If DataGridView1(j, i).Value IsNot Nothing Then
+                            excelData(i + 1, j) = DataGridView1(j, i).Value.ToString()
+                        Else
+                            excelData(i + 1, j) = ""
+                        End If
+                    Next
+
+                    ' Update UI periodically to show progress
+                    If i Mod 100 = 0 Then
+                        progressLabel.Text = $"Exporting data to Excel... ({Math.Round((i / rowCount) * 100)}%)"
+                        Application.DoEvents()
+                    End If
+                Next
+
+                ' Write the entire array to Excel at once (major performance improvement)
+                Dim dataRange As Microsoft.Office.Interop.Excel.Range = xlWorkSheet.Range(
+                xlWorkSheet.Cells(1, 1),
+                xlWorkSheet.Cells(rowCount + 1, colCount))
+                dataRange.Value2 = excelData
+
+                ' Apply formatting after data is loaded
+                progressLabel.Text = "Formatting Excel spreadsheet..."
+                Application.DoEvents()
+
+                ' Format header row
+                Dim headerRange As Microsoft.Office.Interop.Excel.Range = xlWorkSheet.Range(
+                xlWorkSheet.Cells(1, 1),
+                xlWorkSheet.Cells(1, colCount))
+                headerRange.Font.Bold = True
+                headerRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray)
+
+                ' Auto-fit columns after all data is in place
+                xlWorkSheet.UsedRange.Columns.AutoFit()
+
+                ' Save the Excel file
+                progressLabel.Text = "Saving Excel file..."
+                Application.DoEvents()
+
+                Dim fName As String = "BREWTOPIA SALES REPORT"
+                Using sfd As New SaveFileDialog
+                    sfd.Title = "Save As"
+                    sfd.OverwritePrompt = True
+                    sfd.FileName = fName
+                    sfd.DefaultExt = ".xlsx"
+                    sfd.Filter = "Excel Workbook(*.xlsx)|*.xlsx"
+                    sfd.AddExtension = True
+
+                    If sfd.ShowDialog() = DialogResult.OK Then
+                        xlWorkSheet.SaveAs(sfd.FileName)
+                        MsgBox("Data Export Success!", MsgBoxStyle.Information, "BREWTOPIA")
+                    End If
+                End Using
+
+            Finally
+                ' Re-enable Excel features
+                If xlApp IsNot Nothing Then
+                    xlApp.ScreenUpdating = True
+                    xlApp.DisplayAlerts = True
+                    xlApp.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationAutomatic
+
+                    ' Close workbook and quit Excel
+                    If xlWorkBook IsNot Nothing Then xlWorkBook.Close(False)
                     xlApp.Quit()
-                    ReleaseObject(xlApp)
-                    ReleaseObject(xlWorkBook)
+
+                    ' Release COM objects
                     ReleaseObject(xlWorkSheet)
-                    MsgBox("Data Export Success!", MsgBoxStyle.Information, "BREWTOPIA")
+                    ReleaseObject(xlWorkBook)
+                    ReleaseObject(xlApp)
                 End If
-            End Using
+
+                ' Remove progress indicator
+                Me.Controls.Remove(progressLabel)
+                progressLabel.Dispose()
+                Cursor = Cursors.Default
+            End Try
+
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MsgBox("Export failed: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            Cursor = Cursors.Default
         End Try
     End Sub
 

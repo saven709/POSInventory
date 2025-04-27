@@ -50,7 +50,6 @@ Public Class Entry
         AddHandler DataGridView1.CellFormatting, AddressOf DataGridView1_CellFormatting
     End Sub
 
-
     Public Sub LoadInventory()
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
@@ -64,17 +63,32 @@ Public Class Entry
 
             While dr.Read()
                 ' Add measurementname to the DataGridView row data
-                DataGridView1.Rows.Add(
+                Dim newRow As DataGridViewRow = DataGridView1.Rows(DataGridView1.Rows.Add(
                 rowIndex,
                 dr("itemcode").ToString(),
                 dr("name").ToString(),
-                dr("measurementname").ToString(),  ' Add measurementname here
+                dr("measurementname").ToString(),
                 dr("category").ToString(),
                 dr("quantity").ToString(),
                 dr("stockdate").ToString(),
                 dr("stocktime").ToString(),
                 dr("stockby").ToString()
-            )
+            ))
+
+                ' Apply color coding directly here too (in addition to the CellFormatting event)
+                Dim quantity As Integer
+                If Integer.TryParse(dr("quantity").ToString(), quantity) Then
+                    If quantity = 0 Then
+                        ' No stock - bright red
+                        newRow.DefaultCellStyle.BackColor = Color.FromArgb(255, 80, 80)
+                        newRow.DefaultCellStyle.ForeColor = Color.White
+                    ElseIf quantity < 11 Then
+                        ' Low stock - lighter red or orange
+                        newRow.DefaultCellStyle.BackColor = Color.FromArgb(255, 150, 100)
+                        newRow.DefaultCellStyle.ForeColor = Color.Black
+                    End If
+                End If
+
                 rowIndex += 1
             End While
 
@@ -83,7 +97,6 @@ Public Class Entry
             MsgBox("Error loading inventory: " & ex.Message, vbCritical, "Error")
         Finally
             If conn.State = ConnectionState.Open Then conn.Close()
-
         End Try
     End Sub
 
@@ -94,10 +107,7 @@ Public Class Entry
 
         ' Load data into DataGridView on form load
         LoadInventory()
-
-
     End Sub
-
 
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
         Try
@@ -107,39 +117,53 @@ Public Class Entry
                 Dim itemcode As String = DataGridView1.SelectedRows(0).Cells("ItemCode").Value.ToString()
                 Dim itemName As String = DataGridView1.SelectedRows(0).Cells("Name").Value.ToString()
 
-                ' Confirm deletion, include the item name in the message
+                ' Confirm deletion
                 If MessageBox.Show("Are you sure you want to delete the item: " & itemName & "?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                     ' Open database connection
                     If conn.State = ConnectionState.Closed Then conn.Open()
 
-                    ' Begin transaction to ensure both deletions happen together
+                    ' Begin transaction
                     Dim transaction As MySqlTransaction = conn.BeginTransaction()
 
                     Try
-                        ' Delete from tbl_inventory
-                        Dim cmd1 As New MySqlCommand("DELETE FROM `tbl_inventory` WHERE `itemcode` = @itemcode", conn, transaction)
-                        cmd1.Parameters.AddWithValue("@itemcode", itemcode)
+                        Dim success As Boolean = True
 
-                        ' Execute the query
-                        Dim result1 As Integer = cmd1.ExecuteNonQuery()
+                        ' First check if the item exists in tbl_inventory
+                        Dim checkCmd1 As New MySqlCommand("SELECT COUNT(*) FROM `tbl_inventory` WHERE `itemcode` = @itemcode", conn, transaction)
+                        checkCmd1.Parameters.AddWithValue("@itemcode", itemcode)
+                        Dim inventoryExists As Integer = Convert.ToInt32(checkCmd1.ExecuteScalar())
 
-                        ' Delete from tbl_inventoryad
-                        Dim cmd2 As New MySqlCommand("DELETE FROM `tbl_inventoryad` WHERE `itemcode` = @itemcode", conn, transaction)
-                        cmd2.Parameters.AddWithValue("@itemcode", itemcode)
+                        ' Check if the item exists in tbl_inventoryad
+                        Dim checkCmd2 As New MySqlCommand("SELECT COUNT(*) FROM `tbl_inventoryad` WHERE `itemcode` = @itemcode", conn, transaction)
+                        checkCmd2.Parameters.AddWithValue("@itemcode", itemcode)
+                        Dim inventoryAdExists As Integer = Convert.ToInt32(checkCmd2.ExecuteScalar())
 
-                        ' Execute the query
-                        Dim result2 As Integer = cmd2.ExecuteNonQuery()
+                        ' Delete from tbl_inventory if it exists
+                        If inventoryExists > 0 Then
+                            Dim cmd1 As New MySqlCommand("DELETE FROM `tbl_inventory` WHERE `itemcode` = @itemcode", conn, transaction)
+                            cmd1.Parameters.AddWithValue("@itemcode", itemcode)
+                            Dim result1 As Integer = cmd1.ExecuteNonQuery()
+                            If result1 <= 0 Then success = False
+                        End If
 
-                        ' If both deletions were successful, commit the transaction
-                        If result1 > 0 And result2 > 0 Then
-                            transaction.Commit()
-                            MsgBox("Item deleted successfully from both tables!", vbInformation, "Deletion Successful")
-                            ' Refresh the DataGridView to reflect the change
-                            LoadInventory()
-                        Else
-                            ' If any of the deletions failed, rollback the transaction
+                        ' Delete from tbl_inventoryad if it exists
+                        If inventoryAdExists > 0 Then
+                            Dim cmd2 As New MySqlCommand("DELETE FROM `tbl_inventoryad` WHERE `itemcode` = @itemcode", conn, transaction)
+                            cmd2.Parameters.AddWithValue("@itemcode", itemcode)
+                            Dim result2 As Integer = cmd2.ExecuteNonQuery()
+                            If result2 <= 0 Then success = False
+                        End If
+
+                        ' If both exist but one delete fails, or if only one exists and that delete fails
+                        If Not success Then
                             transaction.Rollback()
                             MsgBox("Failed to delete item from one or both tables.", vbCritical, "Error")
+                        Else
+                            ' If everything succeeded, commit the transaction
+                            transaction.Commit()
+                            MsgBox("Item deleted successfully!", vbInformation, "Deletion Successful")
+                            ' Refresh the DataGridView
+                            LoadInventory()
                         End If
                     Catch ex As Exception
                         ' If an error occurred, rollback the transaction
@@ -191,7 +215,7 @@ Public Class Entry
                 ' Loop through the records and populate the DataGridView
                 While dr.Read()
                     ' Add each record to the DataGridView
-                    DataGridView1.Rows.Add(
+                    Dim newRow As DataGridViewRow = DataGridView1.Rows(DataGridView1.Rows.Add(
                     DataGridView1.Rows.Count + 1,  ' Auto-increment No column
                     dr("itemcode").ToString(),
                     dr("name").ToString(),
@@ -201,7 +225,21 @@ Public Class Entry
                     dr("stockdate").ToString(),
                     dr("stocktime").ToString(),
                     dr("stockby").ToString()
-                )
+                ))
+
+                    ' Apply color coding based on quantity
+                    Dim quantity As Integer
+                    If Integer.TryParse(dr("quantity").ToString(), quantity) Then
+                        If quantity = 0 Then
+                            ' No stock - bright red
+                            newRow.DefaultCellStyle.BackColor = Color.FromArgb(255, 80, 80)
+                            newRow.DefaultCellStyle.ForeColor = Color.White
+                        ElseIf quantity < 11 Then
+                            ' Low stock - lighter red or orange
+                            newRow.DefaultCellStyle.BackColor = Color.FromArgb(255, 150, 100)
+                            newRow.DefaultCellStyle.ForeColor = Color.Black
+                        End If
+                    End If
                 End While
             Catch ex As Exception
                 ' Handle exception if needed
@@ -215,13 +253,48 @@ Public Class Entry
             Dim quantity As Integer
             ' Try to parse the quantity value from the "Quantity" column
             If Integer.TryParse(DataGridView1.Rows(e.RowIndex).Cells("Quantity").Value.ToString(), quantity) Then
-                ' If quantity is less than 11, set the row's background color to red
-                If quantity < 11 Then
-                    DataGridView1.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Red
+                ' If quantity is 0, set the row's background color to bright red
+                If quantity = 0 Then
+                    DataGridView1.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.FromArgb(255, 80, 80)
                     DataGridView1.Rows(e.RowIndex).DefaultCellStyle.ForeColor = Color.White
+                    ' If quantity is less than 11, set the row's background color to orange
+                ElseIf quantity < 11 Then
+                    DataGridView1.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.FromArgb(255, 150, 100)
+                    DataGridView1.Rows(e.RowIndex).DefaultCellStyle.ForeColor = Color.Black
                 End If
             End If
         End If
     End Sub
+    Private Sub DataGridView1_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellDoubleClick
+        If e.RowIndex >= 0 Then ' Ensure a valid row is selected
+            ' Get the selected row's data
+            Dim selectedRow As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
+
+            ' Create an instance of EntryEdit form
+            Dim editForm As New EntryEdit()
+
+            ' Pass data to the EntryEdit form
+            editForm.txt_itemcode.Text = selectedRow.Cells("ItemCode").Value.ToString()
+            editForm.txt_name.Text = selectedRow.Cells("Name").Value.ToString()
+            editForm.txt_measurementname.Text = selectedRow.Cells("MeasurementName").Value.ToString()
+            editForm.txt_category.Text = selectedRow.Cells("Category").Value.ToString()
+            editForm.txt_quantity.Text = selectedRow.Cells("Quantity").Value.ToString()
+
+            ' Set original values for comparison if needed
+            editForm.Tag = New Dictionary(Of String, String) From {
+            {"original_name", selectedRow.Cells("Name").Value.ToString()},
+            {"original_quantity", selectedRow.Cells("Quantity").Value.ToString()},
+            {"original_measurementname", selectedRow.Cells("MeasurementName").Value.ToString()},
+            {"original_category", selectedRow.Cells("Category").Value.ToString()}
+        }
+
+            ' Show the EntryEdit form as a dialog
+            editForm.ShowDialog()
+
+            ' Refresh data after the dialog is closed
+            LoadInventory()
+        End If
+    End Sub
+
 
 End Class

@@ -33,17 +33,72 @@ Public Class Cashier
             btnRecord.PerformClick() ' Triggers the button click
         End If
     End Sub
+    Private Sub CheckCriticalStockForCashier(Optional forcePlaySound As Boolean = False)
+        Try
+            ' Clear the panel first
+            Panelnotif.Controls.Clear()
 
+            Dim connectionString As String = "server=localhost;port=3307;user=root;password=;database=brewtopia_db"
+            Using conn As New MySql.Data.MySqlClient.MySqlConnection(connectionString)
+                conn.Open()
+
+                Dim cmd As New MySql.Data.MySqlClient.MySqlCommand("SELECT name, quantity FROM tbl_inventoryad WHERE quantity < 11", conn)
+                Dim reader As MySql.Data.MySqlClient.MySqlDataReader = cmd.ExecuteReader()
+
+                Dim hasCriticalItems As Boolean = False
+
+                While reader.Read()
+                    hasCriticalItems = True
+                    Exit While ' ONLY NEED TO KNOW IF THERE'S AT LEAST ONE
+                End While
+
+                If hasCriticalItems Then
+                    ' Create and show PosPopup in the PanelNotif
+                    Dim popup As New PosPopup()
+                    popup.TopLevel = False
+                    popup.FormBorderStyle = FormBorderStyle.None
+                    popup.Dock = DockStyle.Fill
+
+                    Panelnotif.Controls.Add(popup)
+
+                    ' Make the panel visible if it wasn't already
+                    Dim wasVisible As Boolean = Panelnotif.Visible
+                    Panelnotif.Visible = True
+                    popup.Show()
+
+                    ' Play sound if:
+                    ' 1. The panel wasn't visible before (new notification), OR
+                    ' 2. We're forcing sound play (like on form load)
+                    If Not wasVisible Or forcePlaySound Then
+                        ' Play the exclamation sound
+                        System.Media.SystemSounds.Exclamation.Play()
+                    End If
+                Else
+                    ' No critical items, keep panel hidden
+                    Panelnotif.Visible = False
+                End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error checking critical stock: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     Private Sub txt_receivedAmount_TextChanged(sender As Object, e As EventArgs) Handles txt_receivedAmount.TextChanged
         Try
-            ' Limit to 4 digits or 9999
+            ' Limit to 5 digits or 99999
             If txt_receivedAmount.Text.Length > 0 Then
-                Dim value As Double
-                If Double.TryParse(txt_receivedAmount.Text, value) Then
-                    ' Check if the value exceeds 9999
+                Dim value As Decimal
+                If Decimal.TryParse(txt_receivedAmount.Text, value) Then
+                    ' Check if the value exceeds 99999
                     If value > 99999 Then
                         txt_receivedAmount.Text = "99999"
                         txt_receivedAmount.SelectionStart = txt_receivedAmount.Text.Length ' Keep cursor at the end
+                    End If
+
+                    ' Remove leading zeros
+                    If value > 0 AndAlso txt_receivedAmount.Text.StartsWith("0") Then
+                        value = CDec(txt_receivedAmount.Text)
+                        txt_receivedAmount.Text = value.ToString()
+                        txt_receivedAmount.SelectionStart = txt_receivedAmount.Text.Length
                     End If
                 Else
                     txt_receivedAmount.Text = ""
@@ -51,20 +106,23 @@ Public Class Cashier
             End If
 
             ' Update grand total and balance amount
-            Dim grandtotal As Double = 0
-            For i As Double = 0 To a.Rows.Count() - 1 Step +1
-                grandtotal = grandtotal + a.Rows(i).Cells(6).Value ' Match subtotal column
+            Dim grandtotal As Decimal = 0
+            For i As Integer = 0 To a.Rows.Count() - 1
+                grandtotal += CDec(a.Rows(i).Cells(6).Value) ' Match subtotal column
             Next
 
-            If Double.TryParse(txt_receivedAmount.Text, 0) Then
-                txt_BalanceAmount.Text = Format(CDec(txt_receivedAmount.Text) - grandtotal, "#,##0.00")
+            If Not String.IsNullOrEmpty(txt_receivedAmount.Text) AndAlso Decimal.TryParse(txt_receivedAmount.Text, Nothing) Then
+                ' Format correctly to avoid truncation issues
+                Dim balance As Decimal = CDec(txt_receivedAmount.Text) - grandtotal
+                txt_BalanceAmount.Text = Format(balance, "#,##0.00")
                 lbl_tot.Text = Format(grandtotal, "#,##0.00")
             Else
-                ' Clear BalanceAmount if the input is invalid
                 txt_BalanceAmount.Text = ""
+                lbl_tot.Text = Format(grandtotal, "#,##0.00")
             End If
         Catch ex As Exception
-            ' Log the error or show a message if needed
+            ' Log the error
+            Debug.WriteLine("Error in txt_receivedAmount_TextChanged: " & ex.Message)
         End Try
     End Sub
 
@@ -137,6 +195,19 @@ Public Class Cashier
         ' Create tooltip for category button
         Dim tooltip As New ToolTip()
         tooltip.SetToolTip(categorybtn, "Click to switch category")
+
+        Dim criticalStockTimer As New Timer()
+        criticalStockTimer.Interval = 60000 ' Check every minute (adjust as needed)
+        AddHandler criticalStockTimer.Tick, AddressOf CriticalStockTimer_Tick
+        criticalStockTimer.Start()
+
+        ' Initial check
+        CheckCriticalStockForCashier()
+
+    End Sub
+    Private Sub CriticalStockTimer_Tick(sender As Object, e As EventArgs)
+        ' Periodically check for critical stock
+        CheckCriticalStockForCashier()
     End Sub
 
     Private Sub InitializeDataGridView()
@@ -362,7 +433,6 @@ Public Class Cashier
         End Try
     End Sub
 
-    ' Modify the Selectimg_Click to check inventory before adding to cart
     Public Sub Selectimg_Click(sender As Object, e As EventArgs)
         Dim foodCode As String = sender.Tag.ToString()
 
@@ -373,8 +443,8 @@ Public Class Cashier
         Else
             ' If clicked on panel or image, find the label in the panel
             Dim panel As Panel = If(TypeOf sender Is Panel,
-                      DirectCast(sender, Panel),
-                      DirectCast(sender, CirclePicturBox).Parent)
+              DirectCast(sender, Panel),
+              DirectCast(sender, CirclePicturBox).Parent)
             For Each ctrl As Control In panel.Controls
                 If TypeOf ctrl Is Label Then
                     foodName = DirectCast(ctrl, Label).Text
@@ -383,27 +453,31 @@ Public Class Cashier
             Next
         End If
 
-        ' Pass both foodCode and foodName to the formsizes form
-        Dim sizeForm As New formsizes(foodCode, foodName, Me)  ' Pass 'Me' to reference the current Cashier form
-        sizeForm.ShowDialog()
+        ' Check inventory availability before even showing the size selection
+        If HasSufficientIngredients(foodCode) Then
+            ' Pass both foodCode and foodName to the formsizes form
+            Dim sizeForm As New formsizes(foodCode, foodName, Me)  ' Pass 'Me' to reference the current Cashier form
+            sizeForm.ShowDialog()
 
-        ' Get the selected size and price
-        If sizeForm.SelectedSize IsNot Nothing Then
-            Dim selectedSize = sizeForm.SelectedSize
-            Dim selectedPrice = sizeForm.SelectedPrice
+            ' Get the selected size and price
+            If sizeForm.SelectedSize IsNot Nothing Then
+                Dim selectedSize = sizeForm.SelectedSize
+                Dim selectedPrice = sizeForm.SelectedPrice
+                Dim sugarQty = sizeForm.SelectedSugarQuantity  ' Get sugar quantity
 
-            ' Before adding to cart, check if we have enough inventory
-            If HasSufficientInventoryForOrder(foodCode, selectedSize, 1) Then
-                AddItemToCart(foodCode, selectedSize, selectedPrice, foodName, sizeForm.SelectedAddons)
-            Else
-                MessageBox.Show("Not enough inventory available for this item.", "Insufficient Inventory", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                ' Double-check if we have enough inventory for the selected size with sugar
+                If HasSufficientInventoryForOrder(foodCode, selectedSize, 1, sugarQty) Then
+                    AddItemToCart(foodCode, selectedSize, selectedPrice, foodName, sizeForm.SelectedAddons, sugarQty)
+                Else
+                    MessageBox.Show("Not enough inventory available for this item with the selected size and sugar level.", "Insufficient Inventory", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
             End If
+        Else
+            MessageBox.Show("This item is currently unavailable due to insufficient inventory.", "Item Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
-
-
-    Private Sub AddItemToCart(foodCode As String, sizeName As String, price As Decimal, foodName As String, addons As List(Of formsizes.AddonItem))
+    Private Sub AddItemToCart(foodCode As String, sizeName As String, price As Decimal, foodName As String, addons As List(Of formsizes.AddonItem), sugarQuantity As Integer)
         Dim exist As Boolean = False
         Dim numRow As Integer = 0
 
@@ -428,11 +502,17 @@ Public Class Cashier
             ' Add new row with addons
             Dim subtotal As Decimal = price
             a.Rows.Add(a.Rows.Count + 1, foodCode, foodName & addonDesc, sizeName, price, 1, subtotal)
+            ' Store sugar quantity in the Tag property of the row
+            If a.Rows.Count > 0 Then
+                a.Rows(a.Rows.Count - 1).Tag = sugarQuantity
+            End If
         Else
             ' Update existing row
             a.Rows(numRow).Cells(5).Value = CInt(a.Rows(numRow).Cells(5).Value) + 1
             a.Rows(numRow).Cells(6).Value = CDec(a.Rows(numRow).Cells(4).Value) * CInt(a.Rows(numRow).Cells(5).Value)
         End If
+
+
 
         CalculateTotal()
         UpdateNoOfProducts()
@@ -467,7 +547,6 @@ Public Class Cashier
         End Try
     End Sub
 
-    ' Modified version of txtquantity_TextChanged to consider cart items
     Private Sub txtquantity_TextChanged(sender As Object, e As EventArgs) Handles txtquantity.TextChanged
         Try
             If a.CurrentRow IsNot Nothing Then
@@ -478,9 +557,24 @@ Public Class Cashier
                 Dim currentQty = CInt(row.Cells(5).Value)
                 Dim newQty As Integer
 
+                ' Get sugar quantity from row's Tag property
+                Dim sugarQty As Integer = 0
+                If row.Tag IsNot Nothing AndAlso TypeOf row.Tag Is Integer Then
+                    sugarQty = CInt(row.Tag)
+                End If
+
                 ' Skip validation if the textbox is empty
                 If String.IsNullOrWhiteSpace(txtquantity.Text) Then
                     Return
+                End If
+
+                ' Remove leading zeros
+                If txtquantity.Text.StartsWith("0") AndAlso txtquantity.Text.Length > 1 Then
+                    Dim cleanValue As Integer
+                    If Integer.TryParse(txtquantity.Text, cleanValue) Then
+                        txtquantity.Text = cleanValue.ToString()
+                        txtquantity.SelectionStart = txtquantity.Text.Length
+                    End If
                 End If
 
                 ' Validate the input in txtquantity
@@ -489,14 +583,14 @@ Public Class Cashier
                         ' Temporarily set quantity to 0 to exclude current item from cart calculation
                         row.Cells(5).Value = 0
 
-                        ' Check if we have enough inventory for the new quantity
-                        If HasSufficientInventoryForOrder(foodCode, sizeName, newQty) Then
+                        ' Check if we have enough inventory for the new quantity with sugar
+                        If HasSufficientInventoryForOrder(foodCode, sizeName, newQty, sugarQty) Then
                             ' Update quantity and subtotal
                             row.Cells(5).Value = newQty
                             row.Cells(6).Value = price * newQty
                             CalculateTotal()
                             UpdateNoOfProducts()
-                            UpdateBalanceAmount() ' Add this line to update balance
+                            UpdateBalanceAmount()
                         Else
                             ' Restore original quantity
                             row.Cells(5).Value = currentQty
@@ -542,11 +636,17 @@ Public Class Cashier
                 Dim currentQty = CInt(row.Cells(5).Value)
                 Dim price = CDec(row.Cells(4).Value)
 
+                ' Get sugar quantity from row's Tag property
+                Dim sugarQty As Integer = 0
+                If row.Tag IsNot Nothing AndAlso TypeOf row.Tag Is Integer Then
+                    sugarQty = CInt(row.Tag)
+                End If
+
                 ' Temporarily reduce the current item's quantity by 1 in the DataGridView
                 row.Cells(5).Value = currentQty - 1
 
                 ' Check if we have enough inventory for the increased quantity
-                If HasSufficientInventoryForOrder(foodCode, sizeName, 1) Then
+                If HasSufficientInventoryForOrder(foodCode, sizeName, 1, sugarQty) Then
                     ' Restore and increment the quantity
                     currentQty += 1
                     row.Cells(5).Value = currentQty
@@ -556,7 +656,7 @@ Public Class Cashier
 
                     CalculateTotal()
                     UpdateNoOfProducts()
-                    UpdateBalanceAmount() ' Add this line to update balance
+                    UpdateBalanceAmount()
                 Else
                     ' Restore the original quantity
                     row.Cells(5).Value = currentQty
@@ -668,10 +768,10 @@ Public Class Cashier
                             cmd.Parameters.AddWithValue("@price", a.Rows(j).Cells(4).Value)
                             cmd.Parameters.AddWithValue("@qty", a.Rows(j).Cells(5).Value)
                             cmd.Parameters.AddWithValue("@totalprice", a.Rows(j).Cells(6).Value)
-                            cmd.Parameters.AddWithValue("@grandtotal", lbl_tot.Text)
-                            cmd.Parameters.AddWithValue("@nooffoods", lbl_noOfProducts.Text)
-                            cmd.Parameters.AddWithValue("@amountreceived", txt_receivedAmount.Text)
-                            cmd.Parameters.AddWithValue("@changes", txt_BalanceAmount.Text)
+                            cmd.Parameters.AddWithValue("@grandtotal", Format(CDec(lbl_tot.Text), "0.00"))
+                            cmd.Parameters.AddWithValue("@nooffoods", CInt(lbl_noOfProducts.Text))
+                            cmd.Parameters.AddWithValue("@amountreceived", Format(CDec(txt_receivedAmount.Text), "0.00"))
+                            cmd.Parameters.AddWithValue("@changes", Format(CDec(txt_BalanceAmount.Text), "0.00"))
                             cmd.ExecuteNonQuery()
 
                             ' Inside btnRecord_Click_1
@@ -715,12 +815,13 @@ Public Class Cashier
                             Next
 
                             ' Deduct inventory for the current foodcode and size with addons
-                            DeductInventory(
-                                a.Rows(j).Cells(1).Value.ToString(),
-                                a.Rows(j).Cells(3).Value.ToString(),
-                                CInt(a.Rows(j).Cells(5).Value),
-                                addons,
-                                transaction)
+                            ' Get sugar quantity from row Tag (if available)
+                            Dim sugarQty As Integer = 0
+                            If a.Rows(j).Tag IsNot Nothing AndAlso TypeOf a.Rows(j).Tag Is Integer Then
+                                sugarQty = CInt(a.Rows(j).Tag)
+                            End If
+
+                            DeductInventory(a.Rows(j).Cells(1).Value.ToString(), a.Rows(j).Cells(3).Value.ToString(), CInt(a.Rows(j).Cells(5).Value), addons, transaction, sugarQty)
 
                         Next
 
@@ -738,6 +839,7 @@ Public Class Cashier
                             End Try
                         End If
                         new_order()
+                        CheckCriticalStockForCashier()
 
                     Catch ex As Exception
                         transaction.Rollback()
@@ -754,18 +856,19 @@ Public Class Cashier
         UpdateButtonVisibility()
     End Sub
 
-    Private Sub DeductInventory(foodCode As String, sizeName As String, quantity As Integer, addons As List(Of formsizes.AddonItem), transaction As MySqlTransaction)
+    Private Sub DeductInventory(foodCode As String, sizeName As String, quantity As Integer, addons As List(Of formsizes.AddonItem), transaction As MySqlTransaction, Optional sugarQuantity As Integer = 0)
         Try
             Debug.WriteLine($"Starting DeductInventory for foodCode: {foodCode}, size: {sizeName}, quantity: {quantity}")
+            Debug.WriteLine($"Sugar quantity: {sugarQuantity}")
             Debug.WriteLine($"Number of addons: {If(addons Is Nothing, "0", addons.Count.ToString())}")
 
             Dim itemsToDeduct As New List(Of (itemCode As String, quantity As Decimal))
 
             ' Get ingredients for the food item
             Dim fetchIngredientsCmd As New MySqlCommand(
-        "SELECT i.itemcode, i.quantity * @orderQuantity AS totalQty " &
-        "FROM tbl_ingredients i " &
-        "WHERE i.foodcode = @foodcode AND i.size_name = @size_name", conn, transaction)
+            "SELECT i.itemcode, i.quantity * @orderQuantity AS totalQty " &
+            "FROM tbl_ingredients i " &
+            "WHERE i.foodcode = @foodcode AND i.size_name = @size_name", conn, transaction)
             fetchIngredientsCmd.Parameters.AddWithValue("@foodcode", foodCode)
             fetchIngredientsCmd.Parameters.AddWithValue("@size_name", sizeName)
             fetchIngredientsCmd.Parameters.AddWithValue("@orderQuantity", quantity)
@@ -781,26 +884,53 @@ Public Class Cashier
                 For Each addon In addons
                     Dim addonQty = addon.Quantity * quantity
                     itemsToDeduct.Add((addon.ItemCode, addonQty))
+                    Debug.WriteLine($"Added addon to deduction: AddonName={addon.AddonName}, ItemCode={addon.ItemCode}, Quantity={addonQty}")
                 Next
+            End If
+
+            ' Add sugar deduction if quantity > 0
+            If sugarQuantity > 0 Then
+                Dim sugarItemCode As String = "SUG001" ' Sugar inventory item code
+                Dim totalSugarQty As Decimal = sugarQuantity * quantity
+
+                ' Check if sugar is already in the items to deduct (from addons list)
+                Dim existingSugarItem = itemsToDeduct.Find(Function(item) item.itemCode = sugarItemCode)
+
+                If existingSugarItem.itemCode Is Nothing Then
+                    ' Sugar not already in list, add it
+                    itemsToDeduct.Add((sugarItemCode, totalSugarQty))
+                    Debug.WriteLine($"Added sugar to deduction: ItemCode={sugarItemCode}, Quantity={totalSugarQty}")
+                Else
+                    ' Sugar already in list (maybe from addon), remove it and add with combined quantity
+                    itemsToDeduct.Remove(existingSugarItem)
+                    itemsToDeduct.Add((sugarItemCode, existingSugarItem.quantity + totalSugarQty))
+                    Debug.WriteLine($"Updated sugar in deduction: ItemCode={sugarItemCode}, Quantity={existingSugarItem.quantity + totalSugarQty}")
+                End If
             End If
 
             ' Deduct inventory with separate handling for quantity and lastquantity
             For Each item In itemsToDeduct
                 ' First, get current quantity from inventoryad
                 Dim getCurrentQtyCmd As New MySqlCommand(
-            "SELECT quantity FROM tbl_inventoryad WHERE itemcode = @itemcode",
-            conn, transaction)
+                "SELECT quantity FROM tbl_inventoryad WHERE itemcode = @itemcode",
+                conn, transaction)
                 getCurrentQtyCmd.Parameters.AddWithValue("@itemcode", item.itemCode)
                 Dim currentQty As Decimal = CDec(getCurrentQtyCmd.ExecuteScalar())
 
                 ' Calculate new quantity
                 Dim newQty As Decimal = currentQty - item.quantity
+                Debug.WriteLine($"Deducting {item.itemCode}: Current={currentQty}, Deduct={item.quantity}, New={newQty}")
+
+                ' Add inventory check
+                If newQty < 0 Then
+                    Throw New Exception($"Insufficient inventory for item {item.itemCode}. Required: {item.quantity}, Available: {currentQty}")
+                End If
 
                 ' Update tbl_inventory
                 Dim deductCmd As New MySqlCommand(
-            "UPDATE tbl_inventory " &
-            "SET quantity = quantity - @quantity " &
-            "WHERE itemcode = @itemcode", conn, transaction)
+                "UPDATE tbl_inventory " &
+                "SET quantity = quantity - @quantity " &
+                "WHERE itemcode = @itemcode", conn, transaction)
                 deductCmd.Parameters.AddWithValue("@quantity", item.quantity)
                 deductCmd.Parameters.AddWithValue("@itemcode", item.itemCode)
                 deductCmd.ExecuteNonQuery()
@@ -808,18 +938,13 @@ Public Class Cashier
                 ' Update tbl_inventoryad
                 ' Here we store the current quantity as lastquantity before updating the new quantity
                 Dim deductAdCmd As New MySqlCommand(
-            "UPDATE tbl_inventoryad " &
-            "SET lastquantity = quantity, " & ' Store current quantity as lastquantity
-            "    quantity = @newQty " &      ' Update to new quantity
-            "WHERE itemcode = @itemcode", conn, transaction)
+                "UPDATE tbl_inventoryad " &
+                "SET lastquantity = quantity, " & ' Store current quantity as lastquantity
+                "    quantity = @newQty " &      ' Update to new quantity
+                "WHERE itemcode = @itemcode", conn, transaction)
                 deductAdCmd.Parameters.AddWithValue("@newQty", newQty)
                 deductAdCmd.Parameters.AddWithValue("@itemcode", item.itemCode)
                 deductAdCmd.ExecuteNonQuery()
-
-                ' Add inventory check
-                If newQty < 0 Then
-                    Throw New Exception($"Insufficient inventory for item {item.itemCode}. Required: {item.quantity}, Available: {currentQty}")
-                End If
             Next
 
             Debug.WriteLine("DeductInventory completed successfully.")
@@ -868,7 +993,7 @@ Public Class Cashier
         lbl_noOfProducts.Text = totalItems.ToString() ' Update the label
     End Sub
 
-    Private Sub btnSetting_Click(sender As Object, e As EventArgs) Handles btnSetting.Click
+    Private Sub btnSetting_Click(sender As Object, e As EventArgs)
         Load_Foods()
         a.Rows.Clear()
         lbl_date.Text = Date.Now.ToString("yyyy-MM-dd")
@@ -992,14 +1117,25 @@ Public Class Cashier
             txt_transno.ForeColor = Color.Red ' or any color you prefer
         End If
     End Sub
-    ' Modified function to check if there's enough inventory considering cart items
-    Private Function HasSufficientInventoryForOrder(foodCode As String, sizeName As String, orderQuantity As Integer) As Boolean
+    Private Function HasSufficientInventoryForOrder(foodCode As String, sizeName As String, orderQuantity As Integer, Optional sugarQuantity As Integer = 0) As Boolean
         Dim checkConnection As New MySqlConnection(connString)
         Try
             checkConnection.Open()
 
             ' Get current cart ingredient usage
             Dim cartUsage As Dictionary(Of String, Decimal) = GetCartIngredientUsage()
+
+            ' Add sugar usage to cart usage if needed
+            If sugarQuantity > 0 Then
+                Dim sugarItemCode As String = "SUG001"
+                Dim totalSugarNeeded As Decimal = sugarQuantity * orderQuantity
+
+                If cartUsage.ContainsKey(sugarItemCode) Then
+                    cartUsage(sugarItemCode) += totalSugarNeeded
+                Else
+                    cartUsage.Add(sugarItemCode, totalSugarNeeded)
+                End If
+            End If
 
             ' Query to check if we have enough inventory for all ingredients
             Dim checkCmd As New MySqlCommand(
@@ -1030,6 +1166,25 @@ Public Class Cashier
                 End While
             End Using
 
+            ' Also check sugar specifically if needed
+            If sugarQuantity > 0 Then
+                Dim sugarItemCode As String = "SUG001"
+
+                ' Skip if we already checked this item from ingredients
+                If Not cartUsage.ContainsKey(sugarItemCode) Then
+                    Dim checkSugarCmd As New MySqlCommand(
+                    "SELECT quantity FROM tbl_inventory WHERE itemcode = @itemcode", checkConnection)
+                    checkSugarCmd.Parameters.AddWithValue("@itemcode", sugarItemCode)
+
+                    Dim availableSugar As Decimal = CDec(checkSugarCmd.ExecuteScalar())
+                    Dim requiredSugar As Decimal = sugarQuantity * orderQuantity
+
+                    If requiredSugar > availableSugar Then
+                        Return False
+                    End If
+                End If
+            End If
+
             Return True
 
         Catch ex As Exception
@@ -1042,7 +1197,6 @@ Public Class Cashier
             End If
         End Try
     End Function
-    ' Function to calculate total ingredients needed for items in cart
     Private Function GetCartIngredientUsage() As Dictionary(Of String, Decimal)
         Dim ingredientUsage As New Dictionary(Of String, Decimal)
         Dim checkConnection As New MySqlConnection(connString)
@@ -1058,9 +1212,9 @@ Public Class Cashier
 
                 ' Get ingredients for this item
                 Dim cmd As New MySqlCommand(
-                    "SELECT itemcode, quantity * @orderQuantity as total_qty " &
-                    "FROM tbl_ingredients " &
-                    "WHERE foodcode = @foodcode AND size_name = @size_name", checkConnection)
+                "SELECT itemcode, quantity * @orderQuantity as total_qty " &
+                "FROM tbl_ingredients " &
+                "WHERE foodcode = @foodcode AND size_name = @size_name", checkConnection)
 
                 cmd.Parameters.AddWithValue("@foodcode", foodCode)
                 cmd.Parameters.AddWithValue("@size_name", sizeName)
@@ -1079,6 +1233,21 @@ Public Class Cashier
                         End If
                     End While
                 End Using
+
+                ' Add sugar usage from the row's Tag if present
+                If row.Tag IsNot Nothing AndAlso TypeOf row.Tag Is Integer Then
+                    Dim sugarQty As Integer = CInt(row.Tag)
+                    If sugarQty > 0 Then
+                        Dim sugarItemCode As String = "SUG001"
+                        Dim totalSugarQty As Decimal = sugarQty * quantity
+
+                        If ingredientUsage.ContainsKey(sugarItemCode) Then
+                            ingredientUsage(sugarItemCode) += totalSugarQty
+                        Else
+                            ingredientUsage.Add(sugarItemCode, totalSugarQty)
+                        End If
+                    End If
+                End If
             Next
 
             Return ingredientUsage
@@ -1109,7 +1278,7 @@ Public Class Cashier
         txt_transno.Parent.Focus() ' Remove focus by setting focus to its parent control
     End Sub
 
-    Private Sub GunaButton2_Click(sender As Object, e As EventArgs) Handles GunaButton2.Click
+    Private Sub GunaButton2_Click(sender As Object, e As EventArgs)
         Dim changePasswordForm As New frmCashierChangepassword()
         changePasswordForm.lblUsername.Text = lblUseraccname.Text ' Pass the username
         changePasswordForm.ShowDialog()

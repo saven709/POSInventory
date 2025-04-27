@@ -31,7 +31,6 @@ Partial Class Form1
         Me.GunaButton4 = New Guna.UI.WinForms.GunaButton()
         Me.btnSetting = New Guna.UI.WinForms.GunaButton()
         Me.PanelRecord = New System.Windows.Forms.Panel()
-        Me.GunaButton8 = New Guna.UI.WinForms.GunaButton()
         Me.GunaButton9 = New Guna.UI.WinForms.GunaButton()
         Me.btnRecord = New Guna.UI.WinForms.GunaButton()
         Me.PanelStock = New System.Windows.Forms.Panel()
@@ -100,7 +99,7 @@ Partial Class Form1
         Me.PanelSetting.Controls.Add(Me.btnBackup)
         Me.PanelSetting.Controls.Add(Me.GunaButton4)
         Me.PanelSetting.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelSetting.Location = New System.Drawing.Point(0, 466)
+        Me.PanelSetting.Location = New System.Drawing.Point(0, 431)
         Me.PanelSetting.Name = "PanelSetting"
         Me.PanelSetting.Size = New System.Drawing.Size(217, 72)
         Me.PanelSetting.TabIndex = 18
@@ -172,7 +171,7 @@ Partial Class Form1
         Me.btnSetting.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.btnSetting.Image = Global.POSINVENTORY.My.Resources.Resources._21
         Me.btnSetting.ImageSize = New System.Drawing.Size(20, 20)
-        Me.btnSetting.Location = New System.Drawing.Point(0, 416)
+        Me.btnSetting.Location = New System.Drawing.Point(0, 381)
         Me.btnSetting.Name = "btnSetting"
         Me.btnSetting.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
         Me.btnSetting.OnHoverBorderColor = System.Drawing.Color.Black
@@ -185,41 +184,13 @@ Partial Class Form1
         '
         'PanelRecord
         '
-        Me.PanelRecord.Controls.Add(Me.GunaButton8)
         Me.PanelRecord.Controls.Add(Me.GunaButton9)
         Me.PanelRecord.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelRecord.Location = New System.Drawing.Point(0, 344)
         Me.PanelRecord.Name = "PanelRecord"
-        Me.PanelRecord.Size = New System.Drawing.Size(217, 72)
+        Me.PanelRecord.Size = New System.Drawing.Size(217, 37)
         Me.PanelRecord.TabIndex = 16
         Me.PanelRecord.Visible = False
-        '
-        'GunaButton8
-        '
-        Me.GunaButton8.AnimationHoverSpeed = 0.07!
-        Me.GunaButton8.AnimationSpeed = 0.03!
-        Me.GunaButton8.BackColor = System.Drawing.Color.Transparent
-        Me.GunaButton8.BaseColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
-        Me.GunaButton8.BorderColor = System.Drawing.Color.Black
-        Me.GunaButton8.DialogResult = System.Windows.Forms.DialogResult.None
-        Me.GunaButton8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GunaButton8.FocusedColor = System.Drawing.Color.Empty
-        Me.GunaButton8.Font = New System.Drawing.Font("Poppins", 10.0!)
-        Me.GunaButton8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.GunaButton8.Image = Nothing
-        Me.GunaButton8.ImageSize = New System.Drawing.Size(20, 20)
-        Me.GunaButton8.Location = New System.Drawing.Point(0, 34)
-        Me.GunaButton8.Name = "GunaButton8"
-        Me.GunaButton8.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
-        Me.GunaButton8.OnHoverBorderColor = System.Drawing.Color.Black
-        Me.GunaButton8.OnHoverForeColor = System.Drawing.Color.White
-        Me.GunaButton8.OnHoverImage = Nothing
-        Me.GunaButton8.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaButton8.Size = New System.Drawing.Size(217, 35)
-        Me.GunaButton8.TabIndex = 13
-        Me.GunaButton8.Text = "POS Record"
-        Me.GunaButton8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.GunaButton8.Visible = False
         '
         'GunaButton9
         '
@@ -692,7 +663,6 @@ Partial Class Form1
     Friend WithEvents PanelSetting As Panel
     Friend WithEvents GunaButton4 As Guna.UI.WinForms.GunaButton
     Friend WithEvents PanelRecord As Panel
-    Friend WithEvents GunaButton8 As Guna.UI.WinForms.GunaButton
     Friend WithEvents GunaButton9 As Guna.UI.WinForms.GunaButton
     Friend WithEvents PanelStock As Panel
     Friend WithEvents GunaButton6 As Guna.UI.WinForms.GunaButton

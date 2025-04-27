@@ -3,71 +3,111 @@
 Public Class editadjustment
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Try
+            ' VALIDATE INPUT FIELDS
+            If String.IsNullOrWhiteSpace(txt_quantity.Text) Then
+                MsgBox("PLEASE FILL OUT ALL REQUIRED FIELDS!", MsgBoxStyle.Exclamation)
+                Return
+            End If
+
+            ' ENSURE QUANTITY IS A VALID NUMBER
+            Dim inputQuantity As Integer
+            If Not Integer.TryParse(txt_quantity.Text, inputQuantity) Then
+                MsgBox("QUANTITY MUST BE A VALID NUMBER!", MsgBoxStyle.Exclamation)
+                Return
+            End If
+
+            ' GET LAST QUANTITY FROM DATABASE LABEL
+            Dim lastQty As Integer = Integer.Parse(lbl_lastquantity.Text)
+
+            ' CALCULATE WASTE
+            Dim waste As Integer = If(lastQty > inputQuantity, lastQty - inputQuantity, 0)
+
+            ' AUTO-GENERATE DESCRIPTION IF NEEDED
+            Dim originalDesc As String = txt_desc.Text
+            Dim isSystemDesc As Boolean = originalDesc.Contains("LOW STOCK") OrElse originalDesc.Contains("NO STOCK")
+
+            If inputQuantity = 0 Then
+                If String.IsNullOrWhiteSpace(originalDesc) OrElse isSystemDesc Then
+                    txt_desc.Text = "NO STOCK AVAILABLE"
+                End If
+            ElseIf inputQuantity < 11 Then
+                If String.IsNullOrWhiteSpace(originalDesc) OrElse isSystemDesc Then
+                    txt_desc.Text = "LOW STOCK - ACTION REQUIRED"
+                End If
+            End If
+
+            ' OPEN CONNECTION
             If conn.State = ConnectionState.Closed Then conn.Open()
 
-            ' Calculate the new quantity by subtracting the waste value from the current quantity
-            Dim currentQuantity As Integer = Integer.Parse(txt_quantity.Text) ' Original quantity from the database
-            Dim wasteQuantity As Integer = If(String.IsNullOrEmpty(txt_wastequantity.Text), 0, Integer.Parse(txt_wastequantity.Text)) ' Waste quantity input
-            Dim newQuantity As Integer = currentQuantity - wasteQuantity ' Deduct waste from current quantity
+            ' START TRANSACTION
+            Dim transaction As MySqlTransaction = conn.BeginTransaction()
 
-            ' Check if the resulting quantity is valid
-            If newQuantity < 0 Then
-                MsgBox("Error: Waste quantity exceeds the current quantity!", vbCritical, "Invalid Input")
-                Exit Sub
-            End If
+            Try
+                ' UPDATE tbl_inventoryad
+                Dim cmd1 As New MySqlCommand("UPDATE `tbl_inventoryad` 
+                                          SET `name`=@name, 
+                                              `quantity`=@quantity, 
+                                              `desc`=@desc, 
+                                              `adjustby`=@adjustby, 
+                                              `adjustdate`=@adjustdate, 
+                                              `adjusttime`=@adjusttime, 
+                                              `lastquantity`=@lastquantity, 
+                                              `waste`=@waste 
+                                          WHERE `itemcode`=@itemcode", conn, transaction)
+                cmd1.Parameters.Clear()
+                cmd1.Parameters.AddWithValue("@itemcode", txt_itemcode.Text)
+                cmd1.Parameters.AddWithValue("@name", txt_name.Text)
+                cmd1.Parameters.AddWithValue("@quantity", inputQuantity)
+                cmd1.Parameters.AddWithValue("@desc", txt_desc.Text)
+                cmd1.Parameters.AddWithValue("@adjustby", Form1.lblUsername.Text)
+                cmd1.Parameters.AddWithValue("@adjustdate", DateTime.Now.ToString("ddd, dd-MM-yyyy"))
+                cmd1.Parameters.AddWithValue("@adjusttime", DateTime.Now.ToString("hh:mm:ss tt"))
+                cmd1.Parameters.AddWithValue("@lastquantity", lbl_lastquantity.Text)
+                cmd1.Parameters.AddWithValue("@waste", waste)
 
-            ' Update `tbl_inventoryad` table
-            Dim cmd1 As New MySqlCommand("UPDATE `tbl_inventoryad` 
-                                      SET `name` = @name, 
-                                          `quantity` = @quantity, 
-                                          `desc` = @desc, 
-                                          `adjustby` = @adjustby, 
-                                          `adjustdate` = @adjustdate, 
-                                          `adjusttime` = @adjusttime, 
-                                          `lastquantity` = @lastquantity,
-                                          `waste` = @waste
-                                      WHERE `itemcode` = @itemcode", conn)
-            cmd1.Parameters.AddWithValue("@itemcode", txt_itemcode.Text)
-            cmd1.Parameters.AddWithValue("@name", txt_name.Text)
-            cmd1.Parameters.AddWithValue("@quantity", newQuantity) ' Updated quantity
-            cmd1.Parameters.AddWithValue("@desc", txt_desc.Text)
-            cmd1.Parameters.AddWithValue("@adjustby", Form1.lblUsername.Text)
-            cmd1.Parameters.AddWithValue("@adjustdate", lbl_date1.Text)
-            cmd1.Parameters.AddWithValue("@adjusttime", lbl_time.Text)
-            cmd1.Parameters.AddWithValue("@lastquantity", lbl_lastquantity.Text)
-            cmd1.Parameters.AddWithValue("@waste", wasteQuantity) ' Save waste quantity
+                Dim result1 As Integer = cmd1.ExecuteNonQuery()
 
-            ' Execute the first query
-            Dim i As Integer = cmd1.ExecuteNonQuery()
+                ' UPDATE tbl_inventory
+                Dim cmd2 As New MySqlCommand("UPDATE `tbl_inventory` 
+                                          SET `name`=@name, 
+                                              `quantity`=@quantity 
+                                          WHERE `itemcode`=@itemcode", conn, transaction)
+                cmd2.Parameters.Clear()
+                cmd2.Parameters.AddWithValue("@itemcode", txt_itemcode.Text)
+                cmd2.Parameters.AddWithValue("@name", txt_name.Text)
+                cmd2.Parameters.AddWithValue("@quantity", inputQuantity)
 
-            ' Update `tbl_inventory` table (only itemcode, name, quantity, and waste)
-            Dim cmd2 As New MySqlCommand("UPDATE `tbl_inventory` 
-                                      SET `name` = @name, 
-                                          `quantity` = @quantity
-                                      WHERE `itemcode` = @itemcode", conn)
-            cmd2.Parameters.AddWithValue("@itemcode", txt_itemcode.Text)
-            cmd2.Parameters.AddWithValue("@name", txt_name.Text)
-            cmd2.Parameters.AddWithValue("@quantity", newQuantity) ' Updated quantity
+                Dim result2 As Integer = cmd2.ExecuteNonQuery()
 
-            ' Execute the second query
-            Dim j As Integer = cmd2.ExecuteNonQuery()
+                ' CHECK IF BOTH UPDATES WERE SUCCESSFUL
+                If result1 > 0 AndAlso result2 > 0 Then
+                    transaction.Commit()
+                    MsgBox("INVENTORY ADJUSTMENT SUCCESSFULLY SAVED!", vbInformation, "SUCCESS")
 
-            ' Check if both updates succeeded
-            If i > 0 And j > 0 Then
-                Dim Adjustment As Adjustment = Application.OpenForms.OfType(Of Adjustment)().FirstOrDefault()
-                Adjustment.LoadAdjustments() ' Refresh the inventory list
-                MsgBox("Adjustment updated successfully in both tables!", vbInformation, "ADJUSTMENT")
-                Me.DialogResult = DialogResult.OK ' Signal success to the calling form
-                Me.Close()
-            Else
-                MsgBox("Warning: Failed to update adjustments in one or both tables!", vbCritical, "ADJUSTMENT")
-            End If
+                    ' REFRESH THE ADJUSTMENT FORM
+                    Dim adjustmentForm As Adjustment = Application.OpenForms.OfType(Of Adjustment)().FirstOrDefault()
+                    If adjustmentForm IsNot Nothing Then
+                        adjustmentForm.LoadAdjustments()
+                    End If
+
+                    ' CLOSE THE FORM
+                    Me.DialogResult = DialogResult.OK
+                    Me.Close()
+                Else
+                    transaction.Rollback()
+                    MsgBox("FAILED TO UPDATE ONE OR BOTH TABLES!", vbCritical, "ERROR")
+                End If
+            Catch ex As Exception
+                transaction.Rollback()
+                MsgBox("ERROR OCCURRED DURING TRANSACTION: " & ex.Message, vbCritical, "TRANSACTION ERROR")
+            End Try
         Catch ex As Exception
-            MsgBox("Error: " & ex.Message, vbCritical, "Error")
+            MsgBox("ERROR: " & ex.Message, vbCritical, "ERROR")
         Finally
             If conn.State = ConnectionState.Open Then conn.Close()
         End Try
     End Sub
+
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         lbl_date1.Text = Date.Now.ToString("ddd, dd-MM-yyyy")

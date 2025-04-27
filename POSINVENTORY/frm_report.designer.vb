@@ -317,6 +317,8 @@ Partial Class frm_report
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToResizeColumns = False
+        Me.DataGridView1.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
         DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
         Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
@@ -329,7 +331,7 @@ Partial Class frm_report
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10})
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
@@ -373,7 +375,7 @@ Partial Class frm_report
         Me.Column2.HeaderText = "TRANSACTION DATE"
         Me.Column2.Name = "Column2"
         Me.Column2.ReadOnly = True
-        Me.Column2.Width = 123
+        Me.Column2.Width = 134
         '
         'Column3
         '
@@ -381,7 +383,7 @@ Partial Class frm_report
         Me.Column3.HeaderText = "TRANSACTION NO"
         Me.Column3.Name = "Column3"
         Me.Column3.ReadOnly = True
-        Me.Column3.Width = 114
+        Me.Column3.Width = 124
         '
         'Column4
         '
@@ -397,7 +399,7 @@ Partial Class frm_report
         Me.Column5.HeaderText = "PRODUCT CODE"
         Me.Column5.Name = "Column5"
         Me.Column5.ReadOnly = True
-        Me.Column5.Width = 105
+        Me.Column5.Width = 114
         '
         'Column6
         '
@@ -436,7 +438,7 @@ Partial Class frm_report
         Me.Column9.HeaderText = "TOTAL PRICE"
         Me.Column9.Name = "Column9"
         Me.Column9.ReadOnly = True
-        Me.Column9.Width = 88
+        Me.Column9.Width = 95
         '
         'Column10
         '
