@@ -33,6 +33,7 @@ Partial Class Entry
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.btnRemove = New Bunifu.Framework.UI.BunifuFlatButton()
         Me.txt_search = New Bunifu.UI.WinForms.BunifuTextBox()
         Me.btn_ManageFoods = New Bunifu.Framework.UI.BunifuFlatButton()
@@ -45,32 +46,48 @@ Partial Class Entry
         Me.lbl_date1 = New System.Windows.Forms.Label()
         Me.lbl_time = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.GunaElipse4 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.Panel1.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel4.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(108, Byte), Integer))
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(201, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.PictureBox2)
         Me.Panel1.Controls.Add(Me.btnRemove)
         Me.Panel1.Controls.Add(Me.txt_search)
         Me.Panel1.Controls.Add(Me.btn_ManageFoods)
-        Me.Panel1.Location = New System.Drawing.Point(10, 18)
+        Me.Panel1.Location = New System.Drawing.Point(10, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(424, 115)
+        Me.Panel1.Size = New System.Drawing.Size(1148, 104)
         Me.Panel1.TabIndex = 0
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackColor = System.Drawing.Color.White
+        Me.PictureBox2.Image = Global.POSINVENTORY.My.Resources.Resources.icons8_search_32
+        Me.PictureBox2.Location = New System.Drawing.Point(23, 20)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(28, 22)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 33
+        Me.PictureBox2.TabStop = False
+        Me.PictureBox2.Visible = False
         '
         'btnRemove
         '
         Me.btnRemove.Activecolor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.btnRemove.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.btnRemove.BackColor = System.Drawing.Color.FromArgb(CType(CType(84, Byte), Integer), CType(CType(78, Byte), Integer), CType(CType(81, Byte), Integer))
         Me.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.btnRemove.BorderRadius = 0
         Me.btnRemove.ButtonText = "REMOVE"
         Me.btnRemove.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnRemove.DisabledColor = System.Drawing.Color.Gray
         Me.btnRemove.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRemove.ForeColor = System.Drawing.Color.White
         Me.btnRemove.Iconcolor = System.Drawing.Color.Transparent
         Me.btnRemove.Iconimage = Nothing
         Me.btnRemove.Iconimage_right = Nothing
@@ -83,18 +100,18 @@ Partial Class Entry
         Me.btnRemove.IconVisible = True
         Me.btnRemove.IconZoom = 60.0R
         Me.btnRemove.IsTab = False
-        Me.btnRemove.Location = New System.Drawing.Point(273, 65)
+        Me.btnRemove.Location = New System.Drawing.Point(1010, 57)
         Me.btnRemove.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnRemove.Name = "btnRemove"
-        Me.btnRemove.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.btnRemove.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(84, Byte), Integer), CType(CType(78, Byte), Integer), CType(CType(81, Byte), Integer))
         Me.btnRemove.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.btnRemove.OnHoverTextColor = System.Drawing.Color.White
         Me.btnRemove.selected = False
-        Me.btnRemove.Size = New System.Drawing.Size(106, 35)
+        Me.btnRemove.Size = New System.Drawing.Size(123, 35)
         Me.btnRemove.TabIndex = 32
         Me.btnRemove.Text = "REMOVE"
         Me.btnRemove.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.btnRemove.Textcolor = System.Drawing.SystemColors.ControlText
+        Me.btnRemove.Textcolor = System.Drawing.Color.Transparent
         Me.btnRemove.TextFont = New System.Drawing.Font("Poppins", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'txt_search
@@ -127,7 +144,7 @@ Partial Class Entry
         Me.txt_search.IconRight = Nothing
         Me.txt_search.IconRightCursor = System.Windows.Forms.Cursors.IBeam
         Me.txt_search.Lines = New String(-1) {}
-        Me.txt_search.Location = New System.Drawing.Point(13, 22)
+        Me.txt_search.Location = New System.Drawing.Point(15, 13)
         Me.txt_search.MaxLength = 32767
         Me.txt_search.MinimumSize = New System.Drawing.Size(1, 1)
         Me.txt_search.Modified = False
@@ -163,7 +180,7 @@ Partial Class Entry
         Me.txt_search.SelectionLength = 0
         Me.txt_search.SelectionStart = 0
         Me.txt_search.ShortcutsEnabled = True
-        Me.txt_search.Size = New System.Drawing.Size(254, 37)
+        Me.txt_search.Size = New System.Drawing.Size(1118, 37)
         Me.txt_search.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Material
         Me.txt_search.TabIndex = 31
         Me.txt_search.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
@@ -196,14 +213,14 @@ Partial Class Entry
         Me.btn_ManageFoods.IconVisible = True
         Me.btn_ManageFoods.IconZoom = 60.0R
         Me.btn_ManageFoods.IsTab = False
-        Me.btn_ManageFoods.Location = New System.Drawing.Point(13, 65)
+        Me.btn_ManageFoods.Location = New System.Drawing.Point(733, 57)
         Me.btn_ManageFoods.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btn_ManageFoods.Name = "btn_ManageFoods"
         Me.btn_ManageFoods.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.btn_ManageFoods.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(77, Byte), Integer))
         Me.btn_ManageFoods.OnHoverTextColor = System.Drawing.Color.White
         Me.btn_ManageFoods.selected = False
-        Me.btn_ManageFoods.Size = New System.Drawing.Size(254, 35)
+        Me.btn_ManageFoods.Size = New System.Drawing.Size(269, 35)
         Me.btn_ManageFoods.TabIndex = 30
         Me.btn_ManageFoods.Text = "ADD ITEM"
         Me.btn_ManageFoods.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -212,25 +229,25 @@ Partial Class Entry
         '
         'Panel4
         '
-        Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(78, Byte), Integer), CType(CType(58, Byte), Integer), CType(CType(48, Byte), Integer))
+        Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(186, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.Panel4.Controls.Add(Me.DataGridView1)
         Me.Panel4.Controls.Add(Me.Panel1)
-        Me.Panel4.Location = New System.Drawing.Point(11, 31)
+        Me.Panel4.Location = New System.Drawing.Point(13, 31)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(667, 600)
+        Me.Panel4.Size = New System.Drawing.Size(1170, 747)
         Me.Panel4.TabIndex = 27
         '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
         Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold)
         DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
@@ -239,15 +256,15 @@ Partial Class Entry
         Me.DataGridView1.ColumnHeadersHeight = 30
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView1.GridColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer))
-        Me.DataGridView1.Location = New System.Drawing.Point(10, 149)
+        Me.DataGridView1.Location = New System.Drawing.Point(10, 122)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
         DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -259,7 +276,7 @@ Partial Class Entry
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(644, 448)
+        Me.DataGridView1.Size = New System.Drawing.Size(1148, 608)
         Me.DataGridView1.TabIndex = 11
         '
         'GunaElipse1
@@ -294,7 +311,7 @@ Partial Class Entry
         Me.lbl_date1.BackColor = System.Drawing.Color.Transparent
         Me.lbl_date1.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_date1.ForeColor = System.Drawing.Color.Black
-        Me.lbl_date1.Location = New System.Drawing.Point(335, 3)
+        Me.lbl_date1.Location = New System.Drawing.Point(846, 3)
         Me.lbl_date1.Name = "lbl_date1"
         Me.lbl_date1.Size = New System.Drawing.Size(251, 25)
         Me.lbl_date1.TabIndex = 30
@@ -306,7 +323,7 @@ Partial Class Entry
         Me.lbl_time.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lbl_time.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_time.ForeColor = System.Drawing.Color.Black
-        Me.lbl_time.Location = New System.Drawing.Point(563, 3)
+        Me.lbl_time.Location = New System.Drawing.Point(1074, 3)
         Me.lbl_time.Name = "lbl_time"
         Me.lbl_time.Size = New System.Drawing.Size(107, 25)
         Me.lbl_time.TabIndex = 29
@@ -317,12 +334,17 @@ Partial Class Entry
         '
         Me.Timer1.Enabled = True
         '
+        'GunaElipse4
+        '
+        Me.GunaElipse4.Radius = 10
+        Me.GunaElipse4.TargetControl = Me.txt_search
+        '
         'Entry
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(689, 643)
+        Me.ClientSize = New System.Drawing.Size(1200, 790)
         Me.Controls.Add(Me.lbl_date1)
         Me.Controls.Add(Me.lbl_time)
         Me.Controls.Add(Me.Label3)
@@ -332,6 +354,7 @@ Partial Class Entry
         Me.Text = "Entry"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel4.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -352,4 +375,6 @@ Partial Class Entry
     Friend WithEvents lbl_date1 As Label
     Friend WithEvents lbl_time As Label
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents GunaElipse4 As Guna.UI.WinForms.GunaElipse
 End Class

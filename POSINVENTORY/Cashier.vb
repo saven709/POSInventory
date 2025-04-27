@@ -5,35 +5,88 @@ Imports System.Drawing.Imaging
 
 Public Class Cashier
 
-    Dim connString As String = "server=localhost;user=root;password=;database=brewtopia_db"
+    Dim connString As String = "server=localhost;port=3307;user=root;password=;database=brewtopia_db"
     Private WithEvents pan As Panel
     Private WithEvents pan_top As Panel
     Private WithEvents foodcode As Label
     Private WithEvents foodname As Label
     Private WithEvents img As CirclePicturBox
 
+    Public Sub UpdateBalanceAmount()
+        Try
+            Dim grandtotal As Decimal = 0
+            For i As Integer = 0 To a.Rows.Count() - 1
+                grandtotal += CDec(a.Rows(i).Cells(6).Value)
+            Next
 
+            If Not String.IsNullOrEmpty(txt_receivedAmount.Text) AndAlso Decimal.TryParse(txt_receivedAmount.Text, Nothing) Then
+                txt_BalanceAmount.Text = Format(CDec(txt_receivedAmount.Text) - grandtotal, "#,##0.00")
+                lbl_tot.Text = Format(grandtotal, "#,##0.00")
+            End If
+        Catch ex As Exception
+            ' Handle any errors that might occur during calculation
+        End Try
+    End Sub
+    Private Sub txt_receivedAmount_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_receivedAmount.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True ' Prevents the beep sound
+            btnRecord.PerformClick() ' Triggers the button click
+        End If
+    End Sub
 
     Private Sub txt_receivedAmount_TextChanged(sender As Object, e As EventArgs) Handles txt_receivedAmount.TextChanged
         Try
+            ' Limit to 4 digits or 9999
+            If txt_receivedAmount.Text.Length > 0 Then
+                Dim value As Double
+                If Double.TryParse(txt_receivedAmount.Text, value) Then
+                    ' Check if the value exceeds 9999
+                    If value > 99999 Then
+                        txt_receivedAmount.Text = "99999"
+                        txt_receivedAmount.SelectionStart = txt_receivedAmount.Text.Length ' Keep cursor at the end
+                    End If
+                Else
+                    txt_receivedAmount.Text = ""
+                End If
+            End If
+
+            ' Update grand total and balance amount
             Dim grandtotal As Double = 0
-            For i As Double = 0 To DataGridView1.Rows.Count() - 1 Step +1
-                grandtotal = grandtotal + DataGridView1.Rows(i).Cells(6).Value  ' Changed from Cells(5) to Cells(6) to match subtotal column
+            For i As Double = 0 To a.Rows.Count() - 1 Step +1
+                grandtotal = grandtotal + a.Rows(i).Cells(6).Value ' Match subtotal column
             Next
+
             If Double.TryParse(txt_receivedAmount.Text, 0) Then
                 txt_BalanceAmount.Text = Format(CDec(txt_receivedAmount.Text) - grandtotal, "#,##0.00")
                 lbl_tot.Text = Format(grandtotal, "#,##0.00")
+            Else
+                ' Clear BalanceAmount if the input is invalid
+                txt_BalanceAmount.Text = ""
             End If
         Catch ex As Exception
             ' Log the error or show a message if needed
         End Try
     End Sub
 
+
+
+    Private Sub txt_receivedAmount_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txt_receivedAmount.KeyPress
+        ' Allow numbers, one decimal point, and control keys
+        If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> "." Then
+            e.Handled = True
+        End If
+
+        ' Allow only one decimal point
+        If e.KeyChar = "." AndAlso txt_receivedAmount.Text.Contains(".") Then
+            e.Handled = True
+        End If
+    End Sub
+
     Private Sub Get_grandTotal()
         Try
             Dim grandtotal As Double = 0
-            For i As Double = 0 To DataGridView1.Rows.Count() - 1 Step +1
-                grandtotal = grandtotal + DataGridView1.Rows(i).Cells(6).Value  ' Changed from Cells(5) to Cells(6) to match subtotal column
+            For i As Double = 0 To a.Rows.Count() - 1 Step +1
+                grandtotal = grandtotal + a.Rows(i).Cells(6).Value  ' Changed from Cells(5) to Cells(6) to match subtotal column
             Next
             lbl_overallTotal.Text = Format(CDec(grandtotal), "PHP #,##0.00")
             lbl_GrandTotal.Text = Format(CDec(grandtotal), "PHP #,##0.00")
@@ -46,8 +99,8 @@ Public Class Cashier
     Private Sub Get_pricedata()
         Try
             Dim totalQuantity As Double = 0
-            For i As Double = 0 To DataGridView1.Rows.Count() - 1 Step +1
-                totalQuantity = totalQuantity + CDbl(DataGridView1.Rows(i).Cells(5).Value)  ' Changed from Cells(4) to Cells(5) to match quantity column
+            For i As Double = 0 To a.Rows.Count() - 1 Step +1
+                totalQuantity = totalQuantity + CDbl(a.Rows(i).Cells(5).Value)  ' Changed from Cells(4) to Cells(5) to match quantity column
             Next
             lbl_noOfProducts.Text = totalQuantity.ToString()
         Catch ex As Exception
@@ -76,7 +129,7 @@ Public Class Cashier
 
         txt_transno.ReadOnly = True
         txt_transno.TabStop = False
-        'txt_transno.BackColor = SystemColors.Control ' Optional: Make it look like a label
+        txt_transno.BackColor = SystemColors.Control ' Optional: Make it look like a label
         'txt_transno.BorderStyle = BorderStyle.None   ' Optional: Remove the border for cleaner appearance
         LoadCategories()  ' Load categories when form starts
         categorybtn.Text = categories(0)  ' Set initial text to "All"
@@ -87,38 +140,51 @@ Public Class Cashier
     End Sub
 
     Private Sub InitializeDataGridView()
-        DataGridView1.RowTemplate.Height = 30
-        DataGridView1.Columns.Clear()
-        DataGridView1.Columns.Add("No", "No")
-        DataGridView1.Columns.Add("FoodCode", "Food Code")
-        DataGridView1.Columns.Add("FoodName", "Food Name")
-        DataGridView1.Columns.Add("Size", "Size")
-        DataGridView1.Columns.Add("Price", "Price")
-        DataGridView1.Columns.Add("Quantity", "Quantity")
-        DataGridView1.Columns.Add("totalprice", "Subtotal")
+        a.RowTemplate.Height = 30
+        a.Columns.Clear()
+        a.Columns.Add("No", "No")
+        a.Columns.Add("FoodCode", "Food Code")
+        a.Columns.Add("FoodName", "Food Name")
+        a.Columns.Add("Size", "Size")
+        a.Columns.Add("Price", "Price")
+        a.Columns.Add("Quantity", "Quantity")
+        a.Columns.Add("totalprice", "Subtotal")
 
         ' Set column properties
-        DataGridView1.Columns("Price").DefaultCellStyle.Format = "N2"
-        DataGridView1.Columns("totalprice").DefaultCellStyle.Format = "N2"
-        DataGridView1.Columns("No").Width = 50
-        DataGridView1.Columns("FoodCode").Width = 100
-        DataGridView1.Columns("FoodName").Width = 150
-        DataGridView1.Columns("Size").Width = 100
-        DataGridView1.Columns("Price").Width = 100
-        DataGridView1.Columns("Quantity").Width = 80
-        DataGridView1.Columns("totalprice").Width = 120
+        a.Columns("Price").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        a.Columns("totalprice").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        a.Columns("No").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        a.Columns("FoodCode").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        a.Columns("FoodName").Width = 150
+        a.Columns("Size").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        a.Columns("Price").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        a.Columns("Quantity").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        a.Columns("totalprice").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+
+        ' Center text in the "Quantity" column
+        a.Columns("Quantity").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         ' Hide the FoodCode column
-        DataGridView1.Columns("FoodCode").Visible = False
+        a.Columns("FoodCode").Visible = False
+
+        ' Enable text wrapping for the "FoodName" and "Size" columns
+        Dim wrapStyle As New DataGridViewCellStyle()
+        wrapStyle.WrapMode = DataGridViewTriState.True
+        wrapStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+        a.Columns("FoodName").DefaultCellStyle = wrapStyle
+        a.Columns("Size").DefaultCellStyle = wrapStyle
+
+        ' Adjust the row height to accommodate multiline text
+        a.RowTemplate.Height = 50
+        a.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
 
         ' Set DataGridView properties
-        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        DataGridView1.MultiSelect = False
-        DataGridView1.AllowUserToAddRows = False
-        DataGridView1.AllowUserToDeleteRows = False
-        DataGridView1.ReadOnly = True
+        a.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        a.MultiSelect = False
+        a.AllowUserToAddRows = False
+        a.AllowUserToDeleteRows = False
+        a.ReadOnly = True
     End Sub
-
 
     Private Sub auto_Transno()
         Try
@@ -216,7 +282,6 @@ Public Class Cashier
             Dim len As Long = dr.GetBytes(0, 0, Nothing, 0, 0)
             Dim array(CInt(len)) As Byte
             dr.GetBytes(0, 0, array, 0, CInt(len))
-
             Dim foodCode As String = dr.Item("foodcode").ToString()
             Dim foodNameStr As String = dr.Item("foodname").ToString()
 
@@ -227,14 +292,16 @@ Public Class Cashier
             ' Check availability using the separate connection
             Dim isAvailable As Boolean = HasSufficientIngredients(foodCode)
 
+            ' Create panel with consistent properties
             pan = New Panel With {
             .Width = 140,
             .Height = 140,
-            .BackColor = If(isAvailable, Color.FromArgb(40, 40, 40), Color.FromArgb(100, 100, 100)),
+            .BackColor = Color.Black,  ' Keep background color consistent
             .Tag = foodCode,
-            .Enabled = isAvailable
+            .Enabled = True  ' Keep enabled for visual consistency, handle clicks separately
         }
 
+            ' Create image control
             img = New CirclePicturBox With {
             .Height = 100,
             .BackgroundImageLayout = ImageLayout.Stretch,
@@ -242,9 +309,9 @@ Public Class Cashier
             .Tag = foodCode
         }
 
-            ' Apply gray filter to image if unavailable
+            ' Handle image availability
             If Not isAvailable Then
-                ' Convert image to grayscale
+                ' Create grayscale version with proper alpha handling
                 Dim grayImage As New Bitmap(originalImage.Width, originalImage.Height)
                 Using g As Graphics = Graphics.FromImage(grayImage)
                     Dim colorMatrix As New ColorMatrix(
@@ -252,36 +319,38 @@ Public Class Cashier
                         New Single() {0.3F, 0.3F, 0.3F, 0, 0},
                         New Single() {0.3F, 0.3F, 0.3F, 0, 0},
                         New Single() {0.3F, 0.3F, 0.3F, 0, 0},
-                        New Single() {0, 0, 0, 1, 0},
+                        New Single() {0, 0, 0, 0.5F, 0},  ' Reduced opacity to 50%
                         New Single() {0, 0, 0, 0, 1}
                     })
-
                     Dim attributes As New ImageAttributes()
                     attributes.SetColorMatrix(colorMatrix)
 
-                    g.DrawImage(originalImage, New Rectangle(0, 0, originalImage.Width, originalImage.Height),
-                           0, 0, originalImage.Width, originalImage.Height,
-                           GraphicsUnit.Pixel, attributes)
+                    g.DrawImage(originalImage,
+                    New Rectangle(0, 0, originalImage.Width, originalImage.Height),
+                    0, 0, originalImage.Width, originalImage.Height,
+                    GraphicsUnit.Pixel, attributes)
                 End Using
                 img.BackgroundImage = grayImage
             Else
                 img.BackgroundImage = originalImage
             End If
 
+            ' Create label with proper color handling
             foodname = New Label With {
-            .ForeColor = If(isAvailable, Color.White, Color.Gray),
-            .Font = New Font("Segoe UI", 8, FontStyle.Bold),
+            .ForeColor = If(isAvailable, Color.White, Color.Gray),  ' Changed unavailable color to Gray
+            .Font = New Font("Segoe UI", 9, FontStyle.Bold),
             .TextAlign = ContentAlignment.MiddleCenter,
             .Dock = DockStyle.Top,
             .Text = foodNameStr,
             .Tag = foodCode
         }
 
+            ' Add controls to panel
             pan.Controls.Add(img)
             pan.Controls.Add(foodname)
             FlowLayoutPanel1.Controls.Add(pan)
 
-            ' Only add event handlers if the item is available
+            ' Add event handlers only for available items
             If isAvailable Then
                 AddHandler pan.Click, AddressOf Selectimg_Click
                 AddHandler img.Click, AddressOf Selectimg_Click
@@ -304,8 +373,8 @@ Public Class Cashier
         Else
             ' If clicked on panel or image, find the label in the panel
             Dim panel As Panel = If(TypeOf sender Is Panel,
-                              DirectCast(sender, Panel),
-                              DirectCast(sender, CirclePicturBox).Parent)
+                      DirectCast(sender, Panel),
+                      DirectCast(sender, CirclePicturBox).Parent)
             For Each ctrl As Control In panel.Controls
                 If TypeOf ctrl Is Label Then
                     foodName = DirectCast(ctrl, Label).Text
@@ -315,7 +384,7 @@ Public Class Cashier
         End If
 
         ' Pass both foodCode and foodName to the formsizes form
-        Dim sizeForm As New formsizes(foodCode, foodName)
+        Dim sizeForm As New formsizes(foodCode, foodName, Me)  ' Pass 'Me' to reference the current Cashier form
         sizeForm.ShowDialog()
 
         ' Get the selected size and price
@@ -325,7 +394,7 @@ Public Class Cashier
 
             ' Before adding to cart, check if we have enough inventory
             If HasSufficientInventoryForOrder(foodCode, selectedSize, 1) Then
-                AddItemToCart(foodCode, selectedSize, selectedPrice, foodName)
+                AddItemToCart(foodCode, selectedSize, selectedPrice, foodName, sizeForm.SelectedAddons)
             Else
                 MessageBox.Show("Not enough inventory available for this item.", "Insufficient Inventory", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
@@ -333,42 +402,48 @@ Public Class Cashier
     End Sub
 
 
-    Private Sub AddItemToCart(foodCode As String, sizeName As String, price As Decimal, foodName As String)
+
+    Private Sub AddItemToCart(foodCode As String, sizeName As String, price As Decimal, foodName As String, addons As List(Of formsizes.AddonItem))
         Dim exist As Boolean = False
         Dim numRow As Integer = 0
 
-        ' Check if the item already exists in the DataGridView
-        For Each itm As DataGridViewRow In DataGridView1.Rows
-            If itm.Cells(1).Value IsNot Nothing Then
-                If itm.Cells(1).Value.ToString() = foodCode AndAlso itm.Cells(3).Value.ToString() = sizeName Then
-                    exist = True
-                    numRow = itm.Index
-                    Exit For
-                End If
+        ' Create addon description
+        Dim addonDesc As String = ""
+        If addons IsNot Nothing AndAlso addons.Count > 0 Then
+            addonDesc = " with " & String.Join(", ", addons.Select(Function(a) a.AddonName))
+        End If
+
+        ' Check if item with same addons exists
+        For Each itm As DataGridViewRow In a.Rows
+            If itm.Cells(1).Value.ToString() = foodCode AndAlso
+               itm.Cells(3).Value.ToString() = sizeName AndAlso
+               itm.Cells(2).Value.ToString() = foodName & addonDesc Then
+                exist = True
+                numRow = itm.Index
+                Exit For
             End If
         Next
 
-        ' If the item doesn't exist, add it to the DataGridView
         If Not exist Then
+            ' Add new row with addons
             Dim subtotal As Decimal = price
-            DataGridView1.Rows.Add(DataGridView1.Rows.Count + 1, foodCode, foodName, sizeName, price, 1, subtotal)
+            a.Rows.Add(a.Rows.Count + 1, foodCode, foodName & addonDesc, sizeName, price, 1, subtotal)
         Else
-            ' If it exists, update the quantity and subtotal
-            DataGridView1.Rows(numRow).Cells(5).Value = CInt(DataGridView1.Rows(numRow).Cells(5).Value) + 1
-            DataGridView1.Rows(numRow).Cells(6).Value = CDec(DataGridView1.Rows(numRow).Cells(4).Value) * CInt(DataGridView1.Rows(numRow).Cells(5).Value)
+            ' Update existing row
+            a.Rows(numRow).Cells(5).Value = CInt(a.Rows(numRow).Cells(5).Value) + 1
+            a.Rows(numRow).Cells(6).Value = CDec(a.Rows(numRow).Cells(4).Value) * CInt(a.Rows(numRow).Cells(5).Value)
         End If
 
         CalculateTotal()
-        UpdateNoOfProducts() ' Update the total number of items
+        UpdateNoOfProducts()
         UpdateButtonVisibility()
-
+        UpdateBalanceAmount()
     End Sub
-
 
     Private Sub CalculateTotal()
         Try
             Dim total As Decimal = 0
-            For Each row As DataGridViewRow In DataGridView1.Rows
+            For Each row As DataGridViewRow In a.Rows
                 If row.Cells(6).Value IsNot Nothing Then
                     total += CDec(row.Cells(6).Value)
                 End If
@@ -379,12 +454,12 @@ Public Class Cashier
         End Try
     End Sub
 
-    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+    Private Sub DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles a.CellClick
         Try
             If e.RowIndex >= 0 Then  ' Make sure we didn't click a header
-                Dim row = DataGridView1.Rows(e.RowIndex)
+                Dim row = a.Rows(e.RowIndex)
                 ' Store the current row index for use with quantity buttons
-                DataGridView1.CurrentCell = DataGridView1.Rows(e.RowIndex).Cells(0)
+                a.CurrentCell = a.Rows(e.RowIndex).Cells(0)
                 UpdateNoOfProducts() ' Update the total number of items when quantity changes
             End If
         Catch ex As Exception
@@ -395,8 +470,8 @@ Public Class Cashier
     ' Modified version of txtquantity_TextChanged to consider cart items
     Private Sub txtquantity_TextChanged(sender As Object, e As EventArgs) Handles txtquantity.TextChanged
         Try
-            If DataGridView1.CurrentRow IsNot Nothing Then
-                Dim row = DataGridView1.CurrentRow
+            If a.CurrentRow IsNot Nothing Then
+                Dim row = a.CurrentRow
                 Dim price As Decimal = CDec(row.Cells(4).Value)
                 Dim foodCode = row.Cells(1).Value.ToString()
                 Dim sizeName = row.Cells(3).Value.ToString()
@@ -421,6 +496,7 @@ Public Class Cashier
                             row.Cells(6).Value = price * newQty
                             CalculateTotal()
                             UpdateNoOfProducts()
+                            UpdateBalanceAmount() ' Add this line to update balance
                         Else
                             ' Restore original quantity
                             row.Cells(5).Value = currentQty
@@ -451,12 +527,16 @@ Public Class Cashier
             ' Move focus to another control or process the entry
             SendKeys.Send("{TAB}")
         End If
+        ' Allow only numeric characters and control keys (e.g., Backspace)
+        If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) Then
+            e.Handled = True ' Suppress the invalid keypress
+        End If
     End Sub
-    ' Modified version of btnPlus_Click to consider cart items
+
     Private Sub btnPlus_Click(sender As Object, e As EventArgs) Handles btnPlus.Click
         Try
-            If DataGridView1.CurrentRow IsNot Nothing Then
-                Dim row = DataGridView1.CurrentRow
+            If a.CurrentRow IsNot Nothing Then
+                Dim row = a.CurrentRow
                 Dim foodCode = row.Cells(1).Value.ToString()
                 Dim sizeName = row.Cells(3).Value.ToString()
                 Dim currentQty = CInt(row.Cells(5).Value)
@@ -476,6 +556,7 @@ Public Class Cashier
 
                     CalculateTotal()
                     UpdateNoOfProducts()
+                    UpdateBalanceAmount() ' Add this line to update balance
                 Else
                     ' Restore the original quantity
                     row.Cells(5).Value = currentQty
@@ -489,8 +570,8 @@ Public Class Cashier
 
     Private Sub btnMinus_Click(sender As Object, e As EventArgs) Handles btnminus.Click
         Try
-            If DataGridView1.CurrentRow IsNot Nothing Then
-                Dim row = DataGridView1.CurrentRow
+            If a.CurrentRow IsNot Nothing Then
+                Dim row = a.CurrentRow
                 Dim currentQty = CInt(row.Cells(5).Value)
                 Dim price = CDec(row.Cells(4).Value)
 
@@ -503,7 +584,8 @@ Public Class Cashier
                     row.Cells(6).Value = price * currentQty
 
                     CalculateTotal()
-                    UpdateNoOfProducts() ' Update the total number of items
+                    UpdateNoOfProducts()
+                    UpdateBalanceAmount() ' Add this line to update balance
                 End If
             End If
         Catch ex As Exception
@@ -515,35 +597,35 @@ Public Class Cashier
     ' Handle Remove button
     Private Sub btnRemove_Click(sender As Object, e As EventArgs) Handles btnRemove.Click
         Try
-            If DataGridView1.CurrentRow IsNot Nothing Then
+            If a.CurrentRow IsNot Nothing Then
                 If MessageBox.Show("Are you sure you want to remove this item?", "Confirm Remove",
                              MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                    DataGridView1.Rows.Remove(DataGridView1.CurrentRow)
+                    a.Rows.Remove(a.CurrentRow)
                     RenumberRows()
                     CalculateTotal()
-                    UpdateNoOfProducts() ' Update the total number of items
+                    UpdateNoOfProducts()
+                    UpdateBalanceAmount()
                 End If
             End If
         Catch ex As Exception
             MessageBox.Show("Error removing item: " & ex.Message)
         End Try
         UpdateButtonVisibility()
-
     End Sub
 
 
     Private Sub RenumberRows()
-        For i As Integer = 0 To DataGridView1.Rows.Count - 1
-            DataGridView1.Rows(i).Cells(0).Value = i + 1
+        For i As Integer = 0 To a.Rows.Count - 1
+            a.Rows(i).Cells(0).Value = i + 1
         Next
     End Sub
 
     Private Sub btnNewOrder_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
         Try
-            If DataGridView1.Rows.Count > 0 Then
+            If a.Rows.Count > 0 Then
                 If MessageBox.Show("Are you sure you want to start a new order?", "Confirm New Order",
                                  MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                    DataGridView1.Rows.Clear()
+                    a.Rows.Clear()
                     lbl_GrandTotal.Text = "0.00"
                     auto_Transno()
                 End If
@@ -558,8 +640,8 @@ Public Class Cashier
             If txt_receivedAmount.Text = String.Empty Then
                 MsgBox("Please Enter Received Amount!", vbExclamation)
                 Return
-            ElseIf txt_BalanceAmount.Text < 0 Then
-                MsgBox("Infinity Balance!" & vbNewLine & txt_receivedAmount.Text & " ₹", MsgBoxStyle.Exclamation)
+            ElseIf CDec(txt_BalanceAmount.Text) < 0 Then
+                MsgBox("Insufficient Payment!" & vbNewLine & "Amount needed: PHP " & Format(Math.Abs(CDec(txt_BalanceAmount.Text)) + CDec(txt_receivedAmount.Text), "#,##0.00"), MsgBoxStyle.Exclamation)
                 Return
             Else
                 Try
@@ -569,29 +651,77 @@ Public Class Cashier
                     Dim transaction As MySqlTransaction = conn.BeginTransaction()
                     Try
                         ' Insert transaction details into tbl_pos
-                        cmd = New MySqlCommand("INSERT INTO `tbl_pos`(`transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal`, `nooffoods`) VALUES (@transno,@transdate,@transmonth,@foodcode,@foodname,@price,@qty,@totalprice,@grandtotal,@nooffoods)", conn, transaction)
+                        cmd = New MySqlCommand("INSERT INTO `tbl_pos`(`transno`, `transdate`, `cashiername`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal`, `nooffoods`, `amountreceived`, `changes`) VALUES (@transno,@transdate,@cashiername,@foodcode,@foodname,@price,@qty,@totalprice,@grandtotal,@nooffoods,@amountreceived,@changes)", conn, transaction)
 
                         Dim transDateTime As DateTime = DateTime.ParseExact(lbl_date.Text & " " & lbl_time1.Text, "yyyy-MM-dd HH:mm:ss", Globalization.CultureInfo.InvariantCulture)
 
-                        For j As Integer = 0 To DataGridView1.Rows.Count - 1
+                        For j As Integer = 0 To a.Rows.Count - 1
                             cmd.Parameters.Clear()
                             cmd.Parameters.AddWithValue("@transno", txt_transno.Text)
                             cmd.Parameters.AddWithValue("@transdate", transDateTime)
-                            cmd.Parameters.AddWithValue("@transmonth", lblUsername.Text)
-                            cmd.Parameters.AddWithValue("@foodcode", DataGridView1.Rows(j).Cells(1).Value)
+                            cmd.Parameters.AddWithValue("@cashiername", lblUsername.Text)
+                            cmd.Parameters.AddWithValue("@foodcode", a.Rows(j).Cells(1).Value)
 
-                            Dim foodname As String = DataGridView1.Rows(j).Cells(2).Value.ToString() & " - " & DataGridView1.Rows(j).Cells(3).Value.ToString()
+                            Dim foodname As String = a.Rows(j).Cells(2).Value.ToString()
                             cmd.Parameters.AddWithValue("@foodname", foodname)
 
-                            cmd.Parameters.AddWithValue("@price", DataGridView1.Rows(j).Cells(4).Value)
-                            cmd.Parameters.AddWithValue("@qty", DataGridView1.Rows(j).Cells(5).Value)
-                            cmd.Parameters.AddWithValue("@totalprice", DataGridView1.Rows(j).Cells(6).Value)
+                            cmd.Parameters.AddWithValue("@price", a.Rows(j).Cells(4).Value)
+                            cmd.Parameters.AddWithValue("@qty", a.Rows(j).Cells(5).Value)
+                            cmd.Parameters.AddWithValue("@totalprice", a.Rows(j).Cells(6).Value)
                             cmd.Parameters.AddWithValue("@grandtotal", lbl_tot.Text)
                             cmd.Parameters.AddWithValue("@nooffoods", lbl_noOfProducts.Text)
+                            cmd.Parameters.AddWithValue("@amountreceived", txt_receivedAmount.Text)
+                            cmd.Parameters.AddWithValue("@changes", txt_BalanceAmount.Text)
                             cmd.ExecuteNonQuery()
 
-                            ' Deduct inventory for the current foodcode and size
-                            DeductInventory(DataGridView1.Rows(j).Cells(1).Value.ToString(), DataGridView1.Rows(j).Cells(3).Value.ToString(), DataGridView1.Rows(j).Cells(5).Value, transaction)
+                            ' Inside btnRecord_Click_1
+                            ' Extract addon information from the foodname (if any)
+                            Dim addons As New List(Of formsizes.AddonItem)
+                            If foodname.Contains(" with ") Then
+                                Dim addonNames = foodname.Split(New String() {" with "}, StringSplitOptions.None)(1).Split(",")
+                                For Each addonName In addonNames
+                                    Dim trimmedAddonName = addonName.Trim()
+                                    If Not String.IsNullOrEmpty(trimmedAddonName) Then
+                                        ' Get addon information from the database
+                                        Dim addonCmd As New MySqlCommand(
+                                            "SELECT a.addoncode, a.name, s.itemcode, s.quantity " &
+                                            "FROM tbl_addons a " &
+                                            "INNER JOIN tbl_addon_supplies s ON a.addoncode = s.addoncode " &
+                                            "WHERE a.name = @name", conn, transaction)
+                                        addonCmd.Parameters.AddWithValue("@name", trimmedAddonName)
+
+                                        Using addonReader As MySqlDataReader = addonCmd.ExecuteReader()
+                                            If addonReader.Read() Then
+                                                addons.Add(New formsizes.AddonItem With {
+                                                    .AddonCode = addonReader("addoncode").ToString(),
+                                                    .AddonName = addonReader("name").ToString(),
+                                                    .ItemCode = addonReader("itemcode").ToString(),
+                                                    .Quantity = CDec(addonReader("quantity"))
+                                                })
+                                            End If
+                                        End Using
+                                    Else
+                                        Debug.WriteLine($"Addon name '{addonName}' was empty or invalid.")
+                                    End If
+                                Next
+                            Else
+                                Debug.WriteLine("No addons found in foodname.")
+                            End If
+
+                            ' Log addons found
+                            Debug.WriteLine($"Number of addons: {addons.Count}")
+                            For Each addon In addons
+                                Debug.WriteLine($"Addon found: {addon.AddonName}, Code: {addon.AddonCode}, ItemCode: {addon.ItemCode}, Quantity: {addon.Quantity}")
+                            Next
+
+                            ' Deduct inventory for the current foodcode and size with addons
+                            DeductInventory(
+                                a.Rows(j).Cells(1).Value.ToString(),
+                                a.Rows(j).Cells(3).Value.ToString(),
+                                CInt(a.Rows(j).Cells(5).Value),
+                                addons,
+                                transaction)
+
                         Next
 
                         transaction.Commit()
@@ -599,10 +729,7 @@ Public Class Cashier
 
                         If MsgBox("Print Bill?", vbQuestion + vbYesNo) = vbYes Then
                             Try
-                                ' Add a small delay to ensure transaction is committed
                                 System.Threading.Thread.Sleep(100)
-
-                                ' Create and show the bill print form with the transaction number
                                 Using printForm As New frm_BillPrint(txt_transno.Text)
                                     printForm.ShowDialog()
                                 End Using
@@ -610,10 +737,11 @@ Public Class Cashier
                                 MessageBox.Show("Error showing bill: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             End Try
                         End If
+                        new_order()
 
                     Catch ex As Exception
                         transaction.Rollback()
-                        MsgBox("Error deducting ingredients: " & ex.Message, vbExclamation)
+                        MsgBox("Error processing transaction: " & ex.Message, vbExclamation)
                     End Try
                 Catch ex As Exception
                     MsgBox("Error: " & ex.Message, vbExclamation)
@@ -621,93 +749,118 @@ Public Class Cashier
                     If conn.State = ConnectionState.Open Then conn.Close()
                 End Try
             End If
-        Else
-            Return
         End If
 
-        new_order()
         UpdateButtonVisibility()
     End Sub
 
-    Private Sub DeductInventory(foodCode As String, sizeName As String, quantity As Integer, transaction As MySqlTransaction)
+    Private Sub DeductInventory(foodCode As String, sizeName As String, quantity As Integer, addons As List(Of formsizes.AddonItem), transaction As MySqlTransaction)
         Try
-            ' Query to fetch ingredients for the specific food code and size
-            Dim fetchIngredientsCmd As New MySqlCommand("SELECT i.itemcode, i.quantity * @orderQuantity AS totalQty " &
-                                                    "FROM tbl_ingredients i " &
-                                                    "WHERE i.foodcode = @foodcode AND i.size_name = @size_name", conn, transaction)
+            Debug.WriteLine($"Starting DeductInventory for foodCode: {foodCode}, size: {sizeName}, quantity: {quantity}")
+            Debug.WriteLine($"Number of addons: {If(addons Is Nothing, "0", addons.Count.ToString())}")
+
+            Dim itemsToDeduct As New List(Of (itemCode As String, quantity As Decimal))
+
+            ' Get ingredients for the food item
+            Dim fetchIngredientsCmd As New MySqlCommand(
+        "SELECT i.itemcode, i.quantity * @orderQuantity AS totalQty " &
+        "FROM tbl_ingredients i " &
+        "WHERE i.foodcode = @foodcode AND i.size_name = @size_name", conn, transaction)
             fetchIngredientsCmd.Parameters.AddWithValue("@foodcode", foodCode)
             fetchIngredientsCmd.Parameters.AddWithValue("@size_name", sizeName)
             fetchIngredientsCmd.Parameters.AddWithValue("@orderQuantity", quantity)
 
-            Dim ingredientList As New List(Of Tuple(Of String, Decimal))()
-
-            ' Use DataReader to fetch ingredients and store them in a temporary list
             Using reader As MySqlDataReader = fetchIngredientsCmd.ExecuteReader()
                 While reader.Read()
-                    Dim itemCode As String = reader("itemcode").ToString()
-                    Dim totalQty As Decimal = Decimal.Parse(reader("totalQty").ToString())
-                    ingredientList.Add(New Tuple(Of String, Decimal)(itemCode, totalQty))
+                    itemsToDeduct.Add((reader("itemcode").ToString(), CDec(reader("totalQty"))))
                 End While
             End Using
 
-            ' Deduct inventory after closing the reader
-            For Each ingredient In ingredientList
-                Dim itemCode As String = ingredient.Item1
-                Dim totalQty As Decimal = ingredient.Item2
+            ' Add addon supplies to the deduction list
+            If addons IsNot Nothing AndAlso addons.Count > 0 Then
+                For Each addon In addons
+                    Dim addonQty = addon.Quantity * quantity
+                    itemsToDeduct.Add((addon.ItemCode, addonQty))
+                Next
+            End If
 
-                ' Deduct from tbl_inventory
-                Dim deductInventoryCmd As New MySqlCommand("UPDATE tbl_inventory SET quantity = quantity - @quantity WHERE itemcode = @itemcode", conn, transaction)
-                deductInventoryCmd.Parameters.AddWithValue("@quantity", totalQty)
-                deductInventoryCmd.Parameters.AddWithValue("@itemcode", itemCode)
-                deductInventoryCmd.ExecuteNonQuery()
+            ' Deduct inventory with separate handling for quantity and lastquantity
+            For Each item In itemsToDeduct
+                ' First, get current quantity from inventoryad
+                Dim getCurrentQtyCmd As New MySqlCommand(
+            "SELECT quantity FROM tbl_inventoryad WHERE itemcode = @itemcode",
+            conn, transaction)
+                getCurrentQtyCmd.Parameters.AddWithValue("@itemcode", item.itemCode)
+                Dim currentQty As Decimal = CDec(getCurrentQtyCmd.ExecuteScalar())
 
-                ' Deduct from tbl_inventoryad
-                Dim deductInventoryAdCmd As New MySqlCommand("UPDATE tbl_inventoryad SET quantity = quantity - @quantity WHERE itemcode = @itemcode", conn, transaction)
-                deductInventoryAdCmd.Parameters.AddWithValue("@quantity", totalQty)
-                deductInventoryAdCmd.Parameters.AddWithValue("@itemcode", itemCode)
-                deductInventoryAdCmd.ExecuteNonQuery()
+                ' Calculate new quantity
+                Dim newQty As Decimal = currentQty - item.quantity
+
+                ' Update tbl_inventory
+                Dim deductCmd As New MySqlCommand(
+            "UPDATE tbl_inventory " &
+            "SET quantity = quantity - @quantity " &
+            "WHERE itemcode = @itemcode", conn, transaction)
+                deductCmd.Parameters.AddWithValue("@quantity", item.quantity)
+                deductCmd.Parameters.AddWithValue("@itemcode", item.itemCode)
+                deductCmd.ExecuteNonQuery()
+
+                ' Update tbl_inventoryad
+                ' Here we store the current quantity as lastquantity before updating the new quantity
+                Dim deductAdCmd As New MySqlCommand(
+            "UPDATE tbl_inventoryad " &
+            "SET lastquantity = quantity, " & ' Store current quantity as lastquantity
+            "    quantity = @newQty " &      ' Update to new quantity
+            "WHERE itemcode = @itemcode", conn, transaction)
+                deductAdCmd.Parameters.AddWithValue("@newQty", newQty)
+                deductAdCmd.Parameters.AddWithValue("@itemcode", item.itemCode)
+                deductAdCmd.ExecuteNonQuery()
+
+                ' Add inventory check
+                If newQty < 0 Then
+                    Throw New Exception($"Insufficient inventory for item {item.itemCode}. Required: {item.quantity}, Available: {currentQty}")
+                End If
             Next
+
+            Debug.WriteLine("DeductInventory completed successfully.")
         Catch ex As Exception
+            Debug.WriteLine($"Error in DeductInventory: {ex.Message}")
             Throw New Exception("Error deducting inventory: " & ex.Message)
         End Try
     End Sub
 
 
+    ' Helper method to deduct from both inventory tables
+    Private Sub DeductInventoryItem(itemCode As String, quantity As Decimal, transaction As MySqlTransaction)
+        ' Deduct from tbl_inventory
+        Dim deductInventoryCmd As New MySqlCommand(
+        "UPDATE tbl_inventory SET quantity = quantity - @quantity WHERE itemcode = @itemcode",
+        conn, transaction)
+        deductInventoryCmd.Parameters.AddWithValue("@quantity", quantity)
+        deductInventoryCmd.Parameters.AddWithValue("@itemcode", itemCode)
+        deductInventoryCmd.ExecuteNonQuery()
+
+        ' Deduct from tbl_inventoryad
+        Dim deductInventoryAdCmd As New MySqlCommand(
+        "UPDATE tbl_inventoryad SET quantity = quantity - @quantity WHERE itemcode = @itemcode",
+        conn, transaction)
+        deductInventoryAdCmd.Parameters.AddWithValue("@quantity", quantity)
+        deductInventoryAdCmd.Parameters.AddWithValue("@itemcode", itemCode)
+        deductInventoryAdCmd.ExecuteNonQuery()
+    End Sub
 
     Sub new_order()
         Load_Foods()
-        DataGridView1.Rows.Clear()
+        a.Rows.Clear()
         lbl_date.Text = Date.Now.ToString("yyyy-MM-dd")
         auto_Transno()
         txt_BalanceAmount.Clear()
         txt_receivedAmount.Clear()
         UpdateButtonVisibility()
-
     End Sub
-    'Private Sub SaveTransaction()
-    'Try
-    '      conn.Open()
-    'For Each row As DataGridViewRow In DataGridView1.Rows
-    '            cmd = New MySqlCommand("INSERT INTO `tbl_pos` (`transno`, `foodcode`, `foodname`, `size`, `price`, `qty`, `subtotal`, `date`) VALUES (@transno, @foodcode, @foodname, @size, @price, @qty, @subtotal, @date)", conn)
-    '           cmd.Parameters.AddWithValue("@transno", txt_transno.Text)
-    '           cmd.Parameters.AddWithValue("@foodcode", row.Cells(1).Value)
-    '           cmd.Parameters.AddWithValue("@foodname", row.Cells(2).Value)
-    '           cmd.Parameters.AddWithValue("@size", row.Cells(3).Value)
-    '           cmd.Parameters.AddWithValue("@price", row.Cells(4).Value)
-    '          cmd.Parameters.AddWithValue("@qty", row.Cells(5).Value)
-    '          cmd.Parameters.AddWithValue("@subtotal", row.Cells(6).Value)
-    '          cmd.Parameters.AddWithValue("@date", lbl_date.Text)
-    '           cmd.ExecuteNonQuery()
-    'Next
-    'Catch ex As Exception
-    '       MsgBox("Error saving transaction: " & ex.Message)
-    'inally
-    '       conn.Close()
-    'End Try
-    'End Sub
     Private Sub UpdateNoOfProducts()
         Dim totalItems As Integer = 0
-        For Each row As DataGridViewRow In DataGridView1.Rows
+        For Each row As DataGridViewRow In a.Rows
             If row.Cells(5).Value IsNot Nothing Then
                 totalItems += CInt(row.Cells(5).Value) ' Add the quantity of each item
             End If
@@ -717,7 +870,7 @@ Public Class Cashier
 
     Private Sub btnSetting_Click(sender As Object, e As EventArgs) Handles btnSetting.Click
         Load_Foods()
-        DataGridView1.Rows.Clear()
+        a.Rows.Clear()
         lbl_date.Text = Date.Now.ToString("yyyy-MM-dd")
         auto_Transno()
         txt_BalanceAmount.Clear()
@@ -752,8 +905,6 @@ Public Class Cashier
             MsgBox(ex.Message)
         End Try
         If conn.State = ConnectionState.Open Then conn.Close()
-
-
     End Sub
     Private categories As List(Of String) = New List(Of String)
     Private currentCategoryIndex As Integer = -1
@@ -826,11 +977,20 @@ Public Class Cashier
     End Sub
     Private Sub UpdateButtonVisibility()
 
-
-        btnRecord.Enabled = DataGridView1.Rows.Count > 0
-        btnRemove.Enabled = DataGridView1.Rows.Count > 0
-        btnPlus.Enabled = DataGridView1.Rows.Count > 0
-        btnminus.Enabled = DataGridView1.Rows.Count > 0
+        txtquantity.Enabled = a.Rows.Count > 0
+        txt_receivedAmount.Enabled = a.Rows.Count > 0
+        btnRecord.Enabled = a.Rows.Count > 0
+        btnRemove.Enabled = a.Rows.Count > 0
+        btnPlus.Enabled = a.Rows.Count > 0
+        btnminus.Enabled = a.Rows.Count > 0
+        txt_transno.Enabled = a.Rows.Count > 0
+        If a.Rows.Count = 0 Then
+            txt_receivedAmount.Text = String.Empty
+            txt_BalanceAmount.Text = String.Empty
+        End If
+        If Not txt_transno.Enabled Then
+            txt_transno.ForeColor = Color.Red ' or any color you prefer
+        End If
     End Sub
     ' Modified function to check if there's enough inventory considering cart items
     Private Function HasSufficientInventoryForOrder(foodCode As String, sizeName As String, orderQuantity As Integer) As Boolean
@@ -891,7 +1051,7 @@ Public Class Cashier
             checkConnection.Open()
 
             ' For each item in the cart
-            For Each row As DataGridViewRow In DataGridView1.Rows
+            For Each row As DataGridViewRow In a.Rows
                 Dim foodCode As String = row.Cells(1).Value.ToString()
                 Dim sizeName As String = row.Cells(3).Value.ToString()
                 Dim quantity As Integer = CInt(row.Cells(5).Value)
@@ -944,4 +1104,15 @@ Public Class Cashier
             Application.Exit()
         End If
     End Sub
+    Private Sub txt_transno_Enter(sender As Object, e As EventArgs) Handles txt_transno.Enter
+        ' Remove focus from the TextBox to hide the blinking cursor
+        txt_transno.Parent.Focus() ' Remove focus by setting focus to its parent control
+    End Sub
+
+    Private Sub GunaButton2_Click(sender As Object, e As EventArgs) Handles GunaButton2.Click
+        Dim changePasswordForm As New frmCashierChangepassword()
+        changePasswordForm.lblUsername.Text = lblUseraccname.Text ' Pass the username
+        changePasswordForm.ShowDialog()
+    End Sub
+
 End Class

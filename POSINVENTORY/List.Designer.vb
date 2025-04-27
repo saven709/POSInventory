@@ -28,29 +28,20 @@ Partial Class List
         Dim StateProperties2 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
         Dim StateProperties3 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
         Dim StateProperties4 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
-        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.GunaElipse1 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.PanelTitle = New System.Windows.Forms.Panel()
+        Me.btn_ManageAddons = New Bunifu.Framework.UI.BunifuFlatButton()
         Me.categorybtn = New System.Windows.Forms.Button()
         Me.txt_search = New Bunifu.UI.WinForms.BunifuTextBox()
         Me.btn_ManageFoods = New Bunifu.Framework.UI.BunifuFlatButton()
         Me.GunaElipse2 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.GunaElipse3 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.GunaElipse4 = New Guna.UI.WinForms.GunaElipse(Me.components)
-        Me.GunaElipse5 = New Guna.UI.WinForms.GunaElipse(Me.components)
-        Me.GunaElipse6 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.Label3 = New System.Windows.Forms.Label()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.GunaElipse7 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.PanelTitle.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Panel2
-        '
-        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(73, Byte), Integer), CType(CType(53, Byte), Integer), CType(CType(44, Byte), Integer))
-        Me.Panel2.Location = New System.Drawing.Point(-7, 635)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(698, 32)
-        Me.Panel2.TabIndex = 7
         '
         'GunaElipse1
         '
@@ -59,29 +50,66 @@ Partial Class List
         '
         'PanelTitle
         '
-        Me.PanelTitle.BackColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(123, Byte), Integer), CType(CType(108, Byte), Integer))
+        Me.PanelTitle.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(201, Byte), Integer))
+        Me.PanelTitle.Controls.Add(Me.btn_ManageAddons)
         Me.PanelTitle.Controls.Add(Me.categorybtn)
         Me.PanelTitle.Controls.Add(Me.txt_search)
         Me.PanelTitle.Controls.Add(Me.btn_ManageFoods)
-        Me.PanelTitle.Location = New System.Drawing.Point(21, 27)
+        Me.PanelTitle.Location = New System.Drawing.Point(12, 27)
         Me.PanelTitle.Name = "PanelTitle"
-        Me.PanelTitle.Size = New System.Drawing.Size(398, 124)
+        Me.PanelTitle.Size = New System.Drawing.Size(1162, 124)
         Me.PanelTitle.TabIndex = 5
+        '
+        'btn_ManageAddons
+        '
+        Me.btn_ManageAddons.Activecolor = System.Drawing.Color.FromArgb(CType(CType(46, Byte), Integer), CType(CType(139, Byte), Integer), CType(CType(87, Byte), Integer))
+        Me.btn_ManageAddons.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.btn_ManageAddons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btn_ManageAddons.BorderRadius = 0
+        Me.btn_ManageAddons.ButtonText = "ADD ONS"
+        Me.btn_ManageAddons.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btn_ManageAddons.DisabledColor = System.Drawing.Color.Gray
+        Me.btn_ManageAddons.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_ManageAddons.Iconcolor = System.Drawing.Color.Transparent
+        Me.btn_ManageAddons.Iconimage = Global.POSINVENTORY.My.Resources.Resources.Add_New1
+        Me.btn_ManageAddons.Iconimage_right = Nothing
+        Me.btn_ManageAddons.Iconimage_right_Selected = Nothing
+        Me.btn_ManageAddons.Iconimage_Selected = Nothing
+        Me.btn_ManageAddons.IconMarginLeft = 0
+        Me.btn_ManageAddons.IconMarginRight = 0
+        Me.btn_ManageAddons.IconRightVisible = True
+        Me.btn_ManageAddons.IconRightZoom = 0R
+        Me.btn_ManageAddons.IconVisible = True
+        Me.btn_ManageAddons.IconZoom = 60.0R
+        Me.btn_ManageAddons.IsTab = False
+        Me.btn_ManageAddons.Location = New System.Drawing.Point(919, 72)
+        Me.btn_ManageAddons.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btn_ManageAddons.Name = "btn_ManageAddons"
+        Me.btn_ManageAddons.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.btn_ManageAddons.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(77, Byte), Integer))
+        Me.btn_ManageAddons.OnHoverTextColor = System.Drawing.Color.White
+        Me.btn_ManageAddons.selected = False
+        Me.btn_ManageAddons.Size = New System.Drawing.Size(115, 37)
+        Me.btn_ManageAddons.TabIndex = 42
+        Me.btn_ManageAddons.Text = "ADD ONS"
+        Me.btn_ManageAddons.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.btn_ManageAddons.Textcolor = System.Drawing.SystemColors.ControlText
+        Me.btn_ManageAddons.TextFont = New System.Drawing.Font("Poppins", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         '
         'categorybtn
         '
-        Me.categorybtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.categorybtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(84, Byte), Integer), CType(CType(78, Byte), Integer), CType(CType(81, Byte), Integer))
         Me.categorybtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.categorybtn.FlatAppearance.BorderSize = 0
         Me.categorybtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.categorybtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.categorybtn.Font = New System.Drawing.Font("Poppins SemiBold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.categorybtn.ForeColor = System.Drawing.Color.Black
-        Me.categorybtn.Location = New System.Drawing.Point(296, 18)
+        Me.categorybtn.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.categorybtn.ForeColor = System.Drawing.Color.Transparent
+        Me.categorybtn.Location = New System.Drawing.Point(1049, 72)
         Me.categorybtn.Name = "categorybtn"
-        Me.categorybtn.Size = New System.Drawing.Size(75, 37)
+        Me.categorybtn.Size = New System.Drawing.Size(95, 37)
         Me.categorybtn.TabIndex = 41
-        Me.categorybtn.Text = "category"
+        Me.categorybtn.Text = "Category"
         Me.categorybtn.UseVisualStyleBackColor = False
         '
         'txt_search
@@ -114,7 +142,7 @@ Partial Class List
         Me.txt_search.IconRight = Nothing
         Me.txt_search.IconRightCursor = System.Windows.Forms.Cursors.IBeam
         Me.txt_search.Lines = New String(-1) {}
-        Me.txt_search.Location = New System.Drawing.Point(26, 18)
+        Me.txt_search.Location = New System.Drawing.Point(21, 18)
         Me.txt_search.MaxLength = 32767
         Me.txt_search.MinimumSize = New System.Drawing.Size(1, 1)
         Me.txt_search.Modified = False
@@ -150,7 +178,7 @@ Partial Class List
         Me.txt_search.SelectionLength = 0
         Me.txt_search.SelectionStart = 0
         Me.txt_search.ShortcutsEnabled = True
-        Me.txt_search.Size = New System.Drawing.Size(254, 37)
+        Me.txt_search.Size = New System.Drawing.Size(1124, 37)
         Me.txt_search.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Material
         Me.txt_search.TabIndex = 26
         Me.txt_search.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
@@ -183,13 +211,14 @@ Partial Class List
         Me.btn_ManageFoods.IconVisible = True
         Me.btn_ManageFoods.IconZoom = 60.0R
         Me.btn_ManageFoods.IsTab = False
-        Me.btn_ManageFoods.Location = New System.Drawing.Point(26, 69)
+        Me.btn_ManageFoods.Location = New System.Drawing.Point(736, 72)
+        Me.btn_ManageFoods.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btn_ManageFoods.Name = "btn_ManageFoods"
         Me.btn_ManageFoods.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.btn_ManageFoods.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(77, Byte), Integer))
         Me.btn_ManageFoods.OnHoverTextColor = System.Drawing.Color.White
         Me.btn_ManageFoods.selected = False
-        Me.btn_ManageFoods.Size = New System.Drawing.Size(254, 35)
+        Me.btn_ManageFoods.Size = New System.Drawing.Size(174, 37)
         Me.btn_ManageFoods.TabIndex = 8
         Me.btn_ManageFoods.Text = "ADD PRODUCT"
         Me.btn_ManageFoods.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -209,24 +238,14 @@ Partial Class List
         'GunaElipse4
         '
         Me.GunaElipse4.Radius = 15
-        Me.GunaElipse4.TargetControl = Me
-        '
-        'GunaElipse5
-        '
-        Me.GunaElipse5.Radius = 15
-        Me.GunaElipse5.TargetControl = Me
-        '
-        'GunaElipse6
-        '
-        Me.GunaElipse6.Radius = 15
-        Me.GunaElipse6.TargetControl = Me
+        Me.GunaElipse4.TargetControl = Me.btn_ManageAddons
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Poppins Medium", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(21, 9)
+        Me.Label3.Location = New System.Drawing.Point(21, 8)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(129, 19)
         Me.Label3.TabIndex = 9
@@ -234,22 +253,26 @@ Partial Class List
         '
         'FlowLayoutPanel1
         '
-        Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(21, 170)
+        Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.White
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 170)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Padding = New System.Windows.Forms.Padding(20)
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(651, 444)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1162, 594)
         Me.FlowLayoutPanel1.TabIndex = 10
+        '
+        'GunaElipse7
+        '
+        Me.GunaElipse7.Radius = 12
+        Me.GunaElipse7.TargetControl = Me.txt_search
         '
         'List
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(234, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(689, 643)
+        Me.ClientSize = New System.Drawing.Size(1200, 790)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.PanelTitle)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "List"
@@ -260,17 +283,16 @@ Partial Class List
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Panel2 As Panel
     Friend WithEvents GunaElipse1 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents PanelTitle As Panel
     Friend WithEvents GunaElipse2 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents GunaElipse3 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents GunaElipse4 As Guna.UI.WinForms.GunaElipse
-    Friend WithEvents GunaElipse5 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents txt_search As Bunifu.UI.WinForms.BunifuTextBox
-    Friend WithEvents GunaElipse6 As Guna.UI.WinForms.GunaElipse
     Friend WithEvents btn_ManageFoods As Bunifu.Framework.UI.BunifuFlatButton
     Private WithEvents Label3 As Label
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents categorybtn As Button
+    Friend WithEvents GunaElipse7 As Guna.UI.WinForms.GunaElipse
+    Friend WithEvents btn_ManageAddons As Bunifu.Framework.UI.BunifuFlatButton
 End Class

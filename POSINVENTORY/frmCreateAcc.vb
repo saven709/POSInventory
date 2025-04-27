@@ -1,5 +1,5 @@
-﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Button
-Imports MySql.Data.MySqlClient
+﻿Imports MySql.Data.MySqlClient
+Imports BCrypt.Net
 
 Public Class frmCreateAcc
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
@@ -37,13 +37,23 @@ Public Class frmCreateAcc
             Using cmd As New MySqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@fullname", txt_fullname.Text.Trim())
                 cmd.Parameters.AddWithValue("@username", txt_Username.Text.Trim())
-                cmd.Parameters.AddWithValue("@password", txt_Password.Text.Trim()) ' Use hashing for production systems
+
+                ' Hash password with BCrypt
+                Dim hashedPassword As String = BCrypt.Net.BCrypt.HashPassword(txt_Password.Text.Trim(), BCrypt.Net.BCrypt.GenerateSalt(12))
+                cmd.Parameters.AddWithValue("@password", hashedPassword)
+
                 cmd.Parameters.AddWithValue("@role", selectedRole)
                 cmd.Parameters.AddWithValue("@status", "Active") ' Default status is Active
 
                 ' Execute query
                 cmd.ExecuteNonQuery()
             End Using
+
+            ' Refresh user list if the UserAccount form is open
+            Dim UserAccount As UserAccount = Application.OpenForms.OfType(Of UserAccount)().FirstOrDefault()
+            If UserAccount IsNot Nothing Then
+                UserAccount.LoadUsers()
+            End If
 
             MsgBox("Account created successfully!", MsgBoxStyle.Information, "Success")
 
@@ -62,13 +72,7 @@ Public Class frmCreateAcc
             ' Close database connection
             If conn.State = ConnectionState.Open Then conn.Close()
         End Try
-
-        Dim UserAccount As UserAccount = Application.OpenForms.OfType(Of UserAccount)().FirstOrDefault()
-        If UserAccount IsNot Nothing Then
-            UserAccount.LoadUsers()
-        End If
     End Sub
-
 
     Private Sub frmCreateAcc_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dbconn()

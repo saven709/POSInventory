@@ -23,10 +23,10 @@ Partial Class UserAccount
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.GunaElipse1 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
@@ -66,55 +66,55 @@ Partial Class UserAccount
         Me.Panel3.Controls.Add(Me.BtnActivateDeact)
         Me.Panel3.Controls.Add(Me.BtnChangePass)
         Me.Panel3.Controls.Add(Me.BtnCreateAcc)
-        Me.Panel3.Location = New System.Drawing.Point(11, 28)
+        Me.Panel3.Location = New System.Drawing.Point(12, 28)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(667, 587)
+        Me.Panel3.Size = New System.Drawing.Size(1170, 750)
         Me.Panel3.TabIndex = 29
         '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        DataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        DataGridViewCellStyle21.ForeColor = System.Drawing.Color.White
-        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle22.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle22.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle22
+        Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold)
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.ColumnHeadersHeight = 30
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.Column2, Me.username, Me.Column4, Me.status, Me.Column6, Me.Column7})
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle23.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridView1.GridColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer))
-        Me.DataGridView1.Location = New System.Drawing.Point(7, 78)
+        Me.DataGridView1.Location = New System.Drawing.Point(16, 78)
         Me.DataGridView1.MultiSelect = False
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle24.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView1.Size = New System.Drawing.Size(644, 448)
+        Me.DataGridView1.Size = New System.Drawing.Size(1141, 593)
         Me.DataGridView1.TabIndex = 33
         '
         'id
@@ -126,37 +126,37 @@ Partial Class UserAccount
         '
         'Column2
         '
-        Me.Column2.HeaderText = "Fullname"
+        Me.Column2.HeaderText = "FULLNAME"
         Me.Column2.Name = "Column2"
         Me.Column2.ReadOnly = True
         '
         'username
         '
-        Me.username.HeaderText = "Username"
+        Me.username.HeaderText = "USERNAME"
         Me.username.Name = "username"
         Me.username.ReadOnly = True
         '
         'Column4
         '
-        Me.Column4.HeaderText = "Role"
+        Me.Column4.HeaderText = "ROLE"
         Me.Column4.Name = "Column4"
         Me.Column4.ReadOnly = True
         '
         'status
         '
-        Me.status.HeaderText = "Status"
+        Me.status.HeaderText = "STATUS"
         Me.status.Name = "status"
         Me.status.ReadOnly = True
         '
         'Column6
         '
-        Me.Column6.HeaderText = "created"
+        Me.Column6.HeaderText = "CREATED"
         Me.Column6.Name = "Column6"
         Me.Column6.ReadOnly = True
         '
         'Column7
         '
-        Me.Column7.HeaderText = "updated"
+        Me.Column7.HeaderText = "UPDATED"
         Me.Column7.Name = "Column7"
         Me.Column7.ReadOnly = True
         '
@@ -182,14 +182,14 @@ Partial Class UserAccount
         Me.btnRemove.IconVisible = True
         Me.btnRemove.IconZoom = 60.0R
         Me.btnRemove.IsTab = False
-        Me.btnRemove.Location = New System.Drawing.Point(529, 533)
+        Me.btnRemove.Location = New System.Drawing.Point(982, 687)
         Me.btnRemove.Margin = New System.Windows.Forms.Padding(4)
         Me.btnRemove.Name = "btnRemove"
         Me.btnRemove.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.btnRemove.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.btnRemove.OnHoverTextColor = System.Drawing.Color.White
         Me.btnRemove.selected = False
-        Me.btnRemove.Size = New System.Drawing.Size(122, 44)
+        Me.btnRemove.Size = New System.Drawing.Size(175, 44)
         Me.btnRemove.TabIndex = 32
         Me.btnRemove.Text = "REMOVE"
         Me.btnRemove.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -218,14 +218,14 @@ Partial Class UserAccount
         Me.BtnActivateDeact.IconVisible = True
         Me.BtnActivateDeact.IconZoom = 60.0R
         Me.BtnActivateDeact.IsTab = False
-        Me.BtnActivateDeact.Location = New System.Drawing.Point(305, 17)
+        Me.BtnActivateDeact.Location = New System.Drawing.Point(945, 17)
         Me.BtnActivateDeact.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnActivateDeact.Name = "BtnActivateDeact"
         Me.BtnActivateDeact.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.BtnActivateDeact.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(77, Byte), Integer))
         Me.BtnActivateDeact.OnHoverTextColor = System.Drawing.Color.White
         Me.BtnActivateDeact.selected = False
-        Me.BtnActivateDeact.Size = New System.Drawing.Size(169, 54)
+        Me.BtnActivateDeact.Size = New System.Drawing.Size(212, 54)
         Me.BtnActivateDeact.TabIndex = 31
         Me.BtnActivateDeact.Text = "ACTIVATE/DEACTIVATE ACCOUNT"
         Me.BtnActivateDeact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -254,14 +254,14 @@ Partial Class UserAccount
         Me.BtnChangePass.IconVisible = True
         Me.BtnChangePass.IconZoom = 60.0R
         Me.BtnChangePass.IsTab = False
-        Me.BtnChangePass.Location = New System.Drawing.Point(144, 17)
+        Me.BtnChangePass.Location = New System.Drawing.Point(202, 17)
         Me.BtnChangePass.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnChangePass.Name = "BtnChangePass"
         Me.BtnChangePass.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.BtnChangePass.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(77, Byte), Integer))
         Me.BtnChangePass.OnHoverTextColor = System.Drawing.Color.White
         Me.BtnChangePass.selected = False
-        Me.BtnChangePass.Size = New System.Drawing.Size(121, 54)
+        Me.BtnChangePass.Size = New System.Drawing.Size(168, 54)
         Me.BtnChangePass.TabIndex = 30
         Me.BtnChangePass.Text = "CHANGE PASSWORD"
         Me.BtnChangePass.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -290,14 +290,14 @@ Partial Class UserAccount
         Me.BtnCreateAcc.IconVisible = True
         Me.BtnCreateAcc.IconZoom = 60.0R
         Me.BtnCreateAcc.IsTab = False
-        Me.BtnCreateAcc.Location = New System.Drawing.Point(15, 17)
+        Me.BtnCreateAcc.Location = New System.Drawing.Point(16, 17)
         Me.BtnCreateAcc.Margin = New System.Windows.Forms.Padding(4)
         Me.BtnCreateAcc.Name = "BtnCreateAcc"
         Me.BtnCreateAcc.Normalcolor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.BtnCreateAcc.OnHovercolor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(129, Byte), Integer), CType(CType(77, Byte), Integer))
         Me.BtnCreateAcc.OnHoverTextColor = System.Drawing.Color.White
         Me.BtnCreateAcc.selected = False
-        Me.BtnCreateAcc.Size = New System.Drawing.Size(121, 54)
+        Me.BtnCreateAcc.Size = New System.Drawing.Size(168, 54)
         Me.BtnCreateAcc.TabIndex = 29
         Me.BtnCreateAcc.Text = "CREATE ACCOUNT"
         Me.BtnCreateAcc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -341,7 +341,7 @@ Partial Class UserAccount
         Me.lbl_date1.BackColor = System.Drawing.Color.Transparent
         Me.lbl_date1.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_date1.ForeColor = System.Drawing.Color.Black
-        Me.lbl_date1.Location = New System.Drawing.Point(336, 3)
+        Me.lbl_date1.Location = New System.Drawing.Point(847, 3)
         Me.lbl_date1.Name = "lbl_date1"
         Me.lbl_date1.Size = New System.Drawing.Size(251, 25)
         Me.lbl_date1.TabIndex = 35
@@ -353,7 +353,7 @@ Partial Class UserAccount
         Me.lbl_time.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lbl_time.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_time.ForeColor = System.Drawing.Color.Black
-        Me.lbl_time.Location = New System.Drawing.Point(564, 3)
+        Me.lbl_time.Location = New System.Drawing.Point(1075, 3)
         Me.lbl_time.Name = "lbl_time"
         Me.lbl_time.Size = New System.Drawing.Size(107, 25)
         Me.lbl_time.TabIndex = 34
@@ -369,7 +369,7 @@ Partial Class UserAccount
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(201, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(689, 643)
+        Me.ClientSize = New System.Drawing.Size(1200, 790)
         Me.Controls.Add(Me.lbl_date1)
         Me.Controls.Add(Me.lbl_time)
         Me.Controls.Add(Me.Label3)
@@ -395,6 +395,9 @@ Partial Class UserAccount
     Friend WithEvents btnRemove As Bunifu.Framework.UI.BunifuFlatButton
     Private WithEvents Label3 As Label
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents lbl_date1 As Label
+    Friend WithEvents lbl_time As Label
+    Friend WithEvents Timer1 As Timer
     Friend WithEvents id As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents username As DataGridViewTextBoxColumn
@@ -402,7 +405,4 @@ Partial Class UserAccount
     Friend WithEvents status As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
-    Friend WithEvents lbl_date1 As Label
-    Friend WithEvents lbl_time As Label
-    Friend WithEvents Timer1 As Timer
 End Class

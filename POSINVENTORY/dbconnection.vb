@@ -12,7 +12,7 @@ Module dbconnection
     Public Function dbconn() As Boolean
         Try
             If conn.State = ConnectionState.Closed Then
-                conn.ConnectionString = "server=localhost;user=root;password=;database=brewtopia_db"
+                conn.ConnectionString = "server=localhost;port=3307;user=root;password=;database=brewtopia_db"
                 result = True
             End If
         Catch ex As Exception

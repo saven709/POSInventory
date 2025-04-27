@@ -27,6 +27,7 @@ Partial Class Form1
         Me.PanelMain = New Guna.UI.WinForms.GunaPanel()
         Me.PanelSlide = New System.Windows.Forms.Panel()
         Me.PanelSetting = New System.Windows.Forms.Panel()
+        Me.btnBackup = New Guna.UI.WinForms.GunaButton()
         Me.GunaButton4 = New Guna.UI.WinForms.GunaButton()
         Me.btnSetting = New Guna.UI.WinForms.GunaButton()
         Me.PanelRecord = New System.Windows.Forms.Panel()
@@ -56,6 +57,8 @@ Partial Class Form1
         Me.GunaElipse5 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GunaButton1 = New Guna.UI.WinForms.GunaButton()
+        Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
+        Me.transitionTimer = New System.Windows.Forms.Timer(Me.components)
         Me.PanelSlide.SuspendLayout()
         Me.PanelSetting.SuspendLayout()
         Me.PanelRecord.SuspendLayout()
@@ -69,9 +72,9 @@ Partial Class Form1
         'PanelMain
         '
         Me.PanelMain.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.PanelMain.Location = New System.Drawing.Point(206, 36)
+        Me.PanelMain.Location = New System.Drawing.Point(266, 39)
         Me.PanelMain.Name = "PanelMain"
-        Me.PanelMain.Size = New System.Drawing.Size(689, 643)
+        Me.PanelMain.Size = New System.Drawing.Size(1200, 790)
         Me.PanelMain.TabIndex = 5
         '
         'PanelSlide
@@ -87,20 +90,47 @@ Partial Class Form1
         Me.PanelSlide.Controls.Add(Me.PanelProduct)
         Me.PanelSlide.Controls.Add(Me.btnProduct)
         Me.PanelSlide.Controls.Add(Me.btnDashboard)
-        Me.PanelSlide.Location = New System.Drawing.Point(12, 207)
+        Me.PanelSlide.Location = New System.Drawing.Point(21, 265)
         Me.PanelSlide.Name = "PanelSlide"
-        Me.PanelSlide.Size = New System.Drawing.Size(170, 407)
+        Me.PanelSlide.Size = New System.Drawing.Size(217, 486)
         Me.PanelSlide.TabIndex = 3
         '
         'PanelSetting
         '
+        Me.PanelSetting.Controls.Add(Me.btnBackup)
         Me.PanelSetting.Controls.Add(Me.GunaButton4)
         Me.PanelSetting.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelSetting.Location = New System.Drawing.Point(0, 466)
         Me.PanelSetting.Name = "PanelSetting"
-        Me.PanelSetting.Size = New System.Drawing.Size(170, 72)
+        Me.PanelSetting.Size = New System.Drawing.Size(217, 72)
         Me.PanelSetting.TabIndex = 18
         Me.PanelSetting.Visible = False
+        '
+        'btnBackup
+        '
+        Me.btnBackup.AnimationHoverSpeed = 0.07!
+        Me.btnBackup.AnimationSpeed = 0.03!
+        Me.btnBackup.BackColor = System.Drawing.Color.Transparent
+        Me.btnBackup.BaseColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.btnBackup.BorderColor = System.Drawing.Color.Black
+        Me.btnBackup.DialogResult = System.Windows.Forms.DialogResult.None
+        Me.btnBackup.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnBackup.FocusedColor = System.Drawing.Color.Empty
+        Me.btnBackup.Font = New System.Drawing.Font("Poppins", 10.0!)
+        Me.btnBackup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
+        Me.btnBackup.Image = Nothing
+        Me.btnBackup.ImageSize = New System.Drawing.Size(20, 20)
+        Me.btnBackup.Location = New System.Drawing.Point(0, 34)
+        Me.btnBackup.Name = "btnBackup"
+        Me.btnBackup.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
+        Me.btnBackup.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.btnBackup.OnHoverForeColor = System.Drawing.Color.White
+        Me.btnBackup.OnHoverImage = Nothing
+        Me.btnBackup.OnPressedColor = System.Drawing.Color.Black
+        Me.btnBackup.Size = New System.Drawing.Size(217, 34)
+        Me.btnBackup.TabIndex = 13
+        Me.btnBackup.Text = "Backup/Restore Database"
+        Me.btnBackup.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GunaButton4
         '
@@ -112,7 +142,7 @@ Partial Class Form1
         Me.GunaButton4.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton4.Dock = System.Windows.Forms.DockStyle.Top
         Me.GunaButton4.FocusedColor = System.Drawing.Color.Empty
-        Me.GunaButton4.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GunaButton4.Font = New System.Drawing.Font("Poppins", 10.0!)
         Me.GunaButton4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.GunaButton4.Image = Nothing
         Me.GunaButton4.ImageSize = New System.Drawing.Size(20, 20)
@@ -123,7 +153,7 @@ Partial Class Form1
         Me.GunaButton4.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton4.OnHoverImage = Nothing
         Me.GunaButton4.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaButton4.Size = New System.Drawing.Size(170, 34)
+        Me.GunaButton4.Size = New System.Drawing.Size(217, 34)
         Me.GunaButton4.TabIndex = 12
         Me.GunaButton4.Text = "User Management"
         Me.GunaButton4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -138,7 +168,7 @@ Partial Class Form1
         Me.btnSetting.DialogResult = System.Windows.Forms.DialogResult.None
         Me.btnSetting.Dock = System.Windows.Forms.DockStyle.Top
         Me.btnSetting.FocusedColor = System.Drawing.Color.Empty
-        Me.btnSetting.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSetting.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnSetting.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.btnSetting.Image = Global.POSINVENTORY.My.Resources.Resources._21
         Me.btnSetting.ImageSize = New System.Drawing.Size(20, 20)
@@ -149,7 +179,7 @@ Partial Class Form1
         Me.btnSetting.OnHoverForeColor = System.Drawing.Color.White
         Me.btnSetting.OnHoverImage = Nothing
         Me.btnSetting.OnPressedColor = System.Drawing.Color.Black
-        Me.btnSetting.Size = New System.Drawing.Size(170, 50)
+        Me.btnSetting.Size = New System.Drawing.Size(217, 50)
         Me.btnSetting.TabIndex = 17
         Me.btnSetting.Text = "SETTING"
         '
@@ -160,7 +190,7 @@ Partial Class Form1
         Me.PanelRecord.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelRecord.Location = New System.Drawing.Point(0, 344)
         Me.PanelRecord.Name = "PanelRecord"
-        Me.PanelRecord.Size = New System.Drawing.Size(170, 72)
+        Me.PanelRecord.Size = New System.Drawing.Size(217, 72)
         Me.PanelRecord.TabIndex = 16
         Me.PanelRecord.Visible = False
         '
@@ -174,7 +204,7 @@ Partial Class Form1
         Me.GunaButton8.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton8.Dock = System.Windows.Forms.DockStyle.Top
         Me.GunaButton8.FocusedColor = System.Drawing.Color.Empty
-        Me.GunaButton8.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GunaButton8.Font = New System.Drawing.Font("Poppins", 10.0!)
         Me.GunaButton8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.GunaButton8.Image = Nothing
         Me.GunaButton8.ImageSize = New System.Drawing.Size(20, 20)
@@ -185,7 +215,7 @@ Partial Class Form1
         Me.GunaButton8.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton8.OnHoverImage = Nothing
         Me.GunaButton8.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaButton8.Size = New System.Drawing.Size(170, 35)
+        Me.GunaButton8.Size = New System.Drawing.Size(217, 35)
         Me.GunaButton8.TabIndex = 13
         Me.GunaButton8.Text = "POS Record"
         Me.GunaButton8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -201,7 +231,7 @@ Partial Class Form1
         Me.GunaButton9.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton9.Dock = System.Windows.Forms.DockStyle.Top
         Me.GunaButton9.FocusedColor = System.Drawing.Color.Empty
-        Me.GunaButton9.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GunaButton9.Font = New System.Drawing.Font("Poppins", 10.0!)
         Me.GunaButton9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.GunaButton9.Image = Nothing
         Me.GunaButton9.ImageSize = New System.Drawing.Size(20, 20)
@@ -212,7 +242,7 @@ Partial Class Form1
         Me.GunaButton9.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton9.OnHoverImage = Nothing
         Me.GunaButton9.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaButton9.Size = New System.Drawing.Size(170, 34)
+        Me.GunaButton9.Size = New System.Drawing.Size(217, 34)
         Me.GunaButton9.TabIndex = 12
         Me.GunaButton9.Text = "Sale History"
         Me.GunaButton9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -227,7 +257,7 @@ Partial Class Form1
         Me.btnRecord.DialogResult = System.Windows.Forms.DialogResult.None
         Me.btnRecord.Dock = System.Windows.Forms.DockStyle.Top
         Me.btnRecord.FocusedColor = System.Drawing.Color.Empty
-        Me.btnRecord.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnRecord.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnRecord.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.btnRecord.Image = Global.POSINVENTORY.My.Resources.Resources._19
         Me.btnRecord.ImageSize = New System.Drawing.Size(20, 20)
@@ -238,7 +268,7 @@ Partial Class Form1
         Me.btnRecord.OnHoverForeColor = System.Drawing.Color.White
         Me.btnRecord.OnHoverImage = Nothing
         Me.btnRecord.OnPressedColor = System.Drawing.Color.Black
-        Me.btnRecord.Size = New System.Drawing.Size(170, 50)
+        Me.btnRecord.Size = New System.Drawing.Size(217, 50)
         Me.btnRecord.TabIndex = 15
         Me.btnRecord.Text = "RECORD"
         '
@@ -249,7 +279,7 @@ Partial Class Form1
         Me.PanelStock.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelStock.Location = New System.Drawing.Point(0, 222)
         Me.PanelStock.Name = "PanelStock"
-        Me.PanelStock.Size = New System.Drawing.Size(170, 72)
+        Me.PanelStock.Size = New System.Drawing.Size(217, 72)
         Me.PanelStock.TabIndex = 14
         Me.PanelStock.Visible = False
         '
@@ -263,7 +293,7 @@ Partial Class Form1
         Me.GunaButton6.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton6.Dock = System.Windows.Forms.DockStyle.Top
         Me.GunaButton6.FocusedColor = System.Drawing.Color.Empty
-        Me.GunaButton6.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GunaButton6.Font = New System.Drawing.Font("Poppins", 10.0!)
         Me.GunaButton6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.GunaButton6.Image = Nothing
         Me.GunaButton6.ImageSize = New System.Drawing.Size(20, 20)
@@ -274,7 +304,7 @@ Partial Class Form1
         Me.GunaButton6.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton6.OnHoverImage = Nothing
         Me.GunaButton6.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaButton6.Size = New System.Drawing.Size(170, 35)
+        Me.GunaButton6.Size = New System.Drawing.Size(217, 35)
         Me.GunaButton6.TabIndex = 13
         Me.GunaButton6.Text = "Adjustment"
         Me.GunaButton6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -289,7 +319,7 @@ Partial Class Form1
         Me.GunaButton7.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton7.Dock = System.Windows.Forms.DockStyle.Top
         Me.GunaButton7.FocusedColor = System.Drawing.Color.Empty
-        Me.GunaButton7.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GunaButton7.Font = New System.Drawing.Font("Poppins", 10.0!)
         Me.GunaButton7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.GunaButton7.Image = Nothing
         Me.GunaButton7.ImageSize = New System.Drawing.Size(20, 20)
@@ -300,7 +330,7 @@ Partial Class Form1
         Me.GunaButton7.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton7.OnHoverImage = Nothing
         Me.GunaButton7.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaButton7.Size = New System.Drawing.Size(170, 34)
+        Me.GunaButton7.Size = New System.Drawing.Size(217, 34)
         Me.GunaButton7.TabIndex = 12
         Me.GunaButton7.Text = "Entry"
         Me.GunaButton7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -315,7 +345,7 @@ Partial Class Form1
         Me.btnStock.DialogResult = System.Windows.Forms.DialogResult.None
         Me.btnStock.Dock = System.Windows.Forms.DockStyle.Top
         Me.btnStock.FocusedColor = System.Drawing.Color.Empty
-        Me.btnStock.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnStock.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnStock.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.btnStock.Image = Global.POSINVENTORY.My.Resources.Resources._18
         Me.btnStock.ImageSize = New System.Drawing.Size(20, 20)
@@ -326,7 +356,7 @@ Partial Class Form1
         Me.btnStock.OnHoverForeColor = System.Drawing.Color.White
         Me.btnStock.OnHoverImage = Nothing
         Me.btnStock.OnPressedColor = System.Drawing.Color.Black
-        Me.btnStock.Size = New System.Drawing.Size(170, 50)
+        Me.btnStock.Size = New System.Drawing.Size(217, 50)
         Me.btnStock.TabIndex = 13
         Me.btnStock.Text = "INVENTORY"
         '
@@ -337,7 +367,7 @@ Partial Class Form1
         Me.PanelProduct.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelProduct.Location = New System.Drawing.Point(0, 100)
         Me.PanelProduct.Name = "PanelProduct"
-        Me.PanelProduct.Size = New System.Drawing.Size(170, 72)
+        Me.PanelProduct.Size = New System.Drawing.Size(217, 72)
         Me.PanelProduct.TabIndex = 12
         Me.PanelProduct.Visible = False
         '
@@ -351,7 +381,7 @@ Partial Class Form1
         Me.GunaButton3.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton3.Dock = System.Windows.Forms.DockStyle.Top
         Me.GunaButton3.FocusedColor = System.Drawing.Color.Empty
-        Me.GunaButton3.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GunaButton3.Font = New System.Drawing.Font("Poppins", 10.0!)
         Me.GunaButton3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.GunaButton3.Image = Nothing
         Me.GunaButton3.ImageSize = New System.Drawing.Size(20, 20)
@@ -362,7 +392,7 @@ Partial Class Form1
         Me.GunaButton3.OnHoverForeColor = System.Drawing.Color.White
         Me.GunaButton3.OnHoverImage = Nothing
         Me.GunaButton3.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaButton3.Size = New System.Drawing.Size(170, 35)
+        Me.GunaButton3.Size = New System.Drawing.Size(217, 35)
         Me.GunaButton3.TabIndex = 13
         Me.GunaButton3.Text = "Category"
         Me.GunaButton3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -378,7 +408,7 @@ Partial Class Form1
         Me.btnList.DialogResult = System.Windows.Forms.DialogResult.None
         Me.btnList.Dock = System.Windows.Forms.DockStyle.Top
         Me.btnList.FocusedColor = System.Drawing.Color.Empty
-        Me.btnList.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnList.Font = New System.Drawing.Font("Poppins", 10.0!)
         Me.btnList.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.btnList.Image = Nothing
         Me.btnList.ImageSize = New System.Drawing.Size(20, 20)
@@ -389,7 +419,7 @@ Partial Class Form1
         Me.btnList.OnHoverForeColor = System.Drawing.Color.White
         Me.btnList.OnHoverImage = Nothing
         Me.btnList.OnPressedColor = System.Drawing.Color.Black
-        Me.btnList.Size = New System.Drawing.Size(170, 34)
+        Me.btnList.Size = New System.Drawing.Size(217, 34)
         Me.btnList.TabIndex = 12
         Me.btnList.Text = "Manage Product"
         Me.btnList.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -404,7 +434,7 @@ Partial Class Form1
         Me.btnProduct.DialogResult = System.Windows.Forms.DialogResult.None
         Me.btnProduct.Dock = System.Windows.Forms.DockStyle.Top
         Me.btnProduct.FocusedColor = System.Drawing.Color.Empty
-        Me.btnProduct.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnProduct.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnProduct.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.btnProduct.Image = Global.POSINVENTORY.My.Resources.Resources._17
         Me.btnProduct.ImageSize = New System.Drawing.Size(20, 20)
@@ -415,7 +445,7 @@ Partial Class Form1
         Me.btnProduct.OnHoverForeColor = System.Drawing.Color.White
         Me.btnProduct.OnHoverImage = Nothing
         Me.btnProduct.OnPressedColor = System.Drawing.Color.Black
-        Me.btnProduct.Size = New System.Drawing.Size(170, 50)
+        Me.btnProduct.Size = New System.Drawing.Size(217, 50)
         Me.btnProduct.TabIndex = 11
         Me.btnProduct.Text = "MANAGE PRODUCT"
         '
@@ -429,7 +459,7 @@ Partial Class Form1
         Me.btnDashboard.DialogResult = System.Windows.Forms.DialogResult.None
         Me.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top
         Me.btnDashboard.FocusedColor = System.Drawing.Color.Empty
-        Me.btnDashboard.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnDashboard.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.btnDashboard.Image = Global.POSINVENTORY.My.Resources.Resources._16
         Me.btnDashboard.ImageSize = New System.Drawing.Size(20, 20)
@@ -440,7 +470,7 @@ Partial Class Form1
         Me.btnDashboard.OnHoverForeColor = System.Drawing.Color.White
         Me.btnDashboard.OnHoverImage = Nothing
         Me.btnDashboard.OnPressedColor = System.Drawing.Color.Black
-        Me.btnDashboard.Size = New System.Drawing.Size(170, 50)
+        Me.btnDashboard.Size = New System.Drawing.Size(217, 50)
         Me.btnDashboard.TabIndex = 0
         Me.btnDashboard.Text = "DASHBOARD"
         '
@@ -450,9 +480,9 @@ Partial Class Form1
         Me.PanelLogo.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.PanelLogo.Controls.Add(Me.Panel1)
         Me.PanelLogo.Controls.Add(Me.PictureBox1)
-        Me.PanelLogo.Location = New System.Drawing.Point(12, 36)
+        Me.PanelLogo.Location = New System.Drawing.Point(21, 39)
         Me.PanelLogo.Name = "PanelLogo"
-        Me.PanelLogo.Size = New System.Drawing.Size(170, 153)
+        Me.PanelLogo.Size = New System.Drawing.Size(217, 207)
         Me.PanelLogo.TabIndex = 0
         '
         'Panel1
@@ -461,19 +491,19 @@ Partial Class Form1
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.Panel1.Controls.Add(Me.lblUsername)
         Me.Panel1.Controls.Add(Me.lblRole)
-        Me.Panel1.Location = New System.Drawing.Point(0, 83)
+        Me.Panel1.Location = New System.Drawing.Point(16, 124)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(170, 49)
+        Me.Panel1.Size = New System.Drawing.Size(187, 49)
         Me.Panel1.TabIndex = 1
         '
         'lblUsername
         '
         Me.lblUsername.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.lblUsername.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUsername.Font = New System.Drawing.Font("Poppins", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lblUsername.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.lblUsername.Location = New System.Drawing.Point(0, 11)
         Me.lblUsername.Name = "lblUsername"
-        Me.lblUsername.Size = New System.Drawing.Size(170, 19)
+        Me.lblUsername.Size = New System.Drawing.Size(187, 19)
         Me.lblUsername.TabIndex = 1
         Me.lblUsername.Text = "admin"
         Me.lblUsername.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -481,22 +511,22 @@ Partial Class Form1
         'lblRole
         '
         Me.lblRole.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.lblRole.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRole.Font = New System.Drawing.Font("Poppins", 9.25!, System.Drawing.FontStyle.Bold)
         Me.lblRole.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.lblRole.Location = New System.Drawing.Point(0, 30)
         Me.lblRole.Name = "lblRole"
-        Me.lblRole.Size = New System.Drawing.Size(170, 19)
+        Me.lblRole.Size = New System.Drawing.Size(187, 19)
         Me.lblRole.TabIndex = 0
         Me.lblRole.Text = "Administrator"
         Me.lblRole.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.POSINVENTORY.My.Resources.Resources.User
+        Me.PictureBox1.Image = Global.POSINVENTORY.My.Resources.Resources.User2
         Me.PictureBox1.InitialImage = CType(resources.GetObject("PictureBox1.InitialImage"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(52, 20)
+        Me.PictureBox1.Location = New System.Drawing.Point(58, 18)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(66, 57)
+        Me.PictureBox1.Size = New System.Drawing.Size(100, 100)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
@@ -512,10 +542,10 @@ Partial Class Form1
         Me.GunaControlBox2.AnimationHoverSpeed = 0.07!
         Me.GunaControlBox2.AnimationSpeed = 0.03!
         Me.GunaControlBox2.ControlBoxTheme = Guna.UI.WinForms.FormControlBoxTheme.Custom
-        Me.GunaControlBox2.ControlBoxType = Guna.UI.WinForms.FormControlBoxType.MinimizeBox
+        Me.GunaControlBox2.ControlBoxType = Guna.UI.WinForms.FormControlBoxType.MaximizeBox
         Me.GunaControlBox2.IconColor = System.Drawing.SystemColors.ButtonFace
         Me.GunaControlBox2.IconSize = 15.0!
-        Me.GunaControlBox2.Location = New System.Drawing.Point(833, 1)
+        Me.GunaControlBox2.Location = New System.Drawing.Point(1404, 1)
         Me.GunaControlBox2.Name = "GunaControlBox2"
         Me.GunaControlBox2.OnHoverBackColor = System.Drawing.Color.Maroon
         Me.GunaControlBox2.OnHoverIconColor = System.Drawing.Color.White
@@ -548,18 +578,18 @@ Partial Class Form1
         Me.btnLogout.BorderColor = System.Drawing.Color.Black
         Me.btnLogout.DialogResult = System.Windows.Forms.DialogResult.None
         Me.btnLogout.FocusedColor = System.Drawing.Color.Empty
-        Me.btnLogout.Font = New System.Drawing.Font("Poppins", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnLogout.Font = New System.Drawing.Font("Poppins", 10.0!, System.Drawing.FontStyle.Bold)
         Me.btnLogout.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.btnLogout.Image = Global.POSINVENTORY.My.Resources.Resources._8
         Me.btnLogout.ImageSize = New System.Drawing.Size(20, 20)
-        Me.btnLogout.Location = New System.Drawing.Point(12, 629)
+        Me.btnLogout.Location = New System.Drawing.Point(21, 779)
         Me.btnLogout.Name = "btnLogout"
         Me.btnLogout.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
         Me.btnLogout.OnHoverBorderColor = System.Drawing.Color.Black
         Me.btnLogout.OnHoverForeColor = System.Drawing.Color.White
         Me.btnLogout.OnHoverImage = Nothing
         Me.btnLogout.OnPressedColor = System.Drawing.Color.Black
-        Me.btnLogout.Size = New System.Drawing.Size(170, 50)
+        Me.btnLogout.Size = New System.Drawing.Size(217, 50)
         Me.btnLogout.TabIndex = 8
         Me.btnLogout.Text = "LOG OUT"
         '
@@ -574,6 +604,7 @@ Partial Class Form1
         '
         'GunaButton1
         '
+        Me.GunaButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GunaButton1.AnimationHoverSpeed = 0.07!
         Me.GunaButton1.AnimationSpeed = 0.03!
         Me.GunaButton1.BaseColor = System.Drawing.Color.Transparent
@@ -584,7 +615,7 @@ Partial Class Form1
         Me.GunaButton1.ForeColor = System.Drawing.Color.White
         Me.GunaButton1.Image = Nothing
         Me.GunaButton1.ImageSize = New System.Drawing.Size(20, 20)
-        Me.GunaButton1.Location = New System.Drawing.Point(868, 1)
+        Me.GunaButton1.Location = New System.Drawing.Point(1439, 1)
         Me.GunaButton1.Name = "GunaButton1"
         Me.GunaButton1.OnHoverBaseColor = System.Drawing.Color.Maroon
         Me.GunaButton1.OnHoverBorderColor = System.Drawing.Color.Black
@@ -596,18 +627,40 @@ Partial Class Form1
         Me.GunaButton1.Text = "X"
         Me.GunaButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'GunaControlBox1
+        '
+        Me.GunaControlBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GunaControlBox1.AnimationHoverSpeed = 0.07!
+        Me.GunaControlBox1.AnimationSpeed = 0.03!
+        Me.GunaControlBox1.ControlBoxTheme = Guna.UI.WinForms.FormControlBoxTheme.Custom
+        Me.GunaControlBox1.ControlBoxType = Guna.UI.WinForms.FormControlBoxType.MinimizeBox
+        Me.GunaControlBox1.IconColor = System.Drawing.SystemColors.ButtonFace
+        Me.GunaControlBox1.IconSize = 15.0!
+        Me.GunaControlBox1.Location = New System.Drawing.Point(1360, 1)
+        Me.GunaControlBox1.Name = "GunaControlBox1"
+        Me.GunaControlBox1.OnHoverBackColor = System.Drawing.Color.Maroon
+        Me.GunaControlBox1.OnHoverIconColor = System.Drawing.Color.White
+        Me.GunaControlBox1.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaControlBox1.Size = New System.Drawing.Size(38, 24)
+        Me.GunaControlBox1.TabIndex = 44
+        '
+        'transitionTimer
+        '
+        Me.transitionTimer.Interval = 10
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(918, 700)
+        Me.ClientSize = New System.Drawing.Size(1489, 850)
+        Me.Controls.Add(Me.btnLogout)
+        Me.Controls.Add(Me.GunaControlBox1)
         Me.Controls.Add(Me.GunaButton1)
         Me.Controls.Add(Me.PanelSlide)
         Me.Controls.Add(Me.PanelLogo)
         Me.Controls.Add(Me.GunaControlBox2)
         Me.Controls.Add(Me.PanelMain)
-        Me.Controls.Add(Me.btnLogout)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -656,4 +709,7 @@ Partial Class Form1
     Friend WithEvents Timer1 As Timer
     Friend WithEvents Panel1 As Panel
     Friend WithEvents GunaButton1 As Guna.UI.WinForms.GunaButton
+    Friend WithEvents GunaControlBox1 As Guna.UI.WinForms.GunaControlBox
+    Friend WithEvents transitionTimer As Timer
+    Friend WithEvents btnBackup As Guna.UI.WinForms.GunaButton
 End Class

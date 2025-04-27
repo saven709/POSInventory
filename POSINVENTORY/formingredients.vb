@@ -2,7 +2,7 @@
 
 Public Class formingredients
     'Private _foodCode As String
-    Dim ConnectionString As String = "server=localhost;user=root;password=;database=brewtopia_db"
+    Dim ConnectionString As String = "server=localhost;port=3307;user=root;password=;database=brewtopia_db"
 
     Public Property FoodCode As String
     Private CurrentSupplyCode As String ' Stores the current supplycode for the form lifecycle
@@ -109,7 +109,7 @@ Public Class formingredients
                 End Using
 
                 If sizeCount = 0 Then
-                    MsgBox("No sizes found for this food item. Please add a size first.", MsgBoxStyle.Information)
+                    MsgBox("No sizes found for this Product item. Please add a size first.", MsgBoxStyle.Information)
                     DataGridView1.Rows.Clear()
                     Return
                 End If
@@ -152,10 +152,19 @@ Public Class formingredients
             MsgBox("Error loading ingredients: " & ex.Message, MsgBoxStyle.Critical)
         End Try
     End Sub
+    Private Sub txtnamesize_KeyDown(sender As Object, e As KeyEventArgs) Handles txtnamesize.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True ' Prevents the "ding" sound
+            btnAddSize.PerformClick()
+        End If
+    End Sub
 
-
-
-
+    Private Sub txtPrice_KeyDown(sender As Object, e As KeyEventArgs) Handles txtPrice.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            btnAddSize.PerformClick()
+        End If
+    End Sub
 
     Private Sub btnAddSize_Click(sender As Object, e As EventArgs) Handles btnAddSize.Click
         Try
@@ -164,10 +173,10 @@ Public Class formingredients
                 Return
             End If
 
-            If Not IsNumeric(txtPrice.Text) Then
-                MsgBox("Please enter a valid price!", MsgBoxStyle.Exclamation)
-                Return
-            End If
+            'If Not IsNumeric(txtPrice.Text) Then
+            'MsgBox("Please enter a valid price!", MsgBoxStyle.Exclamation)
+            'Return
+            'End If
 
             If conn.State = ConnectionState.Closed Then conn.Open()
 
@@ -176,7 +185,7 @@ Public Class formingredients
             checkCmd.Parameters.AddWithValue("@size_name", txtnamesize.Text)
 
             If Convert.ToInt32(checkCmd.ExecuteScalar()) > 0 Then
-                MsgBox("This size already exists for this food item!", MsgBoxStyle.Exclamation)
+                MsgBox("This size already exists for this Product item!", MsgBoxStyle.Exclamation)
                 Return
             End If
 
@@ -187,8 +196,11 @@ Public Class formingredients
 
             cmd.ExecuteNonQuery()
 
-            MsgBox("Size added successfully!", MsgBoxStyle.Information)
             LoadSizes()
+            Dim EditForm As EditForm = Application.OpenForms.OfType(Of EditForm)().FirstOrDefault()
+            EditForm.LoadSizes()
+            MsgBox("Size added successfully!", MsgBoxStyle.Information)
+
             txtnamesize.Clear()
             txtPrice.Clear()
         Catch ex As Exception
@@ -196,6 +208,12 @@ Public Class formingredients
         Finally
             If conn.State = ConnectionState.Open Then conn.Close()
         End Try
+    End Sub
+    Private Sub txtquantity_KeyDown(sender As Object, e As KeyEventArgs) Handles txtquantity.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True ' Prevents beep sound
+            btnAddSupply.PerformClick()
+        End If
     End Sub
 
     Private Sub btnAddSupply_Click(sender As Object, e As EventArgs) Handles btnAddSupply.Click
@@ -215,15 +233,23 @@ Public Class formingredients
                 Return
             End If
 
-            ' Validate the quantity
-            If String.IsNullOrWhiteSpace(txtquantity.Text) OrElse Not IsNumeric(txtquantity.Text) Then
-                MsgBox("Please enter a valid quantity!", MsgBoxStyle.Exclamation)
-                Return
-            End If
-
             ' Ensure supply code is not empty
             If String.IsNullOrWhiteSpace(txt_supplycode.Text) Then
                 MsgBox("Supply code cannot be null or empty!", MsgBoxStyle.Critical)
+                Return
+            End If
+
+            ' Ensure quantity is provided and valid
+            If String.IsNullOrWhiteSpace(txtquantity.Text) Then
+                MsgBox("Please enter a quantity!", MsgBoxStyle.Exclamation)
+                txtquantity.Focus()
+                Return
+            End If
+
+            Dim quantity As Decimal
+            If Not Decimal.TryParse(txtquantity.Text, quantity) OrElse quantity <= 0 Then
+                MsgBox("Please enter a valid numeric quantity greater than 0!", MsgBoxStyle.Exclamation)
+                txtquantity.Focus()
                 Return
             End If
 
@@ -238,10 +264,11 @@ Public Class formingredients
             Dim checkCmd As New MySqlCommand("SELECT COUNT(*) FROM tbl_ingredients WHERE foodcode = @foodcode AND itemcode = @itemcode AND size_name = @size_name", conn)
             checkCmd.Parameters.AddWithValue("@foodcode", FoodCode)
             checkCmd.Parameters.AddWithValue("@itemcode", itemcode)
-            checkCmd.Parameters.AddWithValue("@size_name", selectedSizeName)  ' Use the size_name from the selected row
+            checkCmd.Parameters.AddWithValue("@size_name", selectedSizeName)
 
             If Convert.ToInt32(checkCmd.ExecuteScalar()) > 0 Then
                 MsgBox("This ingredient already exists for this size!", MsgBoxStyle.Exclamation)
+                LoadInventoryItems()
                 Return
             End If
 
@@ -250,12 +277,13 @@ Public Class formingredients
             cmd.Parameters.AddWithValue("@foodcode", FoodCode)
             cmd.Parameters.AddWithValue("@itemcode", itemcode)
             cmd.Parameters.AddWithValue("@size_name", selectedSizeName)
-            cmd.Parameters.AddWithValue("@quantity", Decimal.Parse(txtquantity.Text))
+            cmd.Parameters.AddWithValue("@quantity", quantity)
             cmd.Parameters.AddWithValue("@supplycode", txt_supplycode.Text)
 
             cmd.ExecuteNonQuery()
 
             MsgBox("Ingredient added successfully!", MsgBoxStyle.Information)
+            LoadInventoryItems()
             LoadIngredients()
             txtquantity.Clear()
         Catch ex As Exception
@@ -294,6 +322,8 @@ Public Class formingredients
             deleteSizeCmd.Parameters.AddWithValue("@size_name", selectedSize)
             deleteSizeCmd.ExecuteNonQuery()
 
+            Dim EditForm As EditForm = Application.OpenForms.OfType(Of EditForm)().FirstOrDefault()
+            EditForm.LoadSizes()
             MsgBox("Size and its ingredients deleted successfully!", MsgBoxStyle.Information)
             LoadSizes()
             LoadIngredients()
@@ -342,4 +372,23 @@ Public Class formingredients
             LoadIngredients()
         End If
     End Sub
+
+    Private Sub GunaButton3_Click(sender As Object, e As EventArgs) Handles GunaButton3.Click
+        Me.Close()
+    End Sub
+
+    Private Sub txtPrice_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPrice.KeyPress
+        ' Allow only numeric characters and control keys (e.g., Backspace)
+        If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) Then
+            e.Handled = True ' Suppress the invalid keypress
+        End If
+    End Sub
+
+    Private Sub txtquantity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtquantity.KeyPress
+        ' Allow only numeric characters and control keys (e.g., Backspace)
+        If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) Then
+            e.Handled = True ' Suppress the invalid keypress
+        End If
+    End Sub
+
 End Class

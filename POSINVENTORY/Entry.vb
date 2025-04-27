@@ -12,8 +12,8 @@ Public Class Entry
 
         ' Define the columns in the DataGridView
         DataGridView1.Columns.Add("No", "No")
-        DataGridView1.Columns.Add("Name", "Item Name")
         DataGridView1.Columns.Add("ItemCode", "Item Code")
+        DataGridView1.Columns.Add("Name", "Item Name")
         DataGridView1.Columns.Add("MeasurementName", "Measurement")
         DataGridView1.Columns.Add("Category", "Category")
         DataGridView1.Columns.Add("Quantity", "Quantity")
@@ -26,13 +26,16 @@ Public Class Entry
         DataGridView1.Columns("MeasurementName").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         DataGridView1.Columns("Category").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         DataGridView1.Columns("Name").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
-        DataGridView1.Columns("Quantity").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+        DataGridView1.Columns("Quantity").Width = 55
         DataGridView1.Columns("Date").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         DataGridView1.Columns("Time").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         DataGridView1.Columns("Username").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
 
+        ' Center text in the "Quantity" column
+        DataGridView1.Columns("Quantity").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
         ' Hide the ItemCode column if necessary
-        DataGridView1.Columns("ItemCode").Visible = False
+        'DataGridView1.Columns("ItemCode").Visible = False
         DataGridView1.Columns("No").Visible = False
 
         ' Set DataGridView properties
@@ -42,6 +45,9 @@ Public Class Entry
         DataGridView1.AllowUserToDeleteRows = False
         DataGridView1.ReadOnly = True
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+
+        ' Enable cell formatting
+        AddHandler DataGridView1.CellFormatting, AddressOf DataGridView1_CellFormatting
     End Sub
 
 
@@ -60,8 +66,8 @@ Public Class Entry
                 ' Add measurementname to the DataGridView row data
                 DataGridView1.Rows.Add(
                 rowIndex,
-                dr("name").ToString(),
                 dr("itemcode").ToString(),
+                dr("name").ToString(),
                 dr("measurementname").ToString(),  ' Add measurementname here
                 dr("category").ToString(),
                 dr("quantity").ToString(),
@@ -88,6 +94,8 @@ Public Class Entry
 
         ' Load data into DataGridView on form load
         LoadInventory()
+
+
     End Sub
 
 
@@ -165,7 +173,7 @@ Public Class Entry
         End If
 
         ' Define the connection string
-        Dim ConnectionString As String = "server=localhost;user=root;password=;database=brewtopia_db"
+        Dim ConnectionString As String = "server=localhost;port=3307;user=root;password=;database=brewtopia_db"
 
         ' Use the connection string inside a Using statement
         Using conn As New MySqlConnection(ConnectionString)
@@ -185,8 +193,8 @@ Public Class Entry
                     ' Add each record to the DataGridView
                     DataGridView1.Rows.Add(
                     DataGridView1.Rows.Count + 1,  ' Auto-increment No column
-                    dr("name").ToString(),
                     dr("itemcode").ToString(),
+                    dr("name").ToString(),
                     dr("measurementname").ToString(),
                     dr("category").ToString(),
                     dr("quantity").ToString(),
@@ -200,6 +208,20 @@ Public Class Entry
                 MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical, "Error")
             End Try
         End Using
+    End Sub
+    Private Sub DataGridView1_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles DataGridView1.CellFormatting
+        ' Check if this is a valid row (not the new row) and we're not in design mode
+        If e.RowIndex >= 0 AndAlso Not DesignMode Then
+            Dim quantity As Integer
+            ' Try to parse the quantity value from the "Quantity" column
+            If Integer.TryParse(DataGridView1.Rows(e.RowIndex).Cells("Quantity").Value.ToString(), quantity) Then
+                ' If quantity is less than 11, set the row's background color to red
+                If quantity < 11 Then
+                    DataGridView1.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.Red
+                    DataGridView1.Rows(e.RowIndex).DefaultCellStyle.ForeColor = Color.White
+                End If
+            End If
+        End If
     End Sub
 
 End Class

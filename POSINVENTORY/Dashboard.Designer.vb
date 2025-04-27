@@ -23,10 +23,12 @@ Partial Class Dashboard
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea4 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Dim ChartArea3 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
         Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lbl_date1 = New System.Windows.Forms.Label()
         Me.lbl_time = New System.Windows.Forms.Label()
@@ -60,6 +62,7 @@ Partial Class Dashboard
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.Chart2 = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Me.Chart3 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.Panel1.SuspendLayout()
         CType(Me.GunaPictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GunaPictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +75,7 @@ Partial Class Dashboard
         Me.panel2.SuspendLayout()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Chart3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -89,9 +93,9 @@ Partial Class Dashboard
         Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me.Panel4)
         Me.Panel1.Controls.Add(Me.panel2)
-        Me.Panel1.Location = New System.Drawing.Point(2, 3)
+        Me.Panel1.Location = New System.Drawing.Point(-1, 3)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(687, 281)
+        Me.Panel1.Size = New System.Drawing.Size(1199, 360)
         Me.Panel1.TabIndex = 0
         '
         'lbl_date1
@@ -100,7 +104,7 @@ Partial Class Dashboard
         Me.lbl_date1.BackColor = System.Drawing.Color.Transparent
         Me.lbl_date1.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_date1.ForeColor = System.Drawing.Color.Black
-        Me.lbl_date1.Location = New System.Drawing.Point(335, 3)
+        Me.lbl_date1.Location = New System.Drawing.Point(847, 3)
         Me.lbl_date1.Name = "lbl_date1"
         Me.lbl_date1.Size = New System.Drawing.Size(251, 25)
         Me.lbl_date1.TabIndex = 32
@@ -112,7 +116,7 @@ Partial Class Dashboard
         Me.lbl_time.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lbl_time.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_time.ForeColor = System.Drawing.Color.Black
-        Me.lbl_time.Location = New System.Drawing.Point(563, 3)
+        Me.lbl_time.Location = New System.Drawing.Point(1075, 3)
         Me.lbl_time.Name = "lbl_time"
         Me.lbl_time.Size = New System.Drawing.Size(107, 25)
         Me.lbl_time.TabIndex = 31
@@ -124,7 +128,7 @@ Partial Class Dashboard
         Me.GunaPictureBox4.BackColor = System.Drawing.Color.Transparent
         Me.GunaPictureBox4.BaseColor = System.Drawing.Color.White
         Me.GunaPictureBox4.Image = Global.POSINVENTORY.My.Resources.Resources._12
-        Me.GunaPictureBox4.Location = New System.Drawing.Point(548, 151)
+        Me.GunaPictureBox4.Location = New System.Drawing.Point(934, 197)
         Me.GunaPictureBox4.Name = "GunaPictureBox4"
         Me.GunaPictureBox4.Size = New System.Drawing.Size(60, 53)
         Me.GunaPictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -137,7 +141,7 @@ Partial Class Dashboard
         Me.GunaPictureBox3.BackColor = System.Drawing.Color.Transparent
         Me.GunaPictureBox3.BaseColor = System.Drawing.Color.White
         Me.GunaPictureBox3.Image = Global.POSINVENTORY.My.Resources.Resources._11
-        Me.GunaPictureBox3.Location = New System.Drawing.Point(392, 151)
+        Me.GunaPictureBox3.Location = New System.Drawing.Point(689, 197)
         Me.GunaPictureBox3.Name = "GunaPictureBox3"
         Me.GunaPictureBox3.Size = New System.Drawing.Size(60, 53)
         Me.GunaPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -150,9 +154,9 @@ Partial Class Dashboard
         Me.Panel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.Panel6.Controls.Add(Me.Label12)
         Me.Panel6.Controls.Add(Me.lblcriticalitems)
-        Me.Panel6.Location = New System.Drawing.Point(510, 180)
+        Me.Panel6.Location = New System.Drawing.Point(889, 226)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(140, 98)
+        Me.Panel6.Size = New System.Drawing.Size(151, 109)
         Me.Panel6.TabIndex = 6
         '
         'Label12
@@ -160,9 +164,9 @@ Partial Class Dashboard
         Me.Label12.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Label12.Font = New System.Drawing.Font("Poppins Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.Black
-        Me.Label12.Location = New System.Drawing.Point(0, 27)
+        Me.Label12.Location = New System.Drawing.Point(0, 38)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(140, 23)
+        Me.Label12.Size = New System.Drawing.Size(151, 23)
         Me.Label12.TabIndex = 4
         Me.Label12.Text = "CRITICAL ITEMS"
         Me.Label12.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -172,9 +176,9 @@ Partial Class Dashboard
         Me.lblcriticalitems.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.lblcriticalitems.Font = New System.Drawing.Font("Poppins", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblcriticalitems.ForeColor = System.Drawing.Color.FromArgb(CType(CType(254, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.lblcriticalitems.Location = New System.Drawing.Point(0, 50)
+        Me.lblcriticalitems.Location = New System.Drawing.Point(0, 61)
         Me.lblcriticalitems.Name = "lblcriticalitems"
-        Me.lblcriticalitems.Size = New System.Drawing.Size(140, 48)
+        Me.lblcriticalitems.Size = New System.Drawing.Size(151, 48)
         Me.lblcriticalitems.TabIndex = 5
         Me.lblcriticalitems.Text = "0.0"
         Me.lblcriticalitems.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -184,9 +188,9 @@ Partial Class Dashboard
         Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.Panel5.Controls.Add(Me.Label10)
         Me.Panel5.Controls.Add(Me.lbltotalproducts)
-        Me.Panel5.Location = New System.Drawing.Point(354, 180)
+        Me.Panel5.Location = New System.Drawing.Point(645, 226)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(140, 98)
+        Me.Panel5.Size = New System.Drawing.Size(152, 109)
         Me.Panel5.TabIndex = 8
         '
         'Label10
@@ -194,9 +198,9 @@ Partial Class Dashboard
         Me.Label10.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Label10.Font = New System.Drawing.Font("Poppins Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.Black
-        Me.Label10.Location = New System.Drawing.Point(0, 27)
+        Me.Label10.Location = New System.Drawing.Point(0, 38)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(140, 23)
+        Me.Label10.Size = New System.Drawing.Size(152, 23)
         Me.Label10.TabIndex = 4
         Me.Label10.Text = "TOTAL PRODUCT"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.BottomCenter
@@ -206,9 +210,9 @@ Partial Class Dashboard
         Me.lbltotalproducts.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.lbltotalproducts.Font = New System.Drawing.Font("Poppins", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltotalproducts.ForeColor = System.Drawing.Color.FromArgb(CType(CType(254, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.lbltotalproducts.Location = New System.Drawing.Point(0, 50)
+        Me.lbltotalproducts.Location = New System.Drawing.Point(0, 61)
         Me.lbltotalproducts.Name = "lbltotalproducts"
-        Me.lbltotalproducts.Size = New System.Drawing.Size(140, 48)
+        Me.lbltotalproducts.Size = New System.Drawing.Size(152, 48)
         Me.lbltotalproducts.TabIndex = 5
         Me.lbltotalproducts.Text = "0.0"
         Me.lbltotalproducts.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -218,7 +222,7 @@ Partial Class Dashboard
         Me.GunaPictureBox2.BackColor = System.Drawing.Color.Transparent
         Me.GunaPictureBox2.BaseColor = System.Drawing.Color.White
         Me.GunaPictureBox2.Image = Global.POSINVENTORY.My.Resources.Resources._10
-        Me.GunaPictureBox2.Location = New System.Drawing.Point(226, 151)
+        Me.GunaPictureBox2.Location = New System.Drawing.Point(441, 197)
         Me.GunaPictureBox2.Name = "GunaPictureBox2"
         Me.GunaPictureBox2.Size = New System.Drawing.Size(60, 53)
         Me.GunaPictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -231,21 +235,20 @@ Partial Class Dashboard
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.Panel3.Controls.Add(Me.Label8)
         Me.Panel3.Controls.Add(Me.lbltotalproductsold)
-        Me.Panel3.Location = New System.Drawing.Point(188, 180)
+        Me.Panel3.Location = New System.Drawing.Point(381, 226)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(140, 98)
+        Me.Panel3.Size = New System.Drawing.Size(185, 109)
         Me.Panel3.TabIndex = 6
         '
         'Label8
         '
-        Me.Label8.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Label8.Font = New System.Drawing.Font("Poppins Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.Black
-        Me.Label8.Location = New System.Drawing.Point(0, 27)
+        Me.Label8.Location = New System.Drawing.Point(2, 39)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(140, 23)
+        Me.Label8.Size = New System.Drawing.Size(179, 23)
         Me.Label8.TabIndex = 4
-        Me.Label8.Text = "STOCK ON HAND"
+        Me.Label8.Text = "QUANTITY SOLD TODAY"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         '
         'lbltotalproductsold
@@ -253,9 +256,9 @@ Partial Class Dashboard
         Me.lbltotalproductsold.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.lbltotalproductsold.Font = New System.Drawing.Font("Poppins", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbltotalproductsold.ForeColor = System.Drawing.Color.FromArgb(CType(CType(254, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.lbltotalproductsold.Location = New System.Drawing.Point(0, 50)
+        Me.lbltotalproductsold.Location = New System.Drawing.Point(0, 61)
         Me.lbltotalproductsold.Name = "lbltotalproductsold"
-        Me.lbltotalproductsold.Size = New System.Drawing.Size(140, 48)
+        Me.lbltotalproductsold.Size = New System.Drawing.Size(185, 48)
         Me.lbltotalproductsold.TabIndex = 5
         Me.lbltotalproductsold.Text = "0.0"
         Me.lbltotalproductsold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -265,7 +268,7 @@ Partial Class Dashboard
         Me.GunaPictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.GunaPictureBox1.BaseColor = System.Drawing.Color.White
         Me.GunaPictureBox1.Image = Global.POSINVENTORY.My.Resources.Resources._9
-        Me.GunaPictureBox1.Location = New System.Drawing.Point(67, 151)
+        Me.GunaPictureBox1.Location = New System.Drawing.Point(183, 197)
         Me.GunaPictureBox1.Name = "GunaPictureBox1"
         Me.GunaPictureBox1.Size = New System.Drawing.Size(60, 53)
         Me.GunaPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -278,7 +281,7 @@ Partial Class Dashboard
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Poppins Medium", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(21, 9)
+        Me.Label3.Location = New System.Drawing.Point(21, 8)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(88, 19)
         Me.Label3.TabIndex = 4
@@ -289,9 +292,9 @@ Partial Class Dashboard
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.Panel4.Controls.Add(Me.Label5)
         Me.Panel4.Controls.Add(Me.lbldailysales)
-        Me.Panel4.Location = New System.Drawing.Point(29, 180)
+        Me.Panel4.Location = New System.Drawing.Point(137, 226)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(140, 98)
+        Me.Panel4.Size = New System.Drawing.Size(153, 109)
         Me.Panel4.TabIndex = 2
         '
         'Label5
@@ -299,9 +302,9 @@ Partial Class Dashboard
         Me.Label5.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Label5.Font = New System.Drawing.Font("Poppins Medium", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(0, 27)
+        Me.Label5.Location = New System.Drawing.Point(0, 38)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(140, 23)
+        Me.Label5.Size = New System.Drawing.Size(153, 23)
         Me.Label5.TabIndex = 4
         Me.Label5.Text = "DAILY SALES"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -311,9 +314,9 @@ Partial Class Dashboard
         Me.lbldailysales.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.lbldailysales.Font = New System.Drawing.Font("Poppins", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbldailysales.ForeColor = System.Drawing.Color.FromArgb(CType(CType(254, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(254, Byte), Integer))
-        Me.lbldailysales.Location = New System.Drawing.Point(0, 50)
+        Me.lbldailysales.Location = New System.Drawing.Point(0, 61)
         Me.lbldailysales.Name = "lbldailysales"
-        Me.lbldailysales.Size = New System.Drawing.Size(140, 48)
+        Me.lbldailysales.Size = New System.Drawing.Size(153, 48)
         Me.lbldailysales.TabIndex = 5
         Me.lbldailysales.Text = "0.0"
         Me.lbldailysales.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -324,9 +327,9 @@ Partial Class Dashboard
         Me.panel2.Controls.Add(Me.Label4)
         Me.panel2.Controls.Add(Me.lblUsername2)
         Me.panel2.Controls.Add(Me.label1)
-        Me.panel2.Location = New System.Drawing.Point(21, 27)
+        Me.panel2.Location = New System.Drawing.Point(137, 48)
         Me.panel2.Name = "panel2"
-        Me.panel2.Size = New System.Drawing.Size(644, 111)
+        Me.panel2.Size = New System.Drawing.Size(903, 128)
         Me.panel2.TabIndex = 1
         '
         'Label4
@@ -402,15 +405,16 @@ Partial Class Dashboard
         Me.Chart1.BorderlineColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.Chart1.BorderSkin.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.Chart1.BorderSkin.PageColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        ChartArea4.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea4)
-        Me.Chart1.Location = New System.Drawing.Point(9, 329)
+        ChartArea3.BackColor = System.Drawing.Color.Transparent
+        ChartArea3.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea3)
+        Me.Chart1.Location = New System.Drawing.Point(100, 427)
         Me.Chart1.Name = "Chart1"
         Me.Chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale
-        Series4.ChartArea = "ChartArea1"
-        Series4.Name = "Series1"
-        Me.Chart1.Series.Add(Series4)
-        Me.Chart1.Size = New System.Drawing.Size(331, 273)
+        Series3.ChartArea = "ChartArea1"
+        Series3.Name = "Series1"
+        Me.Chart1.Series.Add(Series3)
+        Me.Chart1.Size = New System.Drawing.Size(326, 257)
         Me.Chart1.TabIndex = 1
         Me.Chart1.Text = "Chart1"
         Me.Chart1.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.Normal
@@ -421,25 +425,47 @@ Partial Class Dashboard
         Me.Chart2.BorderlineColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.Chart2.BorderSkin.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.Chart2.BorderSkin.PageColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        ChartArea3.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea3)
-        Me.Chart2.Location = New System.Drawing.Point(346, 329)
+        ChartArea2.BackColor = System.Drawing.Color.Transparent
+        ChartArea2.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea2)
+        Me.Chart2.Location = New System.Drawing.Point(428, 427)
         Me.Chart2.Name = "Chart2"
         Me.Chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale
-        Series3.ChartArea = "ChartArea1"
-        Series3.Name = "Series1"
-        Me.Chart2.Series.Add(Series3)
-        Me.Chart2.Size = New System.Drawing.Size(331, 273)
+        Series2.ChartArea = "ChartArea1"
+        Series2.Name = "Series1"
+        Me.Chart2.Series.Add(Series2)
+        Me.Chart2.Size = New System.Drawing.Size(326, 257)
         Me.Chart2.TabIndex = 2
         Me.Chart2.Text = "Chart2"
         Me.Chart2.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.Normal
+        '
+        'Chart3
+        '
+        Me.Chart3.BackColor = System.Drawing.Color.Transparent
+        Me.Chart3.BorderlineColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.Chart3.BorderSkin.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.Chart3.BorderSkin.PageColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
+        ChartArea1.BackColor = System.Drawing.Color.Transparent
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart3.ChartAreas.Add(ChartArea1)
+        Me.Chart3.Location = New System.Drawing.Point(758, 427)
+        Me.Chart3.Name = "Chart3"
+        Me.Chart3.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Grayscale
+        Series1.ChartArea = "ChartArea1"
+        Series1.Name = "Series1"
+        Me.Chart3.Series.Add(Series1)
+        Me.Chart3.Size = New System.Drawing.Size(326, 257)
+        Me.Chart3.TabIndex = 3
+        Me.Chart3.Text = "Chart3"
+        Me.Chart3.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.Normal
         '
         'Dashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(231, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(689, 643)
+        Me.ClientSize = New System.Drawing.Size(1200, 790)
+        Me.Controls.Add(Me.Chart3)
         Me.Controls.Add(Me.Chart2)
         Me.Controls.Add(Me.Chart1)
         Me.Controls.Add(Me.Panel1)
@@ -460,6 +486,7 @@ Partial Class Dashboard
         Me.panel2.PerformLayout()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Chart2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Chart3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -498,4 +525,5 @@ Partial Class Dashboard
     Friend WithEvents lblUsername2 As Label
     Friend WithEvents Chart1 As DataVisualization.Charting.Chart
     Friend WithEvents Chart2 As DataVisualization.Charting.Chart
+    Friend WithEvents Chart3 As DataVisualization.Charting.Chart
 End Class

@@ -123,9 +123,12 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="txt_search.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAP4AAAAlCAYAAABib1S9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABESURBVHhe7cMBDQAgDMAwdAz/OpB2hLxNegAAAAAAAAAA
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2KN6t0bdsvmlA0szODxdcwAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAABGQAAAAlCAYAAAAEPz8fAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADDSURBVHhe7cNBDQAgDAAxdBz+dSBtuIBPm3QBAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf1Vn16iqqqr6YnMBdO66g+qY0t0AAAAASUVORK5C
+        YII=
 </value>
   </data>
   <metadata name="GunaElipse2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -137,10 +140,7 @@
   <metadata name="GunaElipse4.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>371, 17</value>
   </metadata>
-  <metadata name="GunaElipse5.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>489, 17</value>
-  </metadata>
-  <metadata name="GunaElipse6.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>607, 17</value>
+  <metadata name="GunaElipse7.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>725, 17</value>
   </metadata>
 </root>

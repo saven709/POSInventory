@@ -33,7 +33,6 @@ Partial Class Login
         Dim StateProperties7 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
         Dim StateProperties8 As Bunifu.UI.WinForms.BunifuTextBox.StateProperties = New Bunifu.UI.WinForms.BunifuTextBox.StateProperties()
         Me.GunaElipse1 = New Guna.UI.WinForms.GunaElipse(Me.components)
-        Me.SigninBtn = New Guna.UI.WinForms.GunaButton()
         Me.GunaLabel7 = New Guna.UI.WinForms.GunaLabel()
         Me.GunaLabel6 = New Guna.UI.WinForms.GunaLabel()
         Me.GunaLabel5 = New Guna.UI.WinForms.GunaLabel()
@@ -47,45 +46,21 @@ Partial Class Login
         Me.txtUsername = New Bunifu.UI.WinForms.BunifuTextBox()
         Me.txtPassword = New Bunifu.UI.WinForms.BunifuTextBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.GunaTransfarantPictureBox1 = New Guna.UI.WinForms.GunaTransfarantPictureBox()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lblAttempt = New Guna.UI.WinForms.GunaLabel()
+        Me.SigninBtn = New Guna.UI.WinForms.GunaButton()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GunaTransfarantPictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GunaElipse1
         '
         Me.GunaElipse1.Radius = 15
         Me.GunaElipse1.TargetControl = Me
-        '
-        'SigninBtn
-        '
-        Me.SigninBtn.AnimationHoverSpeed = 0.07!
-        Me.SigninBtn.AnimationSpeed = 0.03!
-        Me.SigninBtn.BackColor = System.Drawing.Color.Transparent
-        Me.SigninBtn.BaseColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(233, Byte), Integer))
-        Me.SigninBtn.BorderColor = System.Drawing.Color.Black
-        Me.SigninBtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.SigninBtn.DialogResult = System.Windows.Forms.DialogResult.None
-        Me.SigninBtn.FocusedColor = System.Drawing.Color.Empty
-        Me.SigninBtn.Font = New System.Drawing.Font("Poppins", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SigninBtn.ForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.SigninBtn.Image = Nothing
-        Me.SigninBtn.ImageSize = New System.Drawing.Size(20, 20)
-        Me.SigninBtn.Location = New System.Drawing.Point(612, 567)
-        Me.SigninBtn.Name = "SigninBtn"
-        Me.SigninBtn.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(233, Byte), Integer))
-        Me.SigninBtn.OnHoverBorderColor = System.Drawing.Color.Black
-        Me.SigninBtn.OnHoverForeColor = System.Drawing.Color.Black
-        Me.SigninBtn.OnHoverImage = Nothing
-        Me.SigninBtn.OnPressedColor = System.Drawing.Color.Black
-        Me.SigninBtn.Radius = 5
-        Me.SigninBtn.Size = New System.Drawing.Size(174, 43)
-        Me.SigninBtn.TabIndex = 3
-        Me.SigninBtn.Text = "Sign In"
-        Me.SigninBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.SigninBtn.TextRenderingHint = Guna.UI.WinForms.DrawingTextRenderingHint.AntiAlias
         '
         'GunaLabel7
         '
@@ -199,7 +174,7 @@ Partial Class Login
         Me.GunaButton1.OnPressedColor = System.Drawing.Color.Black
         Me.GunaButton1.Radius = 5
         Me.GunaButton1.Size = New System.Drawing.Size(331, 43)
-        Me.GunaButton1.TabIndex = 9
+        Me.GunaButton1.TabIndex = 21
         Me.GunaButton1.Text = "cashier test"
         Me.GunaButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.GunaButton1.TextRenderingHint = Guna.UI.WinForms.DrawingTextRenderingHint.AntiAlias
@@ -208,7 +183,7 @@ Partial Class Login
         'GunaElipse2
         '
         Me.GunaElipse2.Radius = 15
-        Me.GunaElipse2.TargetControl = Me.SigninBtn
+        Me.GunaElipse2.TargetControl = Me
         '
         'GunaLabel2
         '
@@ -228,11 +203,11 @@ Partial Class Login
         '
         Me.GunaLabel3.AutoSize = True
         Me.GunaLabel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(233, Byte), Integer))
-        Me.GunaLabel3.Font = New System.Drawing.Font("Poppins", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GunaLabel3.Font = New System.Drawing.Font("Poppins SemiBold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GunaLabel3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.GunaLabel3.Location = New System.Drawing.Point(17, 551)
+        Me.GunaLabel3.Location = New System.Drawing.Point(24, 490)
         Me.GunaLabel3.Name = "GunaLabel3"
-        Me.GunaLabel3.Size = New System.Drawing.Size(342, 26)
+        Me.GunaLabel3.Size = New System.Drawing.Size(350, 26)
         Me.GunaLabel3.TabIndex = 13
         Me.GunaLabel3.Text = "Find the best drink to accompany your days"
         Me.GunaLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -306,7 +281,7 @@ Partial Class Login
         Me.txtUsername.ShortcutsEnabled = True
         Me.txtUsername.Size = New System.Drawing.Size(334, 50)
         Me.txtUsername.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Material
-        Me.txtUsername.TabIndex = 16
+        Me.txtUsername.TabIndex = 15
         Me.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtUsername.TextMarginBottom = 0
         Me.txtUsername.TextMarginLeft = 3
@@ -383,7 +358,7 @@ Partial Class Login
         Me.txtPassword.ShortcutsEnabled = True
         Me.txtPassword.Size = New System.Drawing.Size(334, 50)
         Me.txtPassword.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Material
-        Me.txtPassword.TabIndex = 15
+        Me.txtPassword.TabIndex = 16
         Me.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.txtPassword.TextMarginBottom = 0
         Me.txtPassword.TextMarginLeft = 3
@@ -403,17 +378,6 @@ Partial Class Login
         Me.PictureBox3.TabIndex = 12
         Me.PictureBox3.TabStop = False
         '
-        'PictureBox2
-        '
-        Me.PictureBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(251, Byte), Integer), CType(CType(241, Byte), Integer), CType(CType(233, Byte), Integer))
-        Me.PictureBox2.Image = Global.POSINVENTORY.My.Resources.Resources._1
-        Me.PictureBox2.Location = New System.Drawing.Point(37, 248)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(300, 300)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 5
-        Me.PictureBox2.TabStop = False
-        '
         'PictureBox1
         '
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -425,22 +389,87 @@ Partial Class Login
         Me.PictureBox1.TabIndex = 10
         Me.PictureBox1.TabStop = False
         '
+        'GunaTransfarantPictureBox1
+        '
+        Me.GunaTransfarantPictureBox1.BackColor = System.Drawing.Color.Transparent
+        Me.GunaTransfarantPictureBox1.BaseColor = System.Drawing.Color.Black
+        Me.GunaTransfarantPictureBox1.Image = Global.POSINVENTORY.My.Resources.Resources.logobrewtopia
+        Me.GunaTransfarantPictureBox1.Location = New System.Drawing.Point(36, 145)
+        Me.GunaTransfarantPictureBox1.Name = "GunaTransfarantPictureBox1"
+        Me.GunaTransfarantPictureBox1.Size = New System.Drawing.Size(330, 347)
+        Me.GunaTransfarantPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
+        Me.GunaTransfarantPictureBox1.TabIndex = 17
+        Me.GunaTransfarantPictureBox1.TabStop = False
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(41, Byte), Integer))
+        Me.Panel1.Controls.Add(Me.lblAttempt)
+        Me.Panel1.Controls.Add(Me.SigninBtn)
+        Me.Panel1.Location = New System.Drawing.Point(585, 494)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(218, 99)
+        Me.Panel1.TabIndex = 20
+        '
+        'lblAttempt
+        '
+        Me.lblAttempt.AutoSize = True
+        Me.lblAttempt.BackColor = System.Drawing.Color.FromArgb(CType(CType(41, Byte), Integer), CType(CType(41, Byte), Integer), CType(CType(41, Byte), Integer))
+        Me.lblAttempt.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.lblAttempt.Font = New System.Drawing.Font("Poppins SemiBold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAttempt.ForeColor = System.Drawing.Color.FromArgb(CType(CType(228, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(220, Byte), Integer))
+        Me.lblAttempt.Location = New System.Drawing.Point(0, 30)
+        Me.lblAttempt.Name = "lblAttempt"
+        Me.lblAttempt.Size = New System.Drawing.Size(0, 26)
+        Me.lblAttempt.TabIndex = 18
+        Me.lblAttempt.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.lblAttempt.TextRenderingHint = Guna.UI.WinForms.DrawingTextRenderingHint.AntiAlias
+        '
+        'SigninBtn
+        '
+        Me.SigninBtn.AnimationHoverSpeed = 0.07!
+        Me.SigninBtn.AnimationSpeed = 0.03!
+        Me.SigninBtn.BackColor = System.Drawing.Color.Transparent
+        Me.SigninBtn.BaseColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(233, Byte), Integer))
+        Me.SigninBtn.BorderColor = System.Drawing.Color.Black
+        Me.SigninBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.SigninBtn.DialogResult = System.Windows.Forms.DialogResult.None
+        Me.SigninBtn.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SigninBtn.FocusedColor = System.Drawing.Color.Empty
+        Me.SigninBtn.Font = New System.Drawing.Font("Poppins", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SigninBtn.ForeColor = System.Drawing.Color.FromArgb(CType(CType(27, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
+        Me.SigninBtn.Image = Nothing
+        Me.SigninBtn.ImageSize = New System.Drawing.Size(20, 20)
+        Me.SigninBtn.Location = New System.Drawing.Point(0, 56)
+        Me.SigninBtn.Name = "SigninBtn"
+        Me.SigninBtn.OnHoverBaseColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(29, Byte), Integer))
+        Me.SigninBtn.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.SigninBtn.OnHoverForeColor = System.Drawing.Color.White
+        Me.SigninBtn.OnHoverImage = Nothing
+        Me.SigninBtn.OnPressedColor = System.Drawing.Color.Black
+        Me.SigninBtn.Radius = 5
+        Me.SigninBtn.Size = New System.Drawing.Size(218, 43)
+        Me.SigninBtn.TabIndex = 20
+        Me.SigninBtn.Text = "Sign In"
+        Me.SigninBtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.SigninBtn.TextRenderingHint = Guna.UI.WinForms.DrawingTextRenderingHint.AntiAlias
+        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(228, Byte), Integer), CType(CType(219, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(918, 700)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.GunaLabel3)
+        Me.Controls.Add(Me.GunaTransfarantPictureBox1)
         Me.Controls.Add(Me.txtUsername)
         Me.Controls.Add(Me.txtPassword)
-        Me.Controls.Add(Me.GunaLabel3)
         Me.Controls.Add(Me.PictureBox3)
         Me.Controls.Add(Me.GunaLabel2)
         Me.Controls.Add(Me.GunaButton1)
         Me.Controls.Add(Me.GunaControlBox1)
         Me.Controls.Add(Me.GunaControlBox2)
-        Me.Controls.Add(Me.SigninBtn)
-        Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.GunaLabel1)
         Me.Controls.Add(Me.GunaLabel7)
         Me.Controls.Add(Me.GunaLabel5)
@@ -451,15 +480,15 @@ Partial Class Login
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GunaTransfarantPictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents GunaElipse1 As Guna.UI.WinForms.GunaElipse
-    Friend WithEvents SigninBtn As Guna.UI.WinForms.GunaButton
     Friend WithEvents GunaLabel7 As Guna.UI.WinForms.GunaLabel
     Friend WithEvents GunaLabel6 As Guna.UI.WinForms.GunaLabel
     Friend WithEvents GunaLabel5 As Guna.UI.WinForms.GunaLabel
@@ -474,4 +503,8 @@ Partial Class Login
     Friend WithEvents GunaLabel3 As Guna.UI.WinForms.GunaLabel
     Friend WithEvents txtPassword As Bunifu.UI.WinForms.BunifuTextBox
     Friend WithEvents txtUsername As Bunifu.UI.WinForms.BunifuTextBox
+    Friend WithEvents GunaTransfarantPictureBox1 As Guna.UI.WinForms.GunaTransfarantPictureBox
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents lblAttempt As Guna.UI.WinForms.GunaLabel
+    Friend WithEvents SigninBtn As Guna.UI.WinForms.GunaButton
 End Class

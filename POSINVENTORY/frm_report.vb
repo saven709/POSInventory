@@ -26,6 +26,8 @@ Public Class frm_report
         Load_report()
         Get_Dashboard()  ' Load initial dashboard data
         Timer1.Start()   ' Start the dashboard update timer
+
+
     End Sub
 
     Private Sub btn_close_Click(sender As Object, e As EventArgs)
@@ -37,10 +39,10 @@ Public Class frm_report
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
 
-            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` FROM `tbl_pos`", conn)
+            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `cashiername`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` FROM `tbl_pos`", conn)
             dr = cmd.ExecuteReader
             While dr.Read
-                DataGridView1.Rows.Add(DataGridView1.Rows.Count + 1, dr.Item("transdate"), dr.Item("transno"), dr.Item("transmonth"), dr.Item("foodcode"), dr.Item("foodname"), dr.Item("price"), dr.Item("qty"), dr.Item("totalprice"), dr.Item("grandtotal"))
+                DataGridView1.Rows.Add(DataGridView1.Rows.Count + 1, dr.Item("transdate"), dr.Item("transno"), dr.Item("cashiername"), dr.Item("foodcode"), dr.Item("foodname"), dr.Item("price"), dr.Item("qty"), dr.Item("totalprice"), dr.Item("grandtotal"))
             End While
 
             ' Auto-size columns after loading data
@@ -66,11 +68,11 @@ Public Class frm_report
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
 
-            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` FROM `tbl_pos` WHERE transno like @search OR foodcode like @search OR foodname like @search", conn)
+            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `cashiername`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` FROM `tbl_pos` WHERE transno like @search OR foodcode like @search OR foodname like @search", conn)
             cmd.Parameters.AddWithValue("@search", "%" & txt_search.Text & "%")
             dr = cmd.ExecuteReader
             While dr.Read
-                DataGridView1.Rows.Add(DataGridView1.Rows.Count + 1, dr.Item("transdate"), dr.Item("transno"), dr.Item("transmonth"), dr.Item("foodcode"), dr.Item("foodname"), dr.Item("price"), dr.Item("qty"), dr.Item("totalprice"), dr.Item("grandtotal"))
+                DataGridView1.Rows.Add(DataGridView1.Rows.Count + 1, dr.Item("transdate"), dr.Item("transno"), dr.Item("cashiername"), dr.Item("foodcode"), dr.Item("foodname"), dr.Item("price"), dr.Item("qty"), dr.Item("totalprice"), dr.Item("grandtotal"))
             End While
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -89,7 +91,7 @@ Public Class frm_report
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
 
-            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `transmonth`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` " &
+            cmd = New MySqlCommand("SELECT `transno`, `transdate`, `cashiername`, `foodcode`, `foodname`, `price`, `qty`, `totalprice`, `grandtotal` " &
                              "FROM `tbl_pos` " &
                              "WHERE transdate BETWEEN @date1 AND @date2 " &
                              "ORDER BY transdate", conn)
@@ -104,7 +106,7 @@ Public Class frm_report
                 DataGridView1.Rows.Count + 1,
                 transDateTime.ToString("yyyy-MM-dd HH:mm:ss"),  ' Show full datetime
                 dr.Item("transno"),
-                dr.Item("transmonth"),
+                dr.Item("cashiername"),
                 dr.Item("foodcode"),
                 dr.Item("foodname"),
                 dr.Item("price"),
@@ -227,4 +229,5 @@ Public Class frm_report
         lbl_date1.Text = Date.Now.ToString("ddd, dd-MM-yyyy")
         lbl_time.Text = Date.Now.ToString("hh:mm:ss tt")
     End Sub
+
 End Class

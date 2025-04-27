@@ -5,15 +5,26 @@ Imports MySql.Data.MySqlClient
 Public Class frm_ManageFoods
     Private Sub GunaCirclePictureBox1_Click(sender As Object, e As EventArgs) Handles GunaCirclePictureBox1.Click
         Dim ofd As New OpenFileDialog
-        If ofd.ShowDialog = Windows.Forms.DialogResult.OK Then
+        ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"
+
+        If ofd.ShowDialog = DialogResult.OK Then
             TextBox3.Text = ofd.FileName
             GunaCirclePictureBox1.Image = Image.FromFile(TextBox3.Text)
+
+            ' Hide placeholder when an image is selected
+            GunaCirclePictureBox2.Visible = False
         End If
     End Sub
 
+
+
     Private Sub frm_ManageFoods_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         auto_foodcode()
+        GunaCirclePictureBox2.Visible = True ' Show placeholder
+        GunaCirclePictureBox2.Enabled = False ' Make it unclickable (clicks pass through)
     End Sub
+
+
     Sub auto_foodcode()
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
@@ -36,11 +47,19 @@ Public Class frm_ManageFoods
     Sub clear()
         txt_foodname.Clear()
         txt_category.Clear()
-        'txt_size.Clear()
         GunaCirclePictureBox1.Image = Nothing
+
+        ' Show placeholder again
+        GunaCirclePictureBox2.Visible = True
     End Sub
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+        ' Check if txt_foodname or txt_category is empty
+        If String.IsNullOrWhiteSpace(txt_foodname.Text) OrElse String.IsNullOrWhiteSpace(txt_category.Text) Then
+            MsgBox("Please fill in all required fields!", MsgBoxStyle.Exclamation, "Validation Error")
+            Return ' Stop execution
+        End If
+
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
 
@@ -69,30 +88,27 @@ Public Class frm_ManageFoods
                 cmd.Parameters.AddWithValue("@img", picture)
             End If
 
-            Dim i As Integer
-            i = cmd.ExecuteNonQuery()
+            Dim i As Integer = cmd.ExecuteNonQuery()
             If i > 0 Then
-                MsgBox("New Food Save Successfully!", vbInformation, "BREWTOPIA")
+                Dim list As List = Application.OpenForms.OfType(Of List)().FirstOrDefault()
+                list.Load_Foods() ' Refresh the inventory list
+                list.LoadCategories()
+
+                MsgBox("New Product Saved Successfully!", vbInformation, "BREWTOPIA")
             Else
-                MsgBox("Warning: Food Save Failed!", vbCritical, "BREWTOPIA")
+                MsgBox("Warning: Product Save Failed!", vbCritical, "BREWTOPIA")
             End If
 
         Catch ex As Exception
             MsgBox(ex.Message)
         Finally
             If conn.State = ConnectionState.Open Then conn.Close()
-
         End Try
 
         clear()
-
-
-        Dim list As List = Application.OpenForms.OfType(Of List)().FirstOrDefault()
-        If list IsNot Nothing Then
-            list.Load_Foods() ' Refresh the inventory list
-            'list.LoadCategories()
-        End If
+        Me.Close()
     End Sub
+
     Private Sub btn_find_Click(sender As Object, e As EventArgs) Handles btn_find.Click
         clear()
         Try
@@ -121,9 +137,28 @@ Public Class frm_ManageFoods
         If conn.State = ConnectionState.Open Then conn.Close()
 
     End Sub
+    Private Sub GunaButton3_Click(sender As Object, e As EventArgs) Handles GunaButton3.Click
+        clear()
 
-    Private Sub GunaControlBox1_Click(sender As Object, e As EventArgs) Handles GunaControlBox1.Click
+        'Dim list As List = Application.OpenForms.OfType(Of List)().FirstOrDefault()
+        'If list IsNot Nothing Then
+        '    list.Load_Foods() ' Refresh the inventory list
+        'End If
+
         Me.Close()
-        List.Load_Foods()
     End Sub
+    Private Sub txt_foodname_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_foodname.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True ' Prevents the beep sound
+            btn_save.PerformClick() ' Triggers the button click
+        End If
+    End Sub
+
+    Private Sub txt_category_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_category.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True ' Prevents the beep sound
+            btn_save.PerformClick() ' Triggers the button click
+        End If
+    End Sub
+
 End Class

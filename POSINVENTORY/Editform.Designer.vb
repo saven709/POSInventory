@@ -29,7 +29,6 @@ Partial Class EditForm
         Me.btn_save = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtFoodName = New System.Windows.Forms.TextBox()
-        Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
         Me.TextBox3 = New Guna.UI.WinForms.GunaLabel()
         Me.DataGridView1 = New Guna.UI.WinForms.GunaDataGridView()
         Me.size_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -43,19 +42,21 @@ Partial Class EditForm
         Me.GunaLabel1 = New Guna.UI.WinForms.GunaLabel()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.txt_category = New System.Windows.Forms.TextBox()
+        Me.GunaButton3 = New Guna.UI.WinForms.GunaButton()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GunaCirclePictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btn_save
         '
-        Me.btn_save.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.btn_save.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.btn_save.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btn_save.FlatAppearance.BorderSize = 0
         Me.btn_save.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_save.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_save.ForeColor = System.Drawing.Color.Black
+        Me.btn_save.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_save.ForeColor = System.Drawing.Color.Transparent
         Me.btn_save.Location = New System.Drawing.Point(360, 334)
         Me.btn_save.Name = "btn_save"
         Me.btn_save.Size = New System.Drawing.Size(70, 32)
@@ -67,40 +68,24 @@ Partial Class EditForm
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.ForeColor = System.Drawing.Color.Black
         Me.Label1.Location = New System.Drawing.Point(296, 106)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(43, 19)
+        Me.Label1.Size = New System.Drawing.Size(48, 19)
         Me.Label1.TabIndex = 32
-        Me.Label1.Text = "Name"
+        Me.Label1.Text = "Name :"
         '
         'txtFoodName
         '
-        Me.txtFoodName.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.txtFoodName.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(201, Byte), Integer))
         Me.txtFoodName.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txtFoodName.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtFoodName.ForeColor = System.Drawing.Color.Red
+        Me.txtFoodName.ForeColor = System.Drawing.Color.Black
         Me.txtFoodName.Location = New System.Drawing.Point(296, 125)
         Me.txtFoodName.Multiline = True
         Me.txtFoodName.Name = "txtFoodName"
         Me.txtFoodName.Size = New System.Drawing.Size(233, 24)
         Me.txtFoodName.TabIndex = 30
-        '
-        'GunaControlBox1
-        '
-        Me.GunaControlBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GunaControlBox1.AnimationHoverSpeed = 0.07!
-        Me.GunaControlBox1.AnimationSpeed = 0.03!
-        Me.GunaControlBox1.ControlBoxTheme = Guna.UI.WinForms.FormControlBoxTheme.Custom
-        Me.GunaControlBox1.IconColor = System.Drawing.SystemColors.ButtonFace
-        Me.GunaControlBox1.IconSize = 15.0!
-        Me.GunaControlBox1.Location = New System.Drawing.Point(583, 1)
-        Me.GunaControlBox1.Name = "GunaControlBox1"
-        Me.GunaControlBox1.OnHoverBackColor = System.Drawing.Color.Maroon
-        Me.GunaControlBox1.OnHoverIconColor = System.Drawing.Color.White
-        Me.GunaControlBox1.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaControlBox1.Size = New System.Drawing.Size(38, 24)
-        Me.GunaControlBox1.TabIndex = 39
         '
         'TextBox3
         '
@@ -118,7 +103,7 @@ Partial Class EditForm
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
         Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        Me.DataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(186, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.DataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -155,7 +140,7 @@ Partial Class EditForm
         Me.DataGridView1.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
         Me.DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
         Me.DataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
-        Me.DataGridView1.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        Me.DataGridView1.ThemeStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(186, Byte), Integer), CType(CType(179, Byte), Integer))
         Me.DataGridView1.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
         Me.DataGridView1.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(16, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.DataGridView1.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -186,13 +171,13 @@ Partial Class EditForm
         '
         'btndeletion
         '
-        Me.btndeletion.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.btndeletion.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.btndeletion.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btndeletion.FlatAppearance.BorderSize = 0
-        Me.btndeletion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
+        Me.btndeletion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.btndeletion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btndeletion.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btndeletion.ForeColor = System.Drawing.Color.Black
+        Me.btndeletion.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btndeletion.ForeColor = System.Drawing.Color.Transparent
         Me.btndeletion.Location = New System.Drawing.Point(459, 334)
         Me.btndeletion.Name = "btndeletion"
         Me.btndeletion.Size = New System.Drawing.Size(70, 32)
@@ -213,13 +198,13 @@ Partial Class EditForm
         '
         'btnSupplies
         '
-        Me.btnSupplies.BackColor = System.Drawing.Color.FromArgb(CType(CType(197, Byte), Integer), CType(CType(187, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.btnSupplies.BackColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.btnSupplies.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSupplies.FlatAppearance.BorderSize = 0
         Me.btnSupplies.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.btnSupplies.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSupplies.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSupplies.ForeColor = System.Drawing.Color.Black
+        Me.btnSupplies.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSupplies.ForeColor = System.Drawing.Color.Transparent
         Me.btnSupplies.Location = New System.Drawing.Point(386, 270)
         Me.btnSupplies.Name = "btnSupplies"
         Me.btnSupplies.Size = New System.Drawing.Size(123, 32)
@@ -231,12 +216,12 @@ Partial Class EditForm
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.White
+        Me.Label5.ForeColor = System.Drawing.Color.Black
         Me.Label5.Location = New System.Drawing.Point(293, 40)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(67, 19)
+        Me.Label5.Size = New System.Drawing.Size(84, 19)
         Me.Label5.TabIndex = 53
-        Me.Label5.Text = "Food Code"
+        Me.Label5.Text = "Product Code"
         '
         'GunaElipse11
         '
@@ -247,7 +232,7 @@ Partial Class EditForm
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.White
+        Me.Label6.ForeColor = System.Drawing.Color.Black
         Me.Label6.Location = New System.Drawing.Point(269, 1)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(96, 22)
@@ -269,31 +254,65 @@ Partial Class EditForm
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.White
-        Me.Label7.Location = New System.Drawing.Point(296, 161)
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(296, 158)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(61, 19)
+        Me.Label7.Size = New System.Drawing.Size(66, 19)
         Me.Label7.TabIndex = 57
-        Me.Label7.Text = "Category"
+        Me.Label7.Text = "Category :"
         '
         'txt_category
         '
-        Me.txt_category.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.txt_category.BackColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(201, Byte), Integer))
         Me.txt_category.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txt_category.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_category.ForeColor = System.Drawing.Color.White
+        Me.txt_category.ForeColor = System.Drawing.Color.Black
         Me.txt_category.Location = New System.Drawing.Point(296, 177)
         Me.txt_category.Multiline = True
         Me.txt_category.Name = "txt_category"
         Me.txt_category.Size = New System.Drawing.Size(233, 24)
         Me.txt_category.TabIndex = 56
         '
+        'GunaButton3
+        '
+        Me.GunaButton3.AnimationHoverSpeed = 0.07!
+        Me.GunaButton3.AnimationSpeed = 0.03!
+        Me.GunaButton3.BaseColor = System.Drawing.Color.Transparent
+        Me.GunaButton3.BorderColor = System.Drawing.Color.Black
+        Me.GunaButton3.DialogResult = System.Windows.Forms.DialogResult.None
+        Me.GunaButton3.FocusedColor = System.Drawing.Color.Empty
+        Me.GunaButton3.Font = New System.Drawing.Font("Poppins", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GunaButton3.ForeColor = System.Drawing.Color.Black
+        Me.GunaButton3.Image = Nothing
+        Me.GunaButton3.ImageSize = New System.Drawing.Size(20, 20)
+        Me.GunaButton3.Location = New System.Drawing.Point(578, 2)
+        Me.GunaButton3.Name = "GunaButton3"
+        Me.GunaButton3.OnHoverBaseColor = System.Drawing.Color.Maroon
+        Me.GunaButton3.OnHoverBorderColor = System.Drawing.Color.Black
+        Me.GunaButton3.OnHoverForeColor = System.Drawing.Color.White
+        Me.GunaButton3.OnHoverImage = Nothing
+        Me.GunaButton3.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaButton3.Size = New System.Drawing.Size(47, 24)
+        Me.GunaButton3.TabIndex = 58
+        Me.GunaButton3.Text = "X"
+        Me.GunaButton3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(120, Byte), Integer), CType(CType(107, Byte), Integer), CType(CType(98, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(0, -1)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(24, 475)
+        Me.Panel1.TabIndex = 70
+        '
         'EditForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(227, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(621, 466)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.GunaButton3)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.txt_category)
         Me.Controls.Add(Me.GunaLabel1)
@@ -304,7 +323,6 @@ Partial Class EditForm
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.GunaCirclePictureBox1)
-        Me.Controls.Add(Me.GunaControlBox1)
         Me.Controls.Add(Me.btn_save)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtFoodName)
@@ -322,7 +340,6 @@ Partial Class EditForm
     Friend WithEvents btn_save As Button
     Friend WithEvents Label1 As Label
     Friend WithEvents txtFoodName As TextBox
-    Friend WithEvents GunaControlBox1 As Guna.UI.WinForms.GunaControlBox
     Friend WithEvents TextBox3 As Guna.UI.WinForms.GunaLabel
     Friend WithEvents GunaCirclePictureBox1 As Guna.UI.WinForms.GunaCirclePictureBox
     Friend WithEvents DataGridView1 As Guna.UI.WinForms.GunaDataGridView
@@ -336,4 +353,6 @@ Partial Class EditForm
     Friend WithEvents GunaLabel1 As Guna.UI.WinForms.GunaLabel
     Friend WithEvents Label7 As Label
     Friend WithEvents txt_category As TextBox
+    Friend WithEvents GunaButton3 As Guna.UI.WinForms.GunaButton
+    Friend WithEvents Panel1 As Panel
 End Class

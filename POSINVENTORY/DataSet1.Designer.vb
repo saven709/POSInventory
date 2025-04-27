@@ -287,7 +287,7 @@ Partial Public Class DataSet1
         
         Private columntransdate As Global.System.Data.DataColumn
         
-        Private columntransmonth As Global.System.Data.DataColumn
+        Private columncashiername As Global.System.Data.DataColumn
         
         Private columnfoodcode As Global.System.Data.DataColumn
         
@@ -302,6 +302,10 @@ Partial Public Class DataSet1
         Private columngrandtotal As Global.System.Data.DataColumn
         
         Private columnnooffoods As Global.System.Data.DataColumn
+        
+        Private columnamountreceived As Global.System.Data.DataColumn
+        
+        Private columnchanges As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
@@ -356,9 +360,9 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property transmonthColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property cashiernameColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columntransmonth
+                Return Me.columncashiername
             End Get
         End Property
         
@@ -419,6 +423,22 @@ Partial Public Class DataSet1
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property amountreceivedColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnamountreceived
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property changesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnchanges
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -455,9 +475,9 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddDataTable1Row(ByVal transno As String, ByVal transdate As String, ByVal transmonth As String, ByVal foodcode As String, ByVal foodname As String, ByVal price As Decimal, ByVal qty As String, ByVal totalprice As Decimal, ByVal grandtotal As Decimal, ByVal nooffoods As String) As DataTable1Row
+        Public Overloads Function AddDataTable1Row(ByVal transno As String, ByVal transdate As String, ByVal cashiername As String, ByVal foodcode As String, ByVal foodname As String, ByVal price As Decimal, ByVal qty As String, ByVal totalprice As Decimal, ByVal grandtotal As Decimal, ByVal nooffoods As String, ByVal amountreceived As Decimal, ByVal changes As Decimal) As DataTable1Row
             Dim rowDataTable1Row As DataTable1Row = CType(Me.NewRow,DataTable1Row)
-            Dim columnValuesArray() As Object = New Object() {transno, transdate, transmonth, foodcode, foodname, price, qty, totalprice, grandtotal, nooffoods}
+            Dim columnValuesArray() As Object = New Object() {transno, transdate, cashiername, foodcode, foodname, price, qty, totalprice, grandtotal, nooffoods, amountreceived, changes}
             rowDataTable1Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowDataTable1Row)
             Return rowDataTable1Row
@@ -482,7 +502,7 @@ Partial Public Class DataSet1
         Friend Sub InitVars()
             Me.columntransno = MyBase.Columns("transno")
             Me.columntransdate = MyBase.Columns("transdate")
-            Me.columntransmonth = MyBase.Columns("transmonth")
+            Me.columncashiername = MyBase.Columns("cashiername")
             Me.columnfoodcode = MyBase.Columns("foodcode")
             Me.columnfoodname = MyBase.Columns("foodname")
             Me.columnprice = MyBase.Columns("price")
@@ -490,6 +510,8 @@ Partial Public Class DataSet1
             Me.columntotalprice = MyBase.Columns("totalprice")
             Me.columngrandtotal = MyBase.Columns("grandtotal")
             Me.columnnooffoods = MyBase.Columns("nooffoods")
+            Me.columnamountreceived = MyBase.Columns("amountreceived")
+            Me.columnchanges = MyBase.Columns("changes")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -499,8 +521,8 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columntransno)
             Me.columntransdate = New Global.System.Data.DataColumn("transdate", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columntransdate)
-            Me.columntransmonth = New Global.System.Data.DataColumn("transmonth", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columntransmonth)
+            Me.columncashiername = New Global.System.Data.DataColumn("cashiername", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncashiername)
             Me.columnfoodcode = New Global.System.Data.DataColumn("foodcode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnfoodcode)
             Me.columnfoodname = New Global.System.Data.DataColumn("foodname", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -515,6 +537,10 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columngrandtotal)
             Me.columnnooffoods = New Global.System.Data.DataColumn("nooffoods", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnnooffoods)
+            Me.columnamountreceived = New Global.System.Data.DataColumn("amountreceived", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnamountreceived)
+            Me.columnchanges = New Global.System.Data.DataColumn("changes", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnchanges)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -691,16 +717,16 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property transmonth() As String
+        Public Property cashiername() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDataTable1.transmonthColumn),String)
+                    Return CType(Me(Me.tableDataTable1.cashiernameColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'transmonth' in table 'DataTable1' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'cashiername' in table 'DataTable1' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDataTable1.transmonthColumn) = value
+                Me(Me.tableDataTable1.cashiernameColumn) = value
             End Set
         End Property
         
@@ -811,6 +837,36 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property amountreceived() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable1.amountreceivedColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'amountreceived' in table 'DataTable1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable1.amountreceivedColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property changes() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable1.changesColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'changes' in table 'DataTable1' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable1.changesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IstransnoNull() As Boolean
             Return Me.IsNull(Me.tableDataTable1.transnoColumn)
         End Function
@@ -835,14 +891,14 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IstransmonthNull() As Boolean
-            Return Me.IsNull(Me.tableDataTable1.transmonthColumn)
+        Public Function IscashiernameNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable1.cashiernameColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SettransmonthNull()
-            Me(Me.tableDataTable1.transmonthColumn) = Global.System.Convert.DBNull
+        Public Sub SetcashiernameNull()
+            Me(Me.tableDataTable1.cashiernameColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -927,6 +983,30 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetnooffoodsNull()
             Me(Me.tableDataTable1.nooffoodsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsamountreceivedNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable1.amountreceivedColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetamountreceivedNull()
+            Me(Me.tableDataTable1.amountreceivedColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IschangesNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable1.changesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetchangesNull()
+            Me(Me.tableDataTable1.changesColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

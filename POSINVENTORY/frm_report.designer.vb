@@ -23,18 +23,21 @@ Partial Class frm_report
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lbl_date1 = New System.Windows.Forms.Label()
+        Me.lbl_time = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Panel4 = New System.Windows.Forms.Panel()
@@ -62,8 +65,6 @@ Partial Class frm_report
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GunaElipse2 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.GunaElipse1 = New Guna.UI.WinForms.GunaElipse(Me.components)
-        Me.lbl_date1 = New System.Windows.Forms.Label()
-        Me.lbl_time = New System.Windows.Forms.Label()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -83,8 +84,33 @@ Partial Class frm_report
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(689, 46)
+        Me.Panel1.Size = New System.Drawing.Size(1200, 46)
         Me.Panel1.TabIndex = 1
+        '
+        'lbl_date1
+        '
+        Me.lbl_date1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl_date1.BackColor = System.Drawing.Color.Transparent
+        Me.lbl_date1.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_date1.ForeColor = System.Drawing.Color.White
+        Me.lbl_date1.Location = New System.Drawing.Point(847, 16)
+        Me.lbl_date1.Name = "lbl_date1"
+        Me.lbl_date1.Size = New System.Drawing.Size(251, 25)
+        Me.lbl_date1.TabIndex = 37
+        Me.lbl_date1.Text = "00.00"
+        Me.lbl_date1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'lbl_time
+        '
+        Me.lbl_time.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lbl_time.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_time.ForeColor = System.Drawing.Color.White
+        Me.lbl_time.Location = New System.Drawing.Point(1075, 16)
+        Me.lbl_time.Name = "lbl_time"
+        Me.lbl_time.Size = New System.Drawing.Size(107, 25)
+        Me.lbl_time.TabIndex = 36
+        Me.lbl_time.Text = "00.00"
+        Me.lbl_time.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'Label4
         '
@@ -93,13 +119,14 @@ Partial Class frm_report
         Me.Label4.ForeColor = System.Drawing.Color.White
         Me.Label4.Location = New System.Drawing.Point(21, 9)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(59, 23)
+        Me.Label4.Size = New System.Drawing.Size(62, 23)
         Me.Label4.TabIndex = 9
-        Me.Label4.Text = "REPORT"
+        Me.Label4.Text = "RECORD"
         '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.Label3)
         Me.Panel2.Controls.Add(Me.PictureBox1)
         Me.Panel2.Controls.Add(Me.TableLayoutPanel1)
         Me.Panel2.Controls.Add(Me.btn_Excel)
@@ -110,8 +137,19 @@ Partial Class frm_report
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 46)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(689, 76)
+        Me.Panel2.Size = New System.Drawing.Size(1200, 76)
         Me.Panel2.TabIndex = 2
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Poppins", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(256, 45)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(28, 23)
+        Me.Label3.TabIndex = 26
+        Me.Label3.Text = "TO"
         '
         'PictureBox1
         '
@@ -135,7 +173,7 @@ Partial Class frm_report
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Panel4, 1, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Panel3, 0, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(408, 6)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(919, 6)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -157,11 +195,11 @@ Partial Class frm_report
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Poppins", 9.25!, System.Drawing.FontStyle.Bold)
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.Label2.Location = New System.Drawing.Point(3, 6)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(86, 19)
+        Me.Label2.Size = New System.Drawing.Size(104, 23)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Monthly Sales"
         '
@@ -191,11 +229,11 @@ Partial Class frm_report
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Poppins", 9.25!, System.Drawing.FontStyle.Bold)
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(3, 6)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(76, 19)
+        Me.Label1.Size = New System.Drawing.Size(91, 23)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Today Sales"
         '
@@ -218,11 +256,11 @@ Partial Class frm_report
         Me.btn_Excel.FlatAppearance.BorderSize = 0
         Me.btn_Excel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGreen
         Me.btn_Excel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_Excel.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Excel.Font = New System.Drawing.Font("Poppins", 9.25!, System.Drawing.FontStyle.Bold)
         Me.btn_Excel.ForeColor = System.Drawing.Color.White
-        Me.btn_Excel.Location = New System.Drawing.Point(200, 11)
+        Me.btn_Excel.Location = New System.Drawing.Point(509, 10)
         Me.btn_Excel.Name = "btn_Excel"
-        Me.btn_Excel.Size = New System.Drawing.Size(98, 23)
+        Me.btn_Excel.Size = New System.Drawing.Size(117, 23)
         Me.btn_Excel.TabIndex = 16
         Me.btn_Excel.Text = "Export to Excel"
         Me.btn_Excel.UseVisualStyleBackColor = False
@@ -234,11 +272,11 @@ Partial Class frm_report
         Me.btn_Filter.FlatAppearance.BorderSize = 0
         Me.btn_Filter.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue
         Me.btn_Filter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_Filter.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_Filter.Font = New System.Drawing.Font("Poppins", 9.25!, System.Drawing.FontStyle.Bold)
         Me.btn_Filter.ForeColor = System.Drawing.Color.White
-        Me.btn_Filter.Location = New System.Drawing.Point(256, 42)
+        Me.btn_Filter.Location = New System.Drawing.Point(509, 44)
         Me.btn_Filter.Name = "btn_Filter"
-        Me.btn_Filter.Size = New System.Drawing.Size(78, 23)
+        Me.btn_Filter.Size = New System.Drawing.Size(81, 23)
         Me.btn_Filter.TabIndex = 15
         Me.btn_Filter.Text = "FILTER"
         Me.btn_Filter.UseVisualStyleBackColor = False
@@ -248,9 +286,9 @@ Partial Class frm_report
         Me.DateTimePicker2.CalendarForeColor = System.Drawing.Color.White
         Me.DateTimePicker2.CalendarMonthBackground = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.DateTimePicker2.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePicker2.Location = New System.Drawing.Point(133, 41)
+        Me.DateTimePicker2.Location = New System.Drawing.Point(284, 42)
         Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.Size = New System.Drawing.Size(117, 24)
+        Me.DateTimePicker2.Size = New System.Drawing.Size(210, 24)
         Me.DateTimePicker2.TabIndex = 14
         '
         'DateTimePicker1
@@ -258,9 +296,9 @@ Partial Class frm_report
         Me.DateTimePicker1.CalendarForeColor = System.Drawing.Color.White
         Me.DateTimePicker1.CalendarMonthBackground = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.DateTimePicker1.Font = New System.Drawing.Font("Poppins", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePicker1.Location = New System.Drawing.Point(10, 41)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(44, 42)
         Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(117, 24)
+        Me.DateTimePicker1.Size = New System.Drawing.Size(210, 24)
         Me.DateTimePicker1.TabIndex = 13
         '
         'txt_search
@@ -268,54 +306,54 @@ Partial Class frm_report
         Me.txt_search.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
         Me.txt_search.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.txt_search.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txt_search.ForeColor = System.Drawing.Color.DarkOrange
+        Me.txt_search.ForeColor = System.Drawing.Color.White
         Me.txt_search.Location = New System.Drawing.Point(44, 9)
         Me.txt_search.Multiline = True
         Me.txt_search.Name = "txt_search"
-        Me.txt_search.Size = New System.Drawing.Size(128, 26)
+        Me.txt_search.Size = New System.Drawing.Size(450, 26)
         Me.txt_search.TabIndex = 11
         '
         'DataGridView1
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.White
-        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(38, Byte), Integer), CType(CType(39, Byte), Integer), CType(CType(38, Byte), Integer))
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10})
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        DataGridViewCellStyle17.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle17.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.GridColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer))
         Me.DataGridView1.Location = New System.Drawing.Point(0, 122)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.ReadOnly = True
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle18.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle18.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Segoe UI Semibold", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(689, 521)
+        Me.DataGridView1.Size = New System.Drawing.Size(1200, 668)
         Me.DataGridView1.TabIndex = 3
         '
         'Column1
@@ -329,9 +367,9 @@ Partial Class frm_report
         'Column2
         '
         Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        DataGridViewCellStyle12.Format = "d"
-        DataGridViewCellStyle12.NullValue = Nothing
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle3.Format = "d"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle3
         Me.Column2.HeaderText = "TRANSACTION DATE"
         Me.Column2.Name = "Column2"
         Me.Column2.ReadOnly = True
@@ -371,9 +409,9 @@ Partial Class frm_report
         'Column7
         '
         Me.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle13.Format = "PHP #,##0.00"
-        Me.Column7.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Format = "PHP #,##0.00"
+        Me.Column7.DefaultCellStyle = DataGridViewCellStyle4
         Me.Column7.HeaderText = "PRICE"
         Me.Column7.Name = "Column7"
         Me.Column7.ReadOnly = True
@@ -382,8 +420,8 @@ Partial Class frm_report
         'Column8
         '
         Me.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.Column8.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Column8.DefaultCellStyle = DataGridViewCellStyle5
         Me.Column8.HeaderText = "QTY"
         Me.Column8.Name = "Column8"
         Me.Column8.ReadOnly = True
@@ -392,9 +430,9 @@ Partial Class frm_report
         'Column9
         '
         Me.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle15.Format = "PHP #,##0.00"
-        Me.Column9.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle6.Format = "PHP #,##0.00"
+        Me.Column9.DefaultCellStyle = DataGridViewCellStyle6
         Me.Column9.HeaderText = "TOTAL PRICE"
         Me.Column9.Name = "Column9"
         Me.Column9.ReadOnly = True
@@ -403,9 +441,9 @@ Partial Class frm_report
         'Column10
         '
         Me.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle16.Format = "PHP #,##0.00"
-        Me.Column10.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle7.Format = "PHP #,##0.00"
+        Me.Column10.DefaultCellStyle = DataGridViewCellStyle7
         Me.Column10.HeaderText = "GRAND TOTAL"
         Me.Column10.Name = "Column10"
         Me.Column10.ReadOnly = True
@@ -425,31 +463,6 @@ Partial Class frm_report
         Me.GunaElipse1.Radius = 10
         Me.GunaElipse1.TargetControl = Me.Panel4
         '
-        'lbl_date1
-        '
-        Me.lbl_date1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lbl_date1.BackColor = System.Drawing.Color.Transparent
-        Me.lbl_date1.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_date1.ForeColor = System.Drawing.Color.White
-        Me.lbl_date1.Location = New System.Drawing.Point(336, 16)
-        Me.lbl_date1.Name = "lbl_date1"
-        Me.lbl_date1.Size = New System.Drawing.Size(251, 25)
-        Me.lbl_date1.TabIndex = 37
-        Me.lbl_date1.Text = "00.00"
-        Me.lbl_date1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'lbl_time
-        '
-        Me.lbl_time.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lbl_time.Font = New System.Drawing.Font("Poppins", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_time.ForeColor = System.Drawing.Color.White
-        Me.lbl_time.Location = New System.Drawing.Point(564, 16)
-        Me.lbl_time.Name = "lbl_time"
-        Me.lbl_time.Size = New System.Drawing.Size(107, 25)
-        Me.lbl_time.TabIndex = 36
-        Me.lbl_time.Text = "00.00"
-        Me.lbl_time.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'Timer2
         '
         Me.Timer2.Enabled = True
@@ -459,7 +472,7 @@ Partial Class frm_report
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(689, 643)
+        Me.ClientSize = New System.Drawing.Size(1200, 790)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
@@ -515,4 +528,5 @@ Partial Class frm_report
     Friend WithEvents lbl_date1 As Label
     Friend WithEvents lbl_time As Label
     Friend WithEvents Timer2 As Timer
+    Friend WithEvents Label3 As Label
 End Class

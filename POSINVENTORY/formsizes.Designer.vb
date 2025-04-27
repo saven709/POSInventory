@@ -26,16 +26,20 @@ Partial Class formsizes
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
         Me.GunaElipse11 = New Guna.UI.WinForms.GunaElipse(Me.components)
+        Me.GunaElipse1 = New Guna.UI.WinForms.GunaElipse(Me.components)
+        Me.foodnamelbl = New System.Windows.Forms.Label()
+        Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.GunaElipse2 = New Guna.UI.WinForms.GunaElipse(Me.components)
         Me.SuspendLayout()
         '
         'FlowLayoutPanel1
         '
         Me.FlowLayoutPanel1.AutoScroll = True
-        Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 12)
+        Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(186, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(12, 28)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Padding = New System.Windows.Forms.Padding(20)
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(407, 250)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(251, 234)
         Me.FlowLayoutPanel1.TabIndex = 5
         '
         'GunaControlBox1
@@ -44,9 +48,9 @@ Partial Class formsizes
         Me.GunaControlBox1.AnimationHoverSpeed = 0.07!
         Me.GunaControlBox1.AnimationSpeed = 0.03!
         Me.GunaControlBox1.ControlBoxTheme = Guna.UI.WinForms.FormControlBoxTheme.Custom
-        Me.GunaControlBox1.IconColor = System.Drawing.SystemColors.ButtonFace
+        Me.GunaControlBox1.IconColor = System.Drawing.Color.Black
         Me.GunaControlBox1.IconSize = 15.0!
-        Me.GunaControlBox1.Location = New System.Drawing.Point(425, 2)
+        Me.GunaControlBox1.Location = New System.Drawing.Point(481, -1)
         Me.GunaControlBox1.Name = "GunaControlBox1"
         Me.GunaControlBox1.OnHoverBackColor = System.Drawing.Color.Maroon
         Me.GunaControlBox1.OnHoverIconColor = System.Drawing.Color.White
@@ -59,12 +63,45 @@ Partial Class formsizes
         Me.GunaElipse11.Radius = 15
         Me.GunaElipse11.TargetControl = Me
         '
+        'GunaElipse1
+        '
+        Me.GunaElipse1.Radius = 15
+        Me.GunaElipse1.TargetControl = Me.FlowLayoutPanel1
+        '
+        'foodnamelbl
+        '
+        Me.foodnamelbl.AutoSize = True
+        Me.foodnamelbl.Font = New System.Drawing.Font("Poppins Medium", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.foodnamelbl.ForeColor = System.Drawing.Color.Black
+        Me.foodnamelbl.Location = New System.Drawing.Point(12, 9)
+        Me.foodnamelbl.Name = "foodnamelbl"
+        Me.foodnamelbl.Size = New System.Drawing.Size(81, 19)
+        Me.foodnamelbl.TabIndex = 28
+        Me.foodnamelbl.Text = "FOODNAME"
+        '
+        'FlowLayoutPanel2
+        '
+        Me.FlowLayoutPanel2.AutoScroll = True
+        Me.FlowLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(196, Byte), Integer), CType(CType(186, Byte), Integer), CType(CType(179, Byte), Integer))
+        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(269, 28)
+        Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
+        Me.FlowLayoutPanel2.Padding = New System.Windows.Forms.Padding(20)
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(219, 234)
+        Me.FlowLayoutPanel2.TabIndex = 29
+        '
+        'GunaElipse2
+        '
+        Me.GunaElipse2.Radius = 15
+        Me.GunaElipse2.TargetControl = Me.FlowLayoutPanel2
+        '
         'formsizes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer), CType(CType(31, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(467, 277)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(235, Byte), Integer), CType(CType(230, Byte), Integer), CType(CType(227, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(515, 277)
+        Me.Controls.Add(Me.FlowLayoutPanel2)
+        Me.Controls.Add(Me.foodnamelbl)
         Me.Controls.Add(Me.GunaControlBox1)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -72,10 +109,15 @@ Partial Class formsizes
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "formsizes"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents GunaControlBox1 As Guna.UI.WinForms.GunaControlBox
     Friend WithEvents GunaElipse11 As Guna.UI.WinForms.GunaElipse
+    Friend WithEvents GunaElipse1 As Guna.UI.WinForms.GunaElipse
+    Private WithEvents foodnamelbl As Label
+    Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
+    Friend WithEvents GunaElipse2 As Guna.UI.WinForms.GunaElipse
 End Class

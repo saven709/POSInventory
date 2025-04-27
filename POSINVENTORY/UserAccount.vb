@@ -44,6 +44,9 @@ Public Class UserAccount
     Private Sub UserAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dbconn()
         LoadUsers()
+
+
+
     End Sub
 
     Private Sub BtnChangePass_Click(sender As Object, e As EventArgs) Handles BtnChangePass.Click

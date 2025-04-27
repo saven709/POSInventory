@@ -22,6 +22,10 @@ Public Class frmitem
     End Sub
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         Try
+            If String.IsNullOrWhiteSpace(txt_name.Text) OrElse String.IsNullOrWhiteSpace(txt_quantity.Text) OrElse String.IsNullOrWhiteSpace(txt_measurementname.Text) OrElse String.IsNullOrWhiteSpace(txt_category.Text) Then
+                MsgBox("Please fill out all fields!", MsgBoxStyle.Exclamation)
+                Return
+            End If
             If conn.State = ConnectionState.Closed Then conn.Open()
 
             ' Insert data into tbl_inventory
@@ -47,6 +51,8 @@ Public Class frmitem
 
                 Dim j As Integer = cmd2.ExecuteNonQuery()
                 If j > 0 Then
+                    Dim Entry As Entry = Application.OpenForms.OfType(Of Entry)().FirstOrDefault()
+                    Entry.LoadInventory() ' Refresh the inventory list
                     MsgBox("Inventory item saved successfully in both tables!", vbInformation, "INVENTORY")
                 Else
                     MsgBox("Warning: Failed to save item in tbl_inventoryad!", vbCritical, "INVENTORY")
@@ -66,17 +72,8 @@ Public Class frmitem
         txt_measurementname.Clear()
         txt_category.Clear()
         txt_quantity.Clear()
-
-        ' Call LoadInventory() from the Entry form
-        Dim entryForm As Entry = Application.OpenForms.OfType(Of Entry)().FirstOrDefault()
-        If entryForm IsNot Nothing Then
-            entryForm.LoadInventory() ' Refresh the inventory list
-        End If
+        Me.Close()
     End Sub
-
-
-
-
 
     Private Sub frmitem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         auto_itemcode()
@@ -86,4 +83,46 @@ Public Class frmitem
         lbl_date1.Text = Date.Now.ToString("ddd, dd-MM-yyyy")
         lbl_time.Text = Date.Now.ToString("hh:mm:ss tt")
     End Sub
+
+    Private Sub GunaButton3_Click(sender As Object, e As EventArgs) Handles GunaButton3.Click
+        Dim entryForm As Entry = Application.OpenForms.OfType(Of Entry)().FirstOrDefault()
+        If entryForm IsNot Nothing Then
+            entryForm.LoadInventory() ' Refresh the inventory list
+        End If
+        Me.Close()
+    End Sub
+
+    Private Sub txt_quantity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txt_quantity.KeyPress
+        ' Allow only numeric characters and control keys (e.g., Backspace)
+        If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) Then
+            e.Handled = True ' Suppress the invalid keypress
+        End If
+    End Sub
+    Private Sub txt_name_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_name.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True ' Prevents the beep sound
+            btn_save.PerformClick() ' Triggers the button click
+        End If
+    End Sub
+
+    Private Sub txt_quantity_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_quantity.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True ' Prevents the beep sound
+            btn_save.PerformClick() ' Triggers the button click
+        End If
+    End Sub
+    Private Sub txt_measurementname_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_measurementname.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True ' Prevents the beep sound
+            btn_save.PerformClick() ' Triggers the button click
+        End If
+    End Sub
+
+    Private Sub txt_category_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_category.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True ' Prevents the beep sound
+            btn_save.PerformClick() ' Triggers the button click
+        End If
+    End Sub
+
 End Class

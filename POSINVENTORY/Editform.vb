@@ -60,7 +60,7 @@ Public Class EditForm
 
 
     ' Load sizes and prices into DataGridView
-    Private Sub LoadSizes()
+    Public Sub LoadSizes()
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
 
@@ -106,9 +106,14 @@ Public Class EditForm
 
             Dim i As Integer = cmd.ExecuteNonQuery()
             If i > 0 Then
-                MsgBox("Food Edit Successfully!", vbInformation, "BREWTOPIA")
+                ' Call list from the list form
+                Dim list As List = Application.OpenForms.OfType(Of List)().FirstOrDefault()
+                list.Load_Foods() ' Refresh the inventory list
+                list.LoadCategories()
+
+                MsgBox("Product Edit Successfully!", vbInformation, "BREWTOPIA")
             Else
-                MsgBox("Warning: Food Edit Failed!", vbCritical, "BREWTOPIA")
+                MsgBox("Warning: Product Edit Failed!", vbCritical, "BREWTOPIA")
             End If
 
         Catch ex As Exception
@@ -116,23 +121,16 @@ Public Class EditForm
         Finally
             If conn.State = ConnectionState.Open Then conn.Close()
         End Try
-
-        ' Call list from the list form
-        Dim list As List = Application.OpenForms.OfType(Of List)().FirstOrDefault()
-        If list IsNot Nothing Then
-            list.Load_Foods() ' Refresh the inventory list
-            'list.LoadCategories()
-        End If
     End Sub
     Private Sub btnDeletion_Click(sender As Object, e As EventArgs) Handles btndeletion.Click
         ' Ensure that the user has selected a food item to delete
         If String.IsNullOrEmpty(FoodCode) Then
-            MsgBox("No food item selected to delete!", MsgBoxStyle.Exclamation, "BREWTOPIA")
+            MsgBox("No product item selected to delete!", MsgBoxStyle.Exclamation, "BREWTOPIA")
             Return
         End If
 
         ' Confirm the deletion with the user
-        If MsgBox("Are you sure you want to delete this food item and all associated sizes and ingredients?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
+        If MsgBox("Are you sure you want to delete this product item and all associated sizes and ingredients?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
             Try
                 If conn.State = ConnectionState.Closed Then conn.Open()
 
@@ -151,15 +149,13 @@ Public Class EditForm
                 cmdFood.Parameters.AddWithValue("@foodcode", FoodCode)
                 cmdFood.ExecuteNonQuery()
 
-                MsgBox("Food item, associated sizes, and ingredients deleted successfully!", vbInformation, "BREWTOPIA")
-
                 ' Refresh the UI or reload the list of foods
                 ' Call list from the list form
                 Dim list As List = Application.OpenForms.OfType(Of List)().FirstOrDefault()
-                If list IsNot Nothing Then
-                    list.Load_Foods() ' Refresh the inventory list
-                    list.LoadCategories()
-                End If
+                list.Load_Foods() ' Refresh the inventory list
+                list.LoadCategories()
+
+                MsgBox("Product item, associated sizes, and ingredients deleted successfully!", vbInformation, "BREWTOPIA")
 
             Catch ex As Exception
                 MsgBox("Error: " & ex.Message, MsgBoxStyle.Critical, "BREWTOPIA")
@@ -169,10 +165,6 @@ Public Class EditForm
             End Try
             Me.Close()
         End If
-    End Sub
-
-    Private Sub GunaControlBox1_Click(sender As Object, e As EventArgs) Handles GunaControlBox1.Click
-
     End Sub
 
     Private Sub btnSupplies_Click(sender As Object, e As EventArgs) Handles btnSupplies.Click
@@ -185,5 +177,12 @@ Public Class EditForm
         frmIngredients.txt_supplycode.Text = Me.FoodCode
     End Sub
 
+    Private Sub GunaButton3_Click(sender As Object, e As EventArgs) Handles GunaButton3.Click
+        Dim formingredients As formingredients = Application.OpenForms.OfType(Of formingredients)().FirstOrDefault()
+        If formingredients IsNot Nothing Then
+            formingredients.Close() ' Refresh the inventory list
+        End If
+        Me.Close()
+    End Sub
 
 End Class

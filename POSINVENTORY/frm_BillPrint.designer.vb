@@ -25,11 +25,11 @@ Partial Class frm_BillPrint
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_BillPrint))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.ReportViewer1 = New Microsoft.Reporting.WinForms.ReportViewer()
         Me.GunaElipse11 = New Guna.UI.WinForms.GunaElipse(Me.components)
-        Me.GunaControlBox1 = New Guna.UI.WinForms.GunaControlBox()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -45,6 +45,22 @@ Partial Class frm_BillPrint
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(742, 46)
         Me.Panel1.TabIndex = 1
+        '
+        'GunaControlBox1
+        '
+        Me.GunaControlBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GunaControlBox1.AnimationHoverSpeed = 0.07!
+        Me.GunaControlBox1.AnimationSpeed = 0.03!
+        Me.GunaControlBox1.ControlBoxTheme = Guna.UI.WinForms.FormControlBoxTheme.Custom
+        Me.GunaControlBox1.IconColor = System.Drawing.SystemColors.ButtonFace
+        Me.GunaControlBox1.IconSize = 15.0!
+        Me.GunaControlBox1.Location = New System.Drawing.Point(704, 0)
+        Me.GunaControlBox1.Name = "GunaControlBox1"
+        Me.GunaControlBox1.OnHoverBackColor = System.Drawing.Color.Maroon
+        Me.GunaControlBox1.OnHoverIconColor = System.Drawing.Color.White
+        Me.GunaControlBox1.OnPressedColor = System.Drawing.Color.Black
+        Me.GunaControlBox1.Size = New System.Drawing.Size(38, 24)
+        Me.GunaControlBox1.TabIndex = 41
         '
         'PictureBox4
         '
@@ -81,22 +97,6 @@ Partial Class frm_BillPrint
         '
         Me.GunaElipse11.Radius = 15
         Me.GunaElipse11.TargetControl = Me
-        '
-        'GunaControlBox1
-        '
-        Me.GunaControlBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GunaControlBox1.AnimationHoverSpeed = 0.07!
-        Me.GunaControlBox1.AnimationSpeed = 0.03!
-        Me.GunaControlBox1.ControlBoxTheme = Guna.UI.WinForms.FormControlBoxTheme.Custom
-        Me.GunaControlBox1.IconColor = System.Drawing.SystemColors.ButtonFace
-        Me.GunaControlBox1.IconSize = 15.0!
-        Me.GunaControlBox1.Location = New System.Drawing.Point(704, 0)
-        Me.GunaControlBox1.Name = "GunaControlBox1"
-        Me.GunaControlBox1.OnHoverBackColor = System.Drawing.Color.Maroon
-        Me.GunaControlBox1.OnHoverIconColor = System.Drawing.Color.White
-        Me.GunaControlBox1.OnPressedColor = System.Drawing.Color.Black
-        Me.GunaControlBox1.Size = New System.Drawing.Size(38, 24)
-        Me.GunaControlBox1.TabIndex = 41
         '
         'frm_BillPrint
         '
