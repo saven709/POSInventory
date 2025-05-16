@@ -11,6 +11,9 @@ Public Class Cashier
     Private WithEvents foodcode As Label
     Private WithEvents foodname As Label
     Private WithEvents img As CirclePicturBox
+    Private CriticalStockTimer As Timer
+
+
 
     Public Sub UpdateBalanceAmount()
         Try
@@ -34,6 +37,9 @@ Public Class Cashier
         End If
     End Sub
     Private Sub CheckCriticalStockForCashier(Optional forcePlaySound As Boolean = False)
+        If Me.IsDisposed OrElse Me.Disposing Then Exit Sub
+        If Panelnotif Is Nothing OrElse Panelnotif.IsDisposed OrElse Panelnotif.Disposing Then Exit Sub
+
         Try
             ' Clear the panel first
             Panelnotif.Controls.Clear()
@@ -49,11 +55,10 @@ Public Class Cashier
 
                 While reader.Read()
                     hasCriticalItems = True
-                    Exit While ' ONLY NEED TO KNOW IF THERE'S AT LEAST ONE
+                    Exit While
                 End While
 
                 If hasCriticalItems Then
-                    ' Create and show PosPopup in the PanelNotif
                     Dim popup As New PosPopup()
                     popup.TopLevel = False
                     popup.FormBorderStyle = FormBorderStyle.None
@@ -61,20 +66,14 @@ Public Class Cashier
 
                     Panelnotif.Controls.Add(popup)
 
-                    ' Make the panel visible if it wasn't already
                     Dim wasVisible As Boolean = Panelnotif.Visible
                     Panelnotif.Visible = True
                     popup.Show()
 
-                    ' Play sound if:
-                    ' 1. The panel wasn't visible before (new notification), OR
-                    ' 2. We're forcing sound play (like on form load)
                     If Not wasVisible Or forcePlaySound Then
-                        ' Play the exclamation sound
                         System.Media.SystemSounds.Exclamation.Play()
                     End If
                 Else
-                    ' No critical items, keep panel hidden
                     Panelnotif.Visible = False
                 End If
             End Using
@@ -82,6 +81,7 @@ Public Class Cashier
             MessageBox.Show("Error checking critical stock: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Private Sub txt_receivedAmount_TextChanged(sender As Object, e As EventArgs) Handles txt_receivedAmount.TextChanged
         Try
             ' Limit to 5 digits or 99999
@@ -181,34 +181,44 @@ Public Class Cashier
         UpdateButtonVisibility()
         Load_Foods()
         auto_Transno()
+
         Timer1 = New Timer()
-        Timer1.Interval = 1000  ' Update every second
+        Timer1.Interval = 1000
         Timer1.Start()
 
         txt_transno.ReadOnly = True
         txt_transno.TabStop = False
-        txt_transno.BackColor = SystemColors.Control ' Optional: Make it look like a label
-        'txt_transno.BorderStyle = BorderStyle.None   ' Optional: Remove the border for cleaner appearance
-        LoadCategories()  ' Load categories when form starts
-        categorybtn.Text = categories(0)  ' Set initial text to "All"
+        txt_transno.BackColor = SystemColors.Control
 
-        ' Create tooltip for category button
+        LoadCategories()
+        categorybtn.Text = categories(0)
+
         Dim tooltip As New ToolTip()
         tooltip.SetToolTip(categorybtn, "Click to switch category")
 
-        Dim criticalStockTimer As New Timer()
-        criticalStockTimer.Interval = 60000 ' Check every minute (adjust as needed)
-        AddHandler criticalStockTimer.Tick, AddressOf CriticalStockTimer_Tick
-        criticalStockTimer.Start()
+        ' --- FIXED HERE ---
+        CriticalStockTimer = New Timer()
+        CriticalStockTimer.Interval = 60000
+        AddHandler CriticalStockTimer.Tick, AddressOf CriticalStockTimer_Tick
+        CriticalStockTimer.Start()
 
         ' Initial check
         CheckCriticalStockForCashier()
-
     End Sub
+
     Private Sub CriticalStockTimer_Tick(sender As Object, e As EventArgs)
         ' Periodically check for critical stock
         CheckCriticalStockForCashier()
     End Sub
+    Private Sub CashierForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        If CriticalStockTimer IsNot Nothing Then
+            CriticalStockTimer.Stop()
+            CriticalStockTimer.Dispose()
+        End If
+    End Sub
+
+
+
 
     Private Sub InitializeDataGridView()
         a.RowTemplate.Height = 30
@@ -367,9 +377,10 @@ Public Class Cashier
             pan = New Panel With {
             .Width = 140,
             .Height = 140,
-            .BackColor = Color.Black,  ' Keep background color consistent
+            .BackColor = Color.Black,
             .Tag = foodCode,
-            .Enabled = True  ' Keep enabled for visual consistency, handle clicks separately
+            .Enabled = True,
+            .Padding = New Padding(0)  ' Default padding
         }
 
             ' Create image control
@@ -386,20 +397,20 @@ Public Class Cashier
                 Dim grayImage As New Bitmap(originalImage.Width, originalImage.Height)
                 Using g As Graphics = Graphics.FromImage(grayImage)
                     Dim colorMatrix As New ColorMatrix(
-                    New Single()() {
-                        New Single() {0.3F, 0.3F, 0.3F, 0, 0},
-                        New Single() {0.3F, 0.3F, 0.3F, 0, 0},
-                        New Single() {0.3F, 0.3F, 0.3F, 0, 0},
-                        New Single() {0, 0, 0, 0.5F, 0},  ' Reduced opacity to 50%
-                        New Single() {0, 0, 0, 0, 1}
-                    })
+                New Single()() {
+                    New Single() {0.3F, 0.3F, 0.3F, 0, 0},
+                    New Single() {0.3F, 0.3F, 0.3F, 0, 0},
+                    New Single() {0.3F, 0.3F, 0.3F, 0, 0},
+                    New Single() {0, 0, 0, 0.5F, 0},  ' Reduced opacity to 50%
+                    New Single() {0, 0, 0, 0, 1}
+                })
                     Dim attributes As New ImageAttributes()
                     attributes.SetColorMatrix(colorMatrix)
 
                     g.DrawImage(originalImage,
-                    New Rectangle(0, 0, originalImage.Width, originalImage.Height),
-                    0, 0, originalImage.Width, originalImage.Height,
-                    GraphicsUnit.Pixel, attributes)
+                New Rectangle(0, 0, originalImage.Width, originalImage.Height),
+                0, 0, originalImage.Width, originalImage.Height,
+                GraphicsUnit.Pixel, attributes)
                 End Using
                 img.BackgroundImage = grayImage
             Else
@@ -421,17 +432,101 @@ Public Class Cashier
             pan.Controls.Add(foodname)
             FlowLayoutPanel1.Controls.Add(pan)
 
-            ' Add event handlers only for available items
+            ' Add event handlers for available items
             If isAvailable Then
                 AddHandler pan.Click, AddressOf Selectimg_Click
                 AddHandler img.Click, AddressOf Selectimg_Click
                 AddHandler foodname.Click, AddressOf Selectimg_Click
+
+                ' Add hover effect event handlers
+                AddHandler pan.MouseEnter, AddressOf Panel_MouseEnter
+                AddHandler pan.MouseLeave, AddressOf Panel_MouseLeave
+
+                ' Add hover effects to child controls too
+                AddHandler img.MouseEnter, AddressOf Control_MouseEnter
+                AddHandler img.MouseLeave, AddressOf Control_MouseLeave
+                AddHandler foodname.MouseEnter, AddressOf Control_MouseEnter
+                AddHandler foodname.MouseLeave, AddressOf Control_MouseLeave
             End If
 
         Catch ex As Exception
             MessageBox.Show("Error loading controls: " & ex.Message)
         End Try
     End Sub
+
+    ' Handles mouse enter event for panel
+    Private Sub Panel_MouseEnter(sender As Object, e As EventArgs)
+        Try
+            ' Apply white border effect with smooth transition
+            Dim panel As Panel = DirectCast(sender, Panel)
+            panel.BackColor = Color.FromArgb(40, 40, 40)  ' Slightly lighter background
+            panel.Padding = New Padding(2)  ' Add padding to create border effect
+            panel.BorderStyle = BorderStyle.FixedSingle  ' Add border
+            panel.Cursor = Cursors.Hand  ' Change cursor to hand
+        Catch ex As Exception
+            ' Handle any errors silently
+        End Try
+    End Sub
+
+    ' Handles mouse leave event for panel
+    Private Sub Panel_MouseLeave(sender As Object, e As EventArgs)
+        Try
+            ' Restore original appearance
+            Dim panel As Panel = DirectCast(sender, Panel)
+            panel.BackColor = Color.Black  ' Restore original background
+            panel.Padding = New Padding(0)  ' Remove padding
+            panel.BorderStyle = BorderStyle.None  ' Remove border
+            panel.Cursor = Cursors.Default  ' Restore default cursor
+        Catch ex As Exception
+            ' Handle any errors silently
+        End Try
+    End Sub
+
+    ' Handles mouse enter for child controls (bubble up to parent panel)
+    Private Sub Control_MouseEnter(sender As Object, e As EventArgs)
+        Try
+            ' Get the parent panel and trigger its MouseEnter event
+            Dim control As Control = DirectCast(sender, Control)
+            Dim parentPanel As Panel = DirectCast(control.Parent, Panel)
+            Panel_MouseEnter(parentPanel, e)
+        Catch ex As Exception
+            ' Handle any errors silently
+        End Try
+    End Sub
+
+    ' Handles mouse leave for child controls (bubble up to parent panel)
+    Private Sub Control_MouseLeave(sender As Object, e As EventArgs)
+        Try
+            ' Get the parent panel and trigger its MouseLeave event
+            Dim control As Control = DirectCast(sender, Control)
+            Dim parentPanel As Panel = DirectCast(control.Parent, Panel)
+
+            ' Only restore if mouse is not over the panel or any of its children
+            If Not IsMouseOverControl(parentPanel) Then
+                Panel_MouseLeave(parentPanel, e)
+            End If
+        Catch ex As Exception
+            ' Handle any errors silently
+        End Try
+    End Sub
+
+    ' Helper function to check if mouse is over a control or any of its children
+    Private Function IsMouseOverControl(ctrl As Control) As Boolean
+        Dim mousePos As Point = ctrl.PointToClient(Cursor.Position)
+        If ctrl.ClientRectangle.Contains(mousePos) Then
+            Return True
+        End If
+
+        ' Check all child controls
+        For Each child As Control In ctrl.Controls
+            mousePos = child.PointToClient(Cursor.Position)
+            If child.ClientRectangle.Contains(mousePos) Then
+                Return True
+            End If
+        Next
+
+        Return False
+    End Function
 
     Public Sub Selectimg_Click(sender As Object, e As EventArgs)
         Dim foodCode As String = sender.Tag.ToString()

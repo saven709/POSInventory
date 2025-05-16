@@ -192,7 +192,7 @@ Partial Class EntryEdit
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Poppins SemiBold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(32, 67)
+        Me.Label5.Location = New System.Drawing.Point(32, 59)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(53, 26)
         Me.Label5.TabIndex = 81
@@ -203,7 +203,7 @@ Partial Class EntryEdit
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Poppins SemiBold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(32, 243)
+        Me.Label1.Location = New System.Drawing.Point(32, 239)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(84, 26)
         Me.Label1.TabIndex = 78
@@ -214,7 +214,7 @@ Partial Class EntryEdit
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Poppins SemiBold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(28, 189)
+        Me.Label4.Location = New System.Drawing.Point(32, 180)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(168, 26)
         Me.Label4.TabIndex = 76
@@ -225,7 +225,7 @@ Partial Class EntryEdit
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Poppins SemiBold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(32, 123)
+        Me.Label2.Location = New System.Drawing.Point(32, 114)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(58, 26)
         Me.Label2.TabIndex = 74

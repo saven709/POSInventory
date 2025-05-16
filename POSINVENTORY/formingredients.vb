@@ -83,11 +83,14 @@ Public Class formingredients
             Using conn As New MySqlConnection(ConnectionString)  ' Create new connection
                 conn.Open()
 
-                Using cmd As New MySqlCommand("SELECT name FROM tbl_inventory ORDER BY name", conn)
+                Using cmd As New MySqlCommand("SELECT name, itemcode FROM tbl_inventory ORDER BY name", conn)
                     Using dr As MySqlDataReader = cmd.ExecuteReader()
                         cbbName.Items.Clear()
                         While dr.Read()
-                            cbbName.Items.Add(dr("name").ToString())
+                            ' Skip the item with itemcode "SUG001"
+                            If dr("itemcode").ToString() <> "SUG001" Then
+                                cbbName.Items.Add(dr("name").ToString())
+                            End If
                         End While
                     End Using
                 End Using
@@ -96,6 +99,7 @@ Public Class formingredients
             MsgBox("Error loading inventory items: " & ex.Message, MsgBoxStyle.Critical)
         End Try
     End Sub
+
 
     Private Sub LoadIngredients()
         Try

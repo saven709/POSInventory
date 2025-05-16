@@ -60,7 +60,7 @@ Partial Class frmitem
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Poppins SemiBold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(29, 230)
+        Me.Label4.Location = New System.Drawing.Point(33, 222)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(168, 26)
         Me.Label4.TabIndex = 56
@@ -106,7 +106,7 @@ Partial Class frmitem
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Poppins SemiBold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(33, 284)
+        Me.Label1.Location = New System.Drawing.Point(33, 280)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(84, 26)
         Me.Label1.TabIndex = 58
@@ -169,7 +169,7 @@ Partial Class frmitem
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Poppins SemiBold", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(33, 172)
+        Me.Label6.Location = New System.Drawing.Point(33, 166)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(79, 26)
         Me.Label6.TabIndex = 63

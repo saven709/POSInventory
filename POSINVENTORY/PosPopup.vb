@@ -45,44 +45,48 @@
     End Sub
 
     Private Sub LoadCriticalStockData()
-        Try
-            ' Clear FlowLayoutPanel3 before adding new items
-            FlowLayoutPanel3.Controls.Clear()
+        If Not Me.Created OrElse Me.IsDisposed OrElse Me.Disposing Then Exit Sub
+        If FlowLayoutPanel3 Is Nothing OrElse FlowLayoutPanel3.IsDisposed OrElse FlowLayoutPanel3.Disposing Then Exit Sub
+        If FlowLayoutPanel3.Parent Is Nothing OrElse FlowLayoutPanel3.Parent.IsDisposed Then Exit Sub
 
-            ' Enable AutoScroll for FlowLayoutPanel3
+        Try
+            FlowLayoutPanel3.Controls.Clear()
             FlowLayoutPanel3.AutoScroll = True
 
             Dim connectionString As String = "server=localhost;port=3307;user=root;password=;database=brewtopia_db"
             Using conn As New MySql.Data.MySqlClient.MySqlConnection(connectionString)
                 conn.Open()
 
-                ' Fetch data for items with quantity less than 11
                 Dim cmd As New MySql.Data.MySqlClient.MySqlCommand("SELECT name, quantity FROM tbl_inventoryad WHERE quantity < 11", conn)
                 Dim reader As MySql.Data.MySqlClient.MySqlDataReader = cmd.ExecuteReader()
 
-                ' Display critical items in FlowLayoutPanel3
                 While reader.Read()
+                    If Me.IsDisposed OrElse Me.Disposing Then Exit While
+                    If FlowLayoutPanel3 Is Nothing OrElse FlowLayoutPanel3.IsDisposed OrElse FlowLayoutPanel3.Disposing Then Exit While
+                    If FlowLayoutPanel3.Parent Is Nothing OrElse FlowLayoutPanel3.Parent.IsDisposed Then Exit While
+
                     Dim name As String = reader("name").ToString()
                     Dim quantity As Integer = Convert.ToInt32(reader("quantity"))
 
-                    ' Create a new label dynamically for each critical item
                     Dim itemLabel As New Label()
                     itemLabel.Text = name & " - " & quantity & " left"
                     itemLabel.AutoSize = True
-                    itemLabel.ForeColor = Color.Red  ' You can change color if needed
+                    itemLabel.ForeColor = Color.Red
 
-                    ' Add it to FlowLayoutPanel3
                     FlowLayoutPanel3.Controls.Add(itemLabel)
                 End While
             End Using
 
-            ' Scroll to the bottom of FlowLayoutPanel3
-            FlowLayoutPanel3.AutoScrollPosition = New Point(0, FlowLayoutPanel3.VerticalScroll.Maximum)
+            If FlowLayoutPanel3 IsNot Nothing AndAlso Not FlowLayoutPanel3.IsDisposed Then
+                FlowLayoutPanel3.AutoScrollPosition = New Point(0, FlowLayoutPanel3.VerticalScroll.Maximum)
+            End If
 
         Catch ex As Exception
             MessageBox.Show("Error loading critical stock data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+
 
 
 End Class
